@@ -19,7 +19,7 @@ var svgpinwheel = d3.select(".pinwheel")
 // set high level pie and arc variables for use in the drawPinwheel function
 /**** Setting fixed inner and outer radius for pie wedges, but scaling the outer radius to the data is one potential path to creating the pinwheels ****/
 var outerRadius = width / 2;
-var innerRadius = 0;
+var innerRadius = width / 4;
 var arc = d3.svg.arc()
 			.innerRadius(innerRadius)
 			.outerRadius(outerRadius);
@@ -89,8 +89,8 @@ function drawPinwheel(dataset) {
 	var byID = cf.dimension(function(d) { return d.id; });
 	
 	// pick the record from the CSV where id = 78
-	byID.filterExact(78);
-	
+	byID.filterExact(234);
+		
 	// extract the record from the crossfilter selection
 	var firstRecord = byID.top(1);
 	
