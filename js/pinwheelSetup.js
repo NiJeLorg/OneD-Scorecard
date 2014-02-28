@@ -3,7 +3,7 @@
 */
 
 // sets size of pinwheel and the svg container to send it to
-var size = 400;
+var size = 300;
 var svgContainer = d3.select(".pinwheel")
 	.append("svg")
 	.attr("width", 600)
@@ -64,15 +64,15 @@ function filterData(byGeoID, byYear, city, year) {
 	
 	// create an object with the city names and ids segregated from the indicies for easy ploting
 	var rowOfData = {};	
-	rowOfData.meta = [];
-	rowOfData.indicies = [];	
+	rowOfData.meta = []
+	rowOfData.indicies = []	
 	$.each(filteredData, function( i, d ) {
 		rowOfData.meta = { id: d.id, geoid: d.geoid, metro: d.metro, year: d.year, oned_index: d.oned_index };
-		rowOfData.indicies.push({ name: 'Economy Index', value: d.economy_index, angle: 0 });
-		rowOfData.indicies.push({ name: 'Education Index', value: d.education_index, angle: 45 });
-		rowOfData.indicies.push({ name: 'Equity Index', value: d.equity_index, angle: 90 });
-		rowOfData.indicies.push({ name: 'Quality of Life Index', value: d.quality_of_life_index, angle: 135 });
-		rowOfData.indicies.push({ name: 'Transit Index', value: d.transit_index, angle: 180 });
+		rowOfData.indicies.push({ name: 'Economy Index', index: d.economy_index, angle: 247.5 });
+		rowOfData.indicies.push({ name: 'Education Index', index: d.education_index, angle: 292.5 });
+		rowOfData.indicies.push({ name: 'Equity Index', index: d.equity_index, angle: 337.5 });
+		rowOfData.indicies.push({ name: 'Quality of Life Index', index: d.quality_of_life_index, angle: 22.5 });
+		rowOfData.indicies.push({ name: 'Transit Index', index: d.transit_index, angle: 67.5 });
 	});
 		
 	// return the selected row
@@ -103,7 +103,7 @@ d3.csv("data/dummyIndexData.csv", function(data) {
 	
 	// function to pull a single record and pass to the createPinwheel function -- eventually we'll have a foreach loop here that will draw pinwheels for each city by year
 	var city = 15;
-	var year = 2010;
+	var year = 2011;
 	var rowOfData = filterData(byGeoID, byYear, city, year);
 
 	//console.log(rowOfData.indicies);

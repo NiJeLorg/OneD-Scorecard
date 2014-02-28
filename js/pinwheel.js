@@ -26,7 +26,7 @@ function createPinwheel(size, rowOfData, svgContainer) {
 			.startAngle(function(d) { return (d.angle - o.width) * Math.PI/180; })
 			.endAngle(function(d) { return (d.angle + o.width) * Math.PI/180; })
 			.innerRadius(o.from)
-			.outerRadius(function(d) { return o.to(d.value) });
+			.outerRadius(function(d) { return o.to(d.index) });
 	};
 
 	/**** End common pinwheel code ****/
@@ -37,18 +37,17 @@ function createPinwheel(size, rowOfData, svgContainer) {
 	// Map a index value to an outer radius for the chart
 	var indexToRadiusScale = d3.scale.linear()
 		.domain([0, 5]) // indicies go from 0 to 5
-		.range([34, size-20]) // output range has an inner radius set for a hole in the middle
+		.range([0, size-20]) // output range has an inner radius set for a hole in the middle
 		.clamp(true);
 	
 	function indexToRadius(d) { 
-		console.log(d.value);
-		return indexToRadiusScale(d.value); 
+		return indexToRadiusScale(d); 
 	}
 
 	// Options for drawing the complex arc chart
 	var pinwheelArcOptions = {
-		width: 5,
-		from: 34,
+		width: 22.5,
+		from: 0,
 		to: indexToRadius
 	} 
 
@@ -57,7 +56,7 @@ function createPinwheel(size, rowOfData, svgContainer) {
 
 	// Function to draw all of the pinwheel arcs
 	function drawComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
-		console.log(rowOfData.indicies[0]);
+		//console.log(rowOfData.indicies);
 		// Draw the main wind rose arcs
 		svgContainer.append("svg:g")
 			.attr("class", "arcs")
@@ -66,10 +65,10 @@ function createPinwheel(size, rowOfData, svgContainer) {
 			.enter()
 			.append("svg:path")
 			.attr("d", arc(pinwheelArcOptions))
-			.style("fill", colorFunc)
+			.style("fill", function(d, i) { return colorFunc(i); })
 			.attr("transform", "translate(" + size + "," + size + ")")
 			.append("svg:title")
-			.text(function(d) { return d }); 
+			.text(function(d) { return d.index }); 
  	}
 	
 	
