@@ -2,7 +2,7 @@
 * sandbox for building the OneD Scorecard pinwheel
 * creates a pinwheel in the "pinwheel" div
 * based on Nelson Minar's Wind Rose code @ https://gist.github.com/NelsonMinar/3589712
-*/
+*
 
 /*
 * Create pinwheel function 
@@ -52,7 +52,10 @@ function createPinwheel(size, rowOfData, svgContainer) {
 	} 
 
 	// using basic ordinal colors for now
-	var colorFunc = d3.scale.category10();
+	//repeating scale with your own colors
+	var colorFunc = d3.scale.ordinal()
+		.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+
 
 	// Function to draw all of the pinwheel arcs
 	function drawComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
