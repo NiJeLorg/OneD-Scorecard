@@ -4,12 +4,13 @@
 
 // sets size of pinwheel, width, height and padding for the array and the svg container to send it to
 var width = 800;
-var height = 600;
+var height = 500;
 var topPadding = 60;
 var sidePadding = 70;
-var size = 40;
-var numberOfRows = 7;
-var svgContainer = d3.select(".pinwheel")
+var smallestPie = 10;
+var size = 30;
+var numberOfRows = 6;
+var svgContainer = d3.select(".pinwheelArray")
 	.append("svg")
 	.attr("width", width)
 	.attr("height", height);

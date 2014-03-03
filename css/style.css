@@ -1,168 +1,199 @@
-/* global */
+/*
+ * Globals
+ */
 
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/* Custom default button */
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` */
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+
+
+/*
+ * Base structure
+ */
+html,
 body {
-	padding: 0;
-	margin: 0;
+  height: auto;
+  background-color: #efefee;
+  padding-bottom: 70px;
 }
-html, body, #map {
-	height: 100%;
-}
-
 body {
-	font-family:Helvetica,​ Arial,​ sans-serif;
-	font-size:12px;
-	font-weight:400;
-	color:#333333;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(0,0,0,.5);
 }
 
-p
-{ margin: 0px;
-  padding: 0px 0px 12px 0px;
-  line-height: 1.7em;
-  text-align: left;
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: auto; /* For at least Firefox */
+  min-height: 100%;
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
 }
 
-text 
-{
-	font-family: sans-serif;
-	font-size: 12px;
-	fill: white;
-}
-
-h1
-{ font-family:Helvetica,​ Arial,​ sans-serif;
-                font-size:30px;
-                color:#333333;
-		font-weight: 600;
-		margin-bottom: 16px;
-		padding-bottom: 18px;
-		position: relative;
-		text-transform: uppercase;
-}
-
-h2
-{  font-family:Helvetica,​ Arial,​ sans-serif;
-                font-size:22px;
-                color:#333333;
-		font-size: 22px;
-		font-weight: bold;
-		line-height: 1.2;
-		text-transform: uppercase;
-}
-
-a:link { 
-	font-family:Helvetica,​ Arial,​ sans-serif;
-	font-weight: bold;
-	text-decoration: none;
-	}
-a:hover { 
-	color: #333333;
-	text-decoration: none;
-	}
-
-
-#message_box {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 1000;
-	background: #ffc;
-	padding: 5px;
-	border: 1px solid #CCCCCC;
-	text-align: center;
-	font-weight: bold;
-	width: 99%;
-}
-
-#clear {clear:both;}
-
-.info {
-    padding: 6px 8px;
-    font: bold 14px/16px Arial, Helvetica, sans-serif;
-    background: white;
-    background: rgba(255,255,255,0.8);
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    border-radius: 5px;
-}
-.info h4 {
-    margin: 0 0 5px;
-    color: #777;
-}
-
-.info span {
-	font: 12px/12px Arial, Helvetica, sans-serif;
-	color: #777;
+/* Padding for spacing */
+.inner {
+  padding: 20px;
 }
 
 
-.legend {
-    line-height: 18px;
-    color: #555;
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-.legend i {
-    width: 18px;
-    height: 18px;
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
     float: left;
-    margin-right: 8px;
-    opacity: 0.7;
+  }
+  .masthead-nav {
+    float: right;
+  }
 }
 
-.left {
-	float: left;
-}
-
-svg .legendSvg { 
-	fill: #F03B20;
-	stroke: black; 
-	stroke-width: 1;
-	opacity: 0.75;
-}
-
-svg .legendSvg1 { 
-	fill: #F03B20;
-	stroke: black; 
-	stroke-width: 1;
-	opacity: 0.75;
-}
-
-svg .legendSvg2 { 
-	fill: #FEB24C;
-	stroke: black; 
-	stroke-width: 1;
-	opacity: 0.75;
-}
-
-svg .legendSvg3 { 
-	fill: #FFEDA0;
-	stroke: black; 
-	stroke-width: 1;
-	opacity: 0.75;
-}
-
-svg .legendSvg4 { 
-	fill: #BDBDBD;
-	stroke: black; 
-	stroke-width: 1;
-	opacity: 0.75;
-}
-
-svg .legendSvgPass { 
-	fill: #B9FCFF;
-	stroke: black; 
-	stroke-width: 1;
-	opacity: 0.75;
-}
-
-svg .legendSvgFail { 
-	fill: #552B08;
-	stroke: black; 
-	stroke-width: 1;
-	opacity: 0.75;
+.masthead-nav .masthead-nav-img {
+	height: 117px;
 }
 
 
-.link {
-	float: right;
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
+}
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
 }
 
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
+}
+
+.navbar .nav li {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .nav {
+    float: none;
+    text-align: center;
+}
+
+.navbar-default {
+    background-color: #6D6E70;
+    border: 0px;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #D0D2D3;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-brand {
+  color: #fff;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #D0D2D3;
+  background-color: transparent;
+}
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: relative;
+    top: 0;
+  }
+  .mastfoot {
+    position: relative;
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+}
+
+@media (min-width: 992px) {
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%;
+  }
+}
 

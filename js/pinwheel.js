@@ -37,7 +37,7 @@ function createPinwheel(size, rowOfData, svgContainer, centerX, centerY) {
 	// Map a index value to an outer radius for the chart
 	var indexToRadiusScale = d3.scale.linear()
 		.domain([0, 5]) // indicies go from 0 to 5
-		.range([0, size]) // output range 
+		.range([smallestPie, size]) // output range 
 		.clamp(true);
 	
 	function indexToRadius(d) { 
