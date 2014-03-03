@@ -2,12 +2,17 @@
 * this script sets up the global variables and SVG container for the createPinwheel function, and then calls that function
 */
 
-// sets size of pinwheel and the svg container to send it to
-var size = 300;
+// sets size of pinwheel, width, height and padding for the array and the svg container to send it to
+var width = 800;
+var height = 600;
+var topPadding = 60;
+var sidePadding = 70;
+var size = 40;
+var numberOfRows = 7;
 var svgContainer = d3.select(".pinwheel")
 	.append("svg")
-	.attr("width", 600)
-	.attr("height", 600);
+	.attr("width", width)
+	.attr("height", height);
 
 
 /**** Code for data manipulation ****/
@@ -38,30 +43,41 @@ function parseDates(dataset) {
 
 // using crossfilter, accepts a dataset, sets up dimensions for that record and returns a crossfilter object
 // for reference: (crossfilter API: https://github.com/square/crossfilter/wiki/API-Reference)
-function crossfilterByGeoID(cf, dataset) {		
+function setupCrossfilterByGeoID(cf, dataset) {		
 	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byGeoID = cf.dimension(function(d) { return d.geoid; });
 	return byGeoID;	
 }
 
-function crossfilterByYear(cf, dataset) {		
+function setupCrossfilterByYear(cf, dataset) {		
 	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byYear = cf.dimension(function(d) { return d.year; });
 	return byYear;
 }
 
-
-// function to filter data using crossfilter to a single geography for a single year
-function filterData(byGeoID, byYear, city, year) {
-	// pick the records from the CSV where geoid = 15 (Detroit)
-	byGeoID.filterExact(city);
+// set up functions to filter data (using crossfilter) by year or geoID and clear these filters
+function filterByYear (byYear, year) {
 	byYear.filterExact(year);
-	var filteredData = byYear.top(1);
-	
-	// clear filters
+	var filteredData = byYear.top(Infinity);
+	return filteredData;
+}
+
+function filterByGeoID (byGeoID, city) {
+	byGeoID.filterExact(city);
+	var filteredData = byGeoID.top(Infinity);
+	return filteredData;
+}
+
+function clearFilterByYear(byYear) {
+	byYear.filterAll();	
+}
+
+function clearFilterByGeoID(byGeoID) {
 	byGeoID.filterAll();
-	byYear.filterAll();
-	
+}
+
+// function to create an object for the pinwheel function to read
+function createObjectForPinwheel(filteredData) {	
 	// create an object with the city names and ids segregated from the indicies for easy ploting
 	var rowOfData = {};	
 	rowOfData.meta = []
@@ -98,17 +114,48 @@ d3.csv("data/dummyIndexData.csv", function(data) {
 	// function to set up crossfilter dimensions
 	// set a globa variable for crossfilter on the dataset
 	var cf = crossfilter(dataset);	
-	var byGeoID = crossfilterByGeoID(cf, dataset);
-	var byYear = crossfilterByYear(cf, dataset);
+	var byGeoID = setupCrossfilterByGeoID(cf, dataset);
+	var byYear = setupCrossfilterByYear(cf, dataset);
 	
-	// function to pull a single record and pass to the createPinwheel function -- eventually we'll have a foreach loop here that will draw pinwheels for each city by year
-	var city = 15;
-	var year = 2011;
-	var rowOfData = filterData(byGeoID, byYear, city, year);
+	// set initial year as the max year in the array to initially filter the data
+	var year = d3.max(dataset, function(d) { return d.year; });
+	
+	// filter the dataset for just this year using the filter function we created
+	var filteredDataByYear = filterByYear(byYear, year);
+	
+	// get size of the dataset for determining the number of rows and columns of pinwheels
+	var count = filteredDataByYear.length;
+	var countPerRow = Math.ceil(count/numberOfRows);
+	
+	// D3 scale for the x position of pinwheel graphics
+	var centerXScale = d3.scale.linear()
+		.domain([1, countPerRow]) // numbers go from 1 to the number of elements per row
+		.range([sidePadding, width-sidePadding]) // number of pixels left to right
+		.clamp(true);
+	
+		
+	// iterate through each city and plot pinwheels for each city at intervals along the chart
+	$.each(filteredDataByYear, function( i, d ) {		
+		var city = d.geoid;
 
-	//console.log(rowOfData.indicies);
-	// function to draw the pinwheel chart
-	createPinwheel(size, rowOfData, svgContainer)
+		// filter data to this city
+		var filteredDataByGeoID = filterByGeoID(byGeoID, city);
+		
+		// clear filter for city for next one
+		clearFilterByGeoID(byGeoID); 
+		
+		var rowOfData = createObjectForPinwheel(filteredDataByGeoID);
+		
+		// set the center for each pinwheel depending on the number shown and width and height of chart
+		var centerX = centerXScale(city - ((Math.floor((city-1)/countPerRow)) * countPerRow));
+		var centerY = (Math.floor((city-1)/countPerRow) * (height/numberOfRows)) + topPadding; 
+		
+		createPinwheel(size, rowOfData, svgContainer, centerX, centerY);		
+	});
+	
+	// clear the year filter
+	clearFilterByYear(byYear);
+	
 
 });
 

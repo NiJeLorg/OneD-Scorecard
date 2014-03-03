@@ -10,7 +10,7 @@
 * rowOfData: the row of data being passed to the function (each row represents the OneD indicies for each city for one year)
 * svgContainer: the SVG container we cant to pass the pinwheel back to
 */
-function createPinwheel(size, rowOfData, svgContainer) {
+function createPinwheel(size, rowOfData, svgContainer, centerX, centerY) {
 	
 	/**** Common pinwheel code ****/
 	// Function to draw a single arc for the pinwheel
@@ -37,7 +37,7 @@ function createPinwheel(size, rowOfData, svgContainer) {
 	// Map a index value to an outer radius for the chart
 	var indexToRadiusScale = d3.scale.linear()
 		.domain([0, 5]) // indicies go from 0 to 5
-		.range([0, size-20]) // output range has an inner radius set for a hole in the middle
+		.range([0, size]) // output range 
 		.clamp(true);
 	
 	function indexToRadius(d) { 
@@ -51,8 +51,7 @@ function createPinwheel(size, rowOfData, svgContainer) {
 		to: indexToRadius
 	} 
 
-	// using basic ordinal colors for now
-	//repeating scale with your own colors
+	// repeating scale with your own colors
 	var colorFunc = d3.scale.ordinal()
 		.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
 
@@ -69,7 +68,7 @@ function createPinwheel(size, rowOfData, svgContainer) {
 			.append("svg:path")
 			.attr("d", arc(pinwheelArcOptions))
 			.style("fill", function(d, i) { return colorFunc(i); })
-			.attr("transform", "translate(" + size + "," + size + ")")
+			.attr("transform", "translate(" + centerX + "," + centerY + ")")
 			.append("svg:title")
 			.text(function(d) { return d.index }); 
  	}
@@ -78,18 +77,7 @@ function createPinwheel(size, rowOfData, svgContainer) {
 	// draw the visualization
 	drawComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions);
 	
-	
-
 	/**** End code for creating the pinwheel ****/
-
-
-
-
-
-
-
-
-
 
 } // close createPinwheel function
 
