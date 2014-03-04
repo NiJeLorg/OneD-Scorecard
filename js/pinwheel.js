@@ -1,16 +1,13 @@
 /*
-* sandbox for building the OneD Scorecard pinwheel
-* creates a pinwheel in the "pinwheel" div
-* based on Nelson Minar's Wind Rose code @ https://gist.github.com/NelsonMinar/3589712
-*
-
-/*
 * Create pinwheel function 
 * size: sets the width and height of each pinwheel created
 * rowOfData: the row of data being passed to the function (each row represents the OneD indicies for each city for one year)
-* svgContainer: the SVG container we cant to pass the pinwheel back to
+* svgContainer: the SVG container we want to pass the pinwheel back to
+* centerX: X coordinates for the center of the pinwheel
+* centerY: Y coordinates for the center of the pinwheel
+* based on Nelson Minar's Wind Rose code @ https://gist.github.com/NelsonMinar/3589712
 */
-function createPinwheel(size, rowOfData, svgContainer, centerX, centerY) {
+function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, centerY) {
 	
 	/**** Common pinwheel code ****/
 	// Function to draw a single arc for the pinwheel

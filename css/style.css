@@ -1,4 +1,8 @@
 /*
+ * Begin Bootstrap Override CSS
+ */
+
+/*
  * Globals
  */
 
@@ -18,7 +22,6 @@ a:hover {
   background-color: #fff;
   border: 1px solid #fff;
 }
-
 
 /*
  * Base structure
@@ -53,7 +56,7 @@ body {
 
 /* Padding for spacing */
 .inner {
-  padding: 20px;
+  padding: 0px 20px 0px 20px;
 }
 
 
@@ -102,7 +105,57 @@ body {
 }
 
 .masthead-nav .masthead-nav-img {
-	height: 117px;
+	height: 111px;
+}
+
+/*
+ * button and D3 logo bar
+ */
+.control-logo {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.control-nav > li {
+  display: inline-block;
+}
+.control-nav > li + li {
+  margin-left: 2px;
+}
+.control-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.control-nav > li > a:hover,
+.control-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.control-nav > .active > a,
+.control-nav > .active > a:hover,
+.control-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .control-logo {
+    float: right;
+	margin-right: 14%;
+  }
+  .control-nav {
+    float: left;
+	margin-left: 14%;
+  }
+}
+
+.control-nav .control-nav-img {
+	height: 36px;
 }
 
 
@@ -196,4 +249,50 @@ body {
     width: 100%;
   }
 }
+
+/*
+ * End Bootstrap Override CSS
+ */
+
+
+/*
+ * Begin vis and svg styling 
+ */
+
+/*
+ * Map styling
+ */
+
+path {
+  stroke-linejoin: round;
+}
+
+.land-glow {
+  fill-opacity: .7;
+  filter: url(#blur);
+}
+
+.land-fill {
+  fill: #fff;
+}
+
+.state-boundary {
+  fill: none;
+  stroke: #aaa;
+  stroke-width: 1px;
+}
+
+.land-fill,
+.county-boundary {
+  stroke: #777;
+  stroke-width: .35px;
+}
+
+
+
+
+/*
+ * End vis and svg styling 
+ */
+
 

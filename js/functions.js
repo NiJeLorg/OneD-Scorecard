@@ -1,20 +1,7 @@
 /*
-* this script sets up the global variables and SVG container for the createPinwheel function, and then calls that function
+* houses all functions used by the set up scripts
+* dataset: csv data
 */
-
-// sets size of pinwheel, width, height and padding for the array and the svg container to send it to
-var width = 800;
-var height = 500;
-var topPadding = 60;
-var sidePadding = 70;
-var smallestPie = 10;
-var size = 30;
-var numberOfRows = 6;
-var svgContainer = d3.select(".pinwheelArray")
-	.append("svg")
-	.attr("width", width)
-	.attr("height", height);
-
 
 /**** Code for data manipulation ****/
 // parses strings to integers or floating point numbers for the entire dataset
@@ -22,6 +9,8 @@ function parseNumbers(dataset) {
 	$.each(dataset, function( i, d ) {
 		d.id = parseInt(d.id);
 		d.geoid = parseInt(d.geoid); 
+		d.lat = parseFloat(d.lat);
+		d.lon = parseFloat(d.lon);
 		d.oned_index = parseFloat(d.oned_index);
 		d.economy_index = parseFloat(d.economy_index);
 		d.education_index = parseFloat(d.education_index);
@@ -84,7 +73,7 @@ function createObjectForPinwheel(filteredData) {
 	rowOfData.meta = []
 	rowOfData.indicies = []	
 	$.each(filteredData, function( i, d ) {
-		rowOfData.meta = { id: d.id, geoid: d.geoid, metro: d.metro, year: d.year, oned_index: d.oned_index };
+		rowOfData.meta = { id: d.id, geoid: d.geoid, metro: d.metro, year: d.year, lat: d.lat, lon: d.lon, oned_index: d.oned_index };
 		rowOfData.indicies.push({ name: 'Economy Index', index: d.economy_index, angle: 247.5 });
 		rowOfData.indicies.push({ name: 'Education Index', index: d.education_index, angle: 292.5 });
 		rowOfData.indicies.push({ name: 'Equity Index', index: d.equity_index, angle: 337.5 });
@@ -99,65 +88,3 @@ function createObjectForPinwheel(filteredData) {
 /**** End code for data manipulation ****/	
 	
 	
-/**** Code to open dataset and preform functions ****/	
-	
-// set dataset as a global, empty variable
-var dataset = '';
-
-// use d3 to open process and scale csv data
-d3.csv("data/dummyIndexData.csv", function(data) { 
-	dataset = data;
-
-	//functions to parse dates and numbers to ensure these are javascript dates and numbers
-	parseNumbers(dataset);
-	parseDates(dataset);
-	
-	// function to set up crossfilter dimensions
-	// set a globa variable for crossfilter on the dataset
-	var cf = crossfilter(dataset);	
-	var byGeoID = setupCrossfilterByGeoID(cf, dataset);
-	var byYear = setupCrossfilterByYear(cf, dataset);
-	
-	// set initial year as the max year in the array to initially filter the data
-	var year = d3.max(dataset, function(d) { return d.year; });
-	
-	// filter the dataset for just this year using the filter function we created
-	var filteredDataByYear = filterByYear(byYear, year);
-	
-	// get size of the dataset for determining the number of rows and columns of pinwheels
-	var count = filteredDataByYear.length;
-	var countPerRow = Math.ceil(count/numberOfRows);
-	
-	// D3 scale for the x position of pinwheel graphics
-	var centerXScale = d3.scale.linear()
-		.domain([1, countPerRow]) // numbers go from 1 to the number of elements per row
-		.range([sidePadding, width-sidePadding]) // number of pixels left to right
-		.clamp(true);
-	
-		
-	// iterate through each city and plot pinwheels for each city at intervals along the chart
-	$.each(filteredDataByYear, function( i, d ) {		
-		var city = d.geoid;
-
-		// filter data to this city
-		var filteredDataByGeoID = filterByGeoID(byGeoID, city);
-		
-		// clear filter for city for next one
-		clearFilterByGeoID(byGeoID); 
-		
-		var rowOfData = createObjectForPinwheel(filteredDataByGeoID);
-		
-		// set the center for each pinwheel depending on the number shown and width and height of chart
-		var centerX = centerXScale(city - ((Math.floor((city-1)/countPerRow)) * countPerRow));
-		var centerY = (Math.floor((city-1)/countPerRow) * (height/numberOfRows)) + topPadding; 
-		
-		createPinwheel(size, rowOfData, svgContainer, centerX, centerY);		
-	});
-	
-	// clear the year filter
-	clearFilterByYear(byYear);
-	
-
-});
-
-/**** Close code to open dataset and preform functions ****/

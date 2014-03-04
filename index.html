@@ -11,6 +11,9 @@
 
  	<!-- Carousel CSS -->
     <link href="assets/css/carousel.css" rel="stylesheet">
+
+ 	<!-- Bootstrap Slider CSS -->
+    <link href="assets/css/bootstrap-slider.css" rel="stylesheet">
 	
 	<!-- Other CSS -->
 	<link href="css/style.css" type="text/css" rel="stylesheet" />
@@ -50,7 +53,7 @@
 	        <!-- Carousel
 	        ================================================== -->
             <div class="inner cover">
-		        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+		        <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
 		          <!-- Indicators -->
 		          <ol class="carousel-indicators">
 		            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -59,16 +62,32 @@
 		          </ol>
 		          <div class="carousel-inner">
 		            <div class="item active">			  
-		              <div class="container">				
-		   			  	<div class="pinwheelArray"></div>
+		              <div class="container">
+		   			  	<div class="statesArray"></div>
+		                <ul class="nav control-nav">
+		                  <li><a href="#"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></a></li>
+		                  <li><a href="#"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></a></li>
+		                  <li><a href="#"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></a></li>
+		                  <li><a href="#"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></a></li>
+		                </ul>						
+		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />						  				
 		              </div>
 		            </div>
 		            <div class="item">
-	    			  	<div class="pinwheelArray"></div>
+  		              <div class="container">				
+  		   			  	<div class="pinwheelArray"></div>
+  		                <ul class="nav control-nav">
+  		                  <li><a href="#"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></a></li>
+  		                  <li><a href="#"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></a></li>
+  		                  <li><a href="#"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></a></li>
+  		                  <li><a href="#"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></a></li>
+  		                </ul>						
+  		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
+					  </div>
 		            </div>
 		            <div class="item">
 		              <div class="container">
-	    			  	<div class="pinwheelArray"></div>
+	    			  	<div class="pinwheel"></div>
 		              </div>
 		            </div>
 		          </div>
@@ -110,12 +129,12 @@
 	  	                    <li><a href="#">Regional Transit</a></li>
 	  	                    <li class="dropdown">
 	  	                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methodology <b class="caret"></b></a>
-	  	                      <ul class="dropdown-menu">
+	  	                      <ul class="dropdown-menu dropdown-menu-left">
 	  	                        <li><a href="#">Priority Areas</a></li>
 	  	                        <li><a href="#">OneD Index</a></li>
 	  	                        <li><a href="#">Geography</a></li>
 	  	                        <li><a href="#">Data Download</a></li>
-	  	                        <li><a href="#">OneDetroit Portal & Opportunity Index</a></li>
+	  	                        <li><a href="#">OneDetroit Portal</a></li>
 	  	                      </ul>
 	  	                    </li>
 	  	                    <li><a href="#about">About</a></li>
@@ -142,9 +161,25 @@
 <script type="text/javascript" src="assets/js/crossfilter.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/docs.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap-slider.js"></script>
+<script type="text/javascript" src="assets/js/topojson.js"></script>
 
-<!-- setup javascript for the Pinwheel array -->
-<script type="text/javascript" src="js/pinwheelSetup.js"></script>
+<!-- sets the global variables for all the svg containers -->
+<script type="text/javascript" src="js/globalVariables.js"></script>
+
+<!-- houses the functions that are used across the set up functions -->
+<script type="text/javascript" src="js/functions.js"></script>
 
 <!-- reusable pinwheel function -->
 <script type="text/javascript" src="js/pinwheel.js"></script>
+
+<!-- reusable draw states function -->
+<script type="text/javascript" src="js/states.js"></script>
+
+<!-- setup javascript for the Pinwheel array -->
+<script type="text/javascript" src="js/statesPinwheelSetup.js"></script>
+
+<!-- setup javascript for the Pinwheel array -->
+<script type="text/javascript" src="js/pinwheelArraySetup.js"></script>
+
+
