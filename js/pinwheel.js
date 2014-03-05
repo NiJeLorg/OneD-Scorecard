@@ -56,6 +56,11 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	var popupCenterX = centerX - (size*1.5)/2;
 	var popupCenterY = centerY - (size*1.5)/2;
 	var rectSize = size*1.5;
+	
+	//set up container for mouseover interaction
+	var div = d3.select("body").append("div")
+	    .attr("class", "tooltip")
+	    .style("opacity", 1e-6);	
 
 	// Function to draw all of the pinwheel arcs
 	function drawComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
@@ -86,23 +91,68 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			
 			// set up on mouseover events
 			.on("mouseover", function(d) {
-				//console.log('hello');
-
-				//Update the tooltip position and value
-				d3.select("#tooltip")
-					.style("left", popupCenterX + "px")
-					.style("top", popupCenterY + "px")						
-					.select("#value")
-					.text(d.meta.lat);
-		   
-				//Show the tooltip
-				d3.select("#tooltip").classed("hidden", false);
-
+				console.log(d);
+				
+			    div.transition()
+			        .duration(250)
+			        .style("opacity", 1);
+				
+	            div.html(
+					'<h5>' + d.meta.metro + '</h5>' +
+					'<table class="table table-condensed">' +
+						'<tr>' +
+							'<td class="oned-rect">' +
+							'</td>' +
+							'<td class="oned">' +
+								'OneD Index: ' + d.meta.oned_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="economy-rect">' +
+							'</td>' +
+							'<td class="economy">' +
+								d.indicies[0].name + ': ' + d.indicies[0].index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="education-rect">' +
+							'</td>' +
+							'<td class="education">' +
+								d.indicies[1].name + ': ' + d.indicies[1].index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="equity-rect">' +
+							'</td>' +
+							'<td class="equity">' +
+								d.indicies[2].name + ': ' + d.indicies[2].index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="quality_of_life-rect">' +
+							'</td>' +
+							'<td class="quality_of_life">' +
+								d.indicies[3].name + ': ' + d.indicies[3].index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="transit-rect">' +
+							'</td>' +
+							'<td class="transit">' +
+								d.indicies[4].name + ': ' + d.indicies[4].index +
+							'</td>' +
+						'</tr>' +
+					'</table>'				
+				)  
+	                .style("left", (d3.event.pageX) + "px")     
+	                .style("top", (d3.event.pageY - 100) + "px");
+				
 		   })
 		   .on("mouseout", function() {
 		   
-				//Hide the tooltip
-				d3.select("#tooltip").classed("hidden", true);
+			   div.transition()
+			       .duration(250)
+			       .style("opacity", 1e-6);
 				
 		   });
 			

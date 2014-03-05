@@ -288,6 +288,210 @@ path {
   stroke-width: .35px;
 }
 
+/*
+ * tooltip styling
+ */
+
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: auto;
+  height: auto;
+  padding: 8px;
+  color: #000;
+  background: #fff;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.table > thead > tr > td.oned-rect,
+.table > tbody > tr > td.oned-rect,
+.table > tfoot > tr > td.oned-rect,
+.table > thead > tr > th.oned-rect,
+.table > tbody > tr > th.oned-rect,
+.table > tfoot > tr > th.oned-rect,
+.table > thead > tr.oned-rect > td,
+.table > tbody > tr.oned-rect > td,
+.table > tfoot > tr.oned-rect > td,
+.table > thead > tr.oned-rect > th,
+.table > tbody > tr.oned-rect > th,
+.table > tfoot > tr.oned-rect > th {
+  width: 30px;
+  background-color: #BBBDBF;
+}
+
+.table > thead > tr > td.oned,
+.table > tbody > tr > td.oned,
+.table > tfoot > tr > td.oned,
+.table > thead > tr > th.oned,
+.table > tbody > tr > th.oned,
+.table > tfoot > tr > th.oned,
+.table > thead > tr.oned > td,
+.table > tbody > tr.oned > td,
+.table > tfoot > tr.oned > td,
+.table > thead > tr.oned > th,
+.table > tbody > tr.oned > th,
+.table > tfoot > tr.oned > th {
+  background-color: #D0D2D3;
+}
+
+.table > thead > tr > td.economy-rect,
+.table > tbody > tr > td.economy-rect,
+.table > tfoot > tr > td.economy-rect,
+.table > thead > tr > th.economy-rect,
+.table > tbody > tr > th.economy-rect,
+.table > tfoot > tr > th.economy-rect,
+.table > thead > tr.economy-rect > td,
+.table > tbody > tr.economy-rect > td,
+.table > tfoot > tr.economy-rect > td,
+.table > thead > tr.economy-rect > th,
+.table > tbody > tr.economy-rect > th,
+.table > tfoot > tr.economy-rect > th {
+  width: 30px;
+  background-color: #a6c0d0;
+}
+
+.table > thead > tr > td.economy,
+.table > tbody > tr > td.economy,
+.table > tfoot > tr > td.economy,
+.table > thead > tr > th.economy,
+.table > tbody > tr > th.economy,
+.table > tfoot > tr > th.economy,
+.table > thead > tr.economy > td,
+.table > tbody > tr.economy > td,
+.table > tfoot > tr.economy > td,
+.table > thead > tr.economy > th,
+.table > tbody > tr.economy > th,
+.table > tfoot > tr.economy > th {
+  background-color: #BCD3DD;
+}
+
+.table > thead > tr > td.education-rect,
+.table > tbody > tr > td.education-rect,
+.table > tfoot > tr > td.education-rect,
+.table > thead > tr > th.education-rect,
+.table > tbody > tr > th.education-rect,
+.table > tfoot > tr > th.education-rect,
+.table > thead > tr.education-rect > td,
+.table > tbody > tr.education-rect > td,
+.table > tfoot > tr.education-rect > td,
+.table > thead > tr.education-rect > th,
+.table > tbody > tr.education-rect > th,
+.table > tfoot > tr.education-rect > th {
+  width: 30px;
+  background-color: #d94f26;
+}
+
+.table > thead > tr > td.education,
+.table > tbody > tr > td.education,
+.table > tfoot > tr > td.education,
+.table > thead > tr > th.education,
+.table > tbody > tr > th.education,
+.table > tfoot > tr > th.education,
+.table > thead > tr.education > td,
+.table > tbody > tr.education > td,
+.table > tfoot > tr.education > td,
+.table > thead > tr.education > th,
+.table > tbody > tr.education > th,
+.table > tfoot > tr.education > th {
+  background-color: #ED8E7C;
+}
+
+.table > thead > tr > td.equity-rect,
+.table > tbody > tr > td.equity-rect,
+.table > tfoot > tr > td.equity-rect,
+.table > thead > tr > th.equity-rect,
+.table > tbody > tr > th.equity-rect,
+.table > tfoot > tr > th.equity-rect,
+.table > thead > tr.equity-rect > td,
+.table > tbody > tr.equity-rect > td,
+.table > tfoot > tr.equity-rect > td,
+.table > thead > tr.equity-rect > th,
+.table > tbody > tr.equity-rect > th,
+.table > tfoot > tr.equity-rect > th {
+  width: 30px;
+  background-color: #20698a;
+}
+
+.table > thead > tr > td.equity,
+.table > tbody > tr > td.equity,
+.table > tfoot > tr > td.equity,
+.table > thead > tr > th.equity,
+.table > tbody > tr > th.equity,
+.table > tfoot > tr > th.equity,
+.table > thead > tr.equity > td,
+.table > tbody > tr.equity > td,
+.table > tfoot > tr.equity > td,
+.table > thead > tr.equity > th,
+.table > tbody > tr.equity > th,
+.table > tfoot > tr.equity > th {
+  background-color: #88A8B5;
+}
+
+.table > thead > tr > td.quality_of_life-rect,
+.table > tbody > tr > td.quality_of_life-rect,
+.table > tfoot > tr > td.quality_of_life-rect,
+.table > thead > tr > th.quality_of_life-rect,
+.table > tbody > tr > th.quality_of_life-rect,
+.table > tfoot > tr > th.quality_of_life-rect,
+.table > thead > tr.quality_of_life-rect > td,
+.table > tbody > tr.quality_of_life-rect > td,
+.table > tfoot > tr.quality_of_life-rect > td,
+.table > thead > tr.quality_of_life-rect > th,
+.table > tbody > tr.quality_of_life-rect > th,
+.table > tfoot > tr.quality_of_life-rect > th {
+  width: 30px;
+  background-color: #f5a91d;
+}
+
+.table > thead > tr > td.quality_of_life,
+.table > tbody > tr > td.quality_of_life,
+.table > tfoot > tr > td.quality_of_life,
+.table > thead > tr > th.quality_of_life,
+.table > tbody > tr > th.quality_of_life,
+.table > tfoot > tr > th.quality_of_life,
+.table > thead > tr.quality_of_life > td,
+.table > tbody > tr.quality_of_life > td,
+.table > tfoot > tr.quality_of_life > td,
+.table > thead > tr.quality_of_life > th,
+.table > tbody > tr.quality_of_life > th,
+.table > tfoot > tr.quality_of_life > th {
+  background-color: #F7C98D;
+}
+
+.table > thead > tr > td.transit-rect,
+.table > tbody > tr > td.transit-rect,
+.table > tfoot > tr > td.transit-rect,
+.table > thead > tr > th.transit-rect,
+.table > tbody > tr > th.transit-rect,
+.table > tfoot > tr > th.transit-rect,
+.table > thead > tr.transit-rect > td,
+.table > tbody > tr.transit-rect > td,
+.table > tfoot > tr.transit-rect > td,
+.table > thead > tr.transit-rect > th,
+.table > tbody > tr.transit-rect > th,
+.table > tfoot > tr.transit-rect > th {
+  width: 30px;
+  background-color: #87af3f;
+}
+
+.table > thead > tr > td.transit,
+.table > tbody > tr > td.transit,
+.table > tfoot > tr > td.transit,
+.table > thead > tr > th.transit,
+.table > tbody > tr > th.transit,
+.table > tfoot > tr > th.transit,
+.table > thead > tr.transit > td,
+.table > tbody > tr.transit > td,
+.table > tfoot > tr.transit > td,
+.table > thead > tr.transit > th,
+.table > tbody > tr.transit > th,
+.table > tfoot > tr.transit > th {
+  background-color: #B3CE7A;
+}
+
+    
 
 
 
