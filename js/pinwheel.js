@@ -52,12 +52,16 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	var colorFunc = d3.scale.ordinal()
 		.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
 
+	// set location of strike area for popups 
+	var popupCenterX = centerX - (size*1.5)/2;
+	var popupCenterY = centerY - (size*1.5)/2;
+	var rectSize = size*1.5;
 
 	// Function to draw all of the pinwheel arcs
 	function drawComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
-		//console.log(rowOfData.indicies);
+		//console.log(rowOfData);
 		// Draw the main wind rose arcs
-		svgContainer.append("svg:g")
+		var pinwheel = svgContainer.append("svg:g")
 			.attr("class", "arcs")
 			.selectAll("path")
 			.data(rowOfData.indicies)
@@ -67,7 +71,41 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			.style("fill", function(d, i) { return colorFunc(i); })
 			.attr("transform", "translate(" + centerX + "," + centerY + ")")
 			.append("svg:title")
-			.text(function(d) { return d.index }); 
+			.text(function(d) { return d.index });
+			
+		var clickableOverlay = svgContainer.append("svg:g")
+			.selectAll("rect") // need an empty rectangle to catch the on mouseover and click events
+			.data([rowOfData])
+			.enter()
+			.append("svg:rect")
+			.attr('width', rectSize) // the whole width of g/svg
+			.attr('height', rectSize) // the whole heigh of g/svg
+			.attr("transform", "translate(" + popupCenterX + "," + popupCenterY + ")")
+			.attr('fill', 'none')
+			.attr('pointer-events', 'all')			
+			
+			// set up on mouseover events
+			.on("mouseover", function(d) {
+				//console.log('hello');
+
+				//Update the tooltip position and value
+				d3.select("#tooltip")
+					.style("left", popupCenterX + "px")
+					.style("top", popupCenterY + "px")						
+					.select("#value")
+					.text(d.meta.lat);
+		   
+				//Show the tooltip
+				d3.select("#tooltip").classed("hidden", false);
+
+		   })
+		   .on("mouseout", function() {
+		   
+				//Hide the tooltip
+				d3.select("#tooltip").classed("hidden", true);
+				
+		   });
+			
  	}
 	
 	
@@ -77,6 +115,3 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	/**** End code for creating the pinwheel ****/
 
 } // close createPinwheel function
-
-
-

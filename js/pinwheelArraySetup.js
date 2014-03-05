@@ -18,7 +18,7 @@ var svgContainer = d3.select(".pinwheelArray")
 var dataset = '';
 
 // use d3 to open process and scale csv data
-d3.csv("data/dummyIndexData.csv", function(data) { 
+d3.csv("data/dummyIndexData.csv", function(data) { 	
 	dataset = data;
 
 	//functions to parse dates and numbers to ensure these are javascript dates and numbers
@@ -46,8 +46,7 @@ d3.csv("data/dummyIndexData.csv", function(data) {
 		.domain([1, countPerRow]) // numbers go from 1 to the number of elements per row
 		.range([sidePadding, width-sidePadding]) // number of pixels left to right
 		.clamp(true);
-	
-		
+			
 	// iterate through each city and plot pinwheels for each city at intervals along the chart
 	$.each(filteredDataByYear, function( i, d ) {		
 		var city = d.geoid;
@@ -59,8 +58,6 @@ d3.csv("data/dummyIndexData.csv", function(data) {
 		clearFilterByGeoID(byGeoID); 
 		
 		var rowOfData = createObjectForPinwheel(filteredDataByGeoID);
-		
-		console.log(rowOfData.meta.lat);
 		
 		// for the pinwheel array:  set the center for each pinwheel depending on the number shown and width and height of chart
 		var centerX = centerXScale(city - ((Math.floor((city-1)/countPerRow)) * countPerRow));

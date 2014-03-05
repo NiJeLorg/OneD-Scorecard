@@ -8,5 +8,6 @@ var svgContainerStates = d3.select(".statesArray")
 	.attr("width", width)
 	.attr("height", height);
 	
-// run function that draws the states
+// run function to draw the states
 createStates(svgContainerStates, projection);
+	
