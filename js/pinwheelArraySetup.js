@@ -33,7 +33,7 @@ d3.csv("data/dummyIndexData.csv", function(data) {
 	
 	// set initial year as the max year in the array to initially filter the data
 	var year = d3.max(dataset, function(d) { return d.year; });
-	
+		
 	// filter the dataset for just this year using the filter function we created
 	var filteredDataByYear = filterByYear(byYear, year);
 	

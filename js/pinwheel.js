@@ -59,7 +59,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	
 	//set up container for mouseover interaction
 	var div = d3.select("body").append("div")
-	    .attr("class", "tooltip")
+	    .attr("class", "pinwheelTooltip")
 	    .style("opacity", 1e-6);	
 
 	// Function to draw all of the pinwheel arcs

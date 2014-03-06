@@ -15,6 +15,9 @@
  	<!-- Bootstrap Slider CSS -->
     <link href="assets/css/bootstrap-slider.css" rel="stylesheet">
 	
+ 	<!-- jQueryUI CSS -->
+    <link href="assets/css/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+	
 	<!-- Other CSS -->
 	<link href="css/style.css" type="text/css" rel="stylesheet" />
 
@@ -64,11 +67,17 @@
 		            <div class="item active">			  
 		              <div class="container">
 		   			  	<div class="statesArray"></div>
+		                <ul id="sc1" class="sliderContainer collapse">
+		                  <li><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-play"></span></button></li>
+		                  <li><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-stop"></span></button></li>
+		                  <li><div id="mapSlider"></div></li>
+		                </ul>
+						<div class="clearfix"></div>						
 		                <ul class="nav control-nav">
-		                  <li><a href="#"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></a></li>
-		                  <li><a href="#"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></a></li>
-		                  <li><a href="#"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></a></li>
-		                  <li><a href="#"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></a></li>
+		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc1"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
+		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></button></li>
+		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></button></li>
+		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></button></li>
 		                </ul>						
 		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />				  				
 		              </div>
@@ -76,11 +85,17 @@
 		            <div class="item">
   		              <div class="container">				
   		   			  	<div class="pinwheelArray"></div>
+		                <ul id="sc2" class="sliderContainer collapse">
+  		                  <li><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-play"></span></button></li>
+  		                  <li><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-stop"></span></button></li>
+		                  <li><input id="pinwhellSlider"></input></li>
+		                </ul>
+						<div class="clearfix"></div>						
   		                <ul class="nav control-nav">
-  		                  <li><a href="#"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></a></li>
-  		                  <li><a href="#"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></a></li>
-  		                  <li><a href="#"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></a></li>
-  		                  <li><a href="#"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></a></li>
+  		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc2"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
+  		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></button></li>
+  		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></button></li>
+  		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></button></li>
   		                </ul>						
   		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
 					  </div>
@@ -145,12 +160,11 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery-ui-1.10.4.custom.min.js"></script>
 <script type="text/javascript" src="assets/js/d3.v3.js" charset="utf-8"></script>
 <script type="text/javascript" src="assets/js/crossfilter.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/js/docs.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap-slider.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap-popover.js"></script>
+<!--<script type="text/javascript" src="assets/js/docs.min.js"></script>-->
 <script type="text/javascript" src="assets/js/topojson.js"></script>
 
 <!-- sets the global variables for all the svg containers -->
@@ -170,5 +184,10 @@
 
 <!-- setup javascript for the Pinwheel array -->
 <script type="text/javascript" src="js/pinwheelArraySetup.js"></script>
+
+<!-- initiates the slider that plays the change in data by year -->
+<script type="text/javascript" src="js/slider.js"></script>
+
+
 
 

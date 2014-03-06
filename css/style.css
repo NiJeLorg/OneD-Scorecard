@@ -143,6 +143,15 @@ body {
   border-bottom-color: #fff;
 }
 
+.control-nav > li > button {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 10px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+}
+
 @media (min-width: 768px) {
   .control-logo {
     float: right;
@@ -156,6 +165,42 @@ body {
 
 .control-nav .control-nav-img {
 	height: 36px;
+}
+
+/*
+ * play, stop and slider bar
+ */
+.sliderContainer > li {
+  display: inline-block;
+  vertical-align: middle;
+}
+.sliderContainer > li + li {
+  margin-left: 0px;
+}
+.sliderContainer > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 20px;
+  font-weight: bold;
+  color: #6D6E70; /* IE8 proofing */
+}
+.sliderContainer > li > a:hover,
+.sliderContainer > li > a:focus {
+  background-color: transparent;
+}
+.sliderContainer > .active > a,
+.sliderContainer > .active > a:hover,
+.sliderContainer > .active > a:focus {
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .sliderContainer {
+    float: left;
+	margin-left: 14%;
+	padding-left: 0;
+	margin-bottom: 0;
+  }
 }
 
 
@@ -289,10 +334,10 @@ path {
 }
 
 /*
- * tooltip styling
+ * pinwheelTooltip styling
  */
 
-div.tooltip {
+div.pinwheelTooltip {
   position: absolute;
   text-align: center;
   width: auto;
