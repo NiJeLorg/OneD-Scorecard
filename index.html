@@ -68,8 +68,8 @@
 		              <div class="container">
 		   			  	<div class="statesArray"></div>
 		                <ul id="sc1" class="sliderContainer collapse">
-		                  <li><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-play"></span></button></li>
-		                  <li><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-stop"></span></button></li>
+		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('play')"><span class="glyphicon glyphicon-play"></span></button></li>
+		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
 		                  <li><div id="mapSlider"></div></li>
 		                </ul>
 						<div class="clearfix"></div>						
@@ -86,9 +86,9 @@
   		              <div class="container">				
   		   			  	<div class="pinwheelArray"></div>
 		                <ul id="sc2" class="sliderContainer collapse">
-  		                  <li><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-play"></span></button></li>
-  		                  <li><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-stop"></span></button></li>
-		                  <li><input id="pinwhellSlider"></input></li>
+  		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('play')"><span class="glyphicon glyphicon-play"></span></button></li>
+  		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
+		                  <li><div id="pinwheelSlider"></div></li>
 		                </ul>
 						<div class="clearfix"></div>						
   		                <ul class="nav control-nav">
@@ -179,11 +179,14 @@
 <!-- reusable pinwheel function -->
 <script type="text/javascript" src="js/pinwheel.js"></script>
 
-<!-- setup javascript for the Pinwheel array -->
+<!-- setup javascript for drawing the pinwheels on the states map -->
 <script type="text/javascript" src="js/statesPinwheelSetup.js"></script>
 
-<!-- setup javascript for the Pinwheel array -->
+<!-- setup javascript drawing the array of pinwheels -->
 <script type="text/javascript" src="js/pinwheelArraySetup.js"></script>
+
+<!-- javascript for updating Pinwheels -->
+<script type="text/javascript" src="js/pinwheelUpdate.js"></script>
 
 <!-- initiates the slider that plays the change in data by year -->
 <script type="text/javascript" src="js/slider.js"></script>

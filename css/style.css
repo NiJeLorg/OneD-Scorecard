@@ -537,6 +537,17 @@ div.pinwheelTooltip {
 }
 
     
+/*
+ * sliders
+ */
+
+#mapSlider {
+	width: 150px;
+}
+
+#pinwheelSlider {
+	width: 150px;
+}
 
 
 
