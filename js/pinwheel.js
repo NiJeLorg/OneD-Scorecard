@@ -93,7 +93,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			
 			// set up on mouseover events
 			.on("mouseover", function(d) {
-				console.log(d);
+				//console.log(d);
 				
 			    div.transition()
 			        .duration(250)
@@ -147,7 +147,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 						'</tr>' +
 					'</table>'				
 				)  
-	                .style("left", (d3.event.pageX) + "px")     
+	                .style("left", (d3.event.pageX + 15) + "px")     
 	                .style("top", (d3.event.pageY - 100) + "px");
 				
 		   })
@@ -245,7 +245,7 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 						
 			// set up on mouseover events
 			.on("mouseover", function(d) {
-				console.log(d);
+				//console.log(d);
 				
 			    div.transition()
 			        .duration(250)
@@ -299,7 +299,7 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 						'</tr>' +
 					'</table>'				
 				)  
-	                .style("left", (d3.event.pageX) + "px")     
+	                .style("left", (d3.event.pageX + 15) + "px")     
 	                .style("top", (d3.event.pageY - 100) + "px");
 				
 		   })

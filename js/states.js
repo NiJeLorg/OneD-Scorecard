@@ -37,6 +37,9 @@ function createStates(svgContainerStates, projection) {
 	      }))
 	      .attr("class", "state-boundary")
 	      .attr("d", path);
+		  
+		  /**** Calback function here to begin drawing the original pinwheels -- this ensures the states are drawn first ****/
+		  originalPinwheels();
 	});
 
 	d3.select(self.frameElement).style("height", height + "px");

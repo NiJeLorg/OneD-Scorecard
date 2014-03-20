@@ -49,8 +49,8 @@ function updatePinwheelsByYear(year) {
 		centerY = 0;
 		
 		// reset size for pinwheel and smallestPie
-		smallestPie = 5;
-		size = 20;	
+		smallestPie = 8;
+		size = 16;	
 		
 		// set centers of pinwheels for map
 		centerX = projection([rowOfData.meta.lon, rowOfData.meta.lat])[0];

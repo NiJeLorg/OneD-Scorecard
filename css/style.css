@@ -35,7 +35,8 @@ body {
 body {
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 1px rgba(0,0,0,.5);
+  /*text-shadow: 0 1px 1px rgba(0,0,0,.5);*/
+  font-family: "Century Gothic",Arial,sans-serif;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -56,7 +57,7 @@ body {
 
 /* Padding for spacing */
 .inner {
-  padding: 0px 20px 0px 20px;
+  padding: 0px 50px;
 }
 
 
@@ -112,7 +113,7 @@ body {
  * button and D3 logo bar
  */
 .control-logo {
-  margin-top: 10px;
+  margin-top: 6px;
   margin-bottom: 10px;
 }
 
@@ -209,7 +210,7 @@ body {
  */
 
 .cover {
-  padding: 0 20px;
+  padding: 0 50px;
 }
 .cover .btn-lg {
   padding: 10px 20px;
@@ -295,6 +296,10 @@ body {
   }
 }
 
+.dropdown-menu {
+	text-align: left;
+}
+
 /*
  * End Bootstrap Override CSS
  */
@@ -339,12 +344,13 @@ path {
 
 div.pinwheelTooltip {
   position: absolute;
-  text-align: center;
+  text-align: left;
   width: auto;
   height: auto;
   padding: 8px;
-  color: #000;
+  color: #6D6E70;
   background: #fff;
+  font-weight: 800;
   border: solid 1px #ccc;
   border-radius: 4px;
   pointer-events: none;

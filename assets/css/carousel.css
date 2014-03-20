@@ -49,6 +49,13 @@
 }
 
 
+.carousel-indicators li {
+  border: 1px solid #6D6E70;
+}
+.carousel-indicators .active {
+  background-color: #6D6E70;
+}
+
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
