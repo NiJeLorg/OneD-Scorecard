@@ -45,6 +45,43 @@ function setupCrossfilterByYear(cf, dataset) {
 	return byYear;
 }
 
+function setupCrossfilterByOneDIndex(cf, dataset) {		
+	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
+	var byOneDIndex = cf.dimension(function(d) { return d.oned_index; });
+	return byOneDIndex;
+}
+
+function setupCrossfilterByEconomyIndex(cf, dataset) {		
+	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
+	var byEconomyIndex = cf.dimension(function(d) { return d.economy_index; });
+	return byEconomyIndex;
+}
+
+function setupCrossfilterByEducationIndex(cf, dataset) {		
+	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
+	var byEducationIndex = cf.dimension(function(d) { return d.education_index; });
+	return byEducationIndex;
+}
+
+function setupCrossfilterByEquityIndex(cf, dataset) {		
+	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
+	var byEquityIndex = cf.dimension(function(d) { return d.equity_index; });
+	return byEquityIndex;
+}
+
+function setupCrossfilterByQualityOfLifeIndex(cf, dataset) {		
+	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
+	var byQualityOfLifeIndex = cf.dimension(function(d) { return d.quality_of_life_index; });
+	return byQualityOfLifeIndex;
+}
+
+function setupCrossfilterByTransitIndex(cf, dataset) {		
+	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
+	var byTransitIndex = cf.dimension(function(d) { return d.transit_index; });
+	return byTransitIndex;
+}
+
+
 // set up functions to filter data (using crossfilter) by year or geoID and clear these filters
 function filterByYear (byYear, year) {
 	byYear.filterExact(year);
@@ -55,6 +92,36 @@ function filterByYear (byYear, year) {
 function filterByGeoID (byGeoID, city) {
 	byGeoID.filterExact(city);
 	var filteredData = byGeoID.top(Infinity);
+	return filteredData;
+}
+
+function orderByOneDIndex (byOneDIndex) {
+	var filteredData = byOneDIndex.top(Infinity);
+	return filteredData;
+}
+
+function orderByEconomyIndex (byEconomyIndex) {
+	var filteredData = byEconomyIndex.top(Infinity);
+	return filteredData;
+}
+
+function orderByEducationIndex (byEducationIndex) {
+	var filteredData = byEducationIndex.top(Infinity);
+	return filteredData;
+}
+
+function orderByEquityIndex (byEquityIndex) {
+	var filteredData = byEquityIndex.top(Infinity);
+	return filteredData;
+}
+
+function orderByQualityOfLifeIndex (byQualityOfLifeIndex) {
+	var filteredData = byQualityOfLifeIndex.top(Infinity);
+	return filteredData;
+}
+
+function orderByTransitIndex (byTransitIndex) {
+	var filteredData = byTransitIndex.top(Infinity);
 	return filteredData;
 }
 

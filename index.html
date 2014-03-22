@@ -71,7 +71,7 @@
 		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('play')"><span class="glyphicon glyphicon-play"></span></button></li>
 		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
 		                  <li><div id="mapSlider"></div></li>
-		                </ul>
+		                </ul>						
 						<div class="clearfix"></div>						
 		                <ul class="nav control-nav">
 		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc1"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
@@ -90,6 +90,20 @@
   		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
 		                  <li><div id="pinwheelSlider"></div></li>
 		                </ul>
+						<form class="form-inline sliderContainerRight" role="form">
+						  <label>Organize by: 
+							<select class="form-control pinwheelChange">
+							  <option value='1'>Region Name</option>
+							  <option value='2'>OneD Index Score</option>
+							  <option value='3'>Education Index Score</option>
+							  <option value='4'>Economy Index Score</option>
+							  <option value='5'>Quality of Life Index Score</option>
+							  <option value='6'>Social Equity Index Score</option>
+							  <option value='7'>Regional Transit Index Score</option>
+							  <option value='8'>Most Populated Region</option>
+							</select>
+						  </label>
+						</form>
 						<div class="clearfix"></div>						
   		                <ul class="nav control-nav">
   		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc2"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
@@ -191,6 +205,8 @@
 <!-- initiates the slider that plays the change in data by year -->
 <script type="text/javascript" src="js/slider.js"></script>
 
+<!-- javascript for updating Pinwheels when user selects an option from the dropdown -->
+<script type="text/javascript" src="js/updateFromDropdown.js"></script>
 
 
 

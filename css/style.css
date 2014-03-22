@@ -33,7 +33,7 @@ body {
   padding-bottom: 70px;
 }
 body {
-  color: #fff;
+  color: #6D6E70;
   text-align: center;
   /*text-shadow: 0 1px 1px rgba(0,0,0,.5);*/
   font-family: "Century Gothic",Arial,sans-serif;
@@ -200,7 +200,13 @@ body {
     float: left;
 	margin-left: 14%;
 	padding-left: 0;
-	margin-bottom: 0;
+	margin-bottom: 5px;
+  }
+  .sliderContainerRight {
+    float: right;
+	margin-right: 14%;
+	padding-right: 0;
+	margin-bottom: 5px;
   }
 }
 

@@ -2,38 +2,15 @@
 * this function updates the pinwheels based on user section; runs updatePinwheel in pinwheel.js
 */
 		
-function updatePinwheelsByYear(year, orderPinwheels) {
+function updatePinwheelsByYear(year) {
 	// function to set up crossfilter dimensions
-	// set a global variable for crossfilter on the dataset
+	// set a globa variable for crossfilter on the dataset
 	var cf = crossfilter(dataset);	
 	var byGeoID = setupCrossfilterByGeoID(cf, dataset);
 	var byYear = setupCrossfilterByYear(cf, dataset);
 	
 	// filter the dataset for just this year using the filter function we created
 	var filteredDataByYear = filterByYear(byYear, year);
-	
-	// set up dataset order if orderPinwheels is set to anything else than 1
-	if (orderPinwheels == 2) {
-		var byOneDIndex = setupCrossfilterByOneDIndex(cf, dataset);
-		var filteredDataByYear = orderByOneDIndex(byOneDIndex);
-	} else if (orderPinwheels == 3) {
-		var byEconomyIndex = setupCrossfilterByEconomyIndex(cf, dataset);
-		var filteredDataByYear = orderByEconomyIndex(byEconomyIndex);		
-	} else if (orderPinwheels == 4) {
-		var byEducationIndex = setupCrossfilterByEducationIndex(cf, dataset);
-		var filteredDataByYear = orderByEducationIndex(byEducationIndex);
-	} else if (orderPinwheels == 5) {
-		var byEquityIndex = setupCrossfilterByEquityIndex(cf, dataset);
-		var filteredDataByYear = orderByEquityIndex(byEquityIndex);
-	} else if (orderPinwheels == 6) {
-		var byQualityOfLifeIndex = setupCrossfilterByQualityOfLifeIndex(cf, dataset);
-		var filteredDataByYear = orderByQualityOfLifeIndex(byQualityOfLifeIndex);
-	} else if (orderPinwheels == 7) {
-		var byTransitIndex = setupCrossfilterByTransitIndex(cf, dataset);
-		var filteredDataByYear = orderByTransitIndex(byTransitIndex);
-	} else if (orderPinwheels == 8) {
-		// add when we add in population data
-	} else {}
 	
 	// get size of the dataset for determining the number of rows and columns of pinwheels
 	var count = filteredDataByYear.length;
@@ -48,11 +25,6 @@ function updatePinwheelsByYear(year, orderPinwheels) {
 	// iterate through each city and plot pinwheels for each city at intervals along the chart
 	$.each(filteredDataByYear, function( i, d ) {		
 		var city = d.geoid;
-		if (orderPinwheels == 1) {
-			var order = city;
-		} else {
-			var order = i + 1;			
-		}
 
 		// filter data to this city
 		var filteredDataByGeoID = filterByGeoID(byGeoID, city);
@@ -63,8 +35,8 @@ function updatePinwheelsByYear(year, orderPinwheels) {
 		var rowOfData = createObjectForPinwheel(filteredDataByGeoID);
 		
 		// for the pinwheel array:  set the center for each pinwheel depending on the number shown and width and height of chart
-		var centerX = centerXScale(order - ((Math.floor((order-1)/countPerRow)) * countPerRow));
-		var centerY = (Math.floor((order-1)/countPerRow) * (height/numberOfRows)) + topPadding; 
+		var centerX = centerXScale(city - ((Math.floor((city-1)/countPerRow)) * countPerRow));
+		var centerY = (Math.floor((city-1)/countPerRow) * (height/numberOfRows)) + topPadding; 
 		
 		// set size and smallestPie for chart pinwheels
 		var smallestPie = 10;

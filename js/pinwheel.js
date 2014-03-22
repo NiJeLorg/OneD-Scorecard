@@ -237,11 +237,12 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			.data(rowOfData.indicies)
 			.transition().duration(1000)
 			.attr("d", arc(pinwheelArcOptions))
-			.style("fill", function(d, i) { return colorFunc(i); });
-			//.attr("transform", "translate(" + centerX + "," + centerY + ")");
+			.style("fill", function(d, i) { return colorFunc(i); })
+			.attr("transform", "translate(" + centerX + "," + centerY + ")");
 			
 		var clickableOverlay = svgContainer.select("#rect" + geoid)
 			.data([rowOfData])
+			.attr("transform", "translate(" + popupCenterX + "," + popupCenterY + ")")
 						
 			// set up on mouseover events
 			.on("mouseover", function(d) {

@@ -24,12 +24,12 @@ function generateSlider(dataset) {
 	
 	// build event listeners on slider
 	$( "#mapSlider" ).on( 'slideStop', function( event ) {
-		updatePinwheelsByYear(event.value);
+		updatePinwheelsByYear(event.value, orderPinwheels);
 	} );	
 
 	// build event listener on slider
 	$( "#pinwheelSlider" ).on( 'slideStop', function( event ) {
-		updatePinwheelsByYear(event.value);
+		updatePinwheelsByYear(event.value, orderPinwheels);
 	} );
 	
 			
@@ -49,7 +49,7 @@ function play(yearCount, maxYear, state) {
  	   this.timeoutID = setTimeout(function () {   		   
  	      $( "#mapSlider" ).slider( 'setValue', yearCount );		  
  	      $( "#pinwheelSlider" ).slider( 'setValue', yearCount );
-		  updatePinwheelsByYear(yearCount);
+		  updatePinwheelsByYear(yearCount, orderPinwheels);
 		  yearCount++;
  	      if (yearCount<=maxYear) {
  	      	 play(yearCount, maxYear, state);
