@@ -3,9 +3,14 @@
 */
 
 $(document).ready(function(){
-	$( ".pinwheelChange" ).change( function() {
+	$( ".pinwheelChangeMap" ).change( function() {
+		var orderPinwheels = $(this).val();
+		var year = $( "#mapSlider" ).slider( 'getValue' );
+		updatePinwheelsByYearMap(year, orderPinwheels);
+	});	
+	$( ".pinwheelChangeArray" ).change( function() {
 		var orderPinwheels = $(this).val();
 		var year = $( "#pinwheelSlider" ).slider( 'getValue' );
-		updatePinwheelsByYear(year, orderPinwheels);
+		updatePinwheelsByYearArray(year, orderPinwheels);
 	});	
 });

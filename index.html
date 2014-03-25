@@ -68,10 +68,22 @@
 		              <div class="container">
 		   			  	<div class="statesArray"></div>
 		                <ul id="sc1" class="sliderContainer collapse">
-		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('play')"><span class="glyphicon glyphicon-play"></span></button></li>
-		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
+		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationMap('play')"><span class="glyphicon glyphicon-play"></span></button></li>
+		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationMap('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
 		                  <li><div id="mapSlider"></div></li>
-		                </ul>						
+		                </ul>
+						<form class="form-inline sliderContainerRight" role="form">
+						  <label>Highlight Index: 
+							<select class="form-control pinwheelChangeMap">
+							  <option value='1'>None</option>
+							  <option value='2'>Economy Index Score</option>
+							  <option value='3'>Education Index Score</option>
+							  <option value='4'>Social Equity Index Score</option>
+							  <option value='5'>Quality of Life Index Score</option>
+							  <option value='6'>Regional Transit Index Score</option>
+							</select>
+						  </label>
+						</form>					
 						<div class="clearfix"></div>						
 		                <ul class="nav control-nav">
 		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc1"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
@@ -86,19 +98,19 @@
   		              <div class="container">				
   		   			  	<div class="pinwheelArray"></div>
 		                <ul id="sc2" class="sliderContainer collapse">
-  		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('play')"><span class="glyphicon glyphicon-play"></span></button></li>
-  		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimation('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
+  		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationArray('play')"><span class="glyphicon glyphicon-play"></span></button></li>
+  		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationArray('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
 		                  <li><div id="pinwheelSlider"></div></li>
 		                </ul>
 						<form class="form-inline sliderContainerRight" role="form">
 						  <label>Organize by: 
-							<select class="form-control pinwheelChange">
+							<select class="form-control pinwheelChangeArray">
 							  <option value='1'>Region Name</option>
 							  <option value='2'>OneD Index Score</option>
-							  <option value='3'>Education Index Score</option>
-							  <option value='4'>Economy Index Score</option>
-							  <option value='5'>Quality of Life Index Score</option>
-							  <option value='6'>Social Equity Index Score</option>
+							  <option value='3'>Economy Index Score</option>
+							  <option value='4'>Education Index Score</option>
+							  <option value='5'>Social Equity Index Score</option>
+							  <option value='6'>Quality of Life Index Score</option>
 							  <option value='7'>Regional Transit Index Score</option>
 							  <option value='8'>Most Populated Region</option>
 							</select>

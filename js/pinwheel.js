@@ -171,7 +171,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 
 
 // update pinwheel
-function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, centerY) {
+function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, centerY, colorFunc, opacityFunc) {
 			
 	/**** Common pinwheel code ****/
 	// Function to draw a single arc for the pinwheel
@@ -212,10 +212,6 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 		to: indexToRadius
 	} 
 
-	// repeating scale with your own colors
-	var colorFunc = d3.scale.ordinal()
-		.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
-
 	// set location of strike area for popups 
 	var popupCenterX = centerX - (size*1.5)/2;
 	var popupCenterY = centerY - (size*1.5)/2;
@@ -238,7 +234,12 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			.transition().duration(1000)
 			.attr("d", arc(pinwheelArcOptions))
 			.style("fill", function(d, i) { return colorFunc(i); })
-			.attr("transform", "translate(" + centerX + "," + centerY + ")");
+			.style("opacity", function(d, i) { return opacityFunc(i); })
+			.each("end",function() { 
+				d3.select(this).transition().duration(2000)
+				.attr("transform", "translate(" + centerX + "," + centerY + ")") 
+			});
+			
 			
 		var clickableOverlay = svgContainer.select("#rect" + geoid)
 			.data([rowOfData])

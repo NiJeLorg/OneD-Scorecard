@@ -15,7 +15,7 @@ var projection = d3.geo.albersUsa()
 var dataset = '';
 
 // set order of pinwheels in array as global
-var orderPinwheels = 2;
+var orderPinwheels = 1;
 
 // sets size of pinwheel, and padding for the array and the svg container to send it to
 var topPadding = 50;
