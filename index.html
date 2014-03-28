@@ -128,7 +128,23 @@
 		            </div>
 		            <div class="item">
 		              <div class="container">
-	    			  	<div class="pinwheel"></div>
+						<div class="nationalCircularHeatChart sliderContainer"></div>
+						<div class="nationalCircularHeatChartSidebar sliderContainerRight heatmapTableContainer"></div>
+						<div class="clearfix"></div>
+  		                <ul id="sc3" class="sliderContainer">
+    		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChart('play')"><span class="glyphicon glyphicon-play"></span></button></li>
+    		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChart('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
+  		                  <li><div id="nationalHeatChartSlider"></div></li>
+  		                </ul>
+  						<div class="clearfix"></div>						
+    		                <ul class="nav control-nav">
+    		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc3"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
+    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></button></li>
+    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></button></li>
+    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></button></li>
+    		                </ul>						
+    		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
+						  
 		              </div>
 		            </div>
 		          </div>
@@ -192,6 +208,7 @@
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap-slider.min.js"></script>
 <script type="text/javascript" src="assets/js/topojson.js"></script>
+<script type="text/javascript" src="assets/js/circularHeatChart.js"></script>
 
 <!-- sets the global variables for all the svg containers -->
 <script type="text/javascript" src="js/globalVariables.js"></script>
@@ -210,6 +227,9 @@
 
 <!-- setup javascript drawing the array of pinwheels -->
 <script type="text/javascript" src="js/pinwheelArraySetup.js"></script>
+
+<!-- setup javascript drawing the array of pinwheels -->
+<script type="text/javascript" src="js/nationalCircularHeatChartSetup.js"></script>
 
 <!-- javascript for updating Pinwheels -->
 <script type="text/javascript" src="js/pinwheelUpdate.js"></script>

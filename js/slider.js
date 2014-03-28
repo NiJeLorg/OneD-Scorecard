@@ -20,6 +20,13 @@ function generateSlider(dataset) {
 		min: minYear,
 		max: maxYear,
 		step: 1
+	});
+	
+    $( "#nationalHeatChartSlider" ).slider({
+		value: maxYear,
+		min: minYear,
+		max: maxYear,
+		step: 1
 	});	
 			
 };
@@ -37,6 +44,13 @@ $(document).ready(function(){
 		orderPinwheels = $( ".pinwheelChangeArray" ).val();
 		updatePinwheelsByYearArray(event.value, orderPinwheels);
 	} );
+
+	// build event listener on slider
+	$( "#nationalHeatChartSlider" ).on( 'slideStop', function( event ) {
+		//orderPinwheels = $( ".pinwheelChangeArray" ).val();
+		//updatePinwheelsByYearArray(event.value, orderPinwheels);
+	} );
+
 });
 
 // function to start and stop the map animation
@@ -50,6 +64,15 @@ function playStopAnimationMap(state) {
 
 // function to start and stop the map animation
 function playStopAnimationArray(state) {
+	// set up initial min and max years and ensure they are integers
+	var minYear = parseInt(d3.min(dataset, function(d) { return d.year; }));
+	var maxYear = parseInt(d3.max(dataset, function(d) { return d.year; }));
+	var yearCount = minYear;
+	playArray(yearCount, maxYear, state);
+}
+
+// function to start and stop the map animation
+function playStopAnimationHeatChart(state) {
 	// set up initial min and max years and ensure they are integers
 	var minYear = parseInt(d3.min(dataset, function(d) { return d.year; }));
 	var maxYear = parseInt(d3.max(dataset, function(d) { return d.year; }));
@@ -85,6 +108,22 @@ function playArray(yearCount, maxYear, state) {
  	      	 playArray(yearCount, maxYear, state);
  	      }      
  	   }, 3000);			
+	} else {
+		window.clearTimeout(this.timeoutID);
+	}        
+}; 
+
+function playHeatChart(yearCount, maxYear, state) { 	 
+	if (state == 'play') {
+ 	   this.timeoutID = setTimeout(function () {
+   		  //orderPinwheels = $( ".pinwheelChangeArray" ).val();   		   
+ 	      $( "#nationalHeatChartSlider" ).slider( 'setValue', yearCount );
+		  //updatePinwheelsByYearArray(yearCount, orderPinwheels);
+		  yearCount++;
+ 	      if (yearCount<=maxYear) {
+ 	      	 playHeatChart(yearCount, maxYear, state);
+ 	      }      
+ 	   }, 1000);			
 	} else {
 		window.clearTimeout(this.timeoutID);
 	}        

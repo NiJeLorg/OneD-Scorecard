@@ -152,6 +152,41 @@ function createObjectForPinwheel(filteredData) {
 	return rowOfData;
 }
 
+// function to create an object for the circular heat chart to read
+function createObjectForCircularHeatChart(filteredData) {	
+	// create an object with the city names and ids segregated from the indicies for easy ploting
+	var circularChartData = {};	
+	circularChartData.meta = []
+	circularChartData.economyIndex = []
+	circularChartData.educationIndex = []
+	circularChartData.equityIndex = []
+	circularChartData.qualityOfLifeIndex = []
+	circularChartData.transitIndex = []
+	circularChartData.indicies = []
+	$.each(filteredData, function( i, d ) {
+		circularChartData.meta.push({ id: d.id, geoid: d.geoid, metro: d.metro, year: d.year, lat: d.lat, lon: d.lon, oned_index: d.oned_index, economy_index: d.economy_index, education_index: d.education_index, equity_index: d.equity_index, quality_of_life_index: d.quality_of_life_index, transit_index: d.transit_index });
+		circularChartData.economyIndex.push(d.economy_index);
+		circularChartData.educationIndex.push(d.education_index);
+		circularChartData.equityIndex.push(d.equity_index);
+		circularChartData.qualityOfLifeIndex.push(d.quality_of_life_index);
+		circularChartData.transitIndex.push(d.transit_index);
+	});
+	
+	circularChartData.indicies = circularChartData.economyIndex.concat(circularChartData.educationIndex, circularChartData.equityIndex, circularChartData.qualityOfLifeIndex, circularChartData.transitIndex);
+		
+	// return the re-oriented dataset
+	return circularChartData;
+}
+
+// extender for Object class that determines the object length
+Object.size = function(obj) {
+    var size = 0, key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+};
+
 /**** End code for data manipulation ****/	
 	
 	

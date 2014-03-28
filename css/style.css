@@ -549,6 +549,15 @@ div.pinwheelTooltip {
   background-color: #B3CE7A;
 }
 
+/*  
+ * set size of table next to circular heat map
+ */
+
+.heatmapTableContainer {
+	text-align: left;
+	margin-top: 20px;
+	width: 250px;
+}
     
 /*
  * sliders

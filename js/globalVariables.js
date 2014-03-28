@@ -4,6 +4,7 @@
 
 // width and height of all svg containers
 var width = 900;
+var widthHeatChart = 550;
 var height = 550;
 
 // sets map projection needed for the map drawing and the pinwheel drawing
@@ -31,5 +32,8 @@ var svgContainerStates = d3.select(".statesArray")
 	.append("svg")
 	.attr("width", width)
 	.attr("height", height);
+	
+var svgContainerNationalCircularHeatChart = d3.select(".nationalCircularHeatChart");
+	
 
 	
