@@ -39,7 +39,7 @@ id,geoid,metro,region,lat,lon,year,oned_index,economy_index,education_index,equi
 38,38,"Philadelphia-Camden-Vineland, PA-NJ-DE-MD",Northeast,39.952335,-75.163789,2009,3.54,0.72,2.55,4.28,3.44,2.20
 39,39,"Phoenix-Mesa-Scottsdale, AZ",Southwest,33.361168,-112.12130217,2009,2.32,2.59,3.32,1.97,2.93,2.55
 40,40,"Pittsburgh-New Castle, PA",Midwest,40.4416941,-79.9900861,2009,3.75,2.67,1.63,0.09,2.70,3.89
-41,41,"Portland-Vancouver-Beaverton, OR-WA",Northwest,45.5202471,-122.6741949,2009,4.07,3.19,3.73,0.43,1.57,4.86
+41,41,"Portland-Vancouver-Beaverton, OR-WA",West,45.5202471,-122.6741949,2009,4.07,3.19,3.73,0.43,1.57,4.86
 42,42,"Raleigh-Durham-Cary, NC",Southeast,35.7804015,-78.6390779,2009,3.11,2.85,2.68,4.30,1.69,2.99
 43,43,"Richmond, VA",Southeast,37.541239,-77.4420183,2009,1.07,1.44,0.62,2.20,1.47,1.80
 44,44,"Rochester-Batavia-Seneca Falls, NY",Northeast,43.1572851,-77.6152141,2009,4.37,4.40,3.17,4.61,3.93,0.84
@@ -48,7 +48,7 @@ id,geoid,metro,region,lat,lon,year,oned_index,economy_index,education_index,equi
 47,47,"San Antonio, TX",Southwest,29.4246002,-98.4951405,2009,4.47,3.73,0.55,4.68,4.98,2.23
 48,48,"San Diego-Carlsbad-San Marcos, CA",Southwest,32.7469869,-117.21177,2009,3.66,4.24,1.85,0.49,2.69,3.75
 49,49,"San Jose-San Francisco-Oakland, CA",West,37.3438502,-121.8831349,2009,2.21,1.42,4.37,0.47,4.86,3.50
-50,50,"Seattle-Tacoma-Olympia, WA",Northwest,47.6038321,-122.3300624,2009,1.10,4.10,3.91,3.33,1.47,3.92
+50,50,"Seattle-Tacoma-Olympia, WA",West,47.6038321,-122.3300624,2009,1.10,4.10,3.91,3.33,1.47,3.92
 51,51,"St. Louis-St. Charles-Farmington, MO-IL",Midwest,38.6272733,-90.1978889,2009,0.77,1.59,3.64,4.45,3.59,0.68
 52,52,"Tampa-St. Petersburg-Clearwater, FL",Southeast,27.9477595,-82.458444,2009,0.30,3.12,0.63,3.27,3.75,0.23
 53,53,"Virginia Beach-Norfolk-Newport News, VA-NC",Southeast,36.8529841,-75.9774183,2009,0.89,3.82,1.54,0.50,4.87,3.22
@@ -93,7 +93,7 @@ id,geoid,metro,region,lat,lon,year,oned_index,economy_index,education_index,equi
 92,38,"Philadelphia-Camden-Vineland, PA-NJ-DE-MD",Northeast,39.952335,-75.163789,2010,4.37,3.77,0.93,4.70,2.56,4.75
 93,39,"Phoenix-Mesa-Scottsdale, AZ",Southwest,33.361168,-112.12130217,2010,4.05,3.60,3.49,3.22,1.62,0.56
 94,40,"Pittsburgh-New Castle, PA",Midwest,40.4416941,-79.9900861,2010,0.60,4.10,1.01,3.08,4.86,0.53
-95,41,"Portland-Vancouver-Beaverton, OR-WA",Northwest,45.5202471,-122.6741949,2010,0.92,0.21,1.66,3.02,3.63,2.20
+95,41,"Portland-Vancouver-Beaverton, OR-WA",West,45.5202471,-122.6741949,2010,0.92,0.21,1.66,3.02,3.63,2.20
 96,42,"Raleigh-Durham-Cary, NC",Southeast,35.7804015,-78.6390779,2010,0.77,0.72,0.32,4.74,0.03,2.14
 97,43,"Richmond, VA",Southeast,37.541239,-77.4420183,2010,1.84,0.29,0.01,1.32,4.99,4.77
 98,44,"Rochester-Batavia-Seneca Falls, NY",Northeast,43.1572851,-77.6152141,2010,0.11,0.86,0.49,1.39,4.42,3.84
@@ -102,7 +102,7 @@ id,geoid,metro,region,lat,lon,year,oned_index,economy_index,education_index,equi
 101,47,"San Antonio, TX",Southwest,29.4246002,-98.4951405,2010,1.02,1.88,1.25,2.09,4.33,3.36
 102,48,"San Diego-Carlsbad-San Marcos, CA",Southwest,32.7469869,-117.21177,2010,1.80,0.05,2.59,4.14,2.15,1.72
 103,49,"San Jose-San Francisco-Oakland, CA",West,37.3438502,-121.8831349,2010,2.28,4.01,2.83,3.10,2.52,3.25
-104,50,"Seattle-Tacoma-Olympia, WA",Northwest,47.6038321,-122.3300624,2010,4.56,0.88,4.81,0.87,0.86,2.65
+104,50,"Seattle-Tacoma-Olympia, WA",West,47.6038321,-122.3300624,2010,4.56,0.88,4.81,0.87,0.86,2.65
 105,51,"St. Louis-St. Charles-Farmington, MO-IL",Midwest,38.6272733,-90.1978889,2010,3.52,0.50,1.41,0.61,1.95,2.05
 106,52,"Tampa-St. Petersburg-Clearwater, FL",Southeast,27.9477595,-82.458444,2010,1.72,1.07,4.59,1.61,2.87,1.64
 107,53,"Virginia Beach-Norfolk-Newport News, VA-NC",Southeast,36.8529841,-75.9774183,2010,2.42,4.23,4.23,4.66,2.73,4.94
@@ -147,7 +147,7 @@ id,geoid,metro,region,lat,lon,year,oned_index,economy_index,education_index,equi
 146,38,"Philadelphia-Camden-Vineland, PA-NJ-DE-MD",Northeast,39.952335,-75.163789,2011,0.74,1.01,4.19,4.90,0.11,1.78
 147,39,"Phoenix-Mesa-Scottsdale, AZ",Southwest,33.361168,-112.12130217,2011,3.42,3.42,1.88,1.10,2.68,2.99
 148,40,"Pittsburgh-New Castle, PA",Midwest,40.4416941,-79.9900861,2011,2.20,3.99,4.73,2.87,0.89,4.64
-149,41,"Portland-Vancouver-Beaverton, OR-WA",Northwest,45.5202471,-122.6741949,2011,1.87,2.58,4.83,2.12,3.60,4.70
+149,41,"Portland-Vancouver-Beaverton, OR-WA",West,45.5202471,-122.6741949,2011,1.87,2.58,4.83,2.12,3.60,4.70
 150,42,"Raleigh-Durham-Cary, NC",Southeast,35.7804015,-78.6390779,2011,4.47,3.41,0.06,4.81,1.11,4.89
 151,43,"Richmond, VA",Southeast,37.541239,-77.4420183,2011,3.47,0.92,1.48,1.41,2.35,4.11
 152,44,"Rochester-Batavia-Seneca Falls, NY",Northeast,43.1572851,-77.6152141,2011,4.95,2.28,3.45,4.55,4.41,0.82
@@ -156,7 +156,7 @@ id,geoid,metro,region,lat,lon,year,oned_index,economy_index,education_index,equi
 155,47,"San Antonio, TX",Southwest,29.4246002,-98.4951405,2011,3.18,1.03,2.67,4.06,3.83,3.57
 156,48,"San Diego-Carlsbad-San Marcos, CA",Southwest,32.7469869,-117.21177,2011,4.46,2.40,0.82,0.15,2.04,4.58
 157,49,"San Jose-San Francisco-Oakland, CA",West,37.3438502,-121.8831349,2011,2.34,0.66,0.69,4.89,4.93,2.92
-158,50,"Seattle-Tacoma-Olympia, WA",Northwest,47.6038321,-122.3300624,2011,0.90,2.18,1.27,2.11,1.22,0.86
+158,50,"Seattle-Tacoma-Olympia, WA",West,47.6038321,-122.3300624,2011,0.90,2.18,1.27,2.11,1.22,0.86
 159,51,"St. Louis-St. Charles-Farmington, MO-IL",Midwest,38.6272733,-90.1978889,2011,4.38,1.75,1.16,0.05,4.83,4.87
 160,52,"Tampa-St. Petersburg-Clearwater, FL",Southeast,27.9477595,-82.458444,2011,1.21,1.90,2.52,4.65,1.08,1.04
 161,53,"Virginia Beach-Norfolk-Newport News, VA-NC",Southeast,36.8529841,-75.9774183,2011,0.22,1.73,3.38,2.84,1.15,1.70
@@ -201,7 +201,7 @@ id,geoid,metro,region,lat,lon,year,oned_index,economy_index,education_index,equi
 200,38,"Philadelphia-Camden-Vineland, PA-NJ-DE-MD",Northeast,39.952335,-75.163789,2012,2.23,2.64,0.82,1.32,0.84,1.59
 201,39,"Phoenix-Mesa-Scottsdale, AZ",Southwest,33.361168,-112.12130217,2012,2.35,2.91,3.82,1.47,2.36,4.20
 202,40,"Pittsburgh-New Castle, PA",Midwest,40.4416941,-79.9900861,2012,4.90,4.90,3.99,1.87,2.54,3.36
-203,41,"Portland-Vancouver-Beaverton, OR-WA",Northwest,45.5202471,-122.6741949,2012,1.36,0.36,3.49,1.35,1.87,3.76
+203,41,"Portland-Vancouver-Beaverton, OR-WA",West,45.5202471,-122.6741949,2012,1.36,0.36,3.49,1.35,1.87,3.76
 204,42,"Raleigh-Durham-Cary, NC",Southeast,35.7804015,-78.6390779,2012,4.83,2.84,4.74,4.65,3.22,3.70
 205,43,"Richmond, VA",Southeast,37.541239,-77.4420183,2012,3.59,2.71,4.51,4.56,1.70,3.15
 206,44,"Rochester-Batavia-Seneca Falls, NY",Northeast,43.1572851,-77.6152141,2012,3.21,1.30,1.25,3.43,3.03,4.68
@@ -210,62 +210,62 @@ id,geoid,metro,region,lat,lon,year,oned_index,economy_index,education_index,equi
 209,47,"San Antonio, TX",Southwest,29.4246002,-98.4951405,2012,2.38,1.66,2.08,2.35,1.62,0.05
 210,48,"San Diego-Carlsbad-San Marcos, CA",Southwest,32.7469869,-117.21177,2012,4.77,2.76,2.43,4.27,4.13,2.56
 211,49,"San Jose-San Francisco-Oakland, CA",West,37.3438502,-121.8831349,2012,0.03,3.50,1.57,2.19,0.75,4.63
-212,50,"Seattle-Tacoma-Olympia, WA",Northwest,47.6038321,-122.3300624,2012,2.89,4.84,2.18,4.44,0.90,0.80
+212,50,"Seattle-Tacoma-Olympia, WA",West,47.6038321,-122.3300624,2012,2.89,4.84,2.18,4.44,0.90,0.80
 213,51,"St. Louis-St. Charles-Farmington, MO-IL",Midwest,38.6272733,-90.1978889,2012,3.28,2.45,4.13,1.91,3.81,0.38
 214,52,"Tampa-St. Petersburg-Clearwater, FL",Southeast,27.9477595,-82.458444,2012,0.78,2.48,2.17,3.00,0.72,2.76
 215,53,"Virginia Beach-Norfolk-Newport News, VA-NC",Southeast,36.8529841,-75.9774183,2012,1.06,1.53,1.08,3.92,0.14,2.10
 216,54,"Washington-Baltimore-Northern Virginia, DC-MD-VA-WV",Northeast,38.8951148,-77.0363716,2012,3.40,2.40,2.31,1.12,1.03,0.34
-217,1,"Albany-Schenectady-Amsterdam, NY",Northeast,42.6511674,-73.754968,2013,5.00,5.00,5.00,5.00,5.00,5.00
-218,2,"Atlanta-Sandy Springs-Gainesville, GA-AL",Southeast,33.7490987,-84.3901849,2013,5.00,5.00,5.00,5.00,5.00,5.00
-219,3,"Austin-Round Rock, TX",Southwest,30.2711286,-97.7436995,2013,5.00,5.00,5.00,5.00,5.00,5.00
-220,4,"Birmingham-Hoover-Cullman, AL",Southeast,33.5206824,-86.8024326,2013,5.00,5.00,5.00,5.00,5.00,5.00
-221,5,"Boston-Worcester-Manchester, MA-RI-NH",Northeast,42.3604823,-71.0595678,2013,5.00,5.00,5.00,5.00,5.00,5.00
-222,6,"Buffalo-Niagara-Cattaraugus, NY",Northeast,42.8864468,-78.8783689,2013,5.00,5.00,5.00,5.00,5.00,5.00
-223,7,"Charlotte-Gastonia-Salisbury, NC-SC",Southeast,35.2270869,-80.8431268,2013,5.00,5.00,5.00,5.00,5.00,5.00
-224,8,"Chicago-Naperville-Michigan City, IL-IN-WI",Midwest,41.8756208,-87.6243706,2013,5.00,5.00,5.00,5.00,5.00,5.00
-225,9,"Cincinnati-Middletown-Wilmington, OH-KY-IN",Midwest,39.1014537,-84.5124602,2013,5.00,5.00,5.00,5.00,5.00,5.00
-226,10,"Cleveland-Akron-Elyria, OH",Midwest,41.4871888,-81.6778691,2013,5.00,5.00,5.00,5.00,5.00,5.00
-227,11,"Columbus-Marion-Chillicothe, OH",Midwest,39.9622601,-83.0007065,2013,5.00,5.00,5.00,5.00,5.00,5.00
-228,12,"Dallas-Fort Worth, TX",Southeast,32.7801052,-96.8000082,2013,5.00,5.00,5.00,5.00,5.00,5.00
-229,13,"Dayton-Springfield-Greenville, OH",Midwest,39.7589478,-84.1916069,2013,5.00,5.00,5.00,5.00,5.00,5.00
-230,14,"Denver-Aurora-Boulder, CO",West,39.7391536,-104.9847034,2013,5.00,5.00,5.00,5.00,5.00,5.00
-231,15,"Detroit-Warren-Flint, MI",Midwest,42.3486635,-83.0567375,2013,5.00,5.00,5.00,5.00,5.00,5.00
-232,16,"Fresno-Madera, CA",Southwest,36.7294455,-119.70886061,2013,5.00,5.00,5.00,5.00,5.00,5.00
-233,17,"Grand Rapids-Muskegon-Holland, MI",Midwest,42.9633599,-85.6680863,2013,5.00,5.00,5.00,5.00,5.00,5.00
-234,18,"Greensboro--Winston-Salem--High Point, NC",Southeast,36.0726355,-79.7919754,2013,5.00,5.00,5.00,5.00,5.00,5.00
-235,19,"Greenville-Spartanburg-Anderson, SC",Southeast,34.8512316,-82.3985105,2013,5.00,5.00,5.00,5.00,5.00,5.00
-236,20,"Hartford-West Hartford-Willimantic, CT",Northeast,41.765599,-72.69058501,2013,5.00,5.00,5.00,5.00,5.00,5.00
-237,21,"Houston-Baytown-Huntsville, TX",Southeast,29.9519265,-95.54091698,2013,5.00,5.00,5.00,5.00,5.00,5.00
-238,22,"Indianapolis-Anderson-Columbus, IN",Midwest,39.7683795,-86.1580447,2013,5.00,5.00,5.00,5.00,5.00,5.00
-239,23,"Jacksonville, FL",Southeast,30.3321838,-81.655651,2013,5.00,5.00,5.00,5.00,5.00,5.00
-240,24,"Kansas City-Overland Park-Kansas City, MO-KS",Midwest,39.0844687,-94.5630298,2013,5.00,5.00,5.00,5.00,5.00,5.00
-241,25,"Knoxville-Sevierville-La Follette, TN",Southeast,35.9603948,-83.9210261,2013,5.00,5.00,5.00,5.00,5.00,5.00
-242,26,"Las Vegas-Paradise-Pahrump, NV",Southwest,36.145204,-115.1611806,2013,5.00,5.00,5.00,5.00,5.00,5.00
-243,27,"Los Angeles-Long Beach-Riverside, CA",Southwest,34.0536781,-118.2427025,2013,5.00,5.00,5.00,5.00,5.00,5.00
-244,28,"Louisville-Jefferson County--Elizabethtown-Scottsburg, KY-IN",Southeast,38.2542376,-85.759407,2013,5.00,5.00,5.00,5.00,5.00,5.00
-245,29,"Memphis, TN-MS-AR",Southeast,35.1490215,-90.0516285,2013,5.00,5.00,5.00,5.00,5.00,5.00
-246,30,"Miami-Fort Lauderdale-Pompano Beach, FL",Southeast,25.7742658,-80.1936589,2013,5.00,5.00,5.00,5.00,5.00,5.00
-247,31,"Milwaukee-Racine-Waukesha, WI",Midwest,43.0349931,-87.922497,2013,5.00,5.00,5.00,5.00,5.00,5.00
-248,32,"Minneapolis-St. Paul-St. Cloud, MN-WI",Midwest,44.9772995,-93.2654692,2013,5.00,5.00,5.00,5.00,5.00,5.00
-249,33,"Nashville-Davidson--Murfreesboro--Columbia, TN",Southeast,36.1622257,-86.7743419,2013,5.00,5.00,5.00,5.00,5.00,5.00
-250,34,"New Orleans-Metairie-Bogalusa, LA",Southeast,29.9499323,-90.0701156,2013,5.00,5.00,5.00,5.00,5.00,5.00
-251,35,"New York-Newark-Bridgeport, NY-NJ-CT-PA",Northeast,40.7305991,-73.9865812,2013,5.00,5.00,5.00,5.00,5.00,5.00
-252,36,"Oklahoma City-Shawnee, OK",West,35.4707419,-97.5198806,2013,5.00,5.00,5.00,5.00,5.00,5.00
-253,37,"Orlando-Deltona-Daytona Beach, FL",Southeast,28.5421175,-81.3790462,2013,5.00,5.00,5.00,5.00,5.00,5.00
-254,38,"Philadelphia-Camden-Vineland, PA-NJ-DE-MD",Northeast,39.952335,-75.163789,2013,5.00,5.00,5.00,5.00,5.00,5.00
-255,39,"Phoenix-Mesa-Scottsdale, AZ",Southwest,33.361168,-112.12130217,2013,5.00,5.00,5.00,5.00,5.00,5.00
-256,40,"Pittsburgh-New Castle, PA",Midwest,40.4416941,-79.9900861,2013,5.00,5.00,5.00,5.00,5.00,5.00
-257,41,"Portland-Vancouver-Beaverton, OR-WA",Northwest,45.5202471,-122.6741949,2013,5.00,5.00,5.00,5.00,5.00,5.00
-258,42,"Raleigh-Durham-Cary, NC",Southeast,35.7804015,-78.6390779,2013,5.00,5.00,5.00,5.00,5.00,5.00
-259,43,"Richmond, VA",Southeast,37.541239,-77.4420183,2013,5.00,5.00,5.00,5.00,5.00,5.00
-260,44,"Rochester-Batavia-Seneca Falls, NY",Northeast,43.1572851,-77.6152141,2013,5.00,5.00,5.00,5.00,5.00,5.00
-261,45,"Sacramento--Arden-Arcade--Yuba City, CA-NV",West,38.4732259,-121.2980707,2013,5.00,5.00,5.00,5.00,5.00,5.00
-262,46,"Salt Lake City-Ogden-Clearfield, UT",West,40.7606467,-111.89109,2013,5.00,5.00,5.00,5.00,5.00,5.00
-263,47,"San Antonio, TX",Southwest,29.4246002,-98.4951405,2013,5.00,5.00,5.00,5.00,5.00,5.00
-264,48,"San Diego-Carlsbad-San Marcos, CA",Southwest,32.7469869,-117.21177,2013,5.00,5.00,5.00,5.00,5.00,5.00
-265,49,"San Jose-San Francisco-Oakland, CA",West,37.3438502,-121.8831349,2013,5.00,5.00,5.00,5.00,5.00,5.00
-266,50,"Seattle-Tacoma-Olympia, WA",Northwest,47.6038321,-122.3300624,2013,5.00,5.00,5.00,5.00,5.00,5.00
-267,51,"St. Louis-St. Charles-Farmington, MO-IL",Midwest,38.6272733,-90.1978889,2013,5.00,5.00,5.00,5.00,5.00,5.00
-268,52,"Tampa-St. Petersburg-Clearwater, FL",Southeast,27.9477595,-82.458444,2013,5.00,5.00,5.00,5.00,5.00,5.00
-269,53,"Virginia Beach-Norfolk-Newport News, VA-NC",Southeast,36.8529841,-75.9774183,2013,5.00,5.00,5.00,5.00,5.00,5.00
-270,54,"Washington-Baltimore-Northern Virginia, DC-MD-VA-WV",Northeast,38.8951148,-77.0363716,2013,5.00,5.00,5.00,5.00,5.00,5.00
+217,1,"Albany-Schenectady-Amsterdam, NY",Northeast,42.6511674,-73.754968,2013,1.72,0.96,3.94,2.95,4.76,3.63
+218,2,"Atlanta-Sandy Springs-Gainesville, GA-AL",Southeast,33.7490987,-84.3901849,2013,1.28,2.37,3.21,4.38,1.75,0.72
+219,3,"Austin-Round Rock, TX",Southwest,30.2711286,-97.7436995,2013,0.79,2.59,2.99,0.02,1.39,1.03
+220,4,"Birmingham-Hoover-Cullman, AL",Southeast,33.5206824,-86.8024326,2013,2.02,4.09,2.26,3.72,1.99,0.17
+221,5,"Boston-Worcester-Manchester, MA-RI-NH",Northeast,42.3604823,-71.0595678,2013,1.48,4.99,4.01,4.81,4.55,0.18
+222,6,"Buffalo-Niagara-Cattaraugus, NY",Northeast,42.8864468,-78.8783689,2013,0.17,0.20,2.95,4.82,4.21,4.84
+223,7,"Charlotte-Gastonia-Salisbury, NC-SC",Southeast,35.2270869,-80.8431268,2013,0.66,1.34,2.43,4.26,1.43,1.57
+224,8,"Chicago-Naperville-Michigan City, IL-IN-WI",Midwest,41.8756208,-87.6243706,2013,4.03,0.32,2.62,0.80,0.81,0.71
+225,9,"Cincinnati-Middletown-Wilmington, OH-KY-IN",Midwest,39.1014537,-84.5124602,2013,2.32,2.44,0.91,2.20,0.14,4.52
+226,10,"Cleveland-Akron-Elyria, OH",Midwest,41.4871888,-81.6778691,2013,3.29,2.18,1.04,3.84,0.06,4.36
+227,11,"Columbus-Marion-Chillicothe, OH",Midwest,39.9622601,-83.0007065,2013,1.52,1.57,3.17,3.38,3.37,4.73
+228,12,"Dallas-Fort Worth, TX",Southeast,32.7801052,-96.8000082,2013,1.43,4.44,2.25,4.15,4.21,2.25
+229,13,"Dayton-Springfield-Greenville, OH",Midwest,39.7589478,-84.1916069,2013,3.90,0.44,3.03,2.31,1.83,3.56
+230,14,"Denver-Aurora-Boulder, CO",West,39.7391536,-104.9847034,2013,3.39,1.27,3.56,0.75,1.12,0.41
+231,15,"Detroit-Warren-Flint, MI",Midwest,42.3486635,-83.0567375,2013,1.24,3.51,3.02,0.26,4.85,3.31
+232,16,"Fresno-Madera, CA",Southwest,36.7294455,-119.70886061,2013,3.98,0.55,3.65,3.89,1.12,3.43
+233,17,"Grand Rapids-Muskegon-Holland, MI",Midwest,42.9633599,-85.6680863,2013,4.99,1.64,2.77,0.21,3.19,2.84
+234,18,"Greensboro--Winston-Salem--High Point, NC",Southeast,36.0726355,-79.7919754,2013,2.48,1.80,4.26,3.75,3.31,3.27
+235,19,"Greenville-Spartanburg-Anderson, SC",Southeast,34.8512316,-82.3985105,2013,2.82,1.32,1.08,0.53,1.20,1.48
+236,20,"Hartford-West Hartford-Willimantic, CT",Northeast,41.765599,-72.69058501,2013,1.07,2.13,2.38,0.62,0.06,1.02
+237,21,"Houston-Baytown-Huntsville, TX",Southeast,29.9519265,-95.54091698,2013,3.33,2.45,1.76,1.81,3.47,3.66
+238,22,"Indianapolis-Anderson-Columbus, IN",Midwest,39.7683795,-86.1580447,2013,1.24,4.34,1.60,0.44,2.00,4.39
+239,23,"Jacksonville, FL",Southeast,30.3321838,-81.655651,2013,0.16,4.01,3.90,1.01,2.98,0.65
+240,24,"Kansas City-Overland Park-Kansas City, MO-KS",Midwest,39.0844687,-94.5630298,2013,4.16,4.88,3.87,4.14,2.27,2.70
+241,25,"Knoxville-Sevierville-La Follette, TN",Southeast,35.9603948,-83.9210261,2013,0.49,2.38,4.74,4.87,1.55,1.65
+242,26,"Las Vegas-Paradise-Pahrump, NV",Southwest,36.145204,-115.1611806,2013,1.91,0.73,0.22,3.82,1.00,4.31
+243,27,"Los Angeles-Long Beach-Riverside, CA",Southwest,34.0536781,-118.2427025,2013,4.27,2.77,1.35,4.01,0.01,1.86
+244,28,"Louisville-Jefferson County--Elizabethtown-Scottsburg, KY-IN",Southeast,38.2542376,-85.759407,2013,4.42,0.14,2.07,2.65,4.43,2.59
+245,29,"Memphis, TN-MS-AR",Southeast,35.1490215,-90.0516285,2013,1.40,4.66,3.71,4.75,3.85,2.97
+246,30,"Miami-Fort Lauderdale-Pompano Beach, FL",Southeast,25.7742658,-80.1936589,2013,0.44,3.46,1.23,2.65,0.12,4.92
+247,31,"Milwaukee-Racine-Waukesha, WI",Midwest,43.0349931,-87.922497,2013,2.43,0.80,0.37,3.53,3.79,4.57
+248,32,"Minneapolis-St. Paul-St. Cloud, MN-WI",Midwest,44.9772995,-93.2654692,2013,0.46,2.90,0.00,4.33,1.51,3.42
+249,33,"Nashville-Davidson--Murfreesboro--Columbia, TN",Southeast,36.1622257,-86.7743419,2013,1.69,2.24,4.36,0.29,3.13,2.83
+250,34,"New Orleans-Metairie-Bogalusa, LA",Southeast,29.9499323,-90.0701156,2013,2.40,0.71,0.53,3.03,4.91,3.46
+251,35,"New York-Newark-Bridgeport, NY-NJ-CT-PA",Northeast,40.7305991,-73.9865812,2013,3.11,0.36,2.41,0.76,0.41,4.27
+252,36,"Oklahoma City-Shawnee, OK",West,35.4707419,-97.5198806,2013,0.82,3.08,0.44,2.71,2.93,0.66
+253,37,"Orlando-Deltona-Daytona Beach, FL",Southeast,28.5421175,-81.3790462,2013,3.57,2.25,3.50,2.29,1.96,2.69
+254,38,"Philadelphia-Camden-Vineland, PA-NJ-DE-MD",Northeast,39.952335,-75.163789,2013,4.37,3.77,0.93,4.70,2.56,4.75
+255,39,"Phoenix-Mesa-Scottsdale, AZ",Southwest,33.361168,-112.12130217,2013,4.05,3.60,3.49,3.22,1.62,0.56
+256,40,"Pittsburgh-New Castle, PA",Midwest,40.4416941,-79.9900861,2013,0.60,4.10,1.01,3.08,4.86,0.53
+257,41,"Portland-Vancouver-Beaverton, OR-WA",West,45.5202471,-122.6741949,2013,0.92,0.21,1.66,3.02,3.63,2.20
+258,42,"Raleigh-Durham-Cary, NC",Southeast,35.7804015,-78.6390779,2013,0.77,0.72,0.32,4.74,0.03,2.14
+259,43,"Richmond, VA",Southeast,37.541239,-77.4420183,2013,1.84,0.29,0.01,1.32,4.99,4.77
+260,44,"Rochester-Batavia-Seneca Falls, NY",Northeast,43.1572851,-77.6152141,2013,0.11,0.86,0.49,1.39,4.42,3.84
+261,45,"Sacramento--Arden-Arcade--Yuba City, CA-NV",West,38.4732259,-121.2980707,2013,1.59,1.46,3.17,0.67,2.52,3.87
+262,46,"Salt Lake City-Ogden-Clearfield, UT",West,40.7606467,-111.89109,2013,1.60,1.59,0.42,0.52,4.42,0.59
+263,47,"San Antonio, TX",Southwest,29.4246002,-98.4951405,2013,1.02,1.88,1.25,2.09,4.33,3.36
+264,48,"San Diego-Carlsbad-San Marcos, CA",Southwest,32.7469869,-117.21177,2013,1.80,0.05,2.59,4.14,2.15,1.72
+265,49,"San Jose-San Francisco-Oakland, CA",West,37.3438502,-121.8831349,2013,2.28,4.01,2.83,3.10,2.52,3.25
+266,50,"Seattle-Tacoma-Olympia, WA",West,47.6038321,-122.3300624,2013,4.56,0.88,4.81,0.87,0.86,2.65
+267,51,"St. Louis-St. Charles-Farmington, MO-IL",Midwest,38.6272733,-90.1978889,2013,3.52,0.50,1.41,0.61,1.95,2.05
+268,52,"Tampa-St. Petersburg-Clearwater, FL",Southeast,27.9477595,-82.458444,2013,1.72,1.07,4.59,1.61,2.87,1.64
+269,53,"Virginia Beach-Norfolk-Newport News, VA-NC",Southeast,36.8529841,-75.9774183,2013,2.42,4.23,4.23,4.66,2.73,4.94
+270,54,"Washington-Baltimore-Northern Virginia, DC-MD-VA-WV",Northeast,38.8951148,-77.0363716,2013,2.54,1.93,4.68,3.48,4.55,4.15

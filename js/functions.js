@@ -81,6 +81,11 @@ function setupCrossfilterByTransitIndex(cf, dataset) {
 	return byTransitIndex;
 }
 
+function setupCrossfilterByRegion(cf, dataset) {		
+	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
+	var byRegion = cf.dimension(function(d) { return d.region + '|' + d.metro; });
+	return byRegion;
+}
 
 // set up functions to filter data (using crossfilter) by year or geoID and clear these filters
 function filterByYear (byYear, year) {
@@ -125,6 +130,12 @@ function orderByTransitIndex (byTransitIndex) {
 	return filteredData;
 }
 
+function orderByRegion (byRegion) {
+	var filteredData = byRegion.bottom(Infinity);
+	return filteredData;
+}
+
+
 function clearFilterByYear(byYear) {
 	byYear.filterAll();	
 }
@@ -163,13 +174,45 @@ function createObjectForCircularHeatChart(filteredData) {
 	circularChartData.qualityOfLifeIndex = []
 	circularChartData.transitIndex = []
 	circularChartData.indicies = []
-	$.each(filteredData, function( i, d ) {
-		circularChartData.meta.push({ id: d.id, geoid: d.geoid, metro: d.metro, year: d.year, lat: d.lat, lon: d.lon, oned_index: d.oned_index, economy_index: d.economy_index, education_index: d.education_index, equity_index: d.equity_index, quality_of_life_index: d.quality_of_life_index, transit_index: d.transit_index });
+	circularChartData.regions = []
+	$.each(filteredData, function( i, d ) {		
+		circularChartData.meta.push({ id: d.id, geoid: d.geoid, metro: d.metro, region: d.region, year: d.year, lat: d.lat, lon: d.lon, oned_index: d.oned_index, economy_index: d.economy_index, education_index: d.education_index, equity_index: d.equity_index, quality_of_life_index: d.quality_of_life_index, transit_index: d.transit_index });
 		circularChartData.economyIndex.push(d.economy_index);
 		circularChartData.educationIndex.push(d.education_index);
 		circularChartData.equityIndex.push(d.equity_index);
 		circularChartData.qualityOfLifeIndex.push(d.quality_of_life_index);
 		circularChartData.transitIndex.push(d.transit_index);
+		
+		// get region counts
+		var key = d.region;
+		if (!circularChartData.regions[key]) {
+			circularChartData.regions[key] = {
+				region: d.region,
+				count: 0,
+				start: 0,
+				end: 0
+			};
+		}
+		circularChartData.regions[key].count++;
+		
+	});
+	
+	var lastKey = '';
+	Object.keys(circularChartData.regions).forEach(function(key) {
+		if (lastKey == '') {
+			circularChartData.regions[key].start = 0;
+			circularChartData.regions[key].end = circularChartData.regions[key].count;
+			//console.log(circularChartData.regions[key].end);
+		    circularChartData.regions.push(circularChartData.regions[key]);
+		} else {
+			circularChartData.regions[key].start = circularChartData.regions[lastKey].end;
+			//console.log(lastKey);
+			//console.log(circularChartData.regions[lastKey].start);
+			circularChartData.regions[key].end = circularChartData.regions[lastKey].end + circularChartData.regions[key].count;
+			//console.log(circularChartData.regions[key].end);
+		    circularChartData.regions.push(circularChartData.regions[key]);
+		}
+		lastKey = key;
 	});
 	
 	circularChartData.indicies = circularChartData.economyIndex.concat(circularChartData.educationIndex, circularChartData.equityIndex, circularChartData.qualityOfLifeIndex, circularChartData.transitIndex);

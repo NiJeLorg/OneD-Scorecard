@@ -1,5 +1,6 @@
 /*
-* this script sets up the variables and SVG container for the createPinwheel function, and then calls that function
+* this script opens the scorecard data, parses numbers and dates, filters by year, then iterates through each record and 
+* creates pinwheels for the map and array, and sends data to the circular charts and bar charts
 */
 
 /**** Code to open dataset and preform functions ****/	
@@ -20,8 +21,7 @@ function originalPinwheels() {
 		var byYear = setupCrossfilterByYear(cf, dataset);
 	
 		// set initial year as the max year in the array to initially filter the data
-		// var year = d3.max(dataset, function(d) { return d.year; });
-		var year = 2012;
+		var year = d3.max(dataset, function(d) { return d.year; });
 		
 		// filter the dataset for just this year using the filter function we created
 		var filteredDataByYear = filterByYear(byYear, year);
@@ -76,9 +76,13 @@ function originalPinwheels() {
 		});
 		
 		// create initial the national level circular heat chart and table from this dataset
+		// sort data by region
+		var byRegion = setupCrossfilterByRegion(cf, dataset);
+		var filteredDataByYear = orderByRegion(byRegion);
+
 		// set up data to be passed to the chart
 		var circularChartData = createObjectForCircularHeatChart(filteredDataByYear);
-		
+
 		// calculat the number of cities
 		var numberOfCities = Object.size(circularChartData.meta);
 		

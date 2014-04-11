@@ -67,10 +67,17 @@ body {
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 350px; 
+  height: 133px;
+  background-image: url("../assets/images/OneD_Logo.png");
+  background-repeat: no-repeat;
+  text-indent: -9999px;
 }
 
 .masthead-nav > li {
   display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .masthead-nav > li + li {
   margin-left: 20px;
@@ -87,13 +94,13 @@ body {
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
   background-color: transparent;
-  border-bottom-color: rgba(255,255,255,.25);
+  /*border-bottom-color: rgba(255,255,255,.25);*/
 }
 .masthead-nav > .active > a,
 .masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
   color: #fff;
-  border-bottom-color: #fff;
+  /*border-bottom-color: #fff;*/
 }
 
 @media (min-width: 768px) {
@@ -105,9 +112,39 @@ body {
   }
 }
 
-.masthead-nav .masthead-nav-img {
-	height: 111px;
+.masthead-nav-img1 {
+    background-image: url('../assets/images/OneDScorecard_NOTpressed.png');
+	background-repeat: no-repeat;
+	width: 119px;
+	height: 111px; 
 }
+
+/*
+.masthead-nav-img1:hover {
+   background-image: url('../assets/images/OneDScorecard_Rollover.png');
+   background-repeat: no-repeat;
+   width: 230px;
+   height: 222px;
+}
+*/
+
+.masthead-nav-img2 {
+    background-image: url('../assets/images/OneDetroitPortal_NOTpressed.png');
+    background-repeat: no-repeat;
+	width: 119px;
+	height: 111px; 
+}
+
+/*
+.masthead-nav-img2:hover {
+   background-image: url('../assets/images/OneDetroitPortal_Rollover.png');
+   background-repeat: no-repeat;
+   width: 230px;
+   height: 222px;
+}
+*/
+
+
 
 /*
  * button and D3 logo bar
@@ -554,9 +591,16 @@ div.pinwheelTooltip {
  */
 
 .heatmapTableContainer {
-	text-align: left;
-	margin-top: 20px;
+	text-align: center;
+	position: relative;
+	margin-top: 40px;
 	width: 250px;
+}
+
+.heatmapTable {
+	text-align: left;
+	position: absolute; 
+	top: 105px;
 }
     
 /*
