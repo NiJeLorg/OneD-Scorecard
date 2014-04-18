@@ -128,8 +128,34 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 			
 	   });
 	   
+	// create inner rim
+   	ir = svgContainer.select("svg")
+   		.append('g')
+   		.classed("circular-heat-bounding-inner-rim", true)
+   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+		
+	ir.append("circle")
+		.attr('r', innerRadius)
+		.attr('fill', 'none')
+		.attr("stroke", "#6D6E70")		   
+		.attr("stroke-width", "3px");
+	
+	// create segments for regions
+   	seg = svgContainer.select("svg")
+   		.append('g')
+   		.classed("circular-heat-dividers", true)
+   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+   
+   	seg.selectAll("path")
+   		.data(dataset.regions)
+   		.enter()
+   		.append("path")
+   		.attr("d", d3.svg.arc().innerRadius(innerRadius).outerRadius(innerRadius + (segmentHeight * 5)).startAngle(rsa).endAngle(rea))
+   		.attr('fill', 'none')
+		.attr("stroke", "#6D6E70")		   
+		.attr("stroke-width", "3px");
+			
 	// create segments for region labels   
-	//console.log(dataset.regions);
    	br = svgContainer.select("svg")
    		.append('g')
    		.classed("circular-heat-bounding-rim", true)
@@ -143,6 +169,8 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
    		.attr('fill', '#BBBDBF')
 		.attr("stroke", "#6D6E70")		   
 		.attr("stroke-width", "3px");
+		
+		
 		
 	// create segment labels
     // Unique id so that the text path defs are unique - is there a better way to do this?

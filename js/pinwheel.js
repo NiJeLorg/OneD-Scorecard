@@ -172,7 +172,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 
 // update pinwheel
 function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, centerY, colorFunc, opacityFunc) {
-			
+	
 	/**** Common pinwheel code ****/
 	// Function to draw a single arc for the pinwheel
 	// Input: Drawing options object containing
@@ -226,7 +226,7 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	function updateComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
 		// need Ids for pinwheels to update later
 		var geoid = rowOfData.meta.geoid;
-
+		//console.log(rowOfData.indicies);
 		// Draw the main wind rose arcs
 		var pinwheel = svgContainer.select("#g" + geoid)
 			.selectAll("path")

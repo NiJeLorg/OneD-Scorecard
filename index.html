@@ -70,6 +70,8 @@
 		            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 		            <li data-target="#myCarousel" data-slide-to="1"></li>
 		            <li data-target="#myCarousel" data-slide-to="2"></li>
+		            <li data-target="#myCarousel" data-slide-to="3"></li>
+		            <li data-target="#myCarousel" data-slide-to="4"></li>
 		          </ol>
 		          <div class="carousel-inner">
 		            <div class="item active">			  
@@ -155,6 +157,85 @@
 						  
 		              </div>
 		            </div>
+		            <div class="item">
+		              <div class="container">
+						<div class="barChart sliderContainer"></div>
+						<div class="clearfix"></div>
+  		                <ul id="sc4" class="sliderContainer collapse">
+    		                  <li><button type="button" class="btn btn-link" onclick="playStopBarChart('play')"><span class="glyphicon glyphicon-play"></span></button></li>
+    		                  <li><button type="button" class="btn btn-link" onclick="playStopBarChart('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
+  		                  <li><div id="barChartSlider"></div></li>
+  		                </ul>
+						<form class="form-inline sliderContainerRight" role="form">
+							<div class="form-group">
+								<select id="selectPriorityArea" class="form-control barChartChange">
+								  <option value='1'>Economy</option>
+								  <option value='2'>Education</option>
+								  <option value='3'>Quality of Life</option>
+								  <option value='4'>Social Equity</option>
+								  <option value='5'>Regional Transit</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<select id="selectIndicator" class="form-control barChartChange">
+									<option value='1'>Export Value</option>
+									<option value='2'>Per Capita Real GDP</option>
+									<option value='4'>Percent Change in High Tech Employment</option>
+									<option value='5'>Percent Change in Knowledge Industry Employment</option>
+									<option value='6'>Median Household Income</option>
+									<option value='7'>Per Capita Personal Income</option>
+									<option value='8'>Percent of Population Ages 25 to 34</option>
+									<option value='9'>Percent of Population Below 100% of Poverty Level</option>
+									<option value='10'>Technology Patents per 10,000 People</option>
+									<option value='11'>Business Tax Climate Index</option>
+									<option value='12'>R&D Performed as Share of GDP</option>
+									<option value='13'>Venture Captial Investment Dollars Per Capita</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<select id="selectOrder" class="form-control barChartChange">
+								  <option value='1'>High to Low</option>
+								  <option value='2'>Low to High</option>
+								  <option value='3'>Midwest Cities</option>
+								  <option value='4'>Northeast Cities</option>
+								  <option value='5'>Southeast Cities</option>
+								  <option value='6'>Southwest Cities</option>
+								  <option value='7'>Western Cities</option>
+								</select>
+							</div>
+						</form>					
+  						<div class="clearfix"></div>						
+    		                <ul class="nav control-nav">
+    		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc4"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
+    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></button></li>
+    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></button></li>
+    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></button></li>
+    		                </ul>						
+    		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
+						  
+		              </div>
+		            </div>
+		            <div class="item">
+		              <div class="container">
+						<div class="cityCircularHeatChart sliderContainer"></div>
+						<div class="cityCircularHeatChartSidebar sliderContainerRight heatmapTableContainer"></div>
+						<div class="clearfix"></div>
+  		                <ul id="sc5" class="sliderContainer">
+    		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChartCity('play')"><span class="glyphicon glyphicon-play"></span></button></li>
+    		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChartCity('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
+  		                  <li><div id="cityHeatChartSlider"></div></li>
+  		                </ul>
+  						<div class="clearfix"></div>						
+    		                <ul class="nav control-nav">
+    		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc5"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
+    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></button></li>
+    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></button></li>
+    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></button></li>
+    		                </ul>						
+    		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
+						  
+		              </div>
+		            </div>
 		          </div>
 		          <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
 		          <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -175,8 +256,8 @@
 	  	                <div class="navbar-collapse collapse">
 	  	                  <ul class="nav navbar-nav">
 	  	                    <li class="active"><a href="#">Home</a></li>
-	  	                    <li><a href="#">Education</a></li>
 	  	                    <li><a href="#">Economy</a></li>
+	  	                    <li><a href="#">Education</a></li>
 	  	                    <li><a href="#">Quality of Life</a></li>
 	  	                    <li><a href="#">Social Equity</a></li>
 	  	                    <li><a href="#">Regional Transit</a></li>
@@ -210,7 +291,6 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>
-<!--<script type="text/javascript" src="assets/js/jquery-ui-1.10.4.custom.min.js"></script>-->
 <script type="text/javascript" src="assets/js/d3.v3.js" charset="utf-8"></script>
 <script type="text/javascript" src="assets/js/crossfilter.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -230,6 +310,9 @@
 <!-- reusable pinwheel function -->
 <script type="text/javascript" src="js/pinwheel.js"></script>
 
+<!-- reusable barchart function -->
+<script type="text/javascript" src="js/barChart.js"></script>
+
 <!-- setup javascript for drawing the pinwheels on the states map -->
 <script type="text/javascript" src="js/statesPinwheelSetup.js"></script>
 
@@ -239,17 +322,26 @@
 <!-- javascript drawing the circular heat chart -->
 <script type="text/javascript" src="js/nationalCircularHeatChart.js"></script>
 
+<!-- setup javascript drawing the bar chart -->
+<script type="text/javascript" src="js/barChartSetup.js"></script>
+
 <!-- javascript for updating Pinwheels -->
 <script type="text/javascript" src="js/pinwheelUpdate.js"></script>
 
 <!-- javascript for updating the circular heat chart -->
 <script type="text/javascript" src="js/nationalCircularHeatChartUpdate.js"></script>
 
+<!-- javascript for updating the bar chart -->
+<script type="text/javascript" src="js/barChartUpdate.js"></script>
+
 <!-- initiates the slider that plays the change in data by year -->
 <script type="text/javascript" src="js/slider.js"></script>
 
 <!-- javascript for updating Pinwheels when user selects an option from the dropdown -->
 <script type="text/javascript" src="js/updateFromDropdown.js"></script>
+
+<!-- javascript for updating the bar chart dropdown -->
+<script type="text/javascript" src="js/barChartDropdownSetup.js"></script>
 
 
 

@@ -4,7 +4,7 @@
 */
 
 /**** Code for data manipulation ****/
-// parses strings to integers or floating point numbers for the entire dataset
+// parses strings to integers or floating point numbers for the entire index dataset
 function parseNumbers(dataset) {
 	$.each(dataset, function( i, d ) {
 		d.id = parseInt(d.id);
@@ -20,6 +20,74 @@ function parseNumbers(dataset) {
 	});
 }
 
+function parseNumbersIndicators(dataset) {
+	$.each(dataset, function( i, d ) {
+		d.id = parseInt(d.id);
+		d.geoid = parseInt(d.geoid); 
+		d.lat = parseFloat(d.lat);
+		d.lon = parseFloat(d.lon);
+		d.econ_exports = parseFloat(d.econ_exports);
+		d.econ_gmp = parseFloat(d.econ_gmp);
+		d.econ_hightech = parseFloat(d.econ_hightech);
+		d.econ_kiemploy = parseFloat(d.econ_kiemploy);
+		d.econ_mhhinc = parseFloat(d.econ_mhhinc);
+		d.econ_pcpi = parseFloat(d.econ_pcpi);
+		d.econ_pop2534 = parseFloat(d.econ_pop2534);
+		d.econ_povrt = parseFloat(d.econ_povrt);
+		d.econ_techpatents = parseFloat(d.econ_techpatents);
+		d.econ_biztaxindex = parseFloat(d.econ_biztaxindex);
+		d.econ_rdsharegdp = parseFloat(d.econ_rdsharegdp);
+		d.econ_vcpc = parseFloat(d.econ_vcpc);
+		d.edu_pctbachhigher2534 = parseFloat(d.edu_pctbachhigher2534);
+		d.edu_pctbachhigher = parseFloat(d.edu_pctbachhigher);
+		d.edu_ppstatebudget = parseFloat(d.edu_ppstatebudget);
+		d.edu_ppspending = parseFloat(d.edu_ppspending);
+		d.edu_enrolled = parseFloat(d.edu_enrolled);
+		d.edu_hsdiploma = parseFloat(d.edu_hsdiploma);
+		d.edu_naep4math = parseFloat(d.edu_naep4math);
+		d.edu_naep4read = parseFloat(d.edu_naep4read);
+		d.edu_naep4sci = parseFloat(d.edu_naep4sci);
+		d.edu_naep8math = parseFloat(d.edu_naep8math);
+		d.edu_naep8read = parseFloat(d.edu_naep8read);
+		d.edu_naep8sci = parseFloat(d.edu_naep8sci);
+		d.edu_unemployednohs = parseFloat(d.edu_unemployednohs);
+		d.equity_fbpop = parseFloat(d.equity_fbpop);
+		d.equity_gini = parseFloat(d.equity_gini);
+		d.equity_incshareq1 = parseFloat(d.equity_incshareq1);
+		d.equity_incshareq2 = parseFloat(d.equity_incshareq2);
+		d.equity_incshareq3 = parseFloat(d.equity_incshareq3);
+		d.equity_incshareq4 = parseFloat(d.equity_incshareq4);
+		d.equity_incshareq5 = parseFloat(d.equity_incshareq5);
+		d.equity_incsharetop5 = parseFloat(d.equity_incsharetop5);
+		d.equity_medhhincblack = parseFloat(d.equity_medhhincblack);
+		d.equity_medhhinchisp = parseFloat(d.equity_medhhinchisp);
+		d.equity_medhhincwhite = parseFloat(d.equity_medhhincwhite);
+		d.equity_medhhinctotal = parseFloat(d.equity_medhhinctotal);
+		d.equity_childpovrtblack = parseFloat(d.equity_childpovrtblack);
+		d.equity_childpovrthisp = parseFloat(d.equity_childpovrthisp);
+		d.equity_childpovrtwhite = parseFloat(d.equity_childpovrtwhite);
+		d.equity_childpovrttotal = parseFloat(d.equity_childpovrttotal);
+		d.equity_homeownershipblack = parseFloat(d.equity_homeownershipblack);
+		d.equity_homeownershiphisp = parseFloat(d.equity_homeownershiphisp);
+		d.equity_homeownershipwhite = parseFloat(d.equity_homeownershipwhite);
+		d.equity_homeownershiptotal = parseFloat(d.equity_homeownershiptotal);
+		d.qol_aqi = parseFloat(d.qol_aqi);
+		d.qol_homeownershiptotal = parseFloat(d.qol_homeownershiptotal);
+		d.qol_popchange = parseFloat(d.qol_popchange);
+		d.qol_popwohealthins = parseFloat(d.qol_popwohealthins);
+		d.qol_vcrimert = parseFloat(d.qol_vcrimert);
+		d.qol_vthourspc = parseFloat(d.qol_vthourspc);
+		d.qol_obese = parseFloat(d.qol_obese);
+		d.qol_physicians = parseFloat(d.qol_physicians);
+		d.transit_hoursdelayedpc = parseInt(d.transit_hoursdelayedpc);
+		d.transit_caralone = parseFloat(d.transit_caralone);
+		d.transit_novehicle = parseFloat(d.transit_novehicle);
+		d.transit_statefunding = parseFloat(d.transit_statefunding);
+		d.transit_bustrips = parseFloat(d.transit_bustrips);
+		d.transit_bridgecondition = parseFloat(d.transit_bridgecondition);	
+	});
+}
+
 // parses strings to dates for the entier dataset
 function parseDates(dataset) {
 	var yearFormat = d3.time.format("%Y");
@@ -30,61 +98,440 @@ function parseDates(dataset) {
 	});
 }
 
+// select which indicator to plot and order the dataset
+function pickOrderIndicatorData(cf, dataset, indicator, order) {
+	if (indicator == 1) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_exports;		
+		});
+	} else if (indicator == 2) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_gmp;		
+		});
+	} else if (indicator == 3) {
+	} else if (indicator == 4) {
+		$.each(dataset, function( i, d ) {
+			d.value = d.econ_hightech;		
+		});
+	} else if (indicator == 5) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_kiemploy;		
+		});
+	} else if (indicator == 6) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_mhhinc;		
+		});
+	} else if (indicator == 7) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_pcpi;		
+		});
+	} else if (indicator == 8) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_pop2534;		
+		});
+	} else if (indicator == 9) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_povrt;		
+		});
+	} else if (indicator == 10) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_techpatents;		
+		});
+	} else if (indicator == 11) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_biztaxindex;		
+		});
+	} else if (indicator == 12) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_rdsharegdp;		
+		});
+	} else if (indicator == 13) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.econ_vcpc;		
+		});
+	} else if (indicator == 14) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_pctbachhigher2534;		
+		});
+	} else if (indicator == 15) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_pctbachhigher;		
+		});
+	} else if (indicator == 16) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_ppstatebudget;		
+		});
+	} else if (indicator == 17) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_ppspending;		
+		});
+	} else if (indicator == 18) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_enrolled;		
+		});
+	} else if (indicator == 19) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_hsdiploma;		
+		});
+	} else if (indicator == 20) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_naep4math;		
+		});
+	} else if (indicator == 21) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_naep4read;		
+		});
+	} else if (indicator == 22) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_naep4sci;		
+		});
+	} else if (indicator == 23) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_naep8math;		
+		});
+	} else if (indicator == 24) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_naep8read;		
+		});
+	} else if (indicator == 25) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_naep8sci;		
+		});
+	} else if (indicator == 26) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.edu_unemployednohs;		
+		});
+	} else if (indicator == 27) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_fbpop;		
+		});
+	} else if (indicator == 28) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_gini;		
+		});
+	} else if (indicator == 29) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_incshareq1;		
+		});
+	} else if (indicator == 30) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_incshareq2;		
+		});
+	} else if (indicator == 31) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_incshareq3;		
+		});
+	} else if (indicator == 32) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_incshareq4;		
+		});
+	} else if (indicator == 33) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_incshareq5;		
+		});
+	} else if (indicator == 34) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_incsharetop5;		
+		});
+	} else if (indicator == 35) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_medhhincblack;		
+		});
+	} else if (indicator == 36) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_medhhinchisp;		
+		});
+	} else if (indicator == 37) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_medhhincwhite;		
+		});
+	} else if (indicator == 38) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_medhhinctotal;		
+		});
+	} else if (indicator == 39) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_childpovrtblack;		
+		});
+	} else if (indicator == 40) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_childpovrthisp;		
+		});
+	} else if (indicator == 41) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_childpovrtwhite;		
+		});
+	} else if (indicator == 42) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_childpovrttotal;		
+		});
+	} else if (indicator == 43) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_homeownershipblack;		
+		});
+	} else if (indicator == 44) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_homeownershiphisp;		
+		});
+	} else if (indicator == 45) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_homeownershipwhite;		
+		});
+	} else if (indicator == 46) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_homeownershiptotal;		
+		});
+	} else if (indicator == 47) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.qol_aqi;		
+		});
+	} else if (indicator == 48) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.qol_homeownershiptotal;		
+		});
+	} else if (indicator == 49) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.qol_popchange;		
+		});
+	} else if (indicator == 50) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.qol_popwohealthins;		
+		});
+	} else if (indicator == 51) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.qol_vcrimert;		
+		});
+	} else if (indicator == 52) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.qol_vthourspc;		
+		});
+	} else if (indicator == 53) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.qol_obese;		
+		});
+	} else if (indicator == 54) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.qol_physicians;		
+		});
+	} else if (indicator == 55) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.transit_hoursdelayedpc;		
+		});
+	} else if (indicator == 56) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.transit_caralone;		
+		});
+	} else if (indicator == 57) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.transit_novehicle;		
+		});
+	} else if (indicator == 58) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.transit_statefunding;		
+		});
+	} else if (indicator == 59) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.transit_bustrips;		
+		});
+	} else if (indicator == 60) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.transit_bridgecondition;		
+		});
+	} else {}
+	
+	var byValue = setupCrossfilterByValue(cf, dataset);
+	var orderedData = orderByValue(cf, byValue, order);
+	clearFilterByValue(byValue);
+	return orderedData;
+}
+
+
+// set text and number tick format for bar chart
+function getTextTick(indicator) {
+	var textTick = {};
+	
+	if (indicator == 1) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.0f"), tableClass: 'economy', indicatorName: 'Export Value' };
+	} else if (indicator == 2) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.0f"), tableClass: 'economy', indicatorName: 'Per Capita Real GDP' };
+	} else if (indicator == 3) {
+	} else if (indicator == 4) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'Percent Change in High Tech Employment' };
+	} else if (indicator == 5) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'Percent Change in Knowledge Industry Employment' };
+	} else if (indicator == 6) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.0f"), tableClass: 'economy', indicatorName: 'Median Household Income' };
+	} else if (indicator == 7) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.0f"), tableClass: 'economy', indicatorName: 'Per Capita Personal Income' };
+	} else if (indicator == 8) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'Percent of Population Ages 25 to 34' };
+	} else if (indicator == 9) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'Percent of Population Below 100% of Poverty Level' };
+	} else if (indicator == 10) {
+		textTick = { text: 'Number', tickFormat: d3.format(",.1"), tableClass: 'economy', indicatorName: 'Technology Patents per 10,000 People' };
+	} else if (indicator == 11) {
+		textTick = { text: 'Index', tickFormat: d3.format(",.2"), tableClass: 'economy', indicatorName: 'Business Tax Climate Index' };
+	} else if (indicator == 12) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'R&D Performed as Share of GDP' };
+	} else if (indicator == 13) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'economy', indicatorName: 'Venture Captial Investment Dollars Per Capita' };
+	} else if (indicator == 14) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent Ages 25 to 34 with Bachelor\'s Degree or Higher' };
+	} else if (indicator == 15) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent with Bachelor\'s Degree or Higher' };
+	} else if (indicator == 16) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'education', indicatorName: 'Educational Expenditures Per FTE student' };
+	} else if (indicator == 17) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'education', indicatorName: 'Educational Expenditures Per Pupil' };
+	} else if (indicator == 18) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent Enrolled in School, Pre-K - High School' };
+	} else if (indicator == 19) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent with High School Diploma or Higher' };
+	} else if (indicator == 20) {
+		textTick = { text: 'Score', tickFormat: d3.format(",.2"), tableClass: 'education', indicatorName: '4th Grade NAEP Math Scores' };
+	} else if (indicator == 21) {
+		textTick = { text: 'Score', tickFormat: d3.format(",.2"), tableClass: 'education', indicatorName: '4th Grade NAEP Reading Scores' };
+	} else if (indicator == 22) {
+		textTick = { text: 'Score', tickFormat: d3.format(",.2"), tableClass: 'education', indicatorName: '4th Grade NAEP Science Scores' };
+	} else if (indicator == 23) {
+		textTick = { text: 'Score', tickFormat: d3.format(",.2"), tableClass: 'education', indicatorName: '8th Grade NAEP Math Scores' };
+	} else if (indicator == 24) {
+		textTick = { text: 'Score', tickFormat: d3.format(",.2"), tableClass: 'education', indicatorName: '8th Grade NAEP Reading Scores' };
+	} else if (indicator == 25) {
+		textTick = { text: 'Score', tickFormat: d3.format(",.2"), tableClass: 'education', indicatorName: '8th Grade NAEP Science Scores' };
+	} else if (indicator == 26) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent Unemployed with No High School Degree' };
+	} else if (indicator == 27) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent of Population Foreign Born' };
+	} else if (indicator == 28) {
+		textTick = { text: 'Index', tickFormat: d3.format(",.2"), tableClass: 'equity', indicatorName: 'Gini Index' };
+	} else if (indicator == 29) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Lowest Quintile of Households Share of Aggregate Income' };
+	} else if (indicator == 30) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Second Lowest Quintile of Households Share of Aggregate Income' };
+	} else if (indicator == 31) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Middle Quintile of Households Share of Aggregate Income' };
+	} else if (indicator == 32) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Second Highest Quintile of Households Share of Aggregate Income' };
+	} else if (indicator == 33) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Highest Quintile of Households Share of Aggregate Income' };
+	} else if (indicator == 34) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Top 5% of Households Share of Aggregate Income' };
+	} else if (indicator == 35) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'equity', indicatorName: 'Median Household Income for Black Households' };
+	} else if (indicator == 36) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'equity', indicatorName: 'Median Household Income for Hispanic Households' };
+	} else if (indicator == 37) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'equity', indicatorName: 'Median Household Income for Non-Hispanic White Households' };
+	} else if (indicator == 38) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'equity', indicatorName: 'Median Household Income for All Households' };
+	} else if (indicator == 39) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent of Black Population Under 18 Below 100% of Poverty Level' };
+	} else if (indicator == 40) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent of Hispanic Population Under 18 Below 100% of Poverty Level' };
+	} else if (indicator == 41) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent of Non-Hispanic White Population Under 18 Below 100% of Poverty Level' };
+	} else if (indicator == 42) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent of Population Under 18 Below 100% of Poverty Level' };
+	} else if (indicator == 43) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Black Home Owner Occupied Rate' };
+	} else if (indicator == 44) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Hispanic Home Owner Occupied Rate' };
+	} else if (indicator == 45) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Non-Hispanic White Home Owner Occupied Rate' };
+	} else if (indicator == 46) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Home Owner Occupied Rate' };
+	} else if (indicator == 47) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent of Days AQI Was Reported To Be Good' };
+	} else if (indicator == 48) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Home Owner Occupied Rate' };
+	} else if (indicator == 49) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent Change in Population' };
+	} else if (indicator == 50) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent of Population Without Health Insurance Coverage' };
+	} else if (indicator == 51) {
+		textTick = { text: 'Number', tickFormat: d3.format(",.1f"), tableClass: 'quality_of_life', indicatorName: 'Number of Violent Crimes Per 100,000 Residents' };
+	} else if (indicator == 52) {
+		textTick = { text: 'Number', tickFormat: d3.format(",.1f"), tableClass: 'quality_of_life', indicatorName: 'Volunteer Hours Per Resident' };
+	} else if (indicator == 53) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent of Population Overweight or Obese' };
+	} else if (indicator == 54) {
+		textTick = { text: 'Number', tickFormat: d3.format(",.0f"), tableClass: 'quality_of_life', indicatorName: 'Physicians per 100,000 residents' };
+	} else if (indicator == 55) {
+		textTick = { text: 'Number', tickFormat: d3.format(",.0f"), tableClass: 'transit', indicatorName: 'Annual Hours of Delay Per Auto Commuter' };
+	} else if (indicator == 56) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers 16 and Over Driving to Work Alone' };
+	} else if (indicator == 57) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle' };
+	} else if (indicator == 58) {
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'transit', indicatorName: 'State Funding of Public Transit Per 1,000 Residents' };
+	} else if (indicator == 59) {
+		textTick = { text: 'Number', tickFormat: d3.format(",.2f"), tableClass: 'transit', indicatorName: 'Annual Unlinked Passenger Bus Trips' };
+	} else if (indicator == 60) {
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Bridges That Are Functionally Obsolete' };
+	} else {}
+	
+	return textTick;
+}
+
+
+
 
 // using crossfilter, accepts a dataset, sets up dimensions for that record and returns a crossfilter object
 // for reference: (crossfilter API: https://github.com/square/crossfilter/wiki/API-Reference)
 function setupCrossfilterByGeoID(cf, dataset) {		
-	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byGeoID = cf.dimension(function(d) { return d.geoid; });
 	return byGeoID;	
 }
 
 function setupCrossfilterByYear(cf, dataset) {		
-	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byYear = cf.dimension(function(d) { return d.year; });
 	return byYear;
 }
 
 function setupCrossfilterByOneDIndex(cf, dataset) {		
-	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byOneDIndex = cf.dimension(function(d) { return d.oned_index; });
 	return byOneDIndex;
 }
 
 function setupCrossfilterByEconomyIndex(cf, dataset) {		
-	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byEconomyIndex = cf.dimension(function(d) { return d.economy_index; });
 	return byEconomyIndex;
 }
 
 function setupCrossfilterByEducationIndex(cf, dataset) {		
-	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byEducationIndex = cf.dimension(function(d) { return d.education_index; });
 	return byEducationIndex;
 }
 
 function setupCrossfilterByEquityIndex(cf, dataset) {		
-	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byEquityIndex = cf.dimension(function(d) { return d.equity_index; });
 	return byEquityIndex;
 }
 
 function setupCrossfilterByQualityOfLifeIndex(cf, dataset) {		
-	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byQualityOfLifeIndex = cf.dimension(function(d) { return d.quality_of_life_index; });
 	return byQualityOfLifeIndex;
 }
 
 function setupCrossfilterByTransitIndex(cf, dataset) {		
-	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byTransitIndex = cf.dimension(function(d) { return d.transit_index; });
 	return byTransitIndex;
 }
 
 function setupCrossfilterByRegion(cf, dataset) {		
-	// set up a crossfilter dimension for id (we'll set up other dimensions later for date and geoid)
 	var byRegion = cf.dimension(function(d) { return d.region + '|' + d.metro; });
 	return byRegion;
+}
+
+function setupCrossfilterByRegionOnly(cf, dataset) {		
+	var byRegionOnly = cf.dimension(function(d) { return d.region; });
+	return byRegionOnly;
+}
+
+function setupCrossfilterByValue(cf, dataset) {		
+	var byValue = cf.dimension(function(d) { return d.value; });
+	return byValue;	
 }
 
 // set up functions to filter data (using crossfilter) by year or geoID and clear these filters
@@ -135,6 +582,40 @@ function orderByRegion (byRegion) {
 	return filteredData;
 }
 
+function orderByValue (cf, byValue, order) {
+	if (order == 1) {
+		var orderedData = byValue.top(Infinity);		
+	} else if (order == 2) {
+		var orderedData = byValue.bottom(Infinity);				
+	} else if (order == 3) {
+		var byRegionOnly = setupCrossfilterByRegionOnly(cf, dataset);
+		byRegionOnly.filterExact('Midwest');
+		var orderedData = byRegionOnly.top(Infinity);
+		clearFilterByRegionOnly(byRegionOnly);			
+	} else if (order == 4) {
+		var byRegionOnly = setupCrossfilterByRegionOnly(cf, dataset);
+		byRegionOnly.filterExact('Northeast');
+		var orderedData = byRegionOnly.top(Infinity);
+		clearFilterByRegionOnly(byRegionOnly);			
+	} else if (order == 5) {
+		var byRegionOnly = setupCrossfilterByRegionOnly(cf, dataset);
+		byRegionOnly.filterExact('Southeast');
+		var orderedData = byRegionOnly.top(Infinity);
+		clearFilterByRegionOnly(byRegionOnly);			
+	} else if (order == 6) {
+		var byRegionOnly = setupCrossfilterByRegionOnly(cf, dataset);
+		byRegionOnly.filterExact('Southwest');
+		var orderedData = byRegionOnly.top(Infinity);
+		clearFilterByRegionOnly(byRegionOnly);			
+	} else if (order == 7) {
+		var byRegionOnly = setupCrossfilterByRegionOnly(cf, dataset);
+		byRegionOnly.filterExact('West');
+		var orderedData = byRegionOnly.top(Infinity);
+		clearFilterByRegionOnly(byRegionOnly);			
+	} else {}
+	return orderedData;
+}
+
 
 function clearFilterByYear(byYear) {
 	byYear.filterAll();	
@@ -142,6 +623,14 @@ function clearFilterByYear(byYear) {
 
 function clearFilterByGeoID(byGeoID) {
 	byGeoID.filterAll();
+}
+
+function clearFilterByValue(byValue) {
+	byValue.filterAll();
+}
+
+function clearFilterByRegionOnly(byRegionOnly) {
+	byRegionOnly.filterAll();
 }
 
 // function to create an object for the pinwheel function to read
@@ -231,5 +720,4 @@ Object.size = function(obj) {
 };
 
 /**** End code for data manipulation ****/	
-	
 	

@@ -40,6 +40,9 @@ function createStates(svgContainerStates, projection) {
 		  
 		  /**** Calback function here to begin drawing the original pinwheels -- this ensures the states are drawn first ****/
 		  originalPinwheels();
+		  
+		  // piggybacking on this function we can begin drawing the barChart
+		  originalBarChart();
 	});
 
 	d3.select(self.frameElement).style("height", height + "px");

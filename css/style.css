@@ -344,6 +344,11 @@ body {
 	text-align: left;
 }
 
+.barChartChange {
+	width: 155px !important;
+}
+
+
 /*
  * End Bootstrap Override CSS
  */
@@ -389,12 +394,12 @@ path {
 div.pinwheelTooltip {
   position: absolute;
   text-align: left;
-  width: auto;
+  width: 230px;
   height: auto;
   padding: 8px;
   color: #6D6E70;
   background: #fff;
-  font-weight: 800;
+  font-weight: 400;
   border: solid 1px #ccc;
   border-radius: 4px;
   pointer-events: none;
@@ -615,6 +620,37 @@ div.pinwheelTooltip {
 	width: 150px;
 }
 
+
+/*
+ * bar chart styling
+ */
+
+.bar {
+  fill: #6D6E70;
+}
+
+.barDetroit {
+  fill: #ED8E7C;
+}
+
+.bar:hover, .barDetroit:hover {
+  fill: #BBBDBF;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
 
 
 /*

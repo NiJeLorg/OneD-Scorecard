@@ -85,7 +85,7 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 		clearFilterByGeoID(byGeoID); 
 		
 		var rowOfData = createObjectForPinwheel(filteredDataByGeoID);
-		
+
 		// reset size for pinwheel and smallestPie
 		smallestPie = 8;
 		size = 16;	

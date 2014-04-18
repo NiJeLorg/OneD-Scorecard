@@ -28,6 +28,20 @@ function generateSlider(dataset) {
 		max: maxYear,
 		step: 1
 	});	
+
+    $( "#barChartSlider" ).slider({
+		value: maxYear,
+		min: minYear,
+		max: maxYear,
+		step: 1
+	});	
+
+    $( "#cityHeatChartSlider" ).slider({
+		value: maxYear,
+		min: minYear,
+		max: maxYear,
+		step: 1
+	});	
 			
 };
 
@@ -39,15 +53,23 @@ $(document).ready(function(){
 		updatePinwheelsByYearMap(event.value, orderPinwheels);
 	} );	
 
-	// build event listener on slider
 	$( "#pinwheelSlider" ).on( 'slideStop', function( event ) {
 		orderPinwheels = $( ".pinwheelChangeArray" ).val();
 		updatePinwheelsByYearArray(event.value, orderPinwheels);
 	} );
 
-	// build event listener on slider
 	$( "#nationalHeatChartSlider" ).on( 'slideStop', function( event ) {
 		updateCircularHeatChart(event.value);
+	} );
+
+	$( "#barChartSlider" ).on( 'slideStop', function( event ) {
+		var order = $( "#selectOrder" ).val();
+		var indicator = $( "#selectIndicator" ).val();
+		updateBarChartData(event.value, indicator, order);
+	} );
+
+	$( "#cityHeatChartSlider" ).on( 'slideStop', function( event ) {
+		updateCircularHeatChartCity(event.value);
 	} );
 
 });
@@ -79,6 +101,25 @@ function playStopAnimationHeatChart(state) {
 	playHeatChart(yearCount, maxYear, state);
 }
 
+// function to start and stop the map animation
+function playStopBarChart(state) {
+	// set up initial min and max years and ensure they are integers
+	var minYear = parseInt(d3.min(dataset, function(d) { return d.year; }));
+	var maxYear = parseInt(d3.max(dataset, function(d) { return d.year; }));
+	var yearCount = minYear;
+	playBarChart(yearCount, maxYear, state);
+}
+
+// function to start and stop the map animation
+function playStopAnimationHeatChartCity(state) {
+	// set up initial min and max years and ensure they are integers
+	var minYear = parseInt(d3.min(dataset, function(d) { return d.year; }));
+	var maxYear = parseInt(d3.max(dataset, function(d) { return d.year; }));
+	var yearCount = minYear;
+	playHeatChartCity(yearCount, maxYear, state);
+}
+
+
 var delayTimeout = 0;
 function playMap(yearCount, maxYear, state) { 	 
 	if (state == 'play') {
@@ -91,7 +132,8 @@ function playMap(yearCount, maxYear, state) {
  			 delayTimeout = 2000;
  	      	 playMap(yearCount, maxYear, state);
  	      }      
- 	   }, delayTimeout);			
+ 	   }, delayTimeout);
+	   delayTimeout = 0;						
 	} else {
 		window.clearTimeout(this.timeoutID);
 	}        
@@ -108,7 +150,8 @@ function playArray(yearCount, maxYear, state) {
  			 delayTimeout = 4000;
  	      	 playArray(yearCount, maxYear, state);
  	      }      
- 	   }, delayTimeout);			
+ 	   }, delayTimeout);
+	   delayTimeout = 0;						
 	} else {
 		window.clearTimeout(this.timeoutID);
 	}        
@@ -124,7 +167,44 @@ function playHeatChart(yearCount, maxYear, state) {
 			 delayTimeout = 2000;
  	      	 playHeatChart(yearCount, maxYear, state);
  	      }      
- 	   }, delayTimeout);			
+ 	   }, delayTimeout);	
+	   delayTimeout = 0;					
+	} else {
+		window.clearTimeout(this.timeoutID);
+	}        
+}; 
+
+function playBarChart(yearCount, maxYear, state) {  
+	if (state == 'play') {
+ 	   this.timeoutID = setTimeout(function () {
+ 	      $( "#barChartSlider" ).slider( 'setValue', yearCount );
+		  var order = $( "#selectOrder" ).val();
+		  var indicator = $( "#selectIndicator" ).val();
+  		  updateBarChartData(yearCount, indicator, order);
+		  yearCount++;
+ 	      if (yearCount<=maxYear) {
+			 delayTimeout = 2000;
+ 	      	 playBarChart(yearCount, maxYear, state);
+ 	      }      
+ 	   }, delayTimeout);
+	   delayTimeout = 0;			
+	} else {
+		window.clearTimeout(this.timeoutID);
+	}        
+}; 
+
+function playHeatChartCity(yearCount, maxYear, state) {  
+	if (state == 'play') {
+ 	   this.timeoutID = setTimeout(function () {
+ 	      $( "#cityHeatChartSlider" ).slider( 'setValue', yearCount );
+		  updateCircularHeatChartCity(yearCount);
+		  yearCount++;
+ 	      if (yearCount<=maxYear) {
+			 delayTimeout = 2000;
+ 	      	 playHeatChartCity(yearCount, maxYear, state);
+ 	      }      
+ 	   }, delayTimeout);	
+	   delayTimeout = 0;					
 	} else {
 		window.clearTimeout(this.timeoutID);
 	}        

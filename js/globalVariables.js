@@ -15,6 +15,9 @@ var projection = d3.geo.albersUsa()
 // set dataset as a global, empty variable
 var dataset = '';
 
+// set dataset as a global for indicators as well
+var datasetIndicators = '';
+
 // set order of pinwheels in array as global
 var orderPinwheels = 1;
 
@@ -33,7 +36,15 @@ var svgContainerStates = d3.select(".statesArray")
 	.attr("width", width)
 	.attr("height", height);
 	
+// container for the national level circular heat chart	
 var svgContainerNationalCircularHeatChart = d3.select(".nationalCircularHeatChart");
 	
+// container for the bar chart
+var svgContainerBarChart = d3.select(".barChart")
+	.append("svg")
+	.attr("width", width)
+	.attr("height", height);
 
+// container for the city level circular heat chart	
+var svgContainerCityCircularHeatChart = d3.select(".cityCircularHeatChart");
 	

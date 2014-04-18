@@ -13,4 +13,17 @@ $(document).ready(function(){
 		var year = $( "#pinwheelSlider" ).slider( 'getValue' );
 		updatePinwheelsByYearArray(year, orderPinwheels);
 	});	
+	$( "#selectIndicator" ).change( function() {
+		var indicator = $(this).val();
+		var order = $( "#selectOrder" ).val();
+		var year = $( "#barChartSlider" ).slider( 'getValue' );
+		updateBarChartData(year, indicator, order);
+	});	
+	$( "#selectOrder" ).change( function() {
+		var order = $(this).val();
+		var indicator = $( "#selectIndicator" ).val();
+		var year = $( "#barChartSlider" ).slider( 'getValue' );
+		updateBarChartData(year, indicator, order);
+	});	
+
 });
