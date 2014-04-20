@@ -1,12 +1,11 @@
 /*
-* create national level circular heat chart to display the national dataset, as well as the right hand table housing the indicators
+* create city level circular heat chart to display the city level dataset, as well as the right hand table housing the indicators
 * svgContainer: the SVG container to place the diagram into
 * dataset: the csv data 
-* leverages the reusable circular heat chart in assets/js/circularHeatChart.js extended from work by by Peter Cook (https://github.com/prcweb/d3-circularheat)
+* leverages the reusable circular heat chart in assets/js/cityCircularHeatChart.js extended from work by by Peter Cook (https://github.com/prcweb/d3-circularheat)
 */
 
-function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) {
-	
+function createCityCircularHeatChart(svgContainer, dataset, datasetIndicators) {
     /* Arc functions */
     rsa = function(d, i) {
 		//console.log(d.start);
@@ -17,13 +16,16 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
         return (d.end * 2 * Math.PI) / numSegments;
     }	
 	
-	var chart = nationalCircularHeatChart()
+	var chart = cityCircularHeatChart()
 	    .segmentHeight(36)
 	    .innerRadius(30)
-	    .numSegments(numberOfCities)
+	    .numSegments(14)
+		.ids(dataset.ids)
+		.datasetIndicators(datasetIndicators)
+		
 			   
 	   svgContainer.selectAll('svg')
-	       .data([dataset.indicies])
+	       .data([dataset.indicators])
 	       .enter()
 	       .append('svg')
 		   .attr("width", widthHeatChart)
@@ -31,91 +33,68 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 	       .call(chart);
 		   	   
    	//set up container for mouseover interaction
-   	var div = d3.select(".nationalCircularHeatChartSidebar")
+   	var div = d3.select(".cityCircularHeatChartSidebar")
    	    .style("opacity", 1e-6);
-	   
-	// creat a transparent overlay for mouseover   
+	
+	// create a transparent overlay for mouseover   
     var margin = {top: 20, right: 20, bottom: 20, left: 0},
     innerRadius = 30,
-    numSegments = numberOfCities,
+    numSegments = 14,
     segmentHeight = 36,
     accessor = function(d) {return d;},
 	offset = height/2;
-		   	   
+   		   	   
 	g = svgContainer.select("svg")
 		.append('g')
 		.classed("circular-heat-overlay", true)
 		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
 
 	g.selectAll("path")
-		.data(dataset.meta)
+		.data(dataset.ids)
 		.enter()
 		.append("path")
-		.attr("id", function(d) { return 'g' + d.geoid })
-		.attr("d", d3.svg.arc().innerRadius(ir).outerRadius(innerRadius + (segmentHeight * 5)).startAngle(sa).endAngle(ea))
+		.attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
 		.attr('fill', 'none')
 		.attr('pointer-events', 'all')
 		
-		
+
 		// set up on mouseover events
-		.on("mouseover", function(d) {
-			//console.log(d);
+		.on("mouseover", function(d, i) {
+			console.log(dataset.meta[0].metro);
+			// only show mouseover if id exists
+			if (d == -99) {
+				// do nothing on mouseover
+			} else {
+				d3.select(this)
+					.attr("stroke", "#6D6E70")		   
+					.attr("stroke-width", "3px");		   
 			
-			d3.select(this)
-				.attr("stroke", "#6D6E70")		   
-				.attr("stroke-width", "3px");		   
-			
-		    div.transition()
-		        .duration(250)
-		        .style("opacity", 1);
-			
-            div.html(
-				'<h4>' + d.metro + ', ' + d.year +'</h4>' +
-				'<table class="table table-condensed heatmapTable">' +
-					'<tr>' +
-						'<td class="oned-rect">' +
-						'</td>' +
-						'<td class="oned">' +
-							'OneD Index: ' + d.oned_index +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="economy-rect">' +
-						'</td>' +
-						'<td class="economy">' +
-							'Economy Index: ' + d.economy_index +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="education-rect">' +
-						'</td>' +
-						'<td class="education">' +
-							'Education Index: ' + d.education_index +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="equity-rect">' +
-						'</td>' +
-						'<td class="equity">' +
-							'Equity Index: ' + d.equity_index +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="quality_of_life-rect">' +
-						'</td>' +
-						'<td class="quality_of_life">' +
-							'Quality of Life Index: ' + d.quality_of_life_index +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="transit-rect">' +
-						'</td>' +
-						'<td class="transit">' +
-							'Transit Index: ' + d.transit_index +
-						'</td>' +
-					'</tr>' +
-				'</table>'				
-			);
+			    div.transition()
+			        .duration(250)
+			        .style("opacity", 1);
+					
+				// pull textTick record
+				var textTick = getTextTick(d);
+				//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
+				
+				var rawValue = dataset.indicators[i];
+				var value = textTick.tickFormat(rawValue)
+				
+	            div.html(
+					'<h4>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h4>' +
+					'<table class="table table-condensed heatmapTable">' +
+						'<tr>' +
+							'<td class="' + textTick.tableClass + '-rect">' +
+							'</td>' +
+							'<td class="' + textTick.tableClass + '">' +
+								dataset.meta[0].metro + ': ' + value +
+							'</td>' +
+						'</tr>' +
+					'</table>'				
+				);
+
+				
+			} // close if id is not -99
 			
 	   })
 	   .on("mouseout", function() {
@@ -147,7 +126,7 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
    		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
    
    	seg.selectAll("path")
-   		.data(dataset.regions)
+   		.data(dataset.priorityAreas)
    		.enter()
    		.append("path")
    		.attr("d", d3.svg.arc().innerRadius(innerRadius).outerRadius(innerRadius + (segmentHeight * 5)).startAngle(rsa).endAngle(rea))
@@ -162,11 +141,11 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
    		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
 	   
    	br.selectAll("path")
-   		.data(dataset.regions)
+   		.data(dataset.priorityAreas)
    		.enter()
    		.append("path")
    		.attr("d", d3.svg.arc().innerRadius(innerRadius + (segmentHeight * 5)).outerRadius(innerRadius + (segmentHeight * 5) + 15).startAngle(rsa).endAngle(rea))
-   		.attr('fill', '#BBBDBF')
+   		.attr('fill', function(d) { return d.color; })
 		.attr("stroke", "#6D6E70")		   
 		.attr("stroke-width", "3px");
 		
@@ -175,7 +154,7 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
     // Unique id so that the text path defs are unique - is there a better way to do this?
     var id = d3.selectAll(".circular-heat-bounding-rim")[0].length;
     var segmentLabelOffset = 2;
-    var r = innerRadius + Math.ceil(dataset.regions.length / numSegments) * segmentHeight + segmentLabelOffset;
+    var r = innerRadius + Math.ceil(dataset.priorityAreas.length / numSegments) * segmentHeight + segmentLabelOffset;
    	labels = svgContainer.select("svg")
    		.append('g')
         .classed("labels", true)
@@ -188,12 +167,12 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
         .attr("d", "m0 -" + r + " a" + r + " " + r + " 0 1 1 -1 0");
 
     labels.selectAll("text")
-        .data(dataset.regions).enter()
+        .data(dataset.priorityAreas).enter()
         .append("text")
         .append("textPath")
         .attr("xlink:href", "#segment-label-path-"+id)
-        .attr("startOffset", function(d, i) { return (((d.start + d.end) - (d.region.length / 3)) / 2) * 100 / numSegments + "%";})
-        .text(function(d) {return d.region;});
+        .attr("startOffset", function(d, i) { return (((d.start + d.end) - (d.priorityArea.length / 16)) / 2) * 100 / numSegments + "%";})
+        .text(function(d) {return d.priorityArea;});
 		
 		
 	   
@@ -201,7 +180,7 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 }
 
 
-function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities) {
+function updateCityCircularHeatChart(svgContainer, dataset, numberOfCities) {
 	
     /* Arc functions */
     rsa = function(d, i) {
@@ -229,126 +208,112 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
     /* color functions */
 	// set color based on the ring
     function colorFunction(i) {
-        var colorNumber = Math.floor(i/numSegments);
-		if (colorNumber == 0) {
+		var textTick = getTextTick(ids[i]);
+		var colorClass = textTick.tableClass;
+		
+		if (colorClass == 'economy') {
 			range = ["white", "#a6c0d0"];
 			var color = d3.scale.linear().domain(domain).range(range);
-		} else if (colorNumber == 1) {
+		} else if (colorClass == 'education') {
 			range = ["white", "#d94f26"];
 			var color = d3.scale.linear().domain(domain).range(range);			
-		} else if (colorNumber == 2) {
+		} else if (colorClass == 'equity') {
 			range = ["white", "#20698a"];
 			var color = d3.scale.linear().domain(domain).range(range);
-		} else if (colorNumber == 3) {
+		} else if (colorClass == 'quality_of_life') {
 			range = ["white", "#f5a91d"];
 			var color = d3.scale.linear().domain(domain).range(range);
-		} else if (colorNumber == 4) {
+		} else if (colorClass == 'transit') {
 			range = ["white", "#87af3f"];
 			var color = d3.scale.linear().domain(domain).range(range);
 		} else {
-			range = ["white", "red"];
+			range = ["none", "none"];
 			var color = d3.scale.linear().domain(domain).range(range);		
 		}		
 		return color;
-    }	
-	
-		   
-	   
-   	//set up container for mouseover interaction
-   	var div = d3.select(".nationalCircularHeatChartSidebar")
-   	    .style("opacity", 1e-6);
-	   
-	// creat a transparent overlay for mouseover   
-    var margin = {top: 20, right: 20, bottom: 20, left: 0},
-    innerRadius = 30,
-    numSegments = numberOfCities,
-    segmentHeight = 36,
-    domain = null,
-    accessor = function(d) {return d;},
-	offset = height/2;
-	
-    var autoDomain = false;
-    if (domain === null) {
-        domain = d3.extent(dataset.indicies, accessor);
-        autoDomain = true;
     }
 	
+	// set domain for colors
+	function setDomain(i) {
+		var textTick = getTextTick(ids[i]);
+		//console.log(Object.size(textTick));
+		if (Object.size(textTick) == 0) {
+			domain = [0,0];
+		} else {
+			var accessorFunction = textTick.accessorFunction;
+			domain = d3.extent(datasetIndicators, accessorFunction);			
+		}
+		return domain;
+	}
+
+	   
+   	//set up container for mouseover interaction
+   	var div = d3.select(".cityCircularHeatChartSidebar")
+   	    .style("opacity", 1e-6);
+	   
+	// creat a transparent overlay for mouseover 
+    var margin = {top: 20, right: 20, bottom: 20, left: 0},
+    innerRadius = 30,
+    numSegments = 14,
+    segmentHeight = 36,
+	domain = null,
+    accessor = function(d) {return d;},
+	offset = height/2;
+	  		
 	chart = svgContainer.select(".circular-heat");
 	
 	chart.selectAll("path")
-		.data(dataset.indicies)
+		.data(dataset.indicators)
 		.transition().duration(1000)
         .attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
         .attr("fill", function(d, i) {
+			var domain = setDomain(i);
 			var color = colorFunction(i);
 			return color(accessor(d));
 		});
-
-    if(autoDomain)
-        domain = null;
 			   	   
 	g = svgContainer.select(".circular-heat-overlay");
 	
 	g.selectAll("path")
-		.data(dataset.meta)		
+		.data(dataset.ids)		
 		// set up on mouseover events
-		.on("mouseover", function(d) {
-						
-			d3.select(this)
-				.attr("stroke", "#6D6E70")		   
-				.attr("stroke-width", "3px");		   
+		// set up on mouseover events
+		.on("mouseover", function(d, i) {
+			console.log(dataset.meta[0].metro);
+			// only show mouseover if id exists
+			if (d == -99) {
+				// do nothing on mouseover
+			} else {
+				d3.select(this)
+					.attr("stroke", "#6D6E70")		   
+					.attr("stroke-width", "3px");		   
 			
-		    div.transition()
-		        .duration(250)
-		        .style("opacity", 1);
-			
-            div.html(
-				'<h4>' + d.metro + ', ' + d.year +'</h4>' +
-				'<table class="table table-condensed heatmapTable">' +
-					'<tr>' +
-						'<td class="oned-rect">' +
-						'</td>' +
-						'<td class="oned">' +
-							'OneD Index: ' + d.oned_index +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="economy-rect">' +
-						'</td>' +
-						'<td class="economy">' +
-							'Economy Index: ' + d.economy_index +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="education-rect">' +
-						'</td>' +
-						'<td class="education">' +
-							'Education Index: ' + d.education_index +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="equity-rect">' +
-						'</td>' +
-						'<td class="equity">' +
-							'Equity Index: ' + d.equity_index +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="quality_of_life-rect">' +
-						'</td>' +
-						'<td class="quality_of_life">' +
-							'Quality of Life Index: ' + d.quality_of_life_index +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="transit-rect">' +
-						'</td>' +
-						'<td class="transit">' +
-							'Transit Index: ' + d.transit_index +
-						'</td>' +
-					'</tr>' +
-				'</table>'				
-			);
+			    div.transition()
+			        .duration(250)
+			        .style("opacity", 1);
+					
+				// pull textTick record
+				var textTick = getTextTick(d);
+				//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
+				
+				var rawValue = dataset.indicators[i];
+				var value = textTick.tickFormat(rawValue);
+				
+	            div.html(
+					'<h4>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h4>' +
+					'<table class="table table-condensed heatmapTable">' +
+						'<tr>' +
+							'<td class="' + textTick.tableClass + '-rect">' +
+							'</td>' +
+							'<td class="' + textTick.tableClass + '">' +
+								dataset.meta[0].metro + ': ' + value +
+							'</td>' +
+						'</tr>' +
+					'</table>'				
+				);
+
+				
+			} // close if id is not -99
 			
 	   })
 	   .on("mouseout", function() {

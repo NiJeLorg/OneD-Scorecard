@@ -67,8 +67,8 @@ body {
 .masthead-brand {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 350px; 
-  height: 133px;
+  width: 220px; 
+  height: 70px;
   background-image: url("../assets/images/OneD_Logo.png");
   background-repeat: no-repeat;
   text-indent: -9999px;
@@ -76,8 +76,6 @@ body {
 
 .masthead-nav > li {
   display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 .masthead-nav > li + li {
   margin-left: 20px;
@@ -113,10 +111,10 @@ body {
 }
 
 .masthead-nav-img1 {
-    background-image: url('../assets/images/OneDScorecard_NOTpressed.png');
+    background-image: url('../assets/images/OneD_ScorecardButton.png');
 	background-repeat: no-repeat;
-	width: 119px;
-	height: 111px; 
+	width: 73px;
+	height: 70px; 
 }
 
 /*
@@ -129,10 +127,10 @@ body {
 */
 
 .masthead-nav-img2 {
-    background-image: url('../assets/images/OneDetroitPortal_NOTpressed.png');
+    background-image: url('../assets/images/OneD_OneDetroitPortal.png');
     background-repeat: no-repeat;
-	width: 119px;
-	height: 111px; 
+	width: 73px;
+	height: 70px; 
 }
 
 /*
@@ -346,6 +344,10 @@ body {
 
 .barChartChange {
 	width: 155px !important;
+}
+
+.cityHeatChartDropdown {
+	width: 350px !important;
 }
 
 
@@ -596,7 +598,7 @@ div.pinwheelTooltip {
  */
 
 .heatmapTableContainer {
-	text-align: center;
+	text-align: left;
 	position: relative;
 	margin-top: 40px;
 	width: 250px;
@@ -605,7 +607,7 @@ div.pinwheelTooltip {
 .heatmapTable {
 	text-align: left;
 	position: absolute; 
-	top: 105px;
+	top: 75px;
 }
     
 /*

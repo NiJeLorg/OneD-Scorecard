@@ -5,11 +5,11 @@
 // width and height of all svg containers
 var width = 900;
 var widthHeatChart = 550;
-var height = 550;
+var height = 500;
 
 // sets map projection needed for the map drawing and the pinwheel drawing
 var projection = d3.geo.albersUsa()
-    .scale(1100)
+    .scale(1050)
     .translate([width / 2, height / 2]);
 	
 // set dataset as a global, empty variable
@@ -22,7 +22,7 @@ var datasetIndicators = '';
 var orderPinwheels = 1;
 
 // sets size of pinwheel, and padding for the array and the svg container to send it to
-var topPadding = 50;
+var topPadding = 60;
 var sidePadding = 70;
 var numberOfRows = 6;
 var svgContainer = d3.select(".pinwheelArray")

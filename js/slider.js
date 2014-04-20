@@ -69,7 +69,8 @@ $(document).ready(function(){
 	} );
 
 	$( "#cityHeatChartSlider" ).on( 'slideStop', function( event ) {
-		updateCircularHeatChartCity(event.value);
+		var cityFilter = $( ".cityHeatChartDropdown" ).val();
+		updateCityCircularHeatChartData(event.value, cityFilter);
 	} );
 
 });
@@ -197,7 +198,8 @@ function playHeatChartCity(yearCount, maxYear, state) {
 	if (state == 'play') {
  	   this.timeoutID = setTimeout(function () {
  	      $( "#cityHeatChartSlider" ).slider( 'setValue', yearCount );
-		  updateCircularHeatChartCity(yearCount);
+  		  var cityFilter = $( ".cityHeatChartDropdown" ).val();
+  		  updateCityCircularHeatChartData(yearCount, cityFilter);
 		  yearCount++;
  	      if (yearCount<=maxYear) {
 			 delayTimeout = 2000;

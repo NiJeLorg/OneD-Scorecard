@@ -39,6 +39,39 @@ function originalBarChart() {
 		// create bar chart
 		createBarChart(svgContainerBarChart, orderedDataByYear, textTick);
 		
+				
+		// create combo box for underneath the circular heat chart
+		var byCity = setupCrossfilterByCityOnly(cf, datasetIndicators);
+		var filteredDataByYear = orderByCity(byCity);
+		var cityOptions = '';
+		$.each(filteredDataByYear, function( i, d ) {
+			if (d.geoid == 15) {
+				cityOptions = cityOptions + "<option selected='selected' value='" + d.geoid + "'>" + d.metro + "</option>";
+			} else {
+				cityOptions = cityOptions + "<option value='" + d.geoid + "'>" + d.metro + "</option>";				
+			}
+		});
+		
+        $(".cityHeatChartDropdown").html(cityOptions);
+		
+		clearFilterByCityOnly(byCity);
+		
+		
+		// create initial the city level circular heat chart and table from this dataset
+		// filter data to Detroit to start
+		var cityFilter = 15;
+		var byGeoID = setupCrossfilterByGeoID(cf, datasetIndicators);
+		var filteredDataByGeoID = filterByGeoID(byGeoID, cityFilter);
+
+		// clear filter for city for next one
+		clearFilterByGeoID(byGeoID); 
+
+		// set up data to be passed to the chart
+		var circularChartData = createObjectForCircularHeatChartCity(filteredDataByGeoID);
+		
+		// create national level circular heat chart
+		createCityCircularHeatChart(svgContainerCityCircularHeatChart, circularChartData, datasetIndicators);
+				
 		// clear the year filter
 		clearFilterByYear(byYear);	
 

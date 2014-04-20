@@ -220,11 +220,18 @@
 						<div class="cityCircularHeatChart sliderContainer"></div>
 						<div class="cityCircularHeatChartSidebar sliderContainerRight heatmapTableContainer"></div>
 						<div class="clearfix"></div>
-  		                <ul id="sc5" class="sliderContainer">
+  		                <ul id="sc5" class="sliderContainer collapse">
     		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChartCity('play')"><span class="glyphicon glyphicon-play"></span></button></li>
     		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChartCity('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
   		                  <li><div id="cityHeatChartSlider"></div></li>
   		                </ul>
+						<form class="form-inline sliderContainerRight" role="form">
+						  <label>Choose A City: 
+							<select class="form-control cityHeatChartDropdown">
+							  <option value='15'>Detroit-Warren-Flint, MI</option>
+							</select>
+						  </label>
+						</form>											
   						<div class="clearfix"></div>						
     		                <ul class="nav control-nav">
     		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc5"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
@@ -255,12 +262,12 @@
 	  	              <div class="container">
 	  	                <div class="navbar-collapse collapse">
 	  	                  <ul class="nav navbar-nav">
-	  	                    <li class="active"><a href="#">Home</a></li>
-	  	                    <li><a href="#">Economy</a></li>
-	  	                    <li><a href="#">Education</a></li>
-	  	                    <li><a href="#">Quality of Life</a></li>
-	  	                    <li><a href="#">Social Equity</a></li>
-	  	                    <li><a href="#">Regional Transit</a></li>
+	  	                    <li class="active"><a href="#myCarousel" data-slide-to="0">Home</a></li>
+	  	                    <li><a href="#myCarousel" data-slide-to="3" onclick="setMenusFromNavBar(1)">Economy</a></li>
+	  	                    <li><a href="#myCarousel" data-slide-to="3" onclick="setMenusFromNavBar(2)">Education</a></li>
+	  	                    <li><a href="#myCarousel" data-slide-to="3" onclick="setMenusFromNavBar(3)">Quality of Life</a></li>
+	  	                    <li><a href="#myCarousel" data-slide-to="3" onclick="setMenusFromNavBar(4)">Social Equity</a></li>
+	  	                    <li><a href="#myCarousel" data-slide-to="3" onclick="setMenusFromNavBar(5)">Regional Transit</a></li>
 	  	                    <li class="dropdown">
 	  	                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methodology <b class="caret"></b></a>
 	  	                      <ul class="dropdown-menu dropdown-menu-left">
@@ -297,6 +304,7 @@
 <script type="text/javascript" src="assets/js/bootstrap-slider.min.js"></script>
 <script type="text/javascript" src="assets/js/topojson.js"></script>
 <script type="text/javascript" src="assets/js/circularHeatChart.js"></script>
+<script type="text/javascript" src="assets/js/cityCircularHeatChart.js"></script>
 
 <!-- sets the global variables for all the svg containers -->
 <script type="text/javascript" src="js/globalVariables.js"></script>
@@ -319,8 +327,11 @@
 <!-- setup javascript drawing the array of pinwheels -->
 <script type="text/javascript" src="js/pinwheelArraySetup.js"></script>
 
-<!-- javascript drawing the circular heat chart -->
+<!-- javascript drawing the national circular heat chart -->
 <script type="text/javascript" src="js/nationalCircularHeatChart.js"></script>
+
+<!-- javascript drawing the city circular heat chart -->
+<script type="text/javascript" src="js/cityCircularHeatChart.js"></script>
 
 <!-- setup javascript drawing the bar chart -->
 <script type="text/javascript" src="js/barChartSetup.js"></script>
@@ -328,8 +339,11 @@
 <!-- javascript for updating Pinwheels -->
 <script type="text/javascript" src="js/pinwheelUpdate.js"></script>
 
-<!-- javascript for updating the circular heat chart -->
+<!-- javascript for updating the national circular heat chart -->
 <script type="text/javascript" src="js/nationalCircularHeatChartUpdate.js"></script>
+
+<!-- javascript for updating the city circular heat chart -->
+<script type="text/javascript" src="js/cityCircularHeatChartUpdate.js"></script>
 
 <!-- javascript for updating the bar chart -->
 <script type="text/javascript" src="js/barChartUpdate.js"></script>

@@ -24,7 +24,19 @@ $(document).ready(function() {
 		
 
     });
+	
 
+});
 
+//update priority area bar chart with nav bar click
+function setMenusFromNavBar(id) {
+	$("#selectPriorityArea").val(id);
+	$("#selectPriorityArea").change();
+}
+
+// sets active menu bar
+$(".nav li").on("click", function() {
+  $(".nav li").removeClass("active");
+  $(this).addClass("active");
 });
 	
