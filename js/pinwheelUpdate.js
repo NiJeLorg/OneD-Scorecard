@@ -18,7 +18,8 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 		var filteredDataByYear = orderByOneDIndex(byOneDIndex);
 		// send over standard color function
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([1,1,1,1,1]);
 	} else if (orderPinwheels == 2) {
@@ -26,7 +27,8 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 		var filteredDataByYear = orderByEconomyIndex(byEconomyIndex);		
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#a6c0d0","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([1,0.3,0.3,0.3,0.3]);
 	} else if (orderPinwheels == 3) {
@@ -34,7 +36,8 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 		var filteredDataByYear = orderByEducationIndex(byEducationIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#d94f26","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([0.3,1,0.3,0.3,0.3]);
 	} else if (orderPinwheels == 4) {
@@ -42,7 +45,8 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 		var filteredDataByYear = orderByEquityIndex(byEquityIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#20698a","#F7C98D","#B3CE7A"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([0.3,0.3,1,0.3,0.3]);
 	} else if (orderPinwheels == 5) {
@@ -50,7 +54,8 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 		var filteredDataByYear = orderByQualityOfLifeIndex(byQualityOfLifeIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#f5a91d","#B3CE7A"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([0.3,0.3,0.3,1,0.3]);
 	} else if (orderPinwheels == 6) {
@@ -58,13 +63,15 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 		var filteredDataByYear = orderByTransitIndex(byTransitIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#87af3f"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([0.3,0.3,0.3,0.3,1]);
 	} else {
 		// send over standard color function
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([1,1,1,1,1]);		
 	}
@@ -123,6 +130,7 @@ function updatePinwheelsByYearArray(year, orderPinwheels) {
 		// send over standard color function
 		var colorFunc = d3.scale.ordinal()
 			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([1,1,1,1,1]);		
 	} else if (orderPinwheels == 3) {
@@ -130,52 +138,59 @@ function updatePinwheelsByYearArray(year, orderPinwheels) {
 		var filteredDataByYear = orderByEconomyIndex(byEconomyIndex);		
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#a6c0d0","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
-			.range([1,0.3,0.3,0.3,0.3]);		
+			.range([1,0.1,0.1,0.1,0.1]);		
 	} else if (orderPinwheels == 4) {
 		var byEducationIndex = setupCrossfilterByEducationIndex(cf, dataset);
 		var filteredDataByYear = orderByEducationIndex(byEducationIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#d94f26","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
-			.range([0.3,1,0.3,0.3,0.3]);
+			.range([0.1,1,0.1,0.1,0.1]);
 	} else if (orderPinwheels == 5) {
 		var byEquityIndex = setupCrossfilterByEquityIndex(cf, dataset);
 		var filteredDataByYear = orderByEquityIndex(byEquityIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#20698a","#F7C98D","#B3CE7A"]);
+			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
-			.range([0.3,0.3,1,0.3,0.3]);			
+			.range([0.1,0.1,1,0.1,0.1]);			
 	} else if (orderPinwheels == 6) {
 		var byQualityOfLifeIndex = setupCrossfilterByQualityOfLifeIndex(cf, dataset);
 		var filteredDataByYear = orderByQualityOfLifeIndex(byQualityOfLifeIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#f5a91d","#B3CE7A"]);
+			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
-			.range([0.3,0.3,0.3,1,0.3]);			
+			.range([0.1,0.1,0.1,1,0.1]);			
 	} else if (orderPinwheels == 7) {
 		var byTransitIndex = setupCrossfilterByTransitIndex(cf, dataset);
 		var filteredDataByYear = orderByTransitIndex(byTransitIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#87af3f"]);
+			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
-			.range([0.3,0.3,0.3,0.3,1]);
+			.range([0.1,0.1,0.1,0.1,1]);
 	} else if (orderPinwheels == 8) {
 		// add when we add in population data
 		// send over standard color function
 		var colorFunc = d3.scale.ordinal()
 			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([1,1,1,1,1]);					
 	} else {
 		// send over standard color function
 		var colorFunc = d3.scale.ordinal()
 			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([1,1,1,1,1]);					
 	}

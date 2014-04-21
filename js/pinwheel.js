@@ -51,6 +51,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	// repeating scale with your own colors
 	var colorFunc = d3.scale.ordinal()
 		.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+		//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 
 	// set location of strike area for popups 
 	var popupCenterX = centerX - (size*1.5)/2;

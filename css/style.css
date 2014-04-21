@@ -115,33 +115,39 @@ body {
 	background-repeat: no-repeat;
 	width: 73px;
 	height: 70px; 
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
 }
 
-/*
+
 .masthead-nav-img1:hover {
-   background-image: url('../assets/images/OneDScorecard_Rollover.png');
+   background-image: url('../assets/images/OneD_ScorecardButton_hover.png');
    background-repeat: no-repeat;
-   width: 230px;
-   height: 222px;
+   width: 270px;
+   height: 70px;
 }
-*/
+
 
 .masthead-nav-img2 {
     background-image: url('../assets/images/OneD_OneDetroitPortal.png');
     background-repeat: no-repeat;
 	width: 73px;
 	height: 70px; 
+	-webkit-transition: 1s ease-in-out;
+	-moz-transition: 1s ease-in-out;
+	-o-transition: 1s ease-in-out;
+	transition: 1s ease-in-out;
 }
 
-/*
+
 .masthead-nav-img2:hover {
-   background-image: url('../assets/images/OneDetroitPortal_Rollover.png');
+   background-image: url('../assets/images/OneD_OneDetroitPortal_hover.png');
    background-repeat: no-repeat;
-   width: 230px;
-   height: 222px;
+   width: 271px;
+   height: 70px;
 }
-*/
-
 
 
 /*
@@ -155,6 +161,7 @@ body {
 
 .control-nav > li {
   display: inline-block;
+  vertical-align: top;
 }
 .control-nav > li + li {
   margin-left: 2px;
@@ -203,6 +210,64 @@ body {
 .control-nav .control-nav-img {
 	height: 36px;
 }
+
+.watchData {
+    background-image: url('../assets/images/OneD_WatchData.png');
+	background-repeat: no-repeat;
+	width: 40px;
+	height: 37px; 
+}
+
+.watchData:hover {
+   background-image: url('../assets/images/WatchDataButton_Rollover.png');
+   background-repeat: no-repeat;
+   width: 82px;
+   height: 76px;
+}
+
+.learnAboutData {
+    background-image: url('../assets/images/OneD_LearnAboutData.png');
+	background-repeat: no-repeat;
+	width: 40px;
+	height: 37px; 
+}
+
+.learnAboutData:hover {
+   background-image: url('../assets/images/LearnButton_Rollover.png');
+   background-repeat: no-repeat;
+   width: 100px;
+   height: 76px;
+}
+
+.downloadData {
+    background-image: url('../assets/images/OneD_DownloadData.png');
+	background-repeat: no-repeat;
+	width: 40px;
+	height: 37px; 
+}
+
+.downloadData:hover {
+   background-image: url('../assets/images/DownloadDataButton_Rollover.png');
+   background-repeat: no-repeat;
+   width: 128px;
+   height: 76px;
+}
+
+.refreshData {
+    background-image: url('../assets/images/OneD_RefreshData.png');
+	background-repeat: no-repeat;
+	width: 40px;
+	height: 37px; 
+}
+
+.refreshData:hover {
+   background-image: url('../assets/images/RefreshDataButton_Rollover.png');
+   background-repeat: no-repeat;
+   width: 92px;
+   height: 76px;
+}
+
+
 
 /*
  * play, stop and slider bar
@@ -631,11 +696,31 @@ div.pinwheelTooltip {
   fill: #6D6E70;
 }
 
-.barDetroit {
+.barDetroitEconomy {
+  fill: #BCD3DD;
+}
+
+.barDetroitEducation {
   fill: #ED8E7C;
 }
 
-.bar:hover, .barDetroit:hover {
+.barDetroitEquity {
+  fill: #88A8B5;
+}
+
+.barDetroitQol {
+  fill: #F7C98D;
+}
+
+.barDetroitTransit {
+  fill: #B3CE7A;
+}
+
+.barDetroit {
+  fill: #BBBDBF;
+}
+
+.bar:hover, .barDetroitEconomy:hover, .barDetroitEducation:hover, .barDetroitEquity:hover, .barDetroitQol:hover, .barDetroitTransit:hover, .barDetroit:hover {
   fill: #BBBDBF;
 }
 
@@ -672,7 +757,7 @@ div.pinwheelTooltip {
  */
 
 #onedMap {
-	height: 630px;
+	height: 635px;
 	min-width: 100%;
 }
 

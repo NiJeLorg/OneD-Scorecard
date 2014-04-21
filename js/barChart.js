@@ -58,9 +58,19 @@ function createBarChart(svgContainer, datasetIndicators, textTick) {
     svg.selectAll(".bar")
         .data(datasetIndicators, function(d) { return d.id; })
       .enter().append("rect")
-        .attr("class", function(d) { 
-			if (d.geoid == 15) { 
-				return "barDetroit"; 
+	    .attr("class", function(d) { 
+			if (d.geoid == 15 && textTick.tableClass == 'economy') { 
+				return "barDetroitEconomy"; 
+			} else if (d.geoid == 15 && textTick.tableClass == 'education') {
+				return "barDetroitEducation";
+			} else if (d.geoid == 15 && textTick.tableClass == 'equity') {
+				return "barDetroitEquity";
+			} else if (d.geoid == 15 && textTick.tableClass == 'quality_of_life') {
+				return "barDetroitQol";
+			} else if (d.geoid == 15 && textTick.tableClass == 'transit') {
+				return "barDetroitTransit";
+			} else if (d.geoid == 15 && textTick.tableClass == 'oned') {
+				return "barDetroit";
 			} else {
 				return "bar";
 			} 
@@ -169,8 +179,18 @@ function updateBarChart(svgContainer, datasetIndicators, textTick) {
 		
 	rect.enter().append("rect")
 	    .attr("class", function(d) { 
-			if (d.geoid == 15) { 
-				return "barDetroit"; 
+			if (d.geoid == 15 && textTick.tableClass == 'economy') { 
+				return "barDetroitEconomy"; 
+			} else if (d.geoid == 15 && textTick.tableClass == 'education') {
+				return "barDetroitEducation";
+			} else if (d.geoid == 15 && textTick.tableClass == 'equity') {
+				return "barDetroitEquity";
+			} else if (d.geoid == 15 && textTick.tableClass == 'quality_of_life') {
+				return "barDetroitQol";
+			} else if (d.geoid == 15 && textTick.tableClass == 'transit') {
+				return "barDetroitTransit";
+			} else if (d.geoid == 15 && textTick.tableClass == 'oned') {
+				return "barDetroit";
 			} else {
 				return "bar";
 			} 
@@ -181,9 +201,19 @@ function updateBarChart(svgContainer, datasetIndicators, textTick) {
 	    .attr("height", 0 );
 				
 	rect.transition().duration(1500)
-        .attr("class", function(d) { 
-			if (d.geoid == 15) { 
-				return "barDetroit"; 
+	    .attr("class", function(d) { 
+			if (d.geoid == 15 && textTick.tableClass == 'economy') { 
+				return "barDetroitEconomy"; 
+			} else if (d.geoid == 15 && textTick.tableClass == 'education') {
+				return "barDetroitEducation";
+			} else if (d.geoid == 15 && textTick.tableClass == 'equity') {
+				return "barDetroitEquity";
+			} else if (d.geoid == 15 && textTick.tableClass == 'quality_of_life') {
+				return "barDetroitQol";
+			} else if (d.geoid == 15 && textTick.tableClass == 'transit') {
+				return "barDetroitTransit";
+			} else if (d.geoid == 15 && textTick.tableClass == 'oned') {
+				return "barDetroit";
 			} else {
 				return "bar";
 			} 

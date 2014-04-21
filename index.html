@@ -47,6 +47,7 @@
                   <li class="active">
 					  <a href="index.html">
 						  <div class="masthead-nav-img1"></div>
+						  <div class="masthead-nav-img1-hover"></div>
 					  </a>
 				  </li>
                   <li>
@@ -94,10 +95,10 @@
 						</form>					
 						<div class="clearfix"></div>						
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc1"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
-		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></button></li>
-		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></button></li>
-		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></button></li>
+		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc1"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
 		                </ul>						
 		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />				  				
 		              </div>
@@ -120,17 +121,17 @@
 							  <option value='5'>Social Equity Index Score</option>
 							  <option value='6'>Quality of Life Index Score</option>
 							  <option value='7'>Regional Transit Index Score</option>
-							  <option value='8'>Most Populated Region</option>
+							  <!--<option value='8'>Most Populated Region</option>-->
 							</select>
 						  </label>
 						</form>
 						<div class="clearfix"></div>						
-  		                <ul class="nav control-nav">
-  		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc2"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
-  		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></button></li>
-  		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></button></li>
-  		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></button></li>
-  		                </ul>						
+		                <ul class="nav control-nav">
+		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc2"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
+		                </ul>						
   		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
 					  </div>
 		            </div>
@@ -145,12 +146,12 @@
   		                  <li><div id="nationalHeatChartSlider"></div></li>
   		                </ul>
   						<div class="clearfix"></div>						
-    		                <ul class="nav control-nav">
-    		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc3"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
-    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></button></li>
-    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></button></li>
-    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></button></li>
-    		                </ul>						
+		                <ul class="nav control-nav">
+		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc3"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
+		                </ul>						
     		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
 						  
 		              </div>
@@ -167,6 +168,7 @@
 						<form class="form-inline sliderContainerRight" role="form">
 							<div class="form-group">
 								<select id="selectPriorityArea" class="form-control barChartChange">
+								  <option value='0'>Overall</option>
 								  <option value='1'>Economy</option>
 								  <option value='2'>Education</option>
 								  <option value='3'>Quality of Life</option>
@@ -176,18 +178,7 @@
 							</div>
 							<div class="form-group">
 								<select id="selectIndicator" class="form-control barChartChange">
-									<option value='1'>Export Value</option>
-									<option value='2'>Per Capita Real GDP</option>
-									<option value='4'>Percent Change in High Tech Employment</option>
-									<option value='5'>Percent Change in Knowledge Industry Employment</option>
-									<option value='6'>Median Household Income</option>
-									<option value='7'>Per Capita Personal Income</option>
-									<option value='8'>Percent of Population Ages 25 to 34</option>
-									<option value='9'>Percent of Population Below 100% of Poverty Level</option>
-									<option value='10'>Technology Patents per 10,000 People</option>
-									<option value='11'>Business Tax Climate Index</option>
-									<option value='12'>R&D Performed as Share of GDP</option>
-									<option value='13'>Venture Captial Investment Dollars Per Capita</option>
+									<option value='66'>OneD Index</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -203,12 +194,12 @@
 							</div>
 						</form>					
   						<div class="clearfix"></div>						
-    		                <ul class="nav control-nav">
-    		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc4"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
-    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></button></li>
-    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></button></li>
-    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></button></li>
-    		                </ul>						
+		                <ul class="nav control-nav">
+		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc4"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
+		                </ul>						
     		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
 						  
 		              </div>
@@ -231,12 +222,12 @@
 						  </label>
 						</form>											
   						<div class="clearfix"></div>						
-    		                <ul class="nav control-nav">
-    		                  <li><button type="button" class="btn btn-link" data-toggle="collapse" data-target="#sc5"><img src="assets/images/OneD_WatchData.png" class="control-nav-img" /></button></li>
-    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_LearnAboutData.png" class="control-nav-img" /></button></li>
-    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_DownloadData.png" class="control-nav-img" /></button></li>
-    		                  <li><button type="button" class="btn btn-link"><img src="assets/images/OneD_RefreshData.png" class="control-nav-img" /></button></li>
-    		                </ul>						
+		                <ul class="nav control-nav">
+		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc5"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
+		                </ul>						
     		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
 						  
 		              </div>
@@ -252,9 +243,10 @@
 							<h4>Learn More about the Opportunity Index.</h4>
 						</div>
   						<div class="clearfix"></div>						
-    		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />						
-		            </div>					
-		          </div>
+    		            <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />						
+			          </div>					
+			        </div>
+			      </div>
 		          <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
 		          <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 		        </div><!-- /.carousel -->

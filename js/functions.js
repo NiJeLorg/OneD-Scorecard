@@ -337,6 +337,30 @@ function pickOrderIndicatorData(cf, dataset, indicator, order) {
 		$.each(dataset, function( i, d ) {	
 			d.value = d.transit_bridgecondition;		
 		});
+	} else if (indicator == 61) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.economy_index;		
+		});
+	} else if (indicator == 62) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.education_index;		
+		});
+	} else if (indicator == 63) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.equity_index;		
+		});
+	} else if (indicator == 64) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.quality_of_life_index;		
+		});
+	} else if (indicator == 65) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.transit_index;		
+		});
+	} else if (indicator == 66) {
+		$.each(dataset, function( i, d ) {	
+			d.value = d.oned_index;		
+		});
 	} else {}
 	
 	var byValue = setupCrossfilterByValue(cf, dataset);
@@ -469,6 +493,18 @@ function getTextTick(indicator) {
 		textTick = { text: 'Number', tickFormat: d3.format(",.2f"), tableClass: 'transit', indicatorName: 'Annual Unlinked Passenger Bus Trips', accessorFunction: function(d) {return d.transit_bustrips;} };
 	} else if (indicator == 60) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Bridges That Are Functionally Obsolete', accessorFunction: function(d) {return d.transit_bridgecondition;} };
+	} else if (indicator == 61) {
+		textTick = { text: 'Index', tickFormat: d3.format(",.2f"), tableClass: 'economy', indicatorName: 'Economy Index', accessorFunction: function(d) {return d.economy_index;} };
+	} else if (indicator == 62) {
+		textTick = { text: 'Index', tickFormat: d3.format(",.2f"), tableClass: 'education', indicatorName: 'Education Index', accessorFunction: function(d) {return d.education_index;} };
+	} else if (indicator == 63) {
+		textTick = { text: 'Index', tickFormat: d3.format(",.2f"), tableClass: 'equity', indicatorName: 'Equity Index', accessorFunction: function(d) {return d.equity_index;} };
+	} else if (indicator == 64) {
+		textTick = { text: 'Index', tickFormat: d3.format(",.2f"), tableClass: 'quality_of_life', indicatorName: 'Quality of Life Index', accessorFunction: function(d) {return d.quality_of_life;} };
+	} else if (indicator == 65) {
+		textTick = { text: 'Index', tickFormat: d3.format(",.2f"), tableClass: 'transit', indicatorName: 'Transit Index', accessorFunction: function(d) {return d.transit_index;} };
+	} else if (indicator == 66) {
+		textTick = { text: 'Index', tickFormat: d3.format(",.2f"), tableClass: 'oned', indicatorName: 'OneD Index', accessorFunction: function(d) {return d.oned_index;} };
 	} else {}
 	
 	return textTick;
