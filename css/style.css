@@ -654,6 +654,59 @@ div.pinwheelTooltip {
   display: none;
 }
 
+/*
+ * One Detroit Portal Landing Page
+ */
+
+.michiganMap {
+    background-image: url('../assets/images/Michigan.png');
+	background-repeat: no-repeat;
+	margin-top: 60px;
+	margin-bottom: 89px;
+	width: 493px;
+	height: 400px; 
+}
+
+/*
+ * One Detroit map css
+ */
+
+#onedMap {
+	height: 630px;
+	min-width: 100%;
+}
+
+.info {
+    padding: 12px 12px;
+    font: bold 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    width: auto;
+	
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.info span {
+	font: 12px/12px Arial, Helvetica, sans-serif;
+	color: #777;
+}
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
 
 /*
  * End vis and svg styling 
