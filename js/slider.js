@@ -42,6 +42,13 @@ function generateSlider(dataset) {
 		max: maxYear,
 		step: 1
 	});	
+
+    $( "#cityDonutChartSlider" ).slider({
+		value: maxYear,
+		min: minYear,
+		max: maxYear,
+		step: 1
+	});	
 			
 };
 
@@ -71,6 +78,11 @@ $(document).ready(function(){
 	$( "#cityHeatChartSlider" ).on( 'slideStop', function( event ) {
 		var cityFilter = $( ".cityHeatChartDropdown" ).val();
 		updateCityCircularHeatChartData(event.value, cityFilter);
+	} );
+
+	$( "#cityDonutChartSlider" ).on( 'slideStop', function( event ) {
+		var cityFilter = $( ".cityDonutDropdown" ).val();
+		updateCityDonutChartData(event.value, cityFilter);
 	} );
 
 });
@@ -118,6 +130,15 @@ function playStopAnimationHeatChartCity(state) {
 	var maxYear = parseInt(d3.max(dataset, function(d) { return d.year; }));
 	var yearCount = minYear;
 	playHeatChartCity(yearCount, maxYear, state);
+}
+
+// function to start and stop the map animation
+function playStopAnimationDonutChartCity(state) {
+	// set up initial min and max years and ensure they are integers
+	var minYear = parseInt(d3.min(dataset, function(d) { return d.year; }));
+	var maxYear = parseInt(d3.max(dataset, function(d) { return d.year; }));
+	var yearCount = minYear;
+	playDonutChartCity(yearCount, maxYear, state);
 }
 
 
@@ -204,6 +225,24 @@ function playHeatChartCity(yearCount, maxYear, state) {
  	      if (yearCount<=maxYear) {
 			 delayTimeout = 2000;
  	      	 playHeatChartCity(yearCount, maxYear, state);
+ 	      }      
+ 	   }, delayTimeout);	
+	   delayTimeout = 0;					
+	} else {
+		window.clearTimeout(this.timeoutID);
+	}        
+};
+
+function playDonutChartCity(yearCount, maxYear, state) {  
+	if (state == 'play') {
+ 	   this.timeoutID = setTimeout(function () {
+ 	      $( "#cityDonutChartSlider" ).slider( 'setValue', yearCount );
+  		  var cityFilter = $( ".cityDountDropdown" ).val();
+  		  updateCityDonutChartData(yearCount, cityFilter);
+		  yearCount++;
+ 	      if (yearCount<=maxYear) {
+			 delayTimeout = 2000;
+ 	      	 playDonutChartCity(yearCount, maxYear, state);
  	      }      
  	   }, delayTimeout);	
 	   delayTimeout = 0;					

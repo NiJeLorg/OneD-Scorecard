@@ -71,6 +71,7 @@
 		            <li data-target="#myCarousel" data-slide-to="3"></li>
 		            <li data-target="#myCarousel" data-slide-to="4"></li>
 		            <li data-target="#myCarousel" data-slide-to="5"></li>
+		            <li data-target="#myCarousel" data-slide-to="6"></li>
 		          </ol>
 		          <div class="carousel-inner">
 		            <div class="item active">
@@ -234,6 +235,34 @@
 		            </div>
 		            <div class="item">
 		              <div class="container">
+						<div class="cityDonutChart sliderContainer"></div>
+						<div class="cityDonutChartSidebar sliderContainerRight heatmapTableContainer"></div>
+						<div class="clearfix"></div>
+  		                <ul id="sc3" class="sliderContainer">
+    		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationDonutChartCity('play')"><span class="glyphicon glyphicon-play"></span></button></li>
+    		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationDonutChartCity('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
+  		                  <li><div id="cityDonutChartSlider"></div></li>
+  		                </ul>
+						<form class="form-inline sliderContainerRight" role="form">
+						  <label>Choose A City: 
+							<select class="form-control cityDonutDropdown">
+							  <option value='15'>Detroit-Warren-Flint, MI</option>
+							</select>
+						  </label>
+						</form>											
+  						<div class="clearfix"></div>						
+		                <ul class="nav control-nav">
+		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc3"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
+		                </ul>						
+    		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
+						  
+		              </div>
+		            </div>
+		            <div class="item">
+		              <div class="container">
 						<a href="onedmap.html"><div class="michiganMap sliderContainer"></div></a>
 						<div class="michiganMapSidebar sliderContainerRight heatmapTableContainer">
 							<h3>Welcome to the One Detroit Portal</h3>
@@ -336,6 +365,9 @@
 <!-- javascript drawing the city circular heat chart -->
 <script type="text/javascript" src="js/cityCircularHeatChart.js"></script>
 
+<!-- javascript drawing the city donut chart -->
+<script type="text/javascript" src="js/cityDonutChart.js"></script>
+
 <!-- setup javascript drawing the bar chart -->
 <script type="text/javascript" src="js/barChartSetup.js"></script>
 
@@ -347,6 +379,9 @@
 
 <!-- javascript for updating the city circular heat chart -->
 <script type="text/javascript" src="js/cityCircularHeatChartUpdate.js"></script>
+
+<!-- javascript for updating the city donut chart -->
+<script type="text/javascript" src="js/cityDonutChartUpdate.js"></script>
 
 <!-- javascript for updating the bar chart -->
 <script type="text/javascript" src="js/barChartUpdate.js"></script>

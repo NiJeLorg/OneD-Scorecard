@@ -829,6 +829,110 @@ function createObjectForCircularHeatChartCity(filteredData) {
 }
 
 
+// function to create an object for the city-level circular heat chart to read
+function createObjectForDountChartCity(filteredData) {	
+	// create an object with the city metadata and ids segregated from the indicies for easy ploting
+	// variables:
+	// sliceWidth -- equal to the number of full width variables in each priority area
+	// sliceNumber -- number order of slice within each category
+	// categoryCount -- a counter numebr for each category
+	// innerRadius -- center except for the 
+	// outerRadius -- outer lelve except for the variables taht only take up a third of the slice
+	// value -- used to create the colors
+	// id -- indicator ID used for transitions
+	// 
+	
+	var donutChartData = {};	
+	donutChartData.meta = []
+	donutChartData.economy = []
+	donutChartData.education = []
+	donutChartData.equity = []
+	donutChartData.qol = []
+	donutChartData.transit = []
+	donutChartData.indicators = []
+	donutChartData.ids = []
+	donutChartData.priorityAreas = [];
+	var innerRadius = 30;
+	var outerRadius = innerRadius + 180;
+	$.each(filteredData, function( i, d ) {		
+		donutChartData.meta.push({ id: d.id, geoid: d.geoid, metro: d.metro, region: d.region, year: d.year, lat: d.lat, lon: d.lon });
+		donutChartData.economy.push(
+			{ id: 1, value: d.econ_exports, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 1 },
+			{ id: 2, value: d.econ_gmp, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 1 },
+			{ id: 4, value: d.econ_hightech, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 1 },
+			{ id: 5, value: d.econ_kiemploy, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 1 },
+			{ id: 6, value: d.econ_mhhinc, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 1 },
+			{ id: 7, value: d.econ_pcpi, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 1 },
+			{ id: 8, value: d.econ_pop2534, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 1 },
+			{ id: 9, value: d.econ_povrt, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 1 },
+			{ id: 10, value: d.econ_techpatents, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 9, catetoryCount: 1 },
+			{ id: 11, value: d.econ_biztaxindex, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 10, catetoryCount: 1 },
+			{ id: 12, value: d.econ_rdsharegdp, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 11, catetoryCount: 1 },
+			{ id: 13, value: d.econ_vcpc, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 12, catetoryCount: 1 }
+		);
+		donutChartData.education.push(
+			{ id: 14, value: d.edu_pctbachhigher2534, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 2 },
+			{ id: 15, value: d.edu_pctbachhigher, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 2 },
+			{ id: 16, value: d.edu_ppstatebudget, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 2 },
+			{ id: 17, value: d.edu_ppspending, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 2 },
+			{ id: 18, value: d.edu_enrolled, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 2 },
+			{ id: 19, value: d.edu_hsdiploma, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 2 },
+			{ id: 26, value: d.edu_unemployednohs, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 2 }
+		);
+		donutChartData.equity.push(
+			{ id: 27, value: d.equity_fbpop, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 3 },
+			{ id: 28, value: d.equity_gini, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 3 },
+			{ id: 29, value: d.equity_incshareq1, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 3 },
+			{ id: 30, value: d.equity_incshareq2, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 3 },
+			{ id: 31, value: d.equity_incshareq3, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 3 },
+			{ id: 32, value: d.equity_incshareq4, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 3 },
+			{ id: 33, value: d.equity_incshareq5, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 3 },
+			{ id: 34, value: d.equity_incsharetop5, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 3 },
+			{ id: 35, value: d.equity_medhhincblack, sliceWidth: 11, innerRadius: innerRadius, outerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), sliceNumber: 9, catetoryCount: 3 },
+			{ id: 36, value: d.equity_medhhinchisp, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), outerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), sliceNumber: 9, catetoryCount: 3 },
+			{ id: 37, value: d.equity_medhhincwhite, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), outerRadius: outerRadius, sliceNumber: 9, catetoryCount: 3 },
+			{ id: 39, value: d.equity_childpovrtblack, sliceWidth: 11, innerRadius: innerRadius, outerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), sliceNumber: 10, catetoryCount: 3 },
+			{ id: 40, value: d.equity_childpovrthisp, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), outerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), sliceNumber: 10, catetoryCount: 3 },
+			{ id: 41, value: d.equity_childpovrtwhite, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), outerRadius: outerRadius, sliceNumber: 10, catetoryCount: 3 },
+			{ id: 43, value: d.equity_homeownershipblack, sliceWidth: 11, innerRadius: innerRadius, outerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), sliceNumber: 11, catetoryCount: 3 },
+			{ id: 44, value: d.equity_homeownershiphisp, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), outerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), sliceNumber: 11, catetoryCount: 3 },
+			{ id: 45, value: d.equity_homeownershipwhite, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), outerRadius: outerRadius, sliceNumber: 11, catetoryCount: 3 }
+		);
+		donutChartData.qol.push(
+			{ id: 47, value: d.qol_aqi, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 4 },
+			{ id: 48, value: d.qol_homeownershiptotal, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 4 },
+			{ id: 49, value: d.qol_popchange, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 4 },
+			{ id: 50, value: d.qol_popwohealthins, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 4 },
+			{ id: 51, value: d.qol_vcrimert, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 4 },
+			{ id: 52, value: d.qol_vthourspc, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 4 },
+			{ id: 53, value: d.qol_obese, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 4 },
+			{ id: 54, value: d.qol_physicians, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 4 }
+		);
+		donutChartData.transit.push(
+			{ id: 55, value: d.transit_hoursdelayedpc, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 5 },
+			{ id: 56, value: d.transit_caralone, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 5 },
+			{ id: 57, value: d.transit_novehicle, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 5 },
+			{ id: 58, value: d.transit_statefunding, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 5 },
+			{ id: 59, value: d.transit_bustrips, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 5 },
+			{ id: 60, value: d.transit_bridgecondition, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 5 }
+		);
+				
+		// set priority area wedge widths 
+		donutChartData.priorityAreas[0] = { priorityArea: 'Economy', color: '#a6c0d0', start: 0, end: 1 };
+		donutChartData.priorityAreas[1] = { priorityArea: 'Education', color: '#d94f26', start: 1, end: 2 };
+		donutChartData.priorityAreas[2] = { priorityArea: 'Social Equity', color: '#20698a', start: 2, end: 3 };
+		donutChartData.priorityAreas[3] = { priorityArea: 'Quality of Life', color: '#f5a91d', start: 3, end: 4 };
+		donutChartData.priorityAreas[4] = { priorityArea: 'Regional Transit', color: '#87af3f', start: 4, end: 5 };
+		
+	});
+	
+	donutChartData.indicators = donutChartData.economy.concat(donutChartData.education, donutChartData.equity, donutChartData.qol, donutChartData.transit);
+		
+	// return the re-oriented dataset
+	return donutChartData;
+}
+
+
 
 
 /**** End code for data manipulation ****/	

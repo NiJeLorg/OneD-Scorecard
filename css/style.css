@@ -415,6 +415,10 @@ body {
 	width: 350px !important;
 }
 
+.cityDonutDropdown {
+	width: 350px !important;
+}
+
 
 /*
  * End Bootstrap Override CSS

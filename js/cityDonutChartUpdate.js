@@ -2,7 +2,7 @@
 * this function updates the pinwheels based on user section; runs updatePinwheel in pinwheel.js
 */
 		
-function updateCityCircularHeatChartData(year, cityFilter) {
+function updateCityDonutChartData(year, cityFilter) {
 	// set a global variable for crossfilter on the dataset
 	var cf = crossfilter(datasetIndicators);	
 	var byYear = setupCrossfilterByYear(cf, datasetIndicators);
@@ -17,11 +17,11 @@ function updateCityCircularHeatChartData(year, cityFilter) {
 	// clear filter for city for next one
 	clearFilterByGeoID(byGeoID); 
 
-	// set up data to be passed to the chart
-	var circularChartData = createObjectForCircularHeatChartCity(filteredDataByGeoID);
+	// create dataset to be passed to donut chart
+	var donutChartData = createObjectForDountChartCity(filteredDataByGeoID);
 	
-	// create national level circular heat chart
-	updateCityCircularHeatChart(svgContainerCityCircularHeatChart, circularChartData);
+	// create donut chart
+	updateCityDonutChart(svgContainerCityDonutChart, donutChartData, datasetIndicators);
 			
 	// clear the year filter
 	clearFilterByYear(byYear);	

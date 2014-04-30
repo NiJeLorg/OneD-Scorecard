@@ -40,7 +40,7 @@ function originalBarChart() {
 		createBarChart(svgContainerBarChart, orderedDataByYear, textTick);
 		
 				
-		// create combo box for underneath the circular heat chart
+		// create combo box for underneath the circular heat chart and donut chart
 		var byCity = setupCrossfilterByCityOnly(cf, datasetIndicators);
 		var filteredDataByYear = orderByCity(byCity);
 		var cityOptions = '';
@@ -53,6 +53,7 @@ function originalBarChart() {
 		});
 		
         $(".cityHeatChartDropdown").html(cityOptions);
+		$(".cityDonutDropdown").html(cityOptions);
 		
 		clearFilterByCityOnly(byCity);
 		
@@ -69,9 +70,15 @@ function originalBarChart() {
 		// set up data to be passed to the chart
 		var circularChartData = createObjectForCircularHeatChartCity(filteredDataByGeoID);
 		
-		// create national level circular heat chart
+		// create city level circular heat chart
 		createCityCircularHeatChart(svgContainerCityCircularHeatChart, circularChartData, datasetIndicators);
-				
+		
+		// create dataset to be passed to donut chart
+		var donutChartData = createObjectForDountChartCity(filteredDataByGeoID);
+		
+		// create donut chart
+		createCityDountChart(svgContainerCityDonutChart, donutChartData);
+		
 		// clear the year filter
 		clearFilterByYear(byYear);	
 

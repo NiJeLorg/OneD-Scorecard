@@ -47,4 +47,11 @@ var svgContainerBarChart = d3.select(".barChart")
 
 // container for the city level circular heat chart	
 var svgContainerCityCircularHeatChart = d3.select(".cityCircularHeatChart");
+
+// container for the city donut chart	
+var svgContainerCityDonutChart = d3.select(".cityDonutChart")
+	.append('svg')
+	.attr("width", widthHeatChart)
+	.attr("height", height);  
+
 	

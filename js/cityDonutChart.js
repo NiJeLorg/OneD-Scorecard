@@ -1,0 +1,367 @@
+/*
+* create city donut to display the city level dataset, as well as the right hand table housing the indicators
+* svgContainer: the SVG container to place the diagram into
+* dataset: the csv data 
+* leverages the reusable circular heat chart in assets/js/cityCircularHeatChart.js extended from work by by Peter Cook (https://github.com/prcweb/d3-circularheat)
+*/
+
+function createCityDountChart(svgContainer, dataset) {
+    /* Arc functions */
+    rsa = function(d, i) {
+		//console.log(d.start);
+        return (i * 2 * Math.PI) / numSegments;
+    }
+    rea = function(d, i) {
+		//console.log(d.end);
+        return ((i + 1) * 2 * Math.PI) / numSegments;
+    }
+
+    /* Arc functions */
+    ir = function(d, i) {
+        return d.innerRadius;
+    }
+    or = function(d, i) {
+        return d.outerRadius;
+    }
+    sa = function(d, i) {
+        //return ((d.sliceNumber/d.sliceWidth) * d.catetoryCount * 2 * Math.PI) / numSegments;
+		return ( ( (d.catetoryCount - 1) + ( (d.sliceNumber - 1) / d.sliceWidth ) ) * 2 * Math.PI ) / numSegments;
+    }
+    ea = function(d, i) {
+        //return (((d.sliceNumber + 1)/d.sliceWidth) * d.catetoryCount * 2 * Math.PI) / numSegments;
+		return ( ( (d.catetoryCount - 1) + ( d.sliceNumber / d.sliceWidth ) ) * 2 * Math.PI ) / numSegments;
+    }
+	
+    /* color functions */
+	// set color based on the ring
+    function colorFunction(id) {
+		var textTick = getTextTick(id);
+		var colorClass = textTick.tableClass;
+		
+		if (colorClass == 'economy') {
+			range = ["white", "#a6c0d0"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (colorClass == 'education') {
+			range = ["white", "#d94f26"];
+			var color = d3.scale.linear().domain(domain).range(range);			
+		} else if (colorClass == 'equity') {
+			range = ["white", "#20698a"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (colorClass == 'quality_of_life') {
+			range = ["white", "#f5a91d"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (colorClass == 'transit') {
+			range = ["white", "#87af3f"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else {
+			range = ["none", "none"];
+			var color = d3.scale.linear().domain(domain).range(range);		
+		}		
+		return color;
+    }
+	
+	// set domain for colors
+	function setDomain(id) {
+		var textTick = getTextTick(id);
+		if (Object.size(textTick) == 0) {
+			domain = [0,0];
+		} else {
+			var accessorFunction = textTick.accessorFunction;
+			domain = d3.extent(datasetIndicators, accessorFunction);			
+		}
+		return domain;
+	}
+	
+    var margin = {top: 20, right: 20, bottom: 20, left: 0},
+	numSegments = 5,
+	innerRadius = 30,
+	outerRadius = innerRadius + 180,
+    domain = null,
+    range = ["white", "red"],
+	accessor = function(d) {return d;},
+	offset = height/2;	
+					   
+    graph = svgContainer.append("g")
+        .classed("circular-heat", true)
+        .attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+		
+    graph.selectAll("path")
+		.data(dataset.indicators)
+        .enter().append("path")
+        .attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
+        .attr("fill", function(d, i) {
+			var domain = setDomain(d.id);
+			var color = colorFunction(d.id);
+			return color(accessor(d.value));
+		});
+	
+
+		   	   
+   	//set up container for mouseover interaction
+   	var div = d3.select(".cityDonutChartSidebar")
+   	    .style("opacity", 1e-6);
+	   		   	   
+	g = svgContainer.append('g')
+		.classed("circular-heat-overlay", true)
+		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+
+	g.selectAll("path")
+		.data(dataset.indicators)
+		.enter()
+		.append("path")
+		.attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
+		.attr('fill', 'none')
+		.attr('pointer-events', 'all')
+		
+
+		// set up on mouseover events
+		.on("mouseover", function(d, i) {
+			//console.log(dataset.meta[0].metro);
+			d3.select(this)
+				.attr("stroke", "#6D6E70")		   
+				.attr("stroke-width", "3px");		   
+		
+		    div.transition()
+		        .duration(250)
+		        .style("opacity", 1);
+				
+			// pull textTick record
+			var textTick = getTextTick(d.id);
+			//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
+			
+			var value = textTick.tickFormat(d.value);
+			
+            div.html(
+				'<h4>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h4>' +
+				'<table class="table table-condensed heatmapTable">' +
+					'<tr>' +
+						'<td class="' + textTick.tableClass + '-rect">' +
+						'</td>' +
+						'<td class="' + textTick.tableClass + '">' +
+							dataset.meta[0].metro + ': ' + value +
+						'</td>' +
+					'</tr>' +
+				'</table>'				
+			);
+		
+	   })
+	   .on("mouseout", function() {
+			d3.select(this)
+				.attr("stroke-width", "0px");		   
+	   
+		   div.transition()
+		       .duration(250)
+		       .style("opacity", 1e-6);
+			
+	   });
+	   
+	   
+	// create inner rim
+   	ir = svgContainer.append('g')
+   		.classed("circular-heat-bounding-inner-rim", true)
+   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+		
+	ir.append("circle")
+		.attr('r', innerRadius)
+		.attr('fill', 'none')
+		.attr("stroke", "#6D6E70")		   
+		.attr("stroke-width", "3px");
+	
+	// create segments for regions
+   	seg = svgContainer.append('g')
+   		.classed("circular-heat-dividers", true)
+   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+   
+   	seg.selectAll("path")
+   		.data(dataset.priorityAreas)
+   		.enter()
+   		.append("path")
+   		.attr("d", d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius).startAngle(rsa).endAngle(rea))
+   		.attr('fill', 'none')
+		.attr("stroke", "#6D6E70")		   
+		.attr("stroke-width", "3px");
+			
+	// create segments for region labels   
+   	br = svgContainer.append('g')
+   		.classed("circular-heat-bounding-rim", true)
+   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+	   
+   	br.selectAll("path")
+   		.data(dataset.priorityAreas)
+   		.enter()
+   		.append("path")
+   		.attr("d", d3.svg.arc().innerRadius(outerRadius).outerRadius(outerRadius + 15).startAngle(rsa).endAngle(rea))
+   		.attr('fill', function(d) { return d.color; })
+		.attr("stroke", "#6D6E70")		   
+		.attr("stroke-width", "3px");
+		
+		
+	// create segment labels
+    // Unique id so that the text path defs are unique - is there a better way to do this?
+    var id = d3.selectAll(".circular-heat-bounding-rim")[0].length;
+    var segmentLabelOffset = 2;
+    var r = outerRadius + segmentLabelOffset;
+   	labels = svgContainer.append('g')
+        .classed("labels", true)
+        .classed("segment", true)
+        .attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+		   
+    labels.append("def")
+        .append("path")
+        .attr("id", "segment-label-path-"+id)
+        .attr("d", "m0 -" + r + " a" + r + " " + r + " 0 1 1 -1 0");
+
+    labels.selectAll("text")
+        .data(dataset.priorityAreas).enter()
+        .append("text")
+        .append("textPath")
+        .attr("xlink:href", "#segment-label-path-"+id)
+        .attr("startOffset", function(d, i) {return (i + 0.35) * 100 / numSegments + "%";})
+        .text(function(d) {return d.priorityArea;});
+		
+	
+}
+
+
+function updateCityDonutChart(svgContainer, dataset, numberOfCities) {
+	console.log(dataset);
+    /* Arc functions */
+    rsa = function(d, i) {
+		//console.log(d.start);
+        return (i * 2 * Math.PI) / numSegments;
+    }
+    rea = function(d, i) {
+		//console.log(d.end);
+        return ((i + 1) * 2 * Math.PI) / numSegments;
+    }
+
+    /* Arc functions */
+    ir = function(d, i) {
+        return d.innerRadius;
+    }
+    or = function(d, i) {
+        return d.outerRadius;
+    }
+    sa = function(d, i) {
+        //return ((d.sliceNumber/d.sliceWidth) * d.catetoryCount * 2 * Math.PI) / numSegments;
+		return ( ( (d.catetoryCount - 1) + ( (d.sliceNumber - 1) / d.sliceWidth ) ) * 2 * Math.PI ) / numSegments;
+    }
+    ea = function(d, i) {
+        //return (((d.sliceNumber + 1)/d.sliceWidth) * d.catetoryCount * 2 * Math.PI) / numSegments;
+		return ( ( (d.catetoryCount - 1) + ( d.sliceNumber / d.sliceWidth ) ) * 2 * Math.PI ) / numSegments;
+    }
+	
+    /* color functions */
+	// set color based on the ring
+    function colorFunction(id) {
+		var textTick = getTextTick(id);
+		var colorClass = textTick.tableClass;
+		
+		if (colorClass == 'economy') {
+			range = ["white", "#a6c0d0"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (colorClass == 'education') {
+			range = ["white", "#d94f26"];
+			var color = d3.scale.linear().domain(domain).range(range);			
+		} else if (colorClass == 'equity') {
+			range = ["white", "#20698a"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (colorClass == 'quality_of_life') {
+			range = ["white", "#f5a91d"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (colorClass == 'transit') {
+			range = ["white", "#87af3f"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else {
+			range = ["none", "none"];
+			var color = d3.scale.linear().domain(domain).range(range);		
+		}		
+		return color;
+    }
+	
+	// set domain for colors
+	function setDomain(id) {
+		var textTick = getTextTick(id);
+		if (Object.size(textTick) == 0) {
+			domain = [0,0];
+		} else {
+			var accessorFunction = textTick.accessorFunction;
+			domain = d3.extent(datasetIndicators, accessorFunction);			
+		}
+		return domain;
+	}
+	
+    var margin = {top: 20, right: 20, bottom: 20, left: 0},
+	numSegments = 5,
+	innerRadius = 30,
+	outerRadius = innerRadius + 180,
+    domain = null,
+    range = ["white", "red"],
+	accessor = function(d) {return d;},
+	offset = height/2;	
+	   
+	  		
+	chart = svgContainer.select(".circular-heat");
+	
+	chart.selectAll("path")
+		.data(dataset.indicators)
+		.transition().duration(1000)
+        .attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
+        .attr("fill", function(d, i) {
+			var domain = setDomain(d.id);
+			var color = colorFunction(d.id);
+			return color(accessor(d.value));
+		});
+		
+   	//set up container for mouseover interaction
+   	var div = d3.select(".cityDonutChartSidebar")
+   	    .style("opacity", 1e-6);
+	
+			   	   
+	g = svgContainer.select(".circular-heat-overlay");
+	
+	g.selectAll("path")
+		.data(dataset.indicators)		
+		// set up on mouseover events
+		.on("mouseover", function(d, i) {
+			//console.log(dataset.meta[0].metro);
+			d3.select(this)
+				.attr("stroke", "#6D6E70")		   
+				.attr("stroke-width", "3px");		   
+		
+		    div.transition()
+		        .duration(250)
+		        .style("opacity", 1);
+				
+			// pull textTick record
+			var textTick = getTextTick(d.id);
+			//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
+			
+			var value = textTick.tickFormat(d.value);
+			
+            div.html(
+				'<h4>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h4>' +
+				'<table class="table table-condensed heatmapTable">' +
+					'<tr>' +
+						'<td class="' + textTick.tableClass + '-rect">' +
+						'</td>' +
+						'<td class="' + textTick.tableClass + '">' +
+							dataset.meta[0].metro + ': ' + value +
+						'</td>' +
+					'</tr>' +
+				'</table>'				
+			);
+		
+	   })
+	   .on("mouseout", function() {
+			d3.select(this)
+				.attr("stroke-width", "0px");		   
+	   
+		   div.transition()
+		       .duration(250)
+		       .style("opacity", 1e-6);
+			
+	   });	   
+	
+}
+

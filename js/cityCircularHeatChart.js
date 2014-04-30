@@ -180,7 +180,7 @@ function createCityCircularHeatChart(svgContainer, dataset, datasetIndicators) {
 }
 
 
-function updateCityCircularHeatChart(svgContainer, dataset, numberOfCities) {
+function updateCityCircularHeatChart(svgContainer, dataset) {
 	
     /* Arc functions */
     rsa = function(d, i) {
