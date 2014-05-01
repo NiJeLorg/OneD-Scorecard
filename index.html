@@ -42,7 +42,9 @@
 
             <div class="masthead clearfix">
               <div class="inner">
-                <div class="masthead-brand">One D Scorecard Logo</div>
+			    <a href="index.html">
+                	<div class="masthead-brand">One D Scorecard Logo</div>
+				</a>
                 <ul class="nav masthead-nav">
                   <li class="active">
 					  <a href="index.html">
@@ -71,16 +73,15 @@
 		            <li data-target="#myCarousel" data-slide-to="3"></li>
 		            <li data-target="#myCarousel" data-slide-to="4"></li>
 		            <li data-target="#myCarousel" data-slide-to="5"></li>
-		            <li data-target="#myCarousel" data-slide-to="6"></li>
 		          </ol>
 		          <div class="carousel-inner">
 		            <div class="item active">
 		              <div class="container">
 		   			  	<div class="statesArray"></div>
-		                <ul id="sc1" class="sliderContainer collapse">
+		                <ul id="sc1" class="sliderContainer">
 		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationMap('play')"><span class="glyphicon glyphicon-play"></span></button></li>
 		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationMap('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
-		                  <li><div id="mapSlider"></div></li>
+		                  <li><div id="mapSlider" style="width:150px"></div></li>
 		                </ul>
 						<form class="form-inline sliderContainerRight" role="form">
 						  <label>Highlight Index: 
@@ -96,7 +97,6 @@
 						</form>					
 						<div class="clearfix"></div>						
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc1"></button></li>
 		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
 		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
@@ -107,10 +107,10 @@
 		            <div class="item">
   		              <div class="container">				
   		   			  	<div class="pinwheelArray"></div>
-		                <ul id="sc2" class="sliderContainer collapse">
+		                <ul id="sc2" class="sliderContainer">
   		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationArray('play')"><span class="glyphicon glyphicon-play"></span></button></li>
   		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationArray('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
-		                  <li><div id="pinwheelSlider"></div></li>
+		                  <li><div id="pinwheelSlider" style="width:150px"></div></li>
 		                </ul>
 						<form class="form-inline sliderContainerRight" role="form">
 						  <label>Organize by: 
@@ -128,7 +128,6 @@
 						</form>
 						<div class="clearfix"></div>						
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc2"></button></li>
 		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
 		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
@@ -144,11 +143,10 @@
   		                <ul id="sc3" class="sliderContainer">
     		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChart('play')"><span class="glyphicon glyphicon-play"></span></button></li>
     		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChart('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
-  		                  <li><div id="nationalHeatChartSlider"></div></li>
+  		                  <li><div id="nationalHeatChartSlider" style="width:150px"></div></li>
   		                </ul>
   						<div class="clearfix"></div>						
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc3"></button></li>
 		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
 		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
@@ -161,10 +159,10 @@
 		              <div class="container">
 						<div class="barChart sliderContainer"></div>
 						<div class="clearfix"></div>
-  		                <ul id="sc4" class="sliderContainer collapse">
+  		                <ul id="sc4" class="sliderContainer">
     		                  <li><button type="button" class="btn btn-link" onclick="playStopBarChart('play')"><span class="glyphicon glyphicon-play"></span></button></li>
     		                  <li><button type="button" class="btn btn-link" onclick="playStopBarChart('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
-  		                  <li><div id="barChartSlider"></div></li>
+  		                  <li><div id="barChartSlider" style="width:150px"></div></li>
   		                </ul>
 						<form class="form-inline sliderContainerRight" role="form">
 							<div class="form-group">
@@ -196,35 +194,6 @@
 						</form>					
   						<div class="clearfix"></div>						
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc4"></button></li>
-		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
-		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
-		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
-		                </ul>						
-    		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
-						  
-		              </div>
-		            </div>
-		            <div class="item">
-		              <div class="container">
-						<div class="cityCircularHeatChart sliderContainer"></div>
-						<div class="cityCircularHeatChartSidebar sliderContainerRight heatmapTableContainer"></div>
-						<div class="clearfix"></div>
-  		                <ul id="sc5" class="sliderContainer collapse">
-    		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChartCity('play')"><span class="glyphicon glyphicon-play"></span></button></li>
-    		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChartCity('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
-  		                  <li><div id="cityHeatChartSlider"></div></li>
-  		                </ul>
-						<form class="form-inline sliderContainerRight" role="form">
-						  <label>Choose A City: 
-							<select class="form-control cityHeatChartDropdown">
-							  <option value='15'>Detroit-Warren-Flint, MI</option>
-							</select>
-						  </label>
-						</form>											
-  						<div class="clearfix"></div>						
-		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc5"></button></li>
 		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
 		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
@@ -241,7 +210,7 @@
   		                <ul id="sc3" class="sliderContainer">
     		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationDonutChartCity('play')"><span class="glyphicon glyphicon-play"></span></button></li>
     		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationDonutChartCity('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
-  		                  <li><div id="cityDonutChartSlider"></div></li>
+  		                  <li><div id="cityDonutChartSlider" style="width:150px"></div></li>
   		                </ul>
 						<form class="form-inline sliderContainerRight" role="form">
 						  <label>Choose A City: 
@@ -252,7 +221,6 @@
 						</form>											
   						<div class="clearfix"></div>						
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link watchData" data-toggle="collapse" data-target="#sc3"></button></li>
 		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
 		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
@@ -333,7 +301,7 @@
 <script type="text/javascript" src="assets/js/d3.v3.js" charset="utf-8"></script>
 <script type="text/javascript" src="assets/js/crossfilter.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap-slider.min.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap-slider.js"></script>
 <script type="text/javascript" src="assets/js/topojson.js"></script>
 <script type="text/javascript" src="assets/js/circularHeatChart.js"></script>
 <script type="text/javascript" src="assets/js/cityCircularHeatChart.js"></script>
@@ -362,9 +330,6 @@
 <!-- javascript drawing the national circular heat chart -->
 <script type="text/javascript" src="js/nationalCircularHeatChart.js"></script>
 
-<!-- javascript drawing the city circular heat chart -->
-<script type="text/javascript" src="js/cityCircularHeatChart.js"></script>
-
 <!-- javascript drawing the city donut chart -->
 <script type="text/javascript" src="js/cityDonutChart.js"></script>
 
@@ -376,9 +341,6 @@
 
 <!-- javascript for updating the national circular heat chart -->
 <script type="text/javascript" src="js/nationalCircularHeatChartUpdate.js"></script>
-
-<!-- javascript for updating the city circular heat chart -->
-<script type="text/javascript" src="js/cityCircularHeatChartUpdate.js"></script>
 
 <!-- javascript for updating the city donut chart -->
 <script type="text/javascript" src="js/cityDonutChartUpdate.js"></script>

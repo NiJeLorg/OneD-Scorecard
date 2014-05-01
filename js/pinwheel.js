@@ -50,8 +50,8 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 
 	// repeating scale with your own colors
 	var colorFunc = d3.scale.ordinal()
-		.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
-		//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
+		//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+		.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 
 	// set location of strike area for popups 
 	var popupCenterX = centerX - (size*1.5)/2;
@@ -62,6 +62,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	var div = d3.select("body").append("div")
 	    .attr("class", "pinwheelTooltip")
 	    .style("opacity", 1e-6);	
+
 
 	// Function to draw all of the pinwheel arcs
 	function drawComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
@@ -101,7 +102,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			        .style("opacity", 1);
 				
 	            div.html(
-					'<h5>' + d.meta.metro + '</h5>' +
+					'<h4>' + d.meta.metro + '</h4>' +
 					'<h5>' + d.meta.year + '</h5>' +
 					'<table class="table table-condensed">' +
 						'<tr>' +
@@ -159,7 +160,38 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			       .style("opacity", 1e-6);
 				
 		   });
-			
+		/*   
+   		var detroitPopup = svgContainer.append("svg:g")
+   			.selectAll("div") // need an empty rectangle to catch the on mouseover and click events
+   			.data([rowOfData])
+   			.enter()
+   			.append("svg:div")
+			.attr("class", "pinwheelTooltip")
+   			.attr("transform", "translate(" + popupCenterX + "," + popupCenterY + ")")
+			.style("opacity", function(d) {
+				if (rowOfData.meta.geoid = 15) {
+					return 1; 
+				} else {
+					return 0;
+				}
+			})
+			.html(
+					'<h4>' + d.meta.metro + '</h4>' +
+					'<h5>' + d.meta.year + '</h5>' +
+					'<table class="table table-condensed">' +
+						'<tr>' +
+							'<td class="oned-rect">' +
+							'</td>' +
+							'<td class="oned">' +
+								'OneD Index: ' + d.meta.oned_index +
+							'</td>' +
+						'</tr>' +
+					'</table>' +				
+					'<h5>Hover over cities on the map to view their index scores</h5>'					
+			)
+            .style("left", (d3.event.pageX + 15) + "px")     
+            .style("top", (d3.event.pageY - 100) + "px");
+			*/
  	}
 	
 	

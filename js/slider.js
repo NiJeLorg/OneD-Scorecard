@@ -12,42 +12,49 @@ function generateSlider(dataset) {
 		value: maxYear,
 		min: minYear,
 		max: maxYear,
-		step: 1
+		step: 1,
+		tooltip: 'always'
 	});
 	
     $( "#pinwheelSlider" ).slider({
 		value: maxYear,
 		min: minYear,
 		max: maxYear,
-		step: 1
+		step: 1,
+		tooltip: 'always'
 	});
 	
     $( "#nationalHeatChartSlider" ).slider({
 		value: maxYear,
 		min: minYear,
 		max: maxYear,
-		step: 1
+		step: 1,
+		tooltip: 'always'
 	});	
 
     $( "#barChartSlider" ).slider({
 		value: maxYear,
 		min: minYear,
 		max: maxYear,
-		step: 1
+		step: 1,
+		tooltip: 'always'
 	});	
-
+	
+	/*
     $( "#cityHeatChartSlider" ).slider({
 		value: maxYear,
 		min: minYear,
 		max: maxYear,
 		step: 1
-	});	
+	});
+	*/	
 
     $( "#cityDonutChartSlider" ).slider({
 		value: maxYear,
 		min: minYear,
 		max: maxYear,
-		step: 1
+		step: 1,
+		tooltip: 'always'
 	});	
 			
 };
@@ -75,10 +82,12 @@ $(document).ready(function(){
 		updateBarChartData(event.value, indicator, order);
 	} );
 
+	/*
 	$( "#cityHeatChartSlider" ).on( 'slideStop', function( event ) {
 		var cityFilter = $( ".cityHeatChartDropdown" ).val();
 		updateCityCircularHeatChartData(event.value, cityFilter);
 	} );
+	*/
 
 	$( "#cityDonutChartSlider" ).on( 'slideStop', function( event ) {
 		var cityFilter = $( ".cityDonutDropdown" ).val();
@@ -124,6 +133,7 @@ function playStopBarChart(state) {
 }
 
 // function to start and stop the map animation
+/*
 function playStopAnimationHeatChartCity(state) {
 	// set up initial min and max years and ensure they are integers
 	var minYear = parseInt(d3.min(dataset, function(d) { return d.year; }));
@@ -131,6 +141,7 @@ function playStopAnimationHeatChartCity(state) {
 	var yearCount = minYear;
 	playHeatChartCity(yearCount, maxYear, state);
 }
+*/
 
 // function to start and stop the map animation
 function playStopAnimationDonutChartCity(state) {
@@ -215,6 +226,7 @@ function playBarChart(yearCount, maxYear, state) {
 	}        
 }; 
 
+/*
 function playHeatChartCity(yearCount, maxYear, state) {  
 	if (state == 'play') {
  	   this.timeoutID = setTimeout(function () {
@@ -232,6 +244,7 @@ function playHeatChartCity(yearCount, maxYear, state) {
 		window.clearTimeout(this.timeoutID);
 	}        
 };
+*/
 
 function playDonutChartCity(yearCount, maxYear, state) {  
 	if (state == 'play') {

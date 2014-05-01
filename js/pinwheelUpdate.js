@@ -30,7 +30,7 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
 			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
-			.range([1,0.3,0.3,0.3,0.3]);
+			.range([1,0.1,0.1,0.1,0.1]);
 	} else if (orderPinwheels == 3) {
 		var byEducationIndex = setupCrossfilterByEducationIndex(cf, dataset);
 		var filteredDataByYear = orderByEducationIndex(byEducationIndex);
@@ -39,7 +39,7 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
 			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
-			.range([0.3,1,0.3,0.3,0.3]);
+			.range([0.1,1,0.1,0.1,0.1]);
 	} else if (orderPinwheels == 4) {
 		var byEquityIndex = setupCrossfilterByEquityIndex(cf, dataset);
 		var filteredDataByYear = orderByEquityIndex(byEquityIndex);
@@ -48,7 +48,7 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
 			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
-			.range([0.3,0.3,1,0.3,0.3]);
+			.range([0.1,0.1,1,0.1,0.1]);
 	} else if (orderPinwheels == 5) {
 		var byQualityOfLifeIndex = setupCrossfilterByQualityOfLifeIndex(cf, dataset);
 		var filteredDataByYear = orderByQualityOfLifeIndex(byQualityOfLifeIndex);
@@ -57,7 +57,7 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
 			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
-			.range([0.3,0.3,0.3,1,0.3]);
+			.range([0.1,0.1,0.1,1,0.1]);
 	} else if (orderPinwheels == 6) {
 		var byTransitIndex = setupCrossfilterByTransitIndex(cf, dataset);
 		var filteredDataByYear = orderByTransitIndex(byTransitIndex);
@@ -66,7 +66,7 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
 			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
-			.range([0.3,0.3,0.3,0.3,1]);
+			.range([0.1,0.1,0.1,0.1,1]);
 	} else {
 		// send over standard color function
 		var colorFunc = d3.scale.ordinal()
@@ -129,8 +129,8 @@ function updatePinwheelsByYearArray(year, orderPinwheels) {
 		var filteredDataByYear = orderByOneDIndex(byOneDIndex);
 		// send over standard color function
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
-			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([1,1,1,1,1]);		
 	} else if (orderPinwheels == 3) {
@@ -138,8 +138,8 @@ function updatePinwheelsByYearArray(year, orderPinwheels) {
 		var filteredDataByYear = orderByEconomyIndex(byEconomyIndex);		
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
-			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([1,0.1,0.1,0.1,0.1]);		
 	} else if (orderPinwheels == 4) {
@@ -147,8 +147,8 @@ function updatePinwheelsByYearArray(year, orderPinwheels) {
 		var filteredDataByYear = orderByEducationIndex(byEducationIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
-			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([0.1,1,0.1,0.1,0.1]);
 	} else if (orderPinwheels == 5) {
@@ -156,8 +156,8 @@ function updatePinwheelsByYearArray(year, orderPinwheels) {
 		var filteredDataByYear = orderByEquityIndex(byEquityIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
-			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([0.1,0.1,1,0.1,0.1]);			
 	} else if (orderPinwheels == 6) {
@@ -165,8 +165,8 @@ function updatePinwheelsByYearArray(year, orderPinwheels) {
 		var filteredDataByYear = orderByQualityOfLifeIndex(byQualityOfLifeIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
-			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([0.1,0.1,0.1,1,0.1]);			
 	} else if (orderPinwheels == 7) {
@@ -174,23 +174,23 @@ function updatePinwheelsByYearArray(year, orderPinwheels) {
 		var filteredDataByYear = orderByTransitIndex(byTransitIndex);
 		// update color function to highlight selected index
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
-			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([0.1,0.1,0.1,0.1,1]);
 	} else if (orderPinwheels == 8) {
 		// add when we add in population data
 		// send over standard color function
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
-			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([1,1,1,1,1]);					
 	} else {
 		// send over standard color function
 		var colorFunc = d3.scale.ordinal()
-			.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
-			//.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
+			//.range(["#BCD3DD","#ED8E7C","#88A8B5","#F7C98D","#B3CE7A"]);
+			.range(["#a6c0d0","#d94f26","#20698a","#f5a91d","#87af3f"]);
 		var opacityFunc = d3.scale.ordinal()
 			.range([1,1,1,1,1]);					
 	}

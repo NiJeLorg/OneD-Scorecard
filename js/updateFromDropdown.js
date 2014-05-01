@@ -25,11 +25,15 @@ $(document).ready(function(){
 		var year = $( "#barChartSlider" ).slider( 'getValue' );
 		updateBarChartData(year, indicator, order);
 	});	
+	
+	/*
 	$( ".cityHeatChartDropdown" ).change( function() {
 		var city = $(this).val();
 		var year = $( "#cityHeatChartSlider" ).slider( 'getValue' );
 		updateCityCircularHeatChartData(year, city);
-	});	
+	});
+	*/
+		
 	$( ".cityDonutDropdown" ).change( function() {
 		var city = $(this).val();
 		var year = $( "#cityDonutChartSlider" ).slider( 'getValue' );

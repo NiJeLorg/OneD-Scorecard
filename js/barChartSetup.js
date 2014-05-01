@@ -68,10 +68,10 @@ function originalBarChart() {
 		clearFilterByGeoID(byGeoID); 
 
 		// set up data to be passed to the chart
-		var circularChartData = createObjectForCircularHeatChartCity(filteredDataByGeoID);
+		//var circularChartData = createObjectForCircularHeatChartCity(filteredDataByGeoID);
 		
 		// create city level circular heat chart
-		createCityCircularHeatChart(svgContainerCityCircularHeatChart, circularChartData, datasetIndicators);
+		//createCityCircularHeatChart(svgContainerCityCircularHeatChart, circularChartData, datasetIndicators);
 		
 		// create dataset to be passed to donut chart
 		var donutChartData = createObjectForDountChartCity(filteredDataByGeoID);

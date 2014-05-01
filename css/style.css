@@ -275,6 +275,7 @@ body {
 .sliderContainer > li {
   display: inline-block;
   vertical-align: middle;
+  margin-top: 10px;
 }
 .sliderContainer > li + li {
   margin-left: 0px;
@@ -294,6 +295,10 @@ body {
 .sliderContainer > .active > a:hover,
 .sliderContainer > .active > a:focus {
   color: #fff;
+}
+
+.sliderContainerRight {
+  margin-top: 10px;
 }
 
 @media (min-width: 768px) {
@@ -683,14 +688,6 @@ div.pinwheelTooltip {
  * sliders
  */
 
-#mapSlider {
-	width: 150px;
-}
-
-#pinwheelSlider {
-	width: 150px;
-}
-
 
 /*
  * bar chart styling
@@ -701,23 +698,23 @@ div.pinwheelTooltip {
 }
 
 .barDetroitEconomy {
-  fill: #BCD3DD;
+  fill: #a6c0d0;
 }
 
 .barDetroitEducation {
-  fill: #ED8E7C;
+  fill: #d94f26;
 }
 
 .barDetroitEquity {
-  fill: #88A8B5;
+  fill: #20698a;
 }
 
 .barDetroitQol {
-  fill: #F7C98D;
+  fill: #f5a91d;
 }
 
 .barDetroitTransit {
-  fill: #B3CE7A;
+  fill: #87af3f;
 }
 
 .barDetroit {
