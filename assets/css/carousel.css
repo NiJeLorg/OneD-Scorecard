@@ -6,6 +6,7 @@
 .carousel {
   height: 635px;
 }
+
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   z-index: 10;
@@ -16,6 +17,7 @@
   height: 635px;
   background-color: #efefee;
 }
+
 .carousel-inner > .item > img {
   position: absolute;
   top: 0;
@@ -55,6 +57,19 @@
 .carousel-indicators .active {
   background-color: #6D6E70;
 }
+
+
+.carousel-text {
+  height: auto;
+  padding-bottom: 30px;
+}
+
+.carousel-text .item {
+  height: auto;
+  background-color: #efefee;
+  padding-bottom: 30px;
+}
+
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */

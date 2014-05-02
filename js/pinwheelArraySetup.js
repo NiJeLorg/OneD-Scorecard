@@ -45,7 +45,7 @@ function originalPinwheels() {
 		
 			// clear filter for city for next one
 			clearFilterByGeoID(byGeoID); 
-		
+			
 			var rowOfData = createObjectForPinwheel(filteredDataByGeoID);
 		
 			// for the pinwheel array:  set the center for each pinwheel depending on the number shown and width and height of chart
@@ -55,7 +55,7 @@ function originalPinwheels() {
 			// set size and smallestPie for chart pinwheels
 			var smallestPie = 10;
 			var size = 30;
-		
+
 			createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, centerY);
 		
 			// clear centerX and centerY to position the pinwheels on the map
@@ -67,8 +67,8 @@ function originalPinwheels() {
 			size = 16;	
 		
 			// set centers of pinwheels for map
-			centerX = projection([rowOfData.meta.lon, rowOfData.meta.lat])[0];
-			centerY = projection([rowOfData.meta.lon, rowOfData.meta.lat])[1];
+			centerX = projection([rowOfData.meta[0].lon, rowOfData.meta[0].lat])[0];
+			centerY = projection([rowOfData.meta[0].lon, rowOfData.meta[0].lat])[1];
 		
 			// draw pinwheels on the map: container set up in statesPinwheel.js
 			createPinwheel(size, smallestPie, rowOfData, svgContainerStates, centerX, centerY);

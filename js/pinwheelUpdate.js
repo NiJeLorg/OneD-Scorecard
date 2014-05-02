@@ -98,8 +98,8 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 		size = 16;	
 		
 		// set centers of pinwheels for map
-		centerX = projection([rowOfData.meta.lon, rowOfData.meta.lat])[0];
-		centerY = projection([rowOfData.meta.lon, rowOfData.meta.lat])[1];
+		centerX = projection([rowOfData.meta[0].lon, rowOfData.meta[0].lat])[0];
+		centerY = projection([rowOfData.meta[0].lon, rowOfData.meta[0].lat])[1];
 		
 		// draw pinwheels on the map: container set up in statesPinwheel.js
 		updatePinwheel(size, smallestPie, rowOfData, svgContainerStates, centerX, centerY, colorFunc, opacityFunc);

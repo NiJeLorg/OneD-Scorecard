@@ -56,19 +56,77 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	// set location of strike area for popups 
 	var popupCenterX = centerX - (size*1.5)/2;
 	var popupCenterY = centerY - (size*1.5)/2;
-	var rectSize = size*1.5;
+	var rectSize = size*1.2;
 	
 	//set up container for mouseover interaction
 	var div = d3.select("body").append("div")
 	    .attr("class", "pinwheelTooltip")
 	    .style("opacity", 1e-6);	
 
+	// add popup that shows up on page load and dissapears on hover for map
+	if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'statesArray') {
+		if ($( window ).width() > 992) {
+			var left = (($( window ).width()) * 0.63) - (($( window ).width()) * 0.01);
+		} else if ($( window ).width() > 1200) {
+			var left = (($( window ).width()) * 0.63) - (($( window ).width()) * 0.03);
+		} else {
+			var left = (($( window ).width()) * 0.63);
+		}
+		var divDetroit = d3.select("#mapOnLoadTootip").append("div")
+		    .attr("class", "pinwheelTooltip")
+		    .style("opacity", 1)
+	        .style("left", left + "px")     
+	        .style("top", (((($( window ).width()) * 0.63) * 122) / width) + "px")
+			.html(
+				'<h4>' + rowOfData.meta[0].metro + '</h4>' +
+				'<table class="table table-condensed">' +
+					'<tr>' +
+						'<td class="oned-rect">' +
+						'</td>' +
+						'<td class="oned">' +
+							'OneD Index: ' + rowOfData.meta[0].oned_index +
+						'</td>' +
+					'</tr>' +
+				'</table>' +
+				'<h5>Using your mouse, hover over other cities to see their full One D Scorecard scores.</h5>'		
+			); 			
+	} else {}
+	
+	// add popup that shows up on page load and dissapears on hover for map
+	if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'pinwheelArray') {
+		if ($( window ).width() > 992) {
+			var left = (($( window ).width()) * 0.58) - (($( window ).width()) * 0.01);
+		} else if ($( window ).width() > 1200) {
+			var left = (($( window ).width()) * 0.58) - (($( window ).width()) * 0.03);
+		} else {
+			var left = (($( window ).width()) * 0.58);
+		}
+		var divDetroit = d3.select("#arrayOnLoadTootip").append("div")
+		    .attr("class", "pinwheelTooltip")
+		    .style("opacity", 1)
+	        .style("left", left + "px")     
+	        .style("top", (((($( window ).width()) * 0.58) * 100) / width) + "px")
+			.html(
+				'<h4>' + rowOfData.meta[0].metro + '</h4>' +
+				'<table class="table table-condensed">' +
+					'<tr>' +
+						'<td class="oned-rect">' +
+						'</td>' +
+						'<td class="oned">' +
+							'OneD Index: ' + rowOfData.meta[0].oned_index +
+						'</td>' +
+					'</tr>' +
+				'</table>' +
+				'<h5>Using your mouse, hover over other cities to see their full One D Scorecard scores.</h5>'		
+			); 			
+	} else {}
+	
 
 	// Function to draw all of the pinwheel arcs
 	function drawComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
 		// need Ids for pinwheels to update later
-		var gGeoid = 'g' + rowOfData.meta.geoid;
-		var rectGeoid = 'rect' + rowOfData.meta.geoid;
+		var gGeoid = 'g' + rowOfData.meta[0].geoid;
+		var rectGeoid = 'rect' + rowOfData.meta[0].geoid;
 		// Draw the main wind rose arcs
 		var pinwheel = svgContainer.append("svg:g")
 			.attr("class", "arcs")
@@ -97,19 +155,31 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			.on("mouseover", function(d) {
 				//console.log(d);
 				
+				if (svgContainer[0][0].parentElement.className == 'statesArray') {
+	 			    d3.select("#mapOnLoadTootip").transition()
+	 			       .duration(250)
+	 			       .style("opacity", 1e-6);
+				}
+
+				if (svgContainer[0][0].parentElement.className == 'pinwheelArray') {
+	 			    d3.select("#arrayOnLoadTootip").transition()
+	 			       .duration(250)
+	 			       .style("opacity", 1e-6);
+				}
+				
 			    div.transition()
 			        .duration(250)
 			        .style("opacity", 1);
 				
 	            div.html(
-					'<h4>' + d.meta.metro + '</h4>' +
-					'<h5>' + d.meta.year + '</h5>' +
+					'<h4>' + d.meta[0].metro + '</h4>' +
+					'<h5>' + d.meta[0].year + '</h5>' +
 					'<table class="table table-condensed">' +
 						'<tr>' +
 							'<td class="oned-rect">' +
 							'</td>' +
 							'<td class="oned">' +
-								'OneD Index: ' + d.meta.oned_index +
+								'OneD Index: ' + d.meta[0].oned_index +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
@@ -149,8 +219,8 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 						'</tr>' +
 					'</table>'				
 				)  
-	                .style("left", (d3.event.pageX + 15) + "px")     
-	                .style("top", (d3.event.pageY - 100) + "px");
+	                .style("left", (d3.event.pageX + 25) + "px")     
+	                .style("top", (d3.event.pageY - 80) + "px");
 				
 		   })
 		   .on("mouseout", function() {
@@ -160,38 +230,10 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			       .style("opacity", 1e-6);
 				
 		   });
-		/*   
-   		var detroitPopup = svgContainer.append("svg:g")
-   			.selectAll("div") // need an empty rectangle to catch the on mouseover and click events
-   			.data([rowOfData])
-   			.enter()
-   			.append("svg:div")
-			.attr("class", "pinwheelTooltip")
-   			.attr("transform", "translate(" + popupCenterX + "," + popupCenterY + ")")
-			.style("opacity", function(d) {
-				if (rowOfData.meta.geoid = 15) {
-					return 1; 
-				} else {
-					return 0;
-				}
-			})
-			.html(
-					'<h4>' + d.meta.metro + '</h4>' +
-					'<h5>' + d.meta.year + '</h5>' +
-					'<table class="table table-condensed">' +
-						'<tr>' +
-							'<td class="oned-rect">' +
-							'</td>' +
-							'<td class="oned">' +
-								'OneD Index: ' + d.meta.oned_index +
-							'</td>' +
-						'</tr>' +
-					'</table>' +				
-					'<h5>Hover over cities on the map to view their index scores</h5>'					
-			)
-            .style("left", (d3.event.pageX + 15) + "px")     
-            .style("top", (d3.event.pageY - 100) + "px");
-			*/
+		  
+
+
+			
  	}
 	
 	
@@ -205,6 +247,20 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 
 // update pinwheel
 function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, centerY, colorFunc, opacityFunc) {
+	
+	// remove intro overlay if still present
+	if (svgContainer[0][0].parentElement.className == 'statesArray') {
+	    d3.select("#mapOnLoadTootip").transition()
+	       .duration(250)
+	       .style("opacity", 1e-6);
+	}
+
+	if (svgContainer[0][0].parentElement.className == 'pinwheelArray') {
+	    d3.select("#arrayOnLoadTootip").transition()
+	       .duration(250)
+	       .style("opacity", 1e-6);
+	}
+	
 	
 	/**** Common pinwheel code ****/
 	// Function to draw a single arc for the pinwheel
@@ -248,7 +304,7 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	// set location of strike area for popups 
 	var popupCenterX = centerX - (size*1.5)/2;
 	var popupCenterY = centerY - (size*1.5)/2;
-	var rectSize = size*1.5;
+	var rectSize = size*1.2;
 	
 	//set up container for mouseover interaction
 	var div = d3.select("body").append("div")
@@ -258,10 +314,10 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	// Function to draw all of the pinwheel arcs
 	function updateComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
 		// need Ids for pinwheels to update later
-		var geoid = rowOfData.meta.geoid;
+		var gGeoid = rowOfData.meta[0].geoid;
 		//console.log(rowOfData.indicies);
 		// Draw the main wind rose arcs
-		var pinwheel = svgContainer.select("#g" + geoid)
+		var pinwheel = svgContainer.select("#g" + gGeoid)
 			.selectAll("path")
 			.data(rowOfData.indicies)
 			.transition().duration(1000)
@@ -274,27 +330,27 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			});
 			
 			
-		var clickableOverlay = svgContainer.select("#rect" + geoid)
+		var clickableOverlay = svgContainer.select("#rect" + gGeoid)
 			.data([rowOfData])
 			.attr("transform", "translate(" + popupCenterX + "," + popupCenterY + ")")
 						
 			// set up on mouseover events
 			.on("mouseover", function(d) {
 				//console.log(d);
-				
+												
 			    div.transition()
 			        .duration(250)
 			        .style("opacity", 1);
 				
 	            div.html(
-					'<h5>' + d.meta.metro + '</h5>' +
-					'<h5>' + d.meta.year + '</h5>' +
+					'<h4>' + d.meta[0].metro + '</h4>' +
+					'<h5>' + d.meta[0].year + '</h5>' +
 					'<table class="table table-condensed">' +
 						'<tr>' +
 							'<td class="oned-rect">' +
 							'</td>' +
 							'<td class="oned">' +
-								'OneD Index: ' + d.meta.oned_index +
+								'OneD Index: ' + d.meta[0].oned_index +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
@@ -334,8 +390,8 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 						'</tr>' +
 					'</table>'				
 				)  
-	                .style("left", (d3.event.pageX + 15) + "px")     
-	                .style("top", (d3.event.pageY - 100) + "px");
+	                .style("left", (d3.event.pageX + 25) + "px")     
+	                .style("top", (d3.event.pageY - 80) + "px");
 				
 		   })
 		   .on("mouseout", function() {

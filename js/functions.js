@@ -697,17 +697,16 @@ function clearFilterByCityOnly(byCityOnly) {
 function createObjectForPinwheel(filteredData) {	
 	// create an object with the city names and ids segregated from the indicies for easy ploting
 	var rowOfData = {};	
-	rowOfData.meta = []
-	rowOfData.indicies = []	
+	rowOfData.meta = [];
+	rowOfData.indicies = [];	
 	$.each(filteredData, function( i, d ) {
-		rowOfData.meta = { id: d.id, geoid: d.geoid, metro: d.metro, year: d.year, lat: d.lat, lon: d.lon, oned_index: d.oned_index };
+		rowOfData.meta.push({ id: d.id, geoid: d.geoid, metro: d.metro, year: d.year, lat: d.lat, lon: d.lon, oned_index: d.oned_index });
 		rowOfData.indicies.push({ name: 'Economy Index', index: d.economy_index, angle: 247.5 });
 		rowOfData.indicies.push({ name: 'Education Index', index: d.education_index, angle: 292.5 });
 		rowOfData.indicies.push({ name: 'Equity Index', index: d.equity_index, angle: 337.5 });
 		rowOfData.indicies.push({ name: 'Quality of Life Index', index: d.quality_of_life_index, angle: 22.5 });
 		rowOfData.indicies.push({ name: 'Transit Index', index: d.transit_index, angle: 67.5 });
 	});
-		
 	// return the selected row
 	return rowOfData;
 }

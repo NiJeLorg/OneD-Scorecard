@@ -6,12 +6,6 @@
  * Globals
  */
 
-/* Links */
-a,
-a:focus,
-a:hover {
-  color: #fff;
-}
 
 /* Custom default button */
 .btn-default,
@@ -424,6 +418,10 @@ body {
 	width: 350px !important;
 }
 
+.leftJustified {
+	text-align: left;
+}
+
 
 /*
  * End Bootstrap Override CSS
@@ -467,19 +465,45 @@ path {
  * pinwheelTooltip styling
  */
 
-div.pinwheelTooltip {
-  position: absolute;
-  text-align: left;
-  width: 230px;
-  height: auto;
-  padding: 8px;
-  color: #6D6E70;
-  background: #fff;
-  font-weight: 400;
-  border: solid 1px #ccc;
-  border-radius: 4px;
-  pointer-events: none;
+.pinwheelTooltip { 
+    position: absolute;
+    text-align: left;
+    width: 230px;
+    height: auto;
+    padding: 8px;
+    color: #6D6E70;
+    background: #fff;
+    font-weight: 400;
+    border: solid 2px #ccc;
+    border-radius: 4px;
+    pointer-events: none;
+} 
+
+.pinwheelTooltip:after, .pinwheelTooltip:before { 
+	right: 100%; 
+	top: 25%; 
+	border: solid transparent; 
+	content: " "; 
+	height: 0; 
+	width: 0; 
+	position: absolute; 
+	pointer-events: none; 
+} 
+
+.pinwheelTooltip:after { 
+	border-color: rgba(255, 255, 255, 0); 
+	border-right-color: #fff; 
+	border-width: 15px; 
+	margin-top: -15px; 
+} 
+
+.pinwheelTooltip:before { 
+	border-color: rgba(109, 110, 112, 0); 
+	border-right-color: #ccc; 
+	border-width: 18px; 
+	margin-top: -18px; 
 }
+
 
 .table > thead > tr > td.oned-rect,
 .table > tbody > tr > td.oned-rect,
@@ -675,14 +699,36 @@ div.pinwheelTooltip {
 	text-align: left;
 	position: relative;
 	margin-top: 40px;
-	width: 250px;
+	width: 120px;
 }
 
 .heatmapTable {
 	text-align: left;
 	position: absolute; 
-	top: 75px;
+	top: 150px;
 }
+
+@media (min-width: 992px) {
+	.heatmapTableContainer {
+		width: 190px;
+	}
+	.heatmapTable {
+		top: 120px;
+	}	
+}
+
+
+@media (min-width: 1200px) {
+	.heatmapTableContainer {
+		width: 230px;
+	}
+	.heatmapTable {
+		top: 75px;
+	}	
+}
+
+
+
     
 /*
  * sliders

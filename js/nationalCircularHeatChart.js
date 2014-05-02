@@ -26,8 +26,10 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 	       .data([dataset.indicies])
 	       .enter()
 	       .append('svg')
-		   .attr("width", widthHeatChart)
-		   .attr("height", height)  
+	       .attr("preserveAspectRatio", "xMidYMid")
+	       .attr("viewBox", "0 0 " + widthHeatChart + " " + height)
+		   .attr("width", viewWidthHeatChart)
+	   	   .attr("height", viewWidthHeatChart * height / widthHeatChart)
 	       .call(chart);
 		   	   
    	//set up container for mouseover interaction

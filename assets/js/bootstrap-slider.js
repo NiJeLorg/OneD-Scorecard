@@ -335,7 +335,7 @@
 				// hardcoding this.tooltip.outerWidth() to make it work in our project
 				var outerWidthTooltip = 43;
 				this.tooltip[0].style[this.stylePos] = this.size * positionPercentages[0]/100 - (this.orientation === 'vertical' ? this.tooltip.outerHeight()/2 : outerWidthTooltip/2) +'px';
-				console.log(this.tooltip[0].style[this.stylePos]);
+				//console.log(this.tooltip[0].style[this.stylePos]);
 				
 			}
 		},

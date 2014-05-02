@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>The One D Scorecard :: A Project of Data Driven Detroit</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+ 	<!-- Carousel CSS -->
+    <link href="assets/css/carousel.css" rel="stylesheet">
+
+ 	<!-- Leaflet CSS -->
+    <link href="assets/css/leaflet.css" rel="stylesheet">
+
+ 	<!-- Leaflet CSS -->
+    <link href="assets/css/crosslet.css" rel="stylesheet">
+		
+	<!-- Other CSS -->
+	<link href="css/style.css" type="text/css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->	
+	
+  </head>
+ 
+  <!-- Site content
+  ================================================== --> 
+  <body>
+
+      <div class="site-wrapper">
+
+        <div class="site-wrapper-inner">
+
+          <div class="cover-container">
+
+		  <!-- Heading for OneD logo and buttons
+		  ================================================== --> 
+
+            <div class="masthead clearfix">
+              <div class="inner">
+			    <a href="index.html">
+                	<div class="masthead-brand">One D Scorecard Logo</div>
+				</a>
+                <ul class="nav masthead-nav">
+                  <li class="active">
+					  <a href="index.html">
+						  <div class="masthead-nav-img1"></div>
+						  <div class="masthead-nav-img1-hover"></div>
+					  </a>
+				  </li>
+                  <li>
+					  <a href="one-d-map.html">
+						  <div class="masthead-nav-img2"></div>
+					  </a>
+				  </li>
+                </ul>
+              </div>
+            </div>
+
+
+	        <!-- Page Content
+	        ================================================== -->
+			
+			<div class="inner cover">
+		        <div id="myCarousel" class="carousel-text slide">
+		          <div class="carousel-inner-text">
+		            <div class="item active">
+						<div class="container">
+							<h1>Methodology - Priority Areas</h1>
+							<div class="row">
+								<p class="leftJustified col-md-10 col-md-offset-1">The One D Scorecard makes available and visualizes over 30 baseline indicators categorized within the five priority areas of: Economic Prosperity, Educational Preparedness, Quality of Life, Social Equity, and Regional Transit.  In order to provide the most robust and balanced information within each priority area for all metro regions, we have refined our indicator list from previous iterations for greater consistency across units of geography and annual availability. </p>
+							
+							<h3 class="col-md-10 col-md-offset-1">Economic Prosperity</h3>
+							<div class="table-responsive col-md-10 col-md-offset-1 leftJustified">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Indicator</th>
+											<th>Data Source</th>
+											<th>Unit of Geography</th>
+											<th>Years Available</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Total Value of Exports</td>
+											<td>U.S. Census Bureau; U.S. Department of Commerce</td>
+											<td>MSA</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>Per Capita GDP for Metropolitan Area (GMP)</td>
+											<td>U.S. Department of Commerce, Bureau of Economic Analysis</td>
+											<td>MSA</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>Percent Change in High Tech Jobs</td>
+											<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+											<td>CBSA</td>
+											<td>2000-2009, 2001-2010, 2002-2011</td>
+										</tr>
+										<tr>
+											<td>Percent Change in Knowledge Industry Employment</td>
+											<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+											<td>CBSA</td>
+											<td>2000-2009, 2001-2010, 2002-2011</td>
+										</tr>
+										<tr>
+											<td>Per Capita Personal Income</td>
+											<td>Regional Economic Information System, Bureau of Economic Analysis; U.S. Department of Commerce</td>
+											<td>CSA/CBSA</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>Number of Technology Patents per 10K People</td>
+											<td>U.S. Patent & Trademark Office - Electronic Information Products Division, Patent Technology Monitoring Team (PTMT)</td>
+											<td>MSA</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>Business Tax Climate Index</td>
+											<td>Tax Foundation</td>
+											<td>State</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>Research & Development, Share of State GDP</td>
+											<td>National Science Foundation, Division of Science Resources Statistics; Bureau of Economic Analysis, Gross Domestic Product data</td>
+											<td>State</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>									
+								</table>
+							</div>
+							<h3 class="col-md-10 col-md-offset-1">Educational Preparedness</h3>
+							<div class="table-responsive col-md-10 col-md-offset-1 leftJustified">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Indicator</th>
+											<th>Data Source</th>
+											<th>Unit of Geography</th>
+											<th>Years Available</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Young & Talented Population, Education Attainment Bachelors+, 25-34</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Education Attainment Bachelors+, 25+</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Percent Population Enrolled in School, 3+</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Education Attainment High School+, 18+</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Percent Teens Not Enrolled in School, No HS Diploma, Unemployed</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>State Appropriations Per Pupil</td>
+											<td>NCHEMS Information Center for Higher Education Policymaking and Analysis</td>
+											<td>State</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>State Expenditures Per Pupil</td>
+											<td>U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD)</td>
+											<td>State</td>
+											<td>2009-2011</td>
+										</tr>
+									</tbody>									
+								</table>
+							</div>
+							<h3 class="col-md-10 col-md-offset-1">Quality of Life</h3>
+							<div class="table-responsive col-md-10 col-md-offset-1 leftJustified">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Indicator</th>
+											<th>Data Source</th>
+											<th>Unit of Geography</th>
+											<th>Years Available</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Air Quality Index, Percent of “Good” Days</td>
+											<td>Environmental Protection Agency - AirData Air Quality Index Report</td>
+											<td>CSA/CBSA</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>Percent Change in Population</td>
+											<td>U.S. Census Bureau, Population Division</td>
+											<td>CSA/CBSA</td>
+											<td>2008-2009, 2009-2010, 2010-2011</td>
+										</tr>
+										<tr>
+											<td>Percent Population Without Health Insurance</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Total Violent Crimes per 100,000 Residents</td>
+											<td>FBI Uniform Crime Reporting (UCR) Data</td>
+											<td>MSA</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>Average Volunteer Rate</td>
+											<td>The Corporation for National and Community Service</td>
+											<td>MSA</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>Percent of Population neither Overweight nor Obese</td>
+											<td>Center for Disease Control - Behavioral Risk Factor Surveillance System</td>
+											<td>MSA</td>
+											<td>2009-2011</td>
+										</tr>
+									</tbody>									
+								</table>
+							</div>
+							<h3 class="col-md-10 col-md-offset-1">Social Equity</h3>
+							<div class="table-responsive col-md-10 col-md-offset-1 leftJustified">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Indicator</th>
+											<th>Data Source</th>
+											<th>Unit of Geography</th>
+											<th>Years Available</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Percent Population Foreign Born</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Gini Index</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Income Level by Quintile</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Median Household Income (by Race)</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Percent Housing Owner Occupied (by Race)</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Poverty Rate of Children (by Race)</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+									</tbody>									
+								</table>
+							</div>
+							<h3 class="col-md-10 col-md-offset-1">Regional Transit</h3>
+							<div class="table-responsive col-md-10 col-md-offset-1 leftJustified">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											<th>Indicator</th>
+											<th>Data Source</th>
+											<th>Unit of Geography</th>
+											<th>Years Available</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Annual Hours of Delay per Auto Commuter</td>
+											<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+											<td>Urban Areas</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>Percent of Workers with No Vehicle</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Percent of Workers 16+ Driving Alone to Work</td>
+											<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+											<td>CSA/CBSA</td>
+											<td>2007-2009, 2008-2010, 2009-2011</td>
+										</tr>
+										<tr>
+											<td>Percent of Transit Ridership Occurring on a Bus</td>
+											<td>U.S. Department of Transportation, Federal Transit Administration, National Transit Database</td>
+											<td>Urban Areas</td>
+											<td>2009-2011</td>
+										</tr>
+										<tr>
+											<td>Public Transportation Funding, State Dollars per 1,000 Residents</td>
+											<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+											<td>State</td>
+											<td>2009-2011</td>
+										</tr>
+									</tbody>									
+								</table>
+							</div>
+						</div>
+		            </div>
+		          </div>
+		        </div><!-- /.carousel -->
+			</div>	
+
+	        <!-- Footer nav
+	        ================================================== -->
+		
+            <div class="mastfoot">
+              <div class="inner">
+	  	        <div class="navbar-wrapper">
+	  	          <div class="container">
+
+	  	            <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+	  	              <div class="container">
+	  	                <div class="navbar-collapse collapse">
+	  	                  <ul class="nav navbar-nav">
+	  	                    <li><a href="index.html">Home</a></li>
+	  	                    <li class="dropdown">
+	  	                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methodology <b class="caret"></b></a>
+	  	                      <ul class="dropdown-menu dropdown-menu-left">
+	  	                        <li><a href="priority-areas.html">Priority Areas</a></li>
+	  	                        <li><a href="one-d-index.html">One D Index</a></li>
+	  	                        <li><a href="geography.html">Geography</a></li>
+	  	                        <li><a href="data-download.html">Data Download</a></li>
+	  	                      </ul>
+	  	                    </li>
+	  	                    <li class="dropdown">
+	  	                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+	  	                      <ul class="dropdown-menu dropdown-menu-left">
+	  	                        <li><a href="about.html">One D Scorecard</a></li>
+	  	                        <li><a href="about-one-detroit-portal.html">One Detroit Portal</a></li>
+	  	                        <li><a href="partners.html">Partners</a></li>
+	  	                      </ul>
+	  	                    </li>
+	  	                  </ul>
+	  	                </div>
+	  	              </div>
+	  	            </div>
+	  	          </div>
+	  	        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    	
+	</body>
+</html>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- Crosslet requires an older version of jQueryfor browser detection -->
+<script type="text/javascript" src="assets/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="assets/js/d3.v3.js" charset="utf-8"></script>
+<script type="text/javascript" src="assets/js/leaflet.js" charset="utf-8"></script>
+<script type="text/javascript" src="assets/js/underscore-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="assets/js/backbone-min.js" charset="utf-8"></script>
+<script type="text/javascript" src="assets/js/crosslet.js" charset="utf-8"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
+
+<!-- set up crosslet for kirwan map -->
+<script type="text/javascript" src="js/setupCrosslet.js"></script>
+
+
+
+
+

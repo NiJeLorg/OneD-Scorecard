@@ -101,8 +101,8 @@ function createBarChart(svgContainer, datasetIndicators, textTick) {
 					'</tr>' +
 				'</table>'				
 			)  
-                .style("left", (d3.event.pageX + 15) + "px")     
-                .style("top", (d3.event.pageY - 100) + "px");
+            .style("left", (d3.event.pageX + 23) + "px")     
+            .style("top", (d3.event.pageY - 40) + "px");
 			
 	   })
 	   .on("mouseout", function() {

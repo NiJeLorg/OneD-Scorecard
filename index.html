@@ -53,7 +53,7 @@
 					  </a>
 				  </li>
                   <li>
-					  <a href="onedmap.html">
+					  <a href="one-d-map.html">
 						  <div class="masthead-nav-img2"></div>
 					  </a>
 				  </li>
@@ -78,6 +78,7 @@
 		            <div class="item active">
 		              <div class="container">
 		   			  	<div class="statesArray"></div>
+						<div id="mapOnLoadTootip"></div>
 		                <ul id="sc1" class="sliderContainer">
 		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationMap('play')"><span class="glyphicon glyphicon-play"></span></button></li>
 		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationMap('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
@@ -95,10 +96,316 @@
 							</select>
 						  </label>
 						</form>					
-						<div class="clearfix"></div>						
+						<div class="clearfix"></div>
+						<!-- Modal -->
+						<div class="modal fade" id="mapInfoModal" tabindex="-1" role="dialog" aria-labelledby="mapInfoModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="mapInfoModalLabel">One D Scorecard Map Visualization</h4>
+						      </div>
+						      <div class="modal-body">
+						        <p class="leftJustified">This map illustrates the 54 U.S. regions compared in the One D Scorecard using a pinwheel with five wedges representing five priority areas.  The radius of a pinwheel wedge visualizes each regions comprehensive One D Index score, as well as an index score by priority area.  Learn more about our priority areas, the individual indicators that drive them, and how we calculate the One D Index in our <a href="methodology.html">Methodology</a>.</p>
+								<img src="assets/images/PinwheelLegend.png"/>
+								<p class="leftJustified">Roll over any pinwheel to begin exploring the data.  Watch annual change using the time slider.  Click Download for more information about the displayed data and source information.</p>
+						      </div>
+						    </div>
+						  </div>
+						</div>						
+						<!-- Modal -->
+						<div class="modal fade" id="mapDownloadModal" tabindex="-1" role="dialog" aria-labelledby="mapDownloadModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="mapDownloadModalLabel">Download Data</h4>
+						      </div>
+						      <div class="modal-body">
+								<div class="leftJustified">
+						        <p>This button allows you to download a spreadsheet of data displayed in this visualization.</p>
+								<p><b>The displayed data include the following:</b>
+									<ul>
+										<li><b>Columns:</b> Index Scores for all 5 Priority Areas, the One D Scorecard Overall Index Scores, and other regional metadata</li>
+										<li><b>Rows:</b>All 54 Metro Areas by Year</li>
+									</ul>
+								</p>
+							    </div>
+								<button type="button" class="btn btn-primary btn-lg centered">Download Data</button>
+								<div class="leftJustified">
+								<h3>Priority Areas and Associated Indicators</h3>
+								<h4>Economic Prosperity</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Total Value of Exports</td>
+												<td>U.S. Census Bureau; U.S. Department of Commerce</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Per Capita GDP for Metropolitan Area (GMP)</td>
+												<td>U.S. Department of Commerce, Bureau of Economic Analysis</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in High Tech Jobs</td>
+												<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+												<td>CBSA</td>
+												<td>2000-2009, 2001-2010, 2002-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in Knowledge Industry Employment</td>
+												<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+												<td>CBSA</td>
+												<td>2000-2009, 2001-2010, 2002-2011</td>
+											</tr>
+											<tr>
+												<td>Per Capita Personal Income</td>
+												<td>Regional Economic Information System, Bureau of Economic Analysis; U.S. Department of Commerce</td>
+												<td>CSA/CBSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Number of Technology Patents per 10K People</td>
+												<td>U.S. Patent & Trademark Office - Electronic Information Products Division, Patent Technology Monitoring Team (PTMT)</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Business Tax Climate Index</td>
+												<td>Tax Foundation</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Research & Development, Share of State GDP</td>
+												<td>National Science Foundation, Division of Science Resources Statistics; Bureau of Economic Analysis, Gross Domestic Product data</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Educational Preparedness</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Young & Talented Population, Education Attainment Bachelors+, 25-34</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Education Attainment Bachelors+, 25+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Population Enrolled in School, 3+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Education Attainment High School+, 18+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Teens Not Enrolled in School, No HS Diploma, Unemployed</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>State Appropriations Per Pupil</td>
+												<td>NCHEMS Information Center for Higher Education Policymaking and Analysis</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>State Expenditures Per Pupil</td>
+												<td>U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD)</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Quality of Life</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Air Quality Index, Percent of “Good” Days</td>
+												<td>Environmental Protection Agency - AirData Air Quality Index Report</td>
+												<td>CSA/CBSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in Population</td>
+												<td>U.S. Census Bureau, Population Division</td>
+												<td>CSA/CBSA</td>
+												<td>2008-2009, 2009-2010, 2010-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Population Without Health Insurance</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Total Violent Crimes per 100,000 Residents</td>
+												<td>FBI Uniform Crime Reporting (UCR) Data</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Average Volunteer Rate</td>
+												<td>The Corporation for National and Community Service</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Population neither Overweight nor Obese</td>
+												<td>Center for Disease Control - Behavioral Risk Factor Surveillance System</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Social Equity</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Percent Population Foreign Born</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Gini Index</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Income Level by Quintile</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Median Household Income (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Housing Owner Occupied (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Poverty Rate of Children (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Regional Transit</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Annual Hours of Delay per Auto Commuter</td>
+												<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+												<td>Urban Areas</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Workers with No Vehicle</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Workers 16+ Driving Alone to Work</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Transit Ridership Occurring on a Bus</td>
+												<td>U.S. Department of Transportation, Federal Transit Administration, National Transit Database</td>
+												<td>Urban Areas</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Public Transportation Funding, State Dollars per 1,000 Residents</td>
+												<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+								</div>
+						      </div>
+						    </div>
+						  </div>
+						</div>						
+
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
-		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData" data-toggle="modal" data-target="#mapInfoModal"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData" data-toggle="modal" data-target="#mapDownloadModal"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
 		                </ul>						
 		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />				  				
@@ -107,6 +414,7 @@
 		            <div class="item">
   		              <div class="container">				
   		   			  	<div class="pinwheelArray"></div>
+						<div id="arrayOnLoadTootip"></div>
 		                <ul id="sc2" class="sliderContainer">
   		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationArray('play')"><span class="glyphicon glyphicon-play"></span></button></li>
   		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationArray('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
@@ -126,10 +434,317 @@
 							</select>
 						  </label>
 						</form>
-						<div class="clearfix"></div>						
+						<div class="clearfix"></div>
+						<!-- Modal -->
+						<div class="modal fade" id="arrayInfoModal" tabindex="-1" role="dialog" aria-labelledby="arrayInfoModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="arrayInfoModalLabel">One D Scorecard Pinwheel Grid Visualization</h4>
+						      </div>
+						      <div class="modal-body">
+						        <p class="leftJustified">These pinwheels represent the 54 U.S. regions compared in the One D Scorecard.  Each pinwheel has five wedges corresponding to five priority areas.  The radius of a pinwheel wedge visualizes each regions comprehensive One D Index, as well as  an index score by priority area.  Learn more about our priority areas, the individual indicators that drive them, and how we calculate the One D Index in our <a href="methodology.html">Methodology</a>.</p>
+								<img src="assets/images/PinwheelLegend.png"/>
+								<p class="leftJustified">Roll over any pinwheel to begin exploring the data.  Organize the regions alphabetically, by their comprehensive One D Index score, or by priority area.  Watch annual change using the time slider.  Click Download for more information about the displayed data and source information.</p>
+						      </div>
+						    </div>
+						  </div>
+						</div>						
+						<!-- Modal -->
+						<div class="modal fade" id="arrayDownloadModal" tabindex="-1" role="dialog" aria-labelledby="arrayDownloadModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="arrayDownloadModalLabel">Download Data</h4>
+						      </div>
+						      <div class="modal-body">
+								<div class="leftJustified">
+						        <p>This button allows you to download a spreadsheet of data displayed in this visualization.</p>
+								<p><b>The displayed data include the following:</b>
+									<ul>
+										<li><b>Columns:</b> Index Scores for all 5 Priority Areas, the One D Scorecard Overall Index Scores, and other regional metadata</li>
+										<li><b>Rows:</b>All 54 Metro Areas by Year</li>
+									</ul>
+								</p>
+							    </div>
+								<button type="button" class="btn btn-primary btn-lg centered">Download Data</button>
+								<div class="leftJustified">
+								<h3>Priority Areas and Associated Indicators</h3>
+								<h4>Economic Prosperity</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Total Value of Exports</td>
+												<td>U.S. Census Bureau; U.S. Department of Commerce</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Per Capita GDP for Metropolitan Area (GMP)</td>
+												<td>U.S. Department of Commerce, Bureau of Economic Analysis</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in High Tech Jobs</td>
+												<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+												<td>CBSA</td>
+												<td>2000-2009, 2001-2010, 2002-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in Knowledge Industry Employment</td>
+												<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+												<td>CBSA</td>
+												<td>2000-2009, 2001-2010, 2002-2011</td>
+											</tr>
+											<tr>
+												<td>Per Capita Personal Income</td>
+												<td>Regional Economic Information System, Bureau of Economic Analysis; U.S. Department of Commerce</td>
+												<td>CSA/CBSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Number of Technology Patents per 10K People</td>
+												<td>U.S. Patent & Trademark Office - Electronic Information Products Division, Patent Technology Monitoring Team (PTMT)</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Business Tax Climate Index</td>
+												<td>Tax Foundation</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Research & Development, Share of State GDP</td>
+												<td>National Science Foundation, Division of Science Resources Statistics; Bureau of Economic Analysis, Gross Domestic Product data</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Educational Preparedness</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Young & Talented Population, Education Attainment Bachelors+, 25-34</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Education Attainment Bachelors+, 25+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Population Enrolled in School, 3+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Education Attainment High School+, 18+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Teens Not Enrolled in School, No HS Diploma, Unemployed</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>State Appropriations Per Pupil</td>
+												<td>NCHEMS Information Center for Higher Education Policymaking and Analysis</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>State Expenditures Per Pupil</td>
+												<td>U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD)</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Quality of Life</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Air Quality Index, Percent of “Good” Days</td>
+												<td>Environmental Protection Agency - AirData Air Quality Index Report</td>
+												<td>CSA/CBSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in Population</td>
+												<td>U.S. Census Bureau, Population Division</td>
+												<td>CSA/CBSA</td>
+												<td>2008-2009, 2009-2010, 2010-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Population Without Health Insurance</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Total Violent Crimes per 100,000 Residents</td>
+												<td>FBI Uniform Crime Reporting (UCR) Data</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Average Volunteer Rate</td>
+												<td>The Corporation for National and Community Service</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Population neither Overweight nor Obese</td>
+												<td>Center for Disease Control - Behavioral Risk Factor Surveillance System</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Social Equity</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Percent Population Foreign Born</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Gini Index</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Income Level by Quintile</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Median Household Income (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Housing Owner Occupied (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Poverty Rate of Children (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Regional Transit</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Annual Hours of Delay per Auto Commuter</td>
+												<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+												<td>Urban Areas</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Workers with No Vehicle</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Workers 16+ Driving Alone to Work</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Transit Ridership Occurring on a Bus</td>
+												<td>U.S. Department of Transportation, Federal Transit Administration, National Transit Database</td>
+												<td>Urban Areas</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Public Transportation Funding, State Dollars per 1,000 Residents</td>
+												<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+								</div>
+									
+						      </div>
+						    </div>
+						  </div>
+						</div>						
+												
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
-		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData" data-toggle="modal" data-target="#arrayInfoModal"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData" data-toggle="modal" data-target="#arrayDownloadModal"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
 		                </ul>						
   		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
@@ -145,10 +760,316 @@
     		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChart('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
   		                  <li><div id="nationalHeatChartSlider" style="width:150px"></div></li>
   		                </ul>
-  						<div class="clearfix"></div>						
+  						<div class="clearfix"></div>
+						<!-- Modal -->
+						<div class="modal fade" id="heatChartInfoModal" tabindex="-1" role="dialog" aria-labelledby="heatChartInfoModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="heatChartInfoModalLabel">One D Scorecard Regional Radial Heat Map</h4>
+						      </div>
+						      <div class="modal-body">
+						        <p class="leftJustified">This radial heat map displays the 54 U.S. regions compared in the One D Scorecard as slices of the circle, organized alphabetically by geography.  Each slice is split into five sections, corresponding to our priority areas.  The index score of each priority area is illustrated by the intensity of the color.  The regional organization and color variations aim to emphasize spatial patterns among the data.  Learn more about our priority areas, the individual indicators that drive them, and how we calculate the One D Index in our <a href="methodology.html">Methodology</a>.</p>
+								<img src="assets/images/IntensityLegend2.png"/>
+								<p class="leftJustified">Roll over any slice in the circle to begin exploring the data or choose a region to highlight.  Watch annual change using the time slider. Click Download for more information about the displayed data and source information.</p>
+						      </div>
+						    </div>
+						  </div>
+						</div>						
+						<!-- Modal -->
+						<div class="modal fade" id="heatChartDownloadModal" tabindex="-1" role="dialog" aria-labelledby="heatChartDownloadModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="heatChartDownloadModalLabel">Download Data</h4>
+						      </div>
+						      <div class="modal-body">
+								<div class="leftJustified">
+						        <p>This button allows you to download a spreadsheet of data displayed in this visualization.</p>
+								<p><b>The displayed data include the following:</b>
+									<ul>
+										<li><b>Columns:</b> Index Scores for all 5 Priority Areas, the One D Scorecard Overall Index Scores, and other regional metadata</li>
+										<li><b>Rows:</b>All 54 Metro Areas by Year</li>
+									</ul>
+								</p>
+							    </div>
+								<button type="button" class="btn btn-primary btn-lg centered">Download Data</button>
+								<div class="leftJustified">
+								<h3>Priority Areas and Associated Indicators</h3>
+								<h4>Economic Prosperity</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Total Value of Exports</td>
+												<td>U.S. Census Bureau; U.S. Department of Commerce</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Per Capita GDP for Metropolitan Area (GMP)</td>
+												<td>U.S. Department of Commerce, Bureau of Economic Analysis</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in High Tech Jobs</td>
+												<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+												<td>CBSA</td>
+												<td>2000-2009, 2001-2010, 2002-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in Knowledge Industry Employment</td>
+												<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+												<td>CBSA</td>
+												<td>2000-2009, 2001-2010, 2002-2011</td>
+											</tr>
+											<tr>
+												<td>Per Capita Personal Income</td>
+												<td>Regional Economic Information System, Bureau of Economic Analysis; U.S. Department of Commerce</td>
+												<td>CSA/CBSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Number of Technology Patents per 10K People</td>
+												<td>U.S. Patent & Trademark Office - Electronic Information Products Division, Patent Technology Monitoring Team (PTMT)</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Business Tax Climate Index</td>
+												<td>Tax Foundation</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Research & Development, Share of State GDP</td>
+												<td>National Science Foundation, Division of Science Resources Statistics; Bureau of Economic Analysis, Gross Domestic Product data</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Educational Preparedness</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Young & Talented Population, Education Attainment Bachelors+, 25-34</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Education Attainment Bachelors+, 25+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Population Enrolled in School, 3+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Education Attainment High School+, 18+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Teens Not Enrolled in School, No HS Diploma, Unemployed</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>State Appropriations Per Pupil</td>
+												<td>NCHEMS Information Center for Higher Education Policymaking and Analysis</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>State Expenditures Per Pupil</td>
+												<td>U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD)</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Quality of Life</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Air Quality Index, Percent of “Good” Days</td>
+												<td>Environmental Protection Agency - AirData Air Quality Index Report</td>
+												<td>CSA/CBSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in Population</td>
+												<td>U.S. Census Bureau, Population Division</td>
+												<td>CSA/CBSA</td>
+												<td>2008-2009, 2009-2010, 2010-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Population Without Health Insurance</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Total Violent Crimes per 100,000 Residents</td>
+												<td>FBI Uniform Crime Reporting (UCR) Data</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Average Volunteer Rate</td>
+												<td>The Corporation for National and Community Service</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Population neither Overweight nor Obese</td>
+												<td>Center for Disease Control - Behavioral Risk Factor Surveillance System</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Social Equity</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Percent Population Foreign Born</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Gini Index</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Income Level by Quintile</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Median Household Income (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Housing Owner Occupied (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Poverty Rate of Children (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Regional Transit</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Annual Hours of Delay per Auto Commuter</td>
+												<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+												<td>Urban Areas</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Workers with No Vehicle</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Workers 16+ Driving Alone to Work</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Transit Ridership Occurring on a Bus</td>
+												<td>U.S. Department of Transportation, Federal Transit Administration, National Transit Database</td>
+												<td>Urban Areas</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Public Transportation Funding, State Dollars per 1,000 Residents</td>
+												<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+								</div>
+									
+						      </div>
+						    </div>
+						  </div>
+						</div>						
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
-		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData" data-toggle="modal" data-target="#heatChartInfoModal"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData" data-toggle="modal" data-target="#heatChartDownloadModal"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
 		                </ul>						
     		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
@@ -157,7 +1078,7 @@
 		            </div>
 		            <div class="item">
 		              <div class="container">
-						<div class="barChart sliderContainer"></div>
+						<div class="barChart"></div>
 						<div class="clearfix"></div>
   		                <ul id="sc4" class="sliderContainer">
     		                  <li><button type="button" class="btn btn-link" onclick="playStopBarChart('play')"><span class="glyphicon glyphicon-play"></span></button></li>
@@ -192,10 +1113,315 @@
 								</select>
 							</div>
 						</form>					
-  						<div class="clearfix"></div>						
+  						<div class="clearfix"></div>
+						<!-- Modal -->
+						<div class="modal fade" id="barInfoModal" tabindex="-1" role="dialog" aria-labelledby="barInfoModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="barInfoModalLabel">One D Scorecard Animated Bar Chart</h4>
+						      </div>
+						      <div class="modal-body">
+						        <p class="leftJustified">This bar graph visualizes how metro Detroit stacks up against 54 other U.S. regions in each of the individual indicators that drive the One D Scorecard and compose the priority areas.  Learn more about our priority areas, the individual indicators that drive them, in our <a href="methodology.html">Methodology</a>.</p>
+								<p class="leftJustified">Roll over any bar to begin exploring the data or choose a region to highlight. Organize by priority area, choose an indicator to graph, and re-order based on region or data values. Watch annual change using the time slider. Click Download for more information about the displayed data and source information.</p>
+						      </div>
+						    </div>
+						  </div>
+						</div>						
+						<!-- Modal -->
+						<div class="modal fade" id="barDownloadModal" tabindex="-1" role="dialog" aria-labelledby="barDownloadModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="barDownloadModalLabel">Download Data</h4>
+						      </div>
+						      <div class="modal-body">
+								<div class="leftJustified">
+						        <p>This button allows you to download a spreadsheet of data displayed in this visualization.</p>
+								<p><b>The displayed data include the following:</b>
+									<ul>
+										<li><b>Columns:</b> <a href="">Complete Indicators for all 5 Priority Areas</a></li>
+										<li><b>Rows:</b>All 54 Metro Areas by Year</li>
+									</ul>
+								</p>
+							    </div>
+								<button type="button" class="btn btn-primary btn-lg centered">Download Data</button>
+								<div class="leftJustified">
+								<h3>Priority Areas and Associated Indicators</h3>
+								<h4>Economic Prosperity</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Total Value of Exports</td>
+												<td>U.S. Census Bureau; U.S. Department of Commerce</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Per Capita GDP for Metropolitan Area (GMP)</td>
+												<td>U.S. Department of Commerce, Bureau of Economic Analysis</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in High Tech Jobs</td>
+												<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+												<td>CBSA</td>
+												<td>2000-2009, 2001-2010, 2002-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in Knowledge Industry Employment</td>
+												<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+												<td>CBSA</td>
+												<td>2000-2009, 2001-2010, 2002-2011</td>
+											</tr>
+											<tr>
+												<td>Per Capita Personal Income</td>
+												<td>Regional Economic Information System, Bureau of Economic Analysis; U.S. Department of Commerce</td>
+												<td>CSA/CBSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Number of Technology Patents per 10K People</td>
+												<td>U.S. Patent & Trademark Office - Electronic Information Products Division, Patent Technology Monitoring Team (PTMT)</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Business Tax Climate Index</td>
+												<td>Tax Foundation</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Research & Development, Share of State GDP</td>
+												<td>National Science Foundation, Division of Science Resources Statistics; Bureau of Economic Analysis, Gross Domestic Product data</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Educational Preparedness</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Young & Talented Population, Education Attainment Bachelors+, 25-34</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Education Attainment Bachelors+, 25+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Population Enrolled in School, 3+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Education Attainment High School+, 18+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Teens Not Enrolled in School, No HS Diploma, Unemployed</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>State Appropriations Per Pupil</td>
+												<td>NCHEMS Information Center for Higher Education Policymaking and Analysis</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>State Expenditures Per Pupil</td>
+												<td>U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD)</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Quality of Life</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Air Quality Index, Percent of “Good” Days</td>
+												<td>Environmental Protection Agency - AirData Air Quality Index Report</td>
+												<td>CSA/CBSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in Population</td>
+												<td>U.S. Census Bureau, Population Division</td>
+												<td>CSA/CBSA</td>
+												<td>2008-2009, 2009-2010, 2010-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Population Without Health Insurance</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Total Violent Crimes per 100,000 Residents</td>
+												<td>FBI Uniform Crime Reporting (UCR) Data</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Average Volunteer Rate</td>
+												<td>The Corporation for National and Community Service</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Population neither Overweight nor Obese</td>
+												<td>Center for Disease Control - Behavioral Risk Factor Surveillance System</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Social Equity</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Percent Population Foreign Born</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Gini Index</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Income Level by Quintile</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Median Household Income (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Housing Owner Occupied (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Poverty Rate of Children (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Regional Transit</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Annual Hours of Delay per Auto Commuter</td>
+												<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+												<td>Urban Areas</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Workers with No Vehicle</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Workers 16+ Driving Alone to Work</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Transit Ridership Occurring on a Bus</td>
+												<td>U.S. Department of Transportation, Federal Transit Administration, National Transit Database</td>
+												<td>Urban Areas</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Public Transportation Funding, State Dollars per 1,000 Residents</td>
+												<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+								</div>
+									
+						      </div>
+						    </div>
+						  </div>
+						</div>						
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
-		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData" data-toggle="modal" data-target="#barInfoModal"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData" data-toggle="modal" data-target="#barDownloadModal"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
 		                </ul>						
     		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
@@ -219,10 +1445,316 @@
 							</select>
 						  </label>
 						</form>											
-  						<div class="clearfix"></div>						
+  						<div class="clearfix"></div>
+						<!-- Modal -->
+						<div class="modal fade" id="cityInfoModal" tabindex="-1" role="dialog" aria-labelledby="cityInfoModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="cityInfoModalLabel">One D Scorecard Priority Area Heat Chart</h4>
+						      </div>
+						      <div class="modal-body">
+						        <p class="leftJustified">This chart displays the individual indicators that comprise each priority area and drive the One D Scorecard.  The value of an indicator is illustrated by the intensity of the color, coded to its priority area.  The layout of the chart aims to illustrate how we calculate the comprehensive One D Index; each priority area makes up an equal portion of the total circle, and the individual indicators within a priority area are equally weighted slices, with the exception of indicators reported by race when a total slice is split into sectors.   Learn more about our priority areas, the individual indicators that drive them, and how we calculate the One D Index in our <a href="methodology.html">Methodology</a>.</p>
+								<img src="assets/images/IntensityLegend2.png"/>
+								<p class="leftJustified">Roll over any slice in the circle to begin exploring the data or choose an individual indicator to highlight.  Change the region to compare data.  Watch annual change using the time slider. Click Download for more information about the displayed data and source information.</p>
+						      </div>
+						    </div>
+						  </div>
+						</div>						
+						<!-- Modal -->
+						<div class="modal fade" id="cityDownloadModal" tabindex="-1" role="dialog" aria-labelledby="cityDownloadModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						        <h4 class="modal-title" id="cityDownloadModalLabel">Download Data</h4>
+						      </div>
+						      <div class="modal-body">
+								<div class="leftJustified">
+						        <p>This button allows you to download a spreadsheet of data displayed in this visualization.</p>
+								<p><b>The displayed data include the following:</b>
+									<ul>
+										<li><b>Columns:</b> <a href="">Complete Indicators for all 5 Priority Areas</a></li>
+										<li><b>Rows:</b>All 54 Metro Areas by Year</li>
+									</ul>
+								</p>
+							    </div>
+								<button type="button" class="btn btn-primary btn-lg centered">Download Data</button>
+								<div class="leftJustified">
+								<h3>Priority Areas and Associated Indicators</h3>
+								<h4>Economic Prosperity</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Total Value of Exports</td>
+												<td>U.S. Census Bureau; U.S. Department of Commerce</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Per Capita GDP for Metropolitan Area (GMP)</td>
+												<td>U.S. Department of Commerce, Bureau of Economic Analysis</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in High Tech Jobs</td>
+												<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+												<td>CBSA</td>
+												<td>2000-2009, 2001-2010, 2002-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in Knowledge Industry Employment</td>
+												<td>Bureau of Labor Statistics, Quarterly Census of Employment and Wages</td>
+												<td>CBSA</td>
+												<td>2000-2009, 2001-2010, 2002-2011</td>
+											</tr>
+											<tr>
+												<td>Per Capita Personal Income</td>
+												<td>Regional Economic Information System, Bureau of Economic Analysis; U.S. Department of Commerce</td>
+												<td>CSA/CBSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Number of Technology Patents per 10K People</td>
+												<td>U.S. Patent & Trademark Office - Electronic Information Products Division, Patent Technology Monitoring Team (PTMT)</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Business Tax Climate Index</td>
+												<td>Tax Foundation</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Research & Development, Share of State GDP</td>
+												<td>National Science Foundation, Division of Science Resources Statistics; Bureau of Economic Analysis, Gross Domestic Product data</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Educational Preparedness</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Young & Talented Population, Education Attainment Bachelors+, 25-34</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Education Attainment Bachelors+, 25+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Population Enrolled in School, 3+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Education Attainment High School+, 18+</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Teens Not Enrolled in School, No HS Diploma, Unemployed</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>State Appropriations Per Pupil</td>
+												<td>NCHEMS Information Center for Higher Education Policymaking and Analysis</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>State Expenditures Per Pupil</td>
+												<td>U.S. Department of Education, National Center for Education Statistics, Common Core of Data (CCD)</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Quality of Life</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Air Quality Index, Percent of “Good” Days</td>
+												<td>Environmental Protection Agency - AirData Air Quality Index Report</td>
+												<td>CSA/CBSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Change in Population</td>
+												<td>U.S. Census Bureau, Population Division</td>
+												<td>CSA/CBSA</td>
+												<td>2008-2009, 2009-2010, 2010-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Population Without Health Insurance</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Total Violent Crimes per 100,000 Residents</td>
+												<td>FBI Uniform Crime Reporting (UCR) Data</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Average Volunteer Rate</td>
+												<td>The Corporation for National and Community Service</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Population neither Overweight nor Obese</td>
+												<td>Center for Disease Control - Behavioral Risk Factor Surveillance System</td>
+												<td>MSA</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Social Equity</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Percent Population Foreign Born</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Gini Index</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Income Level by Quintile</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Median Household Income (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent Housing Owner Occupied (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Poverty Rate of Children (by Race)</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+									<h4>Regional Transit</h4>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Indicator</th>
+												<th>Data Source</th>
+												<th>Unit of Geography</th>
+												<th>Years Available</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Annual Hours of Delay per Auto Commuter</td>
+												<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+												<td>Urban Areas</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Workers with No Vehicle</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Workers 16+ Driving Alone to Work</td>
+												<td>U.S. Census Bureau, American Community Survey 3-year Estimates</td>
+												<td>CSA/CBSA</td>
+												<td>2007-2009, 2008-2010, 2009-2011</td>
+											</tr>
+											<tr>
+												<td>Percent of Transit Ridership Occurring on a Bus</td>
+												<td>U.S. Department of Transportation, Federal Transit Administration, National Transit Database</td>
+												<td>Urban Areas</td>
+												<td>2009-2011</td>
+											</tr>
+											<tr>
+												<td>Public Transportation Funding, State Dollars per 1,000 Residents</td>
+												<td>Bureau of Transportation Statistics, Research and Innovative Technology Administration</td>
+												<td>State</td>
+												<td>2009-2011</td>
+											</tr>
+										</tbody>									
+									</table>
+								</div>
+									
+						      </div>
+						    </div>
+						  </div>
+						</div>						
 		                <ul class="nav control-nav">
-		                  <li><button type="button" class="btn btn-link learnAboutData"></button></li>
-		                  <li><button type="button" class="btn btn-link downloadData"></button></li>
+		                  <li><button type="button" class="btn btn-link learnAboutData" data-toggle="modal" data-target="#cityInfoModal"></button></li>
+		                  <li><button type="button" class="btn btn-link downloadData" data-toggle="modal" data-target="#cityDownloadModal"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
 		                </ul>						
     		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
@@ -231,7 +1763,7 @@
 		            </div>
 		            <div class="item">
 		              <div class="container">
-						<a href="onedmap.html"><div class="michiganMap sliderContainer"></div></a>
+						<a href="one-d-map.html"><div class="michiganMap sliderContainer"></div></a>
 						<div class="michiganMapSidebar sliderContainerRight heatmapTableContainer">
 							<h3>Welcome to the One Detroit Portal</h3>
 							<p>The state of Michigan’s future is tied to the future of Metro Detroit. This visualization allows a deep dive into the indicators essential for improving our region. Just as there are differences between CBSAs across the country, A look at the Detroit area census tract level data will reveal differences within our own region.</p>
@@ -271,14 +1803,20 @@
 	  	                    <li class="dropdown">
 	  	                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methodology <b class="caret"></b></a>
 	  	                      <ul class="dropdown-menu dropdown-menu-left">
-	  	                        <li><a href="#">Priority Areas</a></li>
-	  	                        <li><a href="#">OneD Index</a></li>
-	  	                        <li><a href="#">Geography</a></li>
-	  	                        <li><a href="#">Data Download</a></li>
-	  	                        <li><a href="#">OneDetroit Portal</a></li>
+	  	                        <li><a href="priority-areas.html">Priority Areas</a></li>
+	  	                        <li><a href="one-d-index.html">OneD Index</a></li>
+	  	                        <li><a href="geography.html">Geography</a></li>
+	  	                        <li><a href="data-download.html">Data Download</a></li>
 	  	                      </ul>
 	  	                    </li>
-	  	                    <li><a href="#about">About</a></li>
+	  	                    <li class="dropdown">
+	  	                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+	  	                      <ul class="dropdown-menu dropdown-menu-left">
+	  	                        <li><a href="about.html">One D Scorecard</a></li>
+	  	                        <li><a href="about-one-detroit-portal.html">One Detroit Portal</a></li>
+	  	                        <li><a href="partners.html">Partners</a></li>
+	  	                      </ul>
+	  	                    </li>
 	  	                  </ul>
 	  	                </div>
 	  	              </div>
@@ -356,6 +1894,9 @@
 
 <!-- javascript for updating the bar chart dropdown -->
 <script type="text/javascript" src="js/barChartDropdownSetup.js"></script>
+
+<!-- resize all charts based on viewport width -->
+<script type="text/javascript" src="js/resize.js"></script>
 
 
 
