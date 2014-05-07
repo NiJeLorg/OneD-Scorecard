@@ -1,6 +1,6 @@
 .crosslet,
 .crosslet * {
-  font-family: georgia, "times new roman", times, serif;
+  /*font-family: georgia, "times new roman", times, serif;*/
 }
 .crosslet .crosslet_panel,
 .crosslet * .crosslet_panel {

@@ -753,13 +753,23 @@
 		            <div class="item">
 		              <div class="container">
 						<div class="nationalCircularHeatChart sliderContainer"></div>
-						<div class="nationalCircularHeatChartSidebar sliderContainerRight heatmapTableContainer"></div>
+						<div class="nationalCircularHeatChartSidebarSelected sliderContainerRight heatmapTableContainer"></div>
+						<div class="nationalCircularHeatChartSidebar sliderContainerRight heatmapTableContainerBottom">
+							<p class="leftJustified">Roll over any slice in the circle to begin exploring the data or choose a region to highlight in the drop down menu below.</p>
+						</div>
 						<div class="clearfix"></div>
   		                <ul id="sc3" class="sliderContainer">
     		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChart('play')"><span class="glyphicon glyphicon-play"></span></button></li>
     		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationHeatChart('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
   		                  <li><div id="nationalHeatChartSlider" style="width:150px"></div></li>
   		                </ul>
+						<form class="form-inline sliderContainerRight" role="form">
+						  <label>Choose A City: 
+							<select class="form-control nationalCircularHeatChartDropdown">
+							  <option value='15'>Detroit-Warren-Flint, MI</option>
+							</select>
+						  </label>
+						</form>											
   						<div class="clearfix"></div>
 						<!-- Modal -->
 						<div class="modal fade" id="heatChartInfoModal" tabindex="-1" role="dialog" aria-labelledby="heatChartInfoModalLabel" aria-hidden="true">
@@ -1072,7 +1082,7 @@
 		                  <li><button type="button" class="btn btn-link downloadData" data-toggle="modal" data-target="#heatChartDownloadModal"></button></li>
 		                  <li><button type="button" class="btn btn-link refreshData"></button></li>
 		                </ul>						
-    		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
+    		            <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />
 						  
 		              </div>
 		            </div>
@@ -1091,8 +1101,8 @@
 								  <option value='0'>Overall</option>
 								  <option value='1'>Economy</option>
 								  <option value='2'>Education</option>
-								  <option value='3'>Quality of Life</option>
-								  <option value='4'>Social Equity</option>
+								  <option value='3'>Social Equity</option>
+								  <option value='4'>Quality of Life</option>
 								  <option value='5'>Regional Transit</option>
 								</select>
 							</div>
@@ -1112,6 +1122,12 @@
 								  <option value='7'>Western Cities</option>
 								</select>
 							</div>
+							<div class="form-group">
+								<select id="selectCity" class="form-control barChartChange">
+								  <option value='15'>Detroit-Warren-Flint, MI</option>
+								</select>
+							</div>											
+							
 						</form>					
   						<div class="clearfix"></div>
 						<!-- Modal -->
@@ -1431,7 +1447,10 @@
 		            <div class="item">
 		              <div class="container">
 						<div class="cityDonutChart sliderContainer"></div>
-						<div class="cityDonutChartSidebar sliderContainerRight heatmapTableContainer"></div>
+						<div class="cityDonutChartSidebarSelected sliderContainerRight heatmapTableContainer"></div>
+						<div class="cityDonutChartSidebar sliderContainerRight heatmapTableContainerBottom">
+							<p class="leftJustified">Roll over any slice in the circle to begin exploring the data or choose an indicator to highlight in the drop down menu below.</p>
+						</div>
 						<div class="clearfix"></div>
   		                <ul id="sc3" class="sliderContainer">
     		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationDonutChartCity('play')"><span class="glyphicon glyphicon-play"></span></button></li>
@@ -1439,11 +1458,32 @@
   		                  <li><div id="cityDonutChartSlider" style="width:150px"></div></li>
   		                </ul>
 						<form class="form-inline sliderContainerRight" role="form">
-						  <label>Choose A City: 
-							<select class="form-control cityDonutDropdown">
-							  <option value='15'>Detroit-Warren-Flint, MI</option>
-							</select>
-						  </label>
+							<div class="form-group">
+								<select id="selectPriorityAreaDonut" class="form-control donutDropdown">
+								  <option value='1'>Economy</option>
+								  <option value='2'>Education</option>
+								  <option value='3'>Social Equity</option>
+								  <option value='4'>Quality of Life</option>
+								  <option value='5'>Regional Transit</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<select id="selectIndicatorDonut" class="form-control donutDropdown">
+									<option value='1'>Total Value of Exports</option>
+									<option value='2'>Per Capita GDP for Metropolitan Area (GMP)</option>
+									<option value='4'>Percent Change in High Tech Jobs</option>
+									<option value='5'>Percent Change in Knowledge Industry Employment</option>
+									<option value='7' selected='selected'>Per Capita Personal Income</option>
+									<option value='10'>Number of Technology Patents per 10K People</option>
+									<option value='11'>Business Tax Climate Index</option>
+									<option value='12'>Research & Development, Share of State GDP</option>
+								</select>
+							</div>
+							<div class="form-group">							
+								<select id="selectCityDonut" class="form-control donutDropdown">
+								  <option value='15'>Detroit-Warren-Flint, MI</option>
+								</select>
+							</div>							
 						</form>											
   						<div class="clearfix"></div>
 						<!-- Modal -->

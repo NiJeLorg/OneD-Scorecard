@@ -1416,7 +1416,7 @@ crosslet.MapView = (function(_super) {
 	var dropdowns = L.control({position: 'bottomleft'});
 	dropdowns.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend');
-			div.innerHTML = "<form class=\"form-inline\" role=\"form\"><div class=\"form-group\"><select id=\"selectPriorityArea\" class=\"form-control barChartChange\"><option value='0'>Overall</option><option value='1'>Economy</option><option value='2'>Education</option><option value='3'>Quality of Life</option><option value='4'>Social Equity</option><option value='5'>Regional Transit</option></select></div><div class=\"form-group\"><select id=\"selectIndicator\" class=\"form-control barChartChange\"><option value='66'>OneD Index</option></select></div><div class=\"form-group\"><select id=\"selectOrder\" class=\"form-control barChartChange\"><option value='1'>High to Low</option><option value='2'>Low to High</option><option value='3'>Midwest Cities</option><option value='4'>Northeast Cities</option><option value='5'>Southeast Cities</option><option value='6'>Southwest Cities</option><option value='7'>Western Cities</option></select></div></form>";
+			div.innerHTML = comboBoxInnerHtml;
 			div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 		return div;
 	};

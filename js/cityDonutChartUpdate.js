@@ -2,7 +2,7 @@
 * this function updates the pinwheels based on user section; runs updatePinwheel in pinwheel.js
 */
 		
-function updateCityDonutChartData(year, cityFilter) {
+function updateCityDonutChartData(year, cityFilter, selectedIndicator) {
 	// set a global variable for crossfilter on the dataset
 	var cf = crossfilter(datasetIndicators);	
 	var byYear = setupCrossfilterByYear(cf, datasetIndicators);
@@ -21,7 +21,7 @@ function updateCityDonutChartData(year, cityFilter) {
 	var donutChartData = createObjectForDountChartCity(filteredDataByGeoID);
 	
 	// create donut chart
-	updateCityDonutChart(svgContainerCityDonutChart, donutChartData, datasetIndicators);
+	updateCityDonutChart(svgContainerCityDonutChart, donutChartData, selectedIndicator);
 			
 	// clear the year filter
 	clearFilterByYear(byYear);	

@@ -4,7 +4,7 @@
 
 /**** Code to open dataset and preform functions ****/	
 // function to update the bar chart
-function updateBarChartData(year, indicator, order) {
+function updateBarChartData(year, indicator, order, city) {
 
 	// function to set up crossfilter dimensions
 	// set a globa variable for crossfilter on the dataset
@@ -21,7 +21,7 @@ function updateBarChartData(year, indicator, order) {
 	var textTick = getTextTick(indicator);
 	
 	// create bar chart
-	updateBarChart(svgContainerBarChart, orderedDataByYear, textTick);
+	updateBarChart(svgContainerBarChart, orderedDataByYear, textTick, city);
 	
 	// clear the year filter
 	clearFilterByYear(byYear);	

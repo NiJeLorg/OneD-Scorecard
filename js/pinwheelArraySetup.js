@@ -86,8 +86,11 @@ function originalPinwheels() {
 		// calculat the number of cities
 		var numberOfCities = Object.size(circularChartData.meta);
 		
+		// set Detroit as the default city
+		var city = 15;
+		
 		// create national level circular heat chart
-		createNationalCircularHeatChart(svgContainerNationalCircularHeatChart, circularChartData, numberOfCities);
+		createNationalCircularHeatChart(svgContainerNationalCircularHeatChart, circularChartData, numberOfCities, city);
 		
 		// clear the year filter
 		clearFilterByYear(byYear);

@@ -16,15 +16,24 @@ $(document).ready(function(){
 	$( "#selectIndicator" ).change( function() {
 		var indicator = $(this).val();
 		var order = $( "#selectOrder" ).val();
+		var city = $( "#selectCity" ).val();
 		var year = $( "#barChartSlider" ).slider( 'getValue' );
-		updateBarChartData(year, indicator, order);
+		updateBarChartData(year, indicator, order, city);
 	});	
 	$( "#selectOrder" ).change( function() {
 		var order = $(this).val();
 		var indicator = $( "#selectIndicator" ).val();
+		var city = $( "#selectCity" ).val();
 		var year = $( "#barChartSlider" ).slider( 'getValue' );
-		updateBarChartData(year, indicator, order);
+		updateBarChartData(year, indicator, order, city);
 	});	
+	$( "#selectCity" ).change( function() {
+		var city = $(this).val();
+		var order = $( "#selectOrder" ).val();
+		var indicator = $( "#selectIndicator" ).val();
+		var year = $( "#barChartSlider" ).slider( 'getValue' );
+		updateBarChartData(year, indicator, order, city);
+	});
 	
 	/*
 	$( ".cityHeatChartDropdown" ).change( function() {
@@ -34,9 +43,21 @@ $(document).ready(function(){
 	});
 	*/
 		
-	$( ".cityDonutDropdown" ).change( function() {
-		var city = $(this).val();
+	$( "#selectIndicatorDonut" ).change( function() {
+		var indicator = $(this).val();
+		var city = $( "#selectCityDonut" ).val();
 		var year = $( "#cityDonutChartSlider" ).slider( 'getValue' );
-		updateCityDonutChartData(year, city);
+		updateCityDonutChartData(year, city, indicator);
+	});	
+	$( "#selectCityDonut" ).change( function() {
+		var city = $(this).val();
+		var indicator = $( "#selectIndicatorDonut" ).val();
+		var year = $( "#cityDonutChartSlider" ).slider( 'getValue' );
+		updateCityDonutChartData(year, city, indicator);
+	});
+	$( ".nationalCircularHeatChartDropdown" ).change( function() {
+		var city = $(this).val();
+		var year = $( "#nationalHeatChartSlider" ).slider( 'getValue' );
+		updateCircularHeatChart(year, city);
 	});	
 });

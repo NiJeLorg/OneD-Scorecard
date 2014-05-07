@@ -52,9 +52,9 @@ function originalBarChart() {
 			}
 		});
 		
-        $(".cityHeatChartDropdown").html(cityOptions);
-		$(".cityDonutDropdown").html(cityOptions);
-		
+		$(".nationalCircularHeatChartDropdown").html(cityOptions);
+		$("#selectCity").html(cityOptions);	
+		$("#selectCityDonut").html(cityOptions);
 		clearFilterByCityOnly(byCity);
 		
 		
@@ -75,9 +75,10 @@ function originalBarChart() {
 		
 		// create dataset to be passed to donut chart
 		var donutChartData = createObjectForDountChartCity(filteredDataByGeoID);
+		var selectedIndicator = 7;
 		
 		// create donut chart
-		createCityDountChart(svgContainerCityDonutChart, donutChartData);
+		createCityDountChart(svgContainerCityDonutChart, donutChartData, selectedIndicator);
 		
 		// clear the year filter
 		clearFilterByYear(byYear);	

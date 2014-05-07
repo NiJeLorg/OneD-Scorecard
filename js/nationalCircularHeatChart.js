@@ -5,7 +5,7 @@
 * leverages the reusable circular heat chart in assets/js/circularHeatChart.js extended from work by by Peter Cook (https://github.com/prcweb/d3-circularheat)
 */
 
-function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) {
+function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, city) {
 	
     /* Arc functions */
     rsa = function(d, i) {
@@ -21,6 +21,7 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 	    .segmentHeight(36)
 	    .innerRadius(30)
 	    .numSegments(numberOfCities)
+		.margin({top: 0, right: 20, bottom: 0, left: 0})
 			   
 	   svgContainer.selectAll('svg')
 	       .data([dataset.indicies])
@@ -34,16 +35,102 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 		   	   
    	//set up container for mouseover interaction
    	var div = d3.select(".nationalCircularHeatChartSidebar")
-   	    .style("opacity", 1e-6);
+   	    .style("opacity", 1);
+
+   	//set up container for dropdown interaction
+	$.each(dataset.meta, function( i, d ) {
+		if (dataset.meta[i].geoid == city) {
+		   	var div = d3.select(".nationalCircularHeatChartSidebarSelected")
+		   	    .style("opacity", 1)
+				.html(
+					'<h4>' + dataset.meta[i].metro + '</h4>' +
+					'<table class="table table-condensed">' +
+						'<tr>' +
+							'<td class="oned-rect">' +
+							'</td>' +
+							'<td class="oned">' +
+								'OneD Index: ' + dataset.meta[i].oned_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="economy-rect">' +
+							'</td>' +
+							'<td class="economy">' +
+								'Economy Index: ' + dataset.meta[i].economy_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="education-rect">' +
+							'</td>' +
+							'<td class="education">' +
+								'Education Index: ' + dataset.meta[i].education_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="equity-rect">' +
+							'</td>' +
+							'<td class="equity">' +
+								'Equity Index: ' + dataset.meta[i].equity_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="quality_of_life-rect">' +
+							'</td>' +
+							'<td class="quality_of_life">' +
+								'Quality of Life Index: ' + dataset.meta[i].quality_of_life_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="transit-rect">' +
+							'</td>' +
+							'<td class="transit">' +
+								'Transit Index: ' + dataset.meta[i].transit_index +
+							'</td>' +
+						'</tr>' +
+					'</table>'		
+				);
+		}	
+	});
 	   
-	// creat a transparent overlay for mouseover   
-    var margin = {top: 20, right: 20, bottom: 20, left: 0},
+   	// set up varibles
+    var margin = {top: 0, right: 20, bottom: 0, left: 0},
     innerRadius = 30,
     numSegments = numberOfCities,
     segmentHeight = 36,
     accessor = function(d) {return d;},
 	offset = height/2;
-		   	   
+	
+	// create segments for regions
+   	seg = svgContainer.select("svg")
+   		.append('g')
+   		.classed("circular-heat-dividers", true)
+   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+   
+   	seg.selectAll("path")
+   		.data(dataset.regions)
+   		.enter()
+   		.append("path")
+   		.attr("d", d3.svg.arc().innerRadius(innerRadius).outerRadius(innerRadius + (segmentHeight * 5)).startAngle(rsa).endAngle(rea))
+   		.attr('fill', 'none')
+		.attr("stroke", "#6D6E70")		   
+		.attr("stroke-width", "3px");
+			
+	// create segments for region labels   
+   	br = svgContainer.select("svg")
+   		.append('g')
+   		.classed("circular-heat-bounding-rim", true)
+   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+	   
+   	br.selectAll("path")
+   		.data(dataset.regions)
+   		.enter()
+   		.append("path")
+   		.attr("d", d3.svg.arc().innerRadius(innerRadius + (segmentHeight * 5)).outerRadius(innerRadius + (segmentHeight * 5) + 15).startAngle(rsa).endAngle(rea))
+   		.attr('fill', '#BBBDBF')
+		.attr("stroke", "#6D6E70")		   
+		.attr("stroke-width", "3px");
+
+	// create a transparent overlay for mouseover 	   
 	g = svgContainer.select("svg")
 		.append('g')
 		.classed("circular-heat-overlay", true)
@@ -57,6 +144,20 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 		.attr("d", d3.svg.arc().innerRadius(ir).outerRadius(innerRadius + (segmentHeight * 5)).startAngle(sa).endAngle(ea))
 		.attr('fill', 'none')
 		.attr('pointer-events', 'all')
+		.attr("stroke", function(d) { 
+			if (d.geoid == city) {
+				return "#FF3300";
+			} else {
+				return "none"; 
+			} 
+		})
+		.attr("stroke-width", function(d) { 
+			if (d.geoid == city) {
+				return "3px";
+			} else {
+				return "0px"; 
+			} 
+		})
 		
 		
 		// set up on mouseover events
@@ -64,7 +165,13 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 			//console.log(d);
 			
 			d3.select(this)
-				.attr("stroke", "#6D6E70")		   
+				.attr("stroke", function(d) { 
+					if (d.geoid == city) {
+						return "#FF3300";
+					} else {
+						return "#6D6E70"; 
+					} 
+				})
 				.attr("stroke-width", "3px");		   
 			
 		    div.transition()
@@ -72,7 +179,7 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 		        .style("opacity", 1);
 			
             div.html(
-				'<h4>' + d.metro + ', ' + d.year +'</h4>' +
+				'<h5>' + d.metro + ', ' + d.year +'</h5>' +
 				'<table class="table table-condensed heatmapTable">' +
 					'<tr>' +
 						'<td class="oned-rect">' +
@@ -122,7 +229,20 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 	   })
 	   .on("mouseout", function() {
 			d3.select(this)
-				.attr("stroke-width", "0px");		   
+				.attr("stroke", function(d) { 
+					if (d.geoid == city) {
+						return "#FF3300";
+					} else {
+						return "none"; 
+					} 
+				})		   			
+				.attr("stroke-width", function(d) { 
+					if (d.geoid == city) {
+						return "3px";
+					} else {
+						return "0px"; 
+					} 
+				});		   
 	   
 		   div.transition()
 		       .duration(250)
@@ -130,47 +250,6 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 			
 	   });
 	   
-	// create inner rim
-   	ir = svgContainer.select("svg")
-   		.append('g')
-   		.classed("circular-heat-bounding-inner-rim", true)
-   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
-		
-	ir.append("circle")
-		.attr('r', innerRadius)
-		.attr('fill', 'none')
-		.attr("stroke", "#6D6E70")		   
-		.attr("stroke-width", "3px");
-	
-	// create segments for regions
-   	seg = svgContainer.select("svg")
-   		.append('g')
-   		.classed("circular-heat-dividers", true)
-   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
-   
-   	seg.selectAll("path")
-   		.data(dataset.regions)
-   		.enter()
-   		.append("path")
-   		.attr("d", d3.svg.arc().innerRadius(innerRadius).outerRadius(innerRadius + (segmentHeight * 5)).startAngle(rsa).endAngle(rea))
-   		.attr('fill', 'none')
-		.attr("stroke", "#6D6E70")		   
-		.attr("stroke-width", "3px");
-			
-	// create segments for region labels   
-   	br = svgContainer.select("svg")
-   		.append('g')
-   		.classed("circular-heat-bounding-rim", true)
-   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
-	   
-   	br.selectAll("path")
-   		.data(dataset.regions)
-   		.enter()
-   		.append("path")
-   		.attr("d", d3.svg.arc().innerRadius(innerRadius + (segmentHeight * 5)).outerRadius(innerRadius + (segmentHeight * 5) + 15).startAngle(rsa).endAngle(rea))
-   		.attr('fill', '#BBBDBF')
-		.attr("stroke", "#6D6E70")		   
-		.attr("stroke-width", "3px");
 		
 		
 	// create segment labels
@@ -203,7 +282,7 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 }
 
 
-function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities) {
+function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, city) {
 	
     /* Arc functions */
     rsa = function(d, i) {
@@ -259,9 +338,64 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
    	//set up container for mouseover interaction
    	var div = d3.select(".nationalCircularHeatChartSidebar")
    	    .style("opacity", 1e-6);
+		
+   	//set up container for dropdown interaction
+	$.each(dataset.meta, function( i, d ) {
+		if (dataset.meta[i].geoid == city) {
+		   	var div = d3.select(".nationalCircularHeatChartSidebarSelected")
+		   	    .style("opacity", 1)
+				.html(
+					'<h4>' + dataset.meta[i].metro + '</h4>' +
+					'<table class="table table-condensed">' +
+						'<tr>' +
+							'<td class="oned-rect">' +
+							'</td>' +
+							'<td class="oned">' +
+								'OneD Index: ' + dataset.meta[i].oned_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="economy-rect">' +
+							'</td>' +
+							'<td class="economy">' +
+								'Economy Index: ' + dataset.meta[i].economy_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="education-rect">' +
+							'</td>' +
+							'<td class="education">' +
+								'Education Index: ' + dataset.meta[i].education_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="equity-rect">' +
+							'</td>' +
+							'<td class="equity">' +
+								'Equity Index: ' + dataset.meta[i].equity_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="quality_of_life-rect">' +
+							'</td>' +
+							'<td class="quality_of_life">' +
+								'Quality of Life Index: ' + dataset.meta[i].quality_of_life_index +
+							'</td>' +
+						'</tr>' +
+						'<tr>' +
+							'<td class="transit-rect">' +
+							'</td>' +
+							'<td class="transit">' +
+								'Transit Index: ' + dataset.meta[i].transit_index +
+							'</td>' +
+						'</tr>' +
+					'</table>'		
+				);
+		}	
+	});
 	   
 	// creat a transparent overlay for mouseover   
-    var margin = {top: 20, right: 20, bottom: 20, left: 0},
+    var margin = {top: 0, right: 20, bottom: 0, left: 0},
     innerRadius = 30,
     numSegments = numberOfCities,
     segmentHeight = 36,
@@ -292,12 +426,33 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 	g = svgContainer.select(".circular-heat-overlay");
 	
 	g.selectAll("path")
-		.data(dataset.meta)		
+		.data(dataset.meta)
+		.attr("stroke", function(d) { 
+			if (d.geoid == city) {
+				return "#FF3300";
+			} else {
+				return "none"; 
+			} 
+		})
+		.attr("stroke-width", function(d) { 
+			if (d.geoid == city) {
+				return "3px";
+			} else {
+				return "0px"; 
+			} 
+		})
+				
 		// set up on mouseover events
 		.on("mouseover", function(d) {
 						
 			d3.select(this)
-				.attr("stroke", "#6D6E70")		   
+				.attr("stroke", function(d) { 
+					if (d.geoid == city) {
+						return "#FF3300";
+					} else {
+						return "#6D6E70"; 
+					} 
+				})
 				.attr("stroke-width", "3px");		   
 			
 		    div.transition()
@@ -305,7 +460,7 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 		        .style("opacity", 1);
 			
             div.html(
-				'<h4>' + d.metro + ', ' + d.year +'</h4>' +
+				'<h5>' + d.metro + ', ' + d.year +'</h5>' +
 				'<table class="table table-condensed heatmapTable">' +
 					'<tr>' +
 						'<td class="oned-rect">' +
@@ -355,13 +510,27 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities) 
 	   })
 	   .on("mouseout", function() {
 			d3.select(this)
-				.attr("stroke-width", "0px");		   
+				.attr("stroke", function(d) { 
+					if (d.geoid == city) {
+						return "#FF3300";
+					} else {
+						return "none"; 
+					} 
+				})		   			
+				.attr("stroke-width", function(d) { 
+					if (d.geoid == city) {
+						return "3px";
+					} else {
+						return "0px"; 
+					} 
+				});		   
 	   
 		   div.transition()
 		       .duration(250)
 		       .style("opacity", 1e-6);
 			
 	   });
+
 	   
 	
 }

@@ -375,12 +375,12 @@ function getTextTick(indicator) {
 	var textTick = {};
 	
 	if (indicator == 1) {
-		textTick = { text: 'Dollars', tickFormat: d3.format("$,.0f"), tableClass: 'economy', indicatorName: 'Export Value', accessorFunction: function(d) {return d.econ_exports;} };
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.0f"), tableClass: 'economy', indicatorName: 'Total Value of Exports', accessorFunction: function(d) {return d.econ_exports;} };
 	} else if (indicator == 2) {
-		textTick = { text: 'Dollars', tickFormat: d3.format("$,.0f"), tableClass: 'economy', indicatorName: 'Per Capita Real GDP', accessorFunction: function(d) {return d.econ_gmp;} };
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.0f"), tableClass: 'economy', indicatorName: 'Per Capita GDP for Metropolitan Area (GMP)', accessorFunction: function(d) {return d.econ_gmp;} };
 	} else if (indicator == 3) {
 	} else if (indicator == 4) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'Percent Change in High Tech Employment', accessorFunction: function(d) {return d.econ_hightech;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'Percent Change in High Tech Jobs', accessorFunction: function(d) {return d.econ_hightech;} };
 	} else if (indicator == 5) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'Percent Change in Knowledge Industry Employment', accessorFunction: function(d) {return d.econ_kiemploy;} };
 	} else if (indicator == 6) {
@@ -392,25 +392,25 @@ function getTextTick(indicator) {
 	} else if (indicator == 9) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'Percent of Population Below 100% of Poverty Level', accessorFunction: function(d) {return d.econ_povrt;} };
 	} else if (indicator == 10) {
-		textTick = { text: 'Number', tickFormat: d3.format(",.1"), tableClass: 'economy', indicatorName: 'Technology Patents per 10,000 People', accessorFunction: function(d) {return d.econ_techpatents;} };
+		textTick = { text: 'Number', tickFormat: d3.format(",.1"), tableClass: 'economy', indicatorName: 'Number of Technology Patents per 10K People', accessorFunction: function(d) {return d.econ_techpatents;} };
 	} else if (indicator == 11) {
 		textTick = { text: 'Index', tickFormat: d3.format(",.2"), tableClass: 'economy', indicatorName: 'Business Tax Climate Index', accessorFunction: function(d) {return d.econ_biztaxindex;} };
 	} else if (indicator == 12) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'R&D Performed as Share of GDP', accessorFunction: function(d) {return d.econ_rdsharegdp;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'economy', indicatorName: 'Research & Development, Share of State GDP', accessorFunction: function(d) {return d.econ_rdsharegdp;} };
 	} else if (indicator == 13) {
 		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'economy', indicatorName: 'Venture Captial Investment Dollars Per Capita', accessorFunction: function(d) {return d.econ_vcpc;} };
 	} else if (indicator == 14) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent Ages 25 to 34 with Bachelor\'s Degree or Higher', accessorFunction: function(d) {return d.edu_pctbachhigher2534;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Young & Talented Population, Education Attainment Bachelors+, 25-34', accessorFunction: function(d) {return d.edu_pctbachhigher2534;} };
 	} else if (indicator == 15) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent with Bachelor\'s Degree or Higher', accessorFunction: function(d) {return d.edu_pctbachhigher;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Education Attainment Bachelors+, 25+', accessorFunction: function(d) {return d.edu_pctbachhigher;} };
 	} else if (indicator == 16) {
-		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'education', indicatorName: 'Educational Expenditures Per FTE Student', accessorFunction: function(d) {return d.edu_ppstatebudget;} };
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'education', indicatorName: 'State Appropriations Per Pupil', accessorFunction: function(d) {return d.edu_ppstatebudget;} };
 	} else if (indicator == 17) {
-		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'education', indicatorName: 'Educational Expenditures Per Pupil', accessorFunction: function(d) {return d.edu_ppspending;} };
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'education', indicatorName: 'State Expenditures Per Pupil', accessorFunction: function(d) {return d.edu_ppspending;} };
 	} else if (indicator == 18) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent Enrolled in School, Pre-K - High School', accessorFunction: function(d) {return d.edu_enrolled;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent Population Enrolled in School, 3+', accessorFunction: function(d) {return d.edu_enrolled;} };
 	} else if (indicator == 19) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent with High School Diploma or Higher', accessorFunction: function(d) {return d.edu_hsdiploma;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Education Attainment High School+, 18+', accessorFunction: function(d) {return d.edu_hsdiploma;} };
 	} else if (indicator == 20) {
 		textTick = { text: 'Score', tickFormat: d3.format(",.2"), tableClass: 'education', indicatorName: '4th Grade NAEP Math Scores', accessorFunction: function(d) {return d.edu_naep4math;} };
 	} else if (indicator == 21) {
@@ -424,7 +424,7 @@ function getTextTick(indicator) {
 	} else if (indicator == 25) {
 		textTick = { text: 'Score', tickFormat: d3.format(",.2"), tableClass: 'education', indicatorName: '8th Grade NAEP Science Scores', accessorFunction: function(d) {return d.edu_naep8sci;} };
 	} else if (indicator == 26) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent Unemployed with No High School Degree', accessorFunction: function(d) {return d.edu_unemployednohs;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'education', indicatorName: 'Percent Teens Not Enrolled in School, No HS Diploma, Unemployed', accessorFunction: function(d) {return d.edu_unemployednohs;} };
 	} else if (indicator == 27) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent of Population Foreign Born', accessorFunction: function(d) {return d.equity_fbpop;} };
 	} else if (indicator == 28) {
@@ -458,39 +458,39 @@ function getTextTick(indicator) {
 	} else if (indicator == 42) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent of Population Under 18 Below 100% of Poverty Level', accessorFunction: function(d) {return d.equity_childpovrttotal;} };
 	} else if (indicator == 43) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Black Home Owner Occupied Rate', accessorFunction: function(d) {return d.equity_homeownershipblack;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent Housing Owner Occupied for Black Households', accessorFunction: function(d) {return d.equity_homeownershipblack;} };
 	} else if (indicator == 44) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Hispanic Home Owner Occupied Rate', accessorFunction: function(d) {return d.equity_homeownershiphisp;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent Housing Owner Occupied for Hispanic Households', accessorFunction: function(d) {return d.equity_homeownershiphisp;} };
 	} else if (indicator == 45) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Non-Hispanic White Home Owner Occupied Rate', accessorFunction: function(d) {return d.equity_homeownershipwhite;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent Housing Owner Occupied for Non-Hispanic White Households', accessorFunction: function(d) {return d.equity_homeownershipwhite;} };
 	} else if (indicator == 46) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Home Owner Occupied Rate', accessorFunction: function(d) {return d.equity_homeownershiptotal;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Percent Housing Owner Occupied', accessorFunction: function(d) {return d.equity_homeownershiptotal;} };
 	} else if (indicator == 47) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent of Days AQI Was Reported To Be Good', accessorFunction: function(d) {return d.qol_aqi;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Air Quality Index, Percent of "Good" Days', accessorFunction: function(d) {return d.qol_aqi;} };
 	} else if (indicator == 48) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Home Owner Occupied Rate', accessorFunction: function(d) {return d.qol_homeownershiptotal;} };
 	} else if (indicator == 49) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent Change in Population', accessorFunction: function(d) {return d.qol_popchange;} };
 	} else if (indicator == 50) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent of Population Without Health Insurance Coverage', accessorFunction: function(d) {return d.qol_popwohealthins;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent Population Without Health Insurance', accessorFunction: function(d) {return d.qol_popwohealthins;} };
 	} else if (indicator == 51) {
-		textTick = { text: 'Number', tickFormat: d3.format(",.1f"), tableClass: 'quality_of_life', indicatorName: 'Number of Violent Crimes Per 100,000 Residents', accessorFunction: function(d) {return d.qol_vcrimert;} };
+		textTick = { text: 'Number', tickFormat: d3.format(",.1f"), tableClass: 'quality_of_life', indicatorName: 'Total Violent Crimes per 100,000 Residents', accessorFunction: function(d) {return d.qol_vcrimert;} };
 	} else if (indicator == 52) {
-		textTick = { text: 'Number', tickFormat: d3.format(",.1f"), tableClass: 'quality_of_life', indicatorName: 'Volunteer Hours Per Resident', accessorFunction: function(d) {return d.qol_vthourspc;} };
+		textTick = { text: 'Number', tickFormat: d3.format(",.1f"), tableClass: 'quality_of_life', indicatorName: 'Average Volunteer Rate, Hours Per Resident', accessorFunction: function(d) {return d.qol_vthourspc;} };
 	} else if (indicator == 53) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent of Population Overweight or Obese', accessorFunction: function(d) {return d.qol_obese;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent of Population neither Overweight nor Obese', accessorFunction: function(d) {return d.qol_obese;} };
 	} else if (indicator == 54) {
 		textTick = { text: 'Number', tickFormat: d3.format(",.0f"), tableClass: 'quality_of_life', indicatorName: 'Physicians per 100,000 Residents', accessorFunction: function(d) {return d.qol_physicians;} };
 	} else if (indicator == 55) {
-		textTick = { text: 'Number', tickFormat: d3.format(",.0f"), tableClass: 'transit', indicatorName: 'Annual Hours of Delay Per Auto Commuter', accessorFunction: function(d) {return d.transit_hoursdelayedpc;} };
+		textTick = { text: 'Number', tickFormat: d3.format(",.0f"), tableClass: 'transit', indicatorName: 'Annual Hours of Delay per Auto Commuter', accessorFunction: function(d) {return d.transit_hoursdelayedpc;} };
 	} else if (indicator == 56) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers 16 and Over Driving to Work Alone', accessorFunction: function(d) {return d.transit_caralone;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers 16+ Driving Alone to Work', accessorFunction: function(d) {return d.transit_caralone;} };
 	} else if (indicator == 57) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers with No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
 	} else if (indicator == 58) {
-		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'transit', indicatorName: 'State Funding of Public Transit Per 1,000 Residents', accessorFunction: function(d) {return d.transit_statefunding;} };
+		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'transit', indicatorName: 'Public Transportation Funding, State Dollars per 1,000 Residents', accessorFunction: function(d) {return d.transit_statefunding;} };
 	} else if (indicator == 59) {
-		textTick = { text: 'Number', tickFormat: d3.format(",.2f"), tableClass: 'transit', indicatorName: 'Annual Unlinked Passenger Bus Trips', accessorFunction: function(d) {return d.transit_bustrips;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Transit Ridership Occurring on a Bus', accessorFunction: function(d) {return d.transit_bustrips;} };
 	} else if (indicator == 60) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Bridges That Are Functionally Obsolete', accessorFunction: function(d) {return d.transit_bridgecondition;} };
 	} else if (indicator == 61) {
@@ -849,34 +849,30 @@ function createObjectForDountChartCity(filteredData) {
 	donutChartData.qol = []
 	donutChartData.transit = []
 	donutChartData.indicators = []
-	donutChartData.ids = []
 	donutChartData.priorityAreas = [];
 	var innerRadius = 30;
 	var outerRadius = innerRadius + 180;
 	$.each(filteredData, function( i, d ) {		
 		donutChartData.meta.push({ id: d.id, geoid: d.geoid, metro: d.metro, region: d.region, year: d.year, lat: d.lat, lon: d.lon });
 		donutChartData.economy.push(
-			{ id: 1, value: d.econ_exports, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 1 },
-			{ id: 2, value: d.econ_gmp, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 1 },
-			{ id: 4, value: d.econ_hightech, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 1 },
-			{ id: 5, value: d.econ_kiemploy, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 1 },
-			{ id: 6, value: d.econ_mhhinc, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 1 },
-			{ id: 7, value: d.econ_pcpi, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 1 },
-			{ id: 8, value: d.econ_pop2534, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 1 },
-			{ id: 9, value: d.econ_povrt, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 1 },
-			{ id: 10, value: d.econ_techpatents, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 9, catetoryCount: 1 },
-			{ id: 11, value: d.econ_biztaxindex, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 10, catetoryCount: 1 },
-			{ id: 12, value: d.econ_rdsharegdp, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 11, catetoryCount: 1 },
-			{ id: 13, value: d.econ_vcpc, sliceWidth: 12, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 12, catetoryCount: 1 }
+			{ id: 1, value: d.econ_exports, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 1 },
+			{ id: 2, value: d.econ_gmp, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 1 },
+			{ id: 4, value: d.econ_hightech, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 1 },
+			{ id: 5, value: d.econ_kiemploy, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 1 },
+			{ id: 7, value: d.econ_pcpi, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 1 },
+			{ id: 10, value: d.econ_techpatents, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 1 },
+			{ id: 11, value: d.econ_biztaxindex, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 1 },
+			{ id: 12, value: d.econ_rdsharegdp, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 1 }
 		);
 		donutChartData.education.push(
-			{ id: 14, value: d.edu_pctbachhigher2534, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 2 },
-			{ id: 15, value: d.edu_pctbachhigher, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 2 },
-			{ id: 16, value: d.edu_ppstatebudget, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 2 },
-			{ id: 17, value: d.edu_ppspending, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 2 },
-			{ id: 18, value: d.edu_enrolled, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 2 },
-			{ id: 19, value: d.edu_hsdiploma, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 2 },
-			{ id: 26, value: d.edu_unemployednohs, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 2 }
+			{ id: 14, value: d.edu_pctbachhigher2534, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 2 },
+			{ id: 15, value: d.edu_pctbachhigher, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 2 },
+			{ id: 18, value: d.edu_enrolled, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 2 },
+			{ id: 19, value: d.edu_hsdiploma, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 2 },
+			{ id: 26, value: d.edu_unemployednohs, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 2 },
+			{ id: 16, value: d.edu_ppstatebudget, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 2 },
+			{ id: 17, value: d.edu_ppspending, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 2 },
+			{ id: 26, value: d.edu_unemployednohs, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 2 }
 		);
 		donutChartData.equity.push(
 			{ id: 27, value: d.equity_fbpop, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 3 },
@@ -887,25 +883,26 @@ function createObjectForDountChartCity(filteredData) {
 			{ id: 32, value: d.equity_incshareq4, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 3 },
 			{ id: 33, value: d.equity_incshareq5, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 3 },
 			{ id: 34, value: d.equity_incsharetop5, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 3 },
-			{ id: 35, value: d.equity_medhhincblack, sliceWidth: 11, innerRadius: innerRadius, outerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), sliceNumber: 9, catetoryCount: 3 },
-			{ id: 36, value: d.equity_medhhinchisp, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), outerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), sliceNumber: 9, catetoryCount: 3 },
-			{ id: 37, value: d.equity_medhhincwhite, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), outerRadius: outerRadius, sliceNumber: 9, catetoryCount: 3 },
-			{ id: 39, value: d.equity_childpovrtblack, sliceWidth: 11, innerRadius: innerRadius, outerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), sliceNumber: 10, catetoryCount: 3 },
-			{ id: 40, value: d.equity_childpovrthisp, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), outerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), sliceNumber: 10, catetoryCount: 3 },
-			{ id: 41, value: d.equity_childpovrtwhite, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), outerRadius: outerRadius, sliceNumber: 10, catetoryCount: 3 },
-			{ id: 43, value: d.equity_homeownershipblack, sliceWidth: 11, innerRadius: innerRadius, outerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), sliceNumber: 11, catetoryCount: 3 },
-			{ id: 44, value: d.equity_homeownershiphisp, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 1/3) + innerRadius), outerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), sliceNumber: 11, catetoryCount: 3 },
-			{ id: 45, value: d.equity_homeownershipwhite, sliceWidth: 11, innerRadius: (((outerRadius - innerRadius) * 2/3) + innerRadius), outerRadius: outerRadius, sliceNumber: 11, catetoryCount: 3 }
+			{ id: 35, value: d.equity_medhhincblack, sliceWidth: 33, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 25, catetoryCount: 3 },
+			{ id: 36, value: d.equity_medhhinchisp, sliceWidth: 33, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 26, catetoryCount: 3 },
+			{ id: 37, value: d.equity_medhhincwhite, sliceWidth: 33, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 27, catetoryCount: 3 },
+			{ id: 38, value: d.equity_medhhinctotal, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 9, catetoryCount: 3 },
+			{ id: 39, value: d.equity_childpovrtblack, sliceWidth: 33, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 28, catetoryCount: 3 },
+			{ id: 40, value: d.equity_childpovrthisp, sliceWidth: 33, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 29, catetoryCount: 3 },
+			{ id: 41, value: d.equity_childpovrtwhite, sliceWidth: 33, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 30, catetoryCount: 3 },			
+			{ id: 42, value: d.equity_childpovrttotal, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 10, catetoryCount: 3 },			
+			{ id: 43, value: d.equity_homeownershipblack, sliceWidth: 33, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 31, catetoryCount: 3 },
+			{ id: 44, value: d.equity_homeownershiphisp, sliceWidth: 33, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 32, catetoryCount: 3 },
+			{ id: 45, value: d.equity_homeownershipwhite, sliceWidth: 33, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 33, catetoryCount: 3 },
+			{ id: 46, value: d.equity_homeownershiptotal, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 11, catetoryCount: 3 }
 		);
 		donutChartData.qol.push(
-			{ id: 47, value: d.qol_aqi, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 4 },
-			{ id: 48, value: d.qol_homeownershiptotal, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 4 },
-			{ id: 49, value: d.qol_popchange, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 4 },
-			{ id: 50, value: d.qol_popwohealthins, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 4 },
-			{ id: 51, value: d.qol_vcrimert, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 4 },
-			{ id: 52, value: d.qol_vthourspc, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 4 },
-			{ id: 53, value: d.qol_obese, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 4 },
-			{ id: 54, value: d.qol_physicians, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 4 }
+			{ id: 47, value: d.qol_aqi, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 4 },
+			{ id: 49, value: d.qol_popchange, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 4 },
+			{ id: 50, value: d.qol_popwohealthins, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 4 },
+			{ id: 51, value: d.qol_vcrimert, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 4 },
+			{ id: 52, value: d.qol_vthourspc, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 4 },
+			{ id: 53, value: d.qol_obese, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 4 }
 		);
 		donutChartData.transit.push(
 			{ id: 55, value: d.transit_hoursdelayedpc, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 5 },

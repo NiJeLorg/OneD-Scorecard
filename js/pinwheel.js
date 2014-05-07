@@ -88,7 +88,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 						'</td>' +
 					'</tr>' +
 				'</table>' +
-				'<h5>Using your mouse, hover over other cities to see their full One D Scorecard scores.</h5>'		
+				'<h5>Using your mouse, roll over any pinwheel to begin exploring each city\'s One D Scorecard.</h5>'		
 			); 			
 	} else {}
 	
@@ -117,7 +117,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 						'</td>' +
 					'</tr>' +
 				'</table>' +
-				'<h5>Using your mouse, hover over other cities to see their full One D Scorecard scores.</h5>'		
+				'<h5>Using your mouse, roll over any pinwheel to begin exploring each city\'s One D Scorecard.</h5>'
 			); 			
 	} else {}
 	

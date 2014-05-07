@@ -73,13 +73,15 @@ $(document).ready(function(){
 	} );
 
 	$( "#nationalHeatChartSlider" ).on( 'slideStop', function( event ) {
-		updateCircularHeatChart(event.value);
+		var city = $( ".nationalCircularHeatChartDropdown" ).val();
+		updateCircularHeatChart(event.value, city);
 	} );
 
 	$( "#barChartSlider" ).on( 'slideStop', function( event ) {
+		var city = $( "#selectCity" ).val();
 		var order = $( "#selectOrder" ).val();
 		var indicator = $( "#selectIndicator" ).val();
-		updateBarChartData(event.value, indicator, order);
+		updateBarChartData(event.value, indicator, order, city);
 	} );
 
 	/*
@@ -90,8 +92,9 @@ $(document).ready(function(){
 	*/
 
 	$( "#cityDonutChartSlider" ).on( 'slideStop', function( event ) {
-		var cityFilter = $( ".cityDonutDropdown" ).val();
-		updateCityDonutChartData(event.value, cityFilter);
+		var cityFilter = $( "#selectCityDonut" ).val();
+		var indicator = $( "#selectIndicatorDonut" ).val();
+		updateCityDonutChartData(event.value, cityFilter, indicator);
 	} );
 
 });
@@ -194,7 +197,8 @@ function playHeatChart(yearCount, maxYear, state) {
 	if (state == 'play') {
  	   this.timeoutID = setTimeout(function () {
  	      $( "#nationalHeatChartSlider" ).slider( 'setValue', yearCount );
-		  updateCircularHeatChart(yearCount);
+  		  var city = $( ".nationalCircularHeatChartDropdown" ).val();  
+		  updateCircularHeatChart(yearCount, city);
 		  yearCount++;
  	      if (yearCount<=maxYear) {
 			 delayTimeout = 2000;
@@ -211,9 +215,10 @@ function playBarChart(yearCount, maxYear, state) {
 	if (state == 'play') {
  	   this.timeoutID = setTimeout(function () {
  	      $( "#barChartSlider" ).slider( 'setValue', yearCount );
+  		  var city = $( "#selectCity" ).val();
 		  var order = $( "#selectOrder" ).val();
 		  var indicator = $( "#selectIndicator" ).val();
-  		  updateBarChartData(yearCount, indicator, order);
+  		  updateBarChartData(yearCount, indicator, order, city);
 		  yearCount++;
  	      if (yearCount<=maxYear) {
 			 delayTimeout = 2000;
@@ -250,7 +255,8 @@ function playDonutChartCity(yearCount, maxYear, state) {
 	if (state == 'play') {
  	   this.timeoutID = setTimeout(function () {
  	      $( "#cityDonutChartSlider" ).slider( 'setValue', yearCount );
-  		  var cityFilter = $( ".cityDountDropdown" ).val();
+  		  var cityFilter = $( "#selectCityDonut" ).val();
+  		  var indicator = $( "#selectIndicatorDonut" ).val();
   		  updateCityDonutChartData(yearCount, cityFilter);
 		  yearCount++;
  	      if (yearCount<=maxYear) {

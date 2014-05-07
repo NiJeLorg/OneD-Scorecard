@@ -2,7 +2,7 @@
 * this function updates the pinwheels based on user section; runs updatePinwheel in pinwheel.js
 */
 		
-function updateCircularHeatChart(year) {
+function updateCircularHeatChart(year, city) {
 	// set a global variable for crossfilter on the dataset
 	var cf = crossfilter(dataset);	
 	var byYear = setupCrossfilterByYear(cf, dataset);
@@ -21,7 +21,7 @@ function updateCircularHeatChart(year) {
 	var numberOfCities = Object.size(circularChartData.meta);
 
 	// create national level circular heat chart
-	updateNationalCircularHeatChart(svgContainerNationalCircularHeatChart, circularChartData, numberOfCities);
+	updateNationalCircularHeatChart(svgContainerNationalCircularHeatChart, circularChartData, numberOfCities, city);
 
 	// clear the year filter
 	clearFilterByYear(byYear);

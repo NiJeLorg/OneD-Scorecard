@@ -5,7 +5,7 @@
 * leverages the reusable circular heat chart in assets/js/cityCircularHeatChart.js extended from work by by Peter Cook (https://github.com/prcweb/d3-circularheat)
 */
 
-function createCityDountChart(svgContainer, dataset) {
+function createCityDountChart(svgContainer, dataset, selectedIndicator) {
     /* Arc functions */
     rsa = function(d, i) {
 		//console.log(d.start);
@@ -72,7 +72,28 @@ function createCityDountChart(svgContainer, dataset) {
 		return domain;
 	}
 	
-    var margin = {top: 20, right: 20, bottom: 20, left: 0},
+   	//set up container for dropdown interaction
+	// pull textTick record
+	var textTick = getTextTick(selectedIndicator);
+	//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
+	var value = textTick.tickFormat(dataset.economy[4].value);
+
+   	var div = d3.select(".cityDonutChartSidebarSelected")
+   	    .style("opacity", 1)	
+        .html(
+			'<h4>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h4>' +
+			'<table class="table table-condensed">' +
+				'<tr>' +
+					'<td class="' + textTick.tableClass + '-rect">' +
+					'</td>' +
+					'<td class="' + textTick.tableClass + '">' +
+						dataset.meta[0].metro + ': ' + value +
+					'</td>' +
+				'</tr>' +
+			'</table>'				
+		);
+	
+    var margin = {top: 0, right: 20, bottom: 0, left: 0},
 	numSegments = 5,
 	innerRadius = 30,
 	outerRadius = innerRadius + 180,
@@ -89,17 +110,45 @@ function createCityDountChart(svgContainer, dataset) {
 		.data(dataset.indicators)
         .enter().append("path")
         .attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
+		.style("fill-opacity", 1)
         .attr("fill", function(d, i) {
 			var domain = setDomain(d.id);
 			var color = colorFunction(d.id);
 			return color(accessor(d.value));
 		});
-	
 
+	
+	// create segments for regions
+   	seg = svgContainer.append('g')
+   		.classed("circular-heat-dividers", true)
+   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+
+   	seg.selectAll("path")
+   		.data(dataset.priorityAreas)
+   		.enter()
+   		.append("path")
+   		.attr("d", d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius).startAngle(rsa).endAngle(rea))
+   		.attr('fill', 'none')
+		.attr("stroke", "#6D6E70")		   
+		.attr("stroke-width", "3px");
+		
+	// create segments for region labels   
+   	br = svgContainer.append('g')
+   		.classed("circular-heat-bounding-rim", true)
+   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
+
+   	br.selectAll("path")
+   		.data(dataset.priorityAreas)
+   		.enter()
+   		.append("path")
+   		.attr("d", d3.svg.arc().innerRadius(outerRadius).outerRadius(outerRadius + 15).startAngle(rsa).endAngle(rea))
+   		.attr('fill', function(d) { return d.color; })
+		.attr("stroke", "#6D6E70")		   
+		.attr("stroke-width", "3px");
 		   	   
    	//set up container for mouseover interaction
    	var div = d3.select(".cityDonutChartSidebar")
-   	    .style("opacity", 1e-6);
+   	    .style("opacity", 1);
 	   		   	   
 	g = svgContainer.append('g')
 		.classed("circular-heat-overlay", true)
@@ -112,13 +161,34 @@ function createCityDountChart(svgContainer, dataset) {
 		.attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
 		.attr('fill', 'none')
 		.attr('pointer-events', 'all')
+		.attr("stroke", function(d) { 
+			if (d.id == selectedIndicator) {
+				return "#FF3300";
+			} else {
+				return "none"; 
+			} 
+		})
+		.attr("stroke-width", function(d) { 
+			if (d.id == selectedIndicator) {
+				return "3px";
+			} else {
+				return "0px"; 
+			} 
+		})
+		
 		
 
 		// set up on mouseover events
 		.on("mouseover", function(d, i) {
 			//console.log(dataset.meta[0].metro);
 			d3.select(this)
-				.attr("stroke", "#6D6E70")		   
+				.attr("stroke", function(d) { 
+					if (d.id == selectedIndicator) {
+						return "#FF3300";
+					} else {
+						return "#6D6E70"; 
+					} 
+				})
 				.attr("stroke-width", "3px");		   
 		
 		    div.transition()
@@ -132,7 +202,7 @@ function createCityDountChart(svgContainer, dataset) {
 			var value = textTick.tickFormat(d.value);
 			
             div.html(
-				'<h4>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h4>' +
+				'<h5>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h5>' +
 				'<table class="table table-condensed heatmapTable">' +
 					'<tr>' +
 						'<td class="' + textTick.tableClass + '-rect">' +
@@ -147,54 +217,27 @@ function createCityDountChart(svgContainer, dataset) {
 	   })
 	   .on("mouseout", function() {
 			d3.select(this)
-				.attr("stroke-width", "0px");		   
+				.attr("stroke", function(d) { 
+					if (d.id == selectedIndicator) {
+						return "#FF3300";
+					} else {
+						return "none"; 
+					} 
+				})		   			
+				.attr("stroke-width", function(d) { 
+					if (d.id == selectedIndicator) {
+						return "3px";
+					} else {
+						return "0px"; 
+					} 
+				});		   
 	   
 		   div.transition()
 		       .duration(250)
 		       .style("opacity", 1e-6);
 			
 	   });
-	   
-	   
-	// create inner rim
-   	ir = svgContainer.append('g')
-   		.classed("circular-heat-bounding-inner-rim", true)
-   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
-		
-	ir.append("circle")
-		.attr('r', innerRadius)
-		.attr('fill', 'none')
-		.attr("stroke", "#6D6E70")		   
-		.attr("stroke-width", "3px");
-	
-	// create segments for regions
-   	seg = svgContainer.append('g')
-   		.classed("circular-heat-dividers", true)
-   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
-   
-   	seg.selectAll("path")
-   		.data(dataset.priorityAreas)
-   		.enter()
-   		.append("path")
-   		.attr("d", d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius).startAngle(rsa).endAngle(rea))
-   		.attr('fill', 'none')
-		.attr("stroke", "#6D6E70")		   
-		.attr("stroke-width", "3px");
-			
-	// create segments for region labels   
-   	br = svgContainer.append('g')
-   		.classed("circular-heat-bounding-rim", true)
-   		.attr("transform", "translate(" + parseInt(margin.left + offset) + "," + parseInt(margin.top + offset) + ")");
-	   
-   	br.selectAll("path")
-   		.data(dataset.priorityAreas)
-   		.enter()
-   		.append("path")
-   		.attr("d", d3.svg.arc().innerRadius(outerRadius).outerRadius(outerRadius + 15).startAngle(rsa).endAngle(rea))
-   		.attr('fill', function(d) { return d.color; })
-		.attr("stroke", "#6D6E70")		   
-		.attr("stroke-width", "3px");
-		
+	   	
 		
 	// create segment labels
     // Unique id so that the text path defs are unique - is there a better way to do this?
@@ -223,8 +266,7 @@ function createCityDountChart(svgContainer, dataset) {
 }
 
 
-function updateCityDonutChart(svgContainer, dataset, numberOfCities) {
-	console.log(dataset);
+function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
     /* Arc functions */
     rsa = function(d, i) {
 		//console.log(d.start);
@@ -291,7 +333,93 @@ function updateCityDonutChart(svgContainer, dataset, numberOfCities) {
 		return domain;
 	}
 	
-    var margin = {top: 20, right: 20, bottom: 20, left: 0},
+   	//set up container for dropdown interaction
+	// pull textTick record
+	var textTick = getTextTick(selectedIndicator);
+	var textTick1 = getTextTick(selectedIndicator-3);
+	var textTick2 = getTextTick(selectedIndicator-2);
+	var textTick3 = getTextTick(selectedIndicator-1);
+	//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
+	var value = 0;
+	var value1 = 0;
+	var value2 = 0;
+	var value3 = 0;
+	
+	// iterate though the indicators dataset to find the value
+	$.each(dataset.indicators, function( i, d ) {	
+		if (dataset.indicators[i].id == selectedIndicator) {
+			value = textTick.tickFormat(dataset.indicators[i].value);			
+		}
+		// harcoding for the three varibles with multiple components
+		if ((dataset.indicators[i].id == 38 && selectedIndicator == 38) || (dataset.indicators[i].id == 42 && selectedIndicator == 42) || (dataset.indicators[i].id == 46 && selectedIndicator == 46)) {
+			var count1 = i-3;
+			var count2 = i-2;
+			var count3 = i-1;
+			console.log(dataset.indicators[i]);
+			value1 = textTick1.tickFormat(dataset.indicators[count1].value);			
+			value2 = textTick2.tickFormat(dataset.indicators[count2].value);			
+			value3 = textTick3.tickFormat(dataset.indicators[count3].value);				
+		}
+	});
+
+	// harcoding for the three varibles with multiple components
+	if (selectedIndicator == 38 || selectedIndicator == 42 || selectedIndicator == 46) {
+		
+	   	var div = d3.select(".cityDonutChartSidebarSelected")
+	   	    .style("opacity", 1)	
+	        .html(
+				'<h4>' + textTick.indicatorName +  ', ' + dataset.meta[0].metro + ', ' + dataset.meta[0].year +'</h4>' +
+				'<table class="table table-condensed">' +
+					'<tr>' +
+						'<td class="' + textTick.tableClass + '-rect">' +
+						'</td>' +
+						'<td class="' + textTick.tableClass + '">' +
+							textTick.indicatorName + ': ' + value +
+						'</td>' +
+					'</tr>' +
+					'<tr>' +
+						'<td class="' + textTick1.tableClass + '-rect">' +
+						'</td>' +
+						'<td class="' + textTick1.tableClass + '">' +
+							textTick1.indicatorName + ': ' + value1 +
+						'</td>' +
+					'</tr>' +
+					'<tr>' +
+						'<td class="' + textTick2.tableClass + '-rect">' +
+						'</td>' +
+						'<td class="' + textTick2.tableClass + '">' +
+							textTick2.indicatorName + ': ' + value2 +
+						'</td>' +
+					'</tr>' +
+					'<tr>' +
+						'<td class="' + textTick3.tableClass + '-rect">' +
+						'</td>' +
+						'<td class="' + textTick3.tableClass + '">' +
+							textTick3.indicatorName + ': ' + value3 +
+						'</td>' +
+					'</tr>' +
+				'</table>'				
+			);				
+	
+	} else {
+	   	var div = d3.select(".cityDonutChartSidebarSelected")
+	   	    .style("opacity", 1)	
+	        .html(
+				'<h4>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h4>' +
+				'<table class="table table-condensed">' +
+					'<tr>' +
+						'<td class="' + textTick.tableClass + '-rect">' +
+						'</td>' +
+						'<td class="' + textTick.tableClass + '">' +
+							dataset.meta[0].metro + ': ' + value +
+						'</td>' +
+					'</tr>' +
+				'</table>'				
+			);	
+	}
+
+	
+    var margin = {top: 0, right: 20, bottom: 0, left: 0},
 	numSegments = 5,
 	innerRadius = 30,
 	outerRadius = innerRadius + 180,
@@ -310,23 +438,50 @@ function updateCityDonutChart(svgContainer, dataset, numberOfCities) {
         .attr("fill", function(d, i) {
 			var domain = setDomain(d.id);
 			var color = colorFunction(d.id);
-			return color(accessor(d.value));
+			return color(accessor(d.value));				
+		})
+		.style("fill-opacity", function(d, i) {
+			if (((selectedIndicator == 38 || selectedIndicator == 37 || selectedIndicator == 36 || selectedIndicator == 35 ) && d.id == 38) || ((selectedIndicator == 42 || selectedIndicator == 41 || selectedIndicator == 40 || selectedIndicator == 39 ) && d.id == 42) || ((selectedIndicator == 46 || selectedIndicator == 45 || selectedIndicator == 44 || selectedIndicator == 43 ) && d.id == 46)) {
+				return 0;
+			} else {
+				return 1;		
+			}			
 		});
 		
    	//set up container for mouseover interaction
    	var div = d3.select(".cityDonutChartSidebar")
    	    .style("opacity", 1e-6);
-	
 			   	   
 	g = svgContainer.select(".circular-heat-overlay");
 	
 	g.selectAll("path")
-		.data(dataset.indicators)		
+		.data(dataset.indicators)
+		.attr("stroke", function(d) { 
+			if (d.id == selectedIndicator) {
+				return "#FF3300";
+			} else {
+				return "none"; 
+			} 
+		})
+		.attr("stroke-width", function(d) { 
+			if (d.id == selectedIndicator) {
+				return "3px";
+			} else {
+				return "0px"; 
+			} 
+		})
+				
 		// set up on mouseover events
 		.on("mouseover", function(d, i) {
 			//console.log(dataset.meta[0].metro);
 			d3.select(this)
-				.attr("stroke", "#6D6E70")		   
+				.attr("stroke", function(d) { 
+					if (d.id == selectedIndicator) {
+						return "#FF3300";
+					} else {
+						return "#6D6E70"; 
+					} 
+				})
 				.attr("stroke-width", "3px");		   
 		
 		    div.transition()
@@ -340,7 +495,7 @@ function updateCityDonutChart(svgContainer, dataset, numberOfCities) {
 			var value = textTick.tickFormat(d.value);
 			
             div.html(
-				'<h4>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h4>' +
+				'<h5>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h5>' +
 				'<table class="table table-condensed heatmapTable">' +
 					'<tr>' +
 						'<td class="' + textTick.tableClass + '-rect">' +
@@ -355,8 +510,21 @@ function updateCityDonutChart(svgContainer, dataset, numberOfCities) {
 	   })
 	   .on("mouseout", function() {
 			d3.select(this)
-				.attr("stroke-width", "0px");		   
-	   
+				.attr("stroke", function(d) { 
+					if (d.id == selectedIndicator) {
+						return "#FF3300";
+					} else {
+						return "none"; 
+					} 
+				})		   			
+				.attr("stroke-width", function(d) { 
+					if (d.id == selectedIndicator) {
+						return "3px";
+					} else {
+						return "0px"; 
+					} 
+				});	
+				
 		   div.transition()
 		       .duration(250)
 		       .style("opacity", 1e-6);

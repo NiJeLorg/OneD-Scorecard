@@ -407,20 +407,25 @@ body {
 }
 
 .barChartChange {
-	width: 155px !important;
+	width: 125px !important;
 }
 
-.cityHeatChartDropdown {
-	width: 350px !important;
+.donutDropdown {
+	width: 150px !important;
 }
 
-.cityDonutDropdown {
+.mapDropdown {
+	width: 200px !important;
+}
+
+.nationalCircularHeatChartDropdown {
 	width: 350px !important;
 }
 
 .leftJustified {
 	text-align: left;
 }
+
 
 
 /*
@@ -698,22 +703,32 @@ path {
 .heatmapTableContainer {
 	text-align: left;
 	position: relative;
-	margin-top: 40px;
+	margin-top: 20px;
+	width: 120px;
+}
+
+.heatmapTableContainerBottom {
+	text-align: left;
+	position: relative;
+	margin-top: 0px;
 	width: 120px;
 }
 
 .heatmapTable {
 	text-align: left;
 	position: absolute; 
-	top: 150px;
+	top: 95px;
 }
 
 @media (min-width: 992px) {
 	.heatmapTableContainer {
 		width: 190px;
 	}
+	.heatmapTableContainerBottom {
+		width: 190px;
+	}
 	.heatmapTable {
-		top: 120px;
+		top: 60px;
 	}	
 }
 
@@ -722,12 +737,18 @@ path {
 	.heatmapTableContainer {
 		width: 230px;
 	}
+	.heatmapTableContainerBottom {
+		width: 230px;
+	}
 	.heatmapTable {
-		top: 75px;
+		top: 60px;
 	}	
 }
 
 
+.table-condensed > thead > tr > th, .table-condensed > tbody > tr > th, .table-condensed > tfoot > tr > th, .table-condensed > thead > tr > td, .table-condensed > tbody > tr > td, .table-condensed > tfoot > tr > td {
+    padding: 2px 5px;
+}
 
     
 /*
@@ -767,7 +788,11 @@ path {
   fill: #BBBDBF;
 }
 
-.bar:hover, .barDetroitEconomy:hover, .barDetroitEducation:hover, .barDetroitEquity:hover, .barDetroitQol:hover, .barDetroitTransit:hover, .barDetroit:hover {
+.barSelected {
+  fill: #eeec7e;
+}
+
+.bar:hover, .barSelected:hover, .barDetroitEconomy:hover, .barDetroitEducation:hover, .barDetroitEquity:hover, .barDetroitQol:hover, .barDetroitTransit:hover, .barDetroit:hover {
   fill: #BBBDBF;
 }
 

@@ -101,8 +101,8 @@ function createBarChart(svgContainer, datasetIndicators, textTick) {
 					'</tr>' +
 				'</table>'				
 			)  
-            .style("left", (d3.event.pageX + 23) + "px")     
-            .style("top", (d3.event.pageY - 40) + "px");
+	            .style("left", (d3.event.pageX + 23) + "px")     
+	            .style("top", (d3.event.pageY - 40) + "px");
 			
 	   })
 	   .on("mouseout", function() {
@@ -126,7 +126,7 @@ function createBarChart(svgContainer, datasetIndicators, textTick) {
 
 
 // update barchart
-function updateBarChart(svgContainer, datasetIndicators, textTick) {
+function updateBarChart(svgContainer, datasetIndicators, textTick, city) {
 			
 	//set up container for mouseover interaction
 	var div = d3.select("body").append("div")
@@ -191,6 +191,8 @@ function updateBarChart(svgContainer, datasetIndicators, textTick) {
 				return "barDetroitTransit";
 			} else if (d.geoid == 15 && textTick.tableClass == 'oned') {
 				return "barDetroit";
+			} else if (d.geoid == city) {
+				return "barSelected";
 			} else {
 				return "bar";
 			} 
@@ -214,6 +216,8 @@ function updateBarChart(svgContainer, datasetIndicators, textTick) {
 				return "barDetroitTransit";
 			} else if (d.geoid == 15 && textTick.tableClass == 'oned') {
 				return "barDetroit";
+			} else if (d.geoid == city) {
+				return "barSelected";
 			} else {
 				return "bar";
 			} 
@@ -251,8 +255,8 @@ function updateBarChart(svgContainer, datasetIndicators, textTick) {
 					'</tr>' +
 				'</table>'				
 			)  
-                .style("left", (d3.event.pageX + 15) + "px")     
-                .style("top", (d3.event.pageY - 100) + "px");
+	            .style("left", (d3.event.pageX + 23) + "px")     
+	            .style("top", (d3.event.pageY - 40) + "px");
 			
 	   })
 	   .on("mouseout", function() {
