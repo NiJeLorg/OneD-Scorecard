@@ -7,18 +7,21 @@ $(document).ready(function(){
 		var education = $(this).val();
 		var economy = $( "#selectEconomy" ).val();
 		var neighborhood = $( "#selectNeighborhood" ).val();
-		updateMap(education, economy, neighborhood);
+		var selected = "ED";
+		updateMap(education, economy, neighborhood, selected);
 	});	
 	$( "#selectEconomy" ).change( function() {
 		var economy = $(this).val();
 		var education = $( "#selectEducation" ).val();
 		var neighborhood = $( "#selectNeighborhood" ).val();
-		updateMap(education, economy, neighborhood);
+		var selected = "EE";
+		updateMap(education, economy, neighborhood, selected);
 	});	
 	$( "#selectNeighborhood" ).change( function() {
 		var neighborhood = $(this).val();
 		var economy = $( "#selectEconomy" ).val();
 		var education = $( "#selectEducation" ).val();
-		updateMap(education, economy, neighborhood);
+		var selected = "N";
+		updateMap(education, economy, neighborhood, selected);
 	});
 });

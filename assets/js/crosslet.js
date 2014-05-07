@@ -724,7 +724,8 @@ crosslet.defaultConfig = {
       name_field: "name",
       id_field: "code",
       topo_object: "please specify correct object name"
-    }
+    },
+	zoomControl: false
   }
 };
 
@@ -1396,24 +1397,25 @@ crosslet.MapView = (function(_super) {
     this.el = el;
     this.hoverFunc = this.default_hover;
     $(this.el).attr("class", "crosslet");
-    this.map = L.map(el[0]).setView(this.config.map.view.center, this.config.map.view.zoom);
+	
+    this.map = L.map(el[0], {zoomControl: false}).setView(this.config.map.view.center, this.config.map.view.zoom);
 	// adding stamen tile layer instead of default layers
 	var stamenlayer = new L.StamenTileLayer("toner-lite");
     //L.tileLayer(this.config.map.leaflet.url, this.config.map.leaflet).addTo(this.map);
 	this.map.addLayer(stamenlayer);
 	
     //area for D3 logo
-    var legend = L.control({position: 'bottomright'});
+    var legend = L.control({position: 'bottomleft'});
 
     legend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend');  
-        	div.innerHTML += '<img src="assets/images/OneD_D3Logo_Gray_Small.png"/>';
+        	div.innerHTML += '<img src="assets/images/KirwanLogoTransparent.png"/><br /><img class="topPad" src="assets/images/OneD_D3Logo_Gray_Small.png"/>';
         return div;
     };
 
     legend.addTo(this.map); 
 	
-	var dropdowns = L.control({position: 'bottomleft'});
+	var dropdowns = L.control({position: 'topright'});
 	dropdowns.onAdd = function (map) {
 		var div = L.DomUtil.create('div', 'info legend');
 			div.innerHTML = comboBoxInnerHtml;
@@ -1422,10 +1424,15 @@ crosslet.MapView = (function(_super) {
 	};
 	dropdowns.addTo(this.map);
 	
+	var newZoom = L.control.zoom({
+        position: 'bottomright'		
+	});
+	newZoom.addTo(this.map); 
+	
     this.control = $("<div class='crosslet_panel'></div>");
     this.info = L.Control.extend({
       options: {
-        position: 'topright'
+        position: 'topleft'
       },
       onAdd: function(map) {
         return _this.control[0];

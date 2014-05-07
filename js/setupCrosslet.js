@@ -14,7 +14,7 @@ var config = {
 		attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
     },
     view: {
-      center: [42.5,-83.0],
+      center: [42.5,-83.1],
       zoom: 9
     },
     geo: {
@@ -34,7 +34,7 @@ var config = {
           dataSet: "data/kirwanData.csv",
 		  method: d3.csv,		
           field: "COMP",
-  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#1b7837", "#f7f7f7", "#762a83" ]).interpolate(d3.cie.interpolateLab)  
+  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#1b7837", "#f0f0f0", "#20698a" ]).interpolate(d3.cie.interpolateLab)  
   	    },
   		format: {
   			short: function(){return function(d) {return numberFormat(d3.round(d, 2))}}, 
@@ -49,7 +49,7 @@ var config = {
           dataSet: "data/kirwanData.csv",
 		  method: d3.csv,		
           field: "EDU4",
-  		  colorscale: d3.scale.linear().domain([1, 20]).range([ "white", "#d94f26"]).interpolate(d3.cie.interpolateLab)   
+  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#20698a", "#f0f0f0", "#d94f26"]).interpolate(d3.cie.interpolateLab)   
   	    },
   		format: {
   			short: function(){return function(d) {return percentFormat(d3.round(d, 1)) + "%"}},
@@ -64,7 +64,7 @@ var config = {
           dataSet: "data/kirwanData.csv",
 		  method: d3.csv,		
           field: "EE2",
-  		  colorscale: d3.scale.linear().domain([1, 20]).range([ "white", "#a6c0d0"]).interpolate(d3.cie.interpolateLab)   
+  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#20698a", "#f0f0f0", "#87af3f"]).interpolate(d3.cie.interpolateLab)   
   	    },
   		format: {
   			short: function(){return function(d) {return dollarFormat(d)}},
@@ -78,7 +78,7 @@ var config = {
           dataSet: "data/kirwanData.csv",
 		  method: d3.csv,		
           field: "N1",
-  		  colorscale: d3.scale.linear().domain([1, 20]).range([ "white", "#f5a91d"]).interpolate(d3.cie.interpolateLab)   
+  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#a6c0d0", "#f0f0f0", "#f5a91d"]).interpolate(d3.cie.interpolateLab)   
   	    },
   		format: {
   			short: function(){return function(d) {return percentFormat(d3.round(d, 1)) + "%"}},
@@ -92,12 +92,12 @@ var config = {
   
   defaults: {
 	colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#1b7837", "#f7f7f7", "#762a83" ]).interpolate(d3.cie.interpolateLab),  
-    order: ["highSchoolCompletion", "medianHHIncome", "vacantProperty", "kirwanIndex"],
+    order: ["kirwanIndex", "highSchoolCompletion", "medianHHIncome", "vacantProperty"],
     active: "kirwanIndex"
   },
 };
 
-var comboBoxInnerHtml = "<form class=\"form-inline\" role=\"form\"><div class=\"form-group\"><select id=\"selectEducation\" class=\"form-control mapDropdown\"><option value='ED1'>Childhood Poverty</option><option value='ED2'>High School Dropout Rate</option><option value='ED3'>Persons 16-19 No HS Diploma, Unemployed</option><option value='ED4' selected='selected'>High School Completion</option><option value='ED5'>Reading Proficiency</option><option value='ED6'>Math Proficiency</option><option value='ED7'>Student Poverty</option></select></div><div class=\"form-group\"><select id=\"selectEconomy\" class=\"form-control mapDropdown\"><option value='EE1'>Public Assistance Rate</option><option value='EE2' selected='selected'>Median Household Income</option><option value='EE3'>Unemployment Rate</option><option value='EE4'>Percentage Change in Jobs Within 5 Mile Radius</option></select></div><div class=\"form-group\"><select id=\"selectNeighborhood\" class=\"form-control mapDropdown\"><option value='N1' selected='selected'>Vacant Property</option><option value='N2'>Property Values</option><option value='N3'>Homeownership rates</option><option value='N4'>Poverty Rates</option><option value='N5'>Percentage Population Change</option></select></div></form>";
+var comboBoxInnerHtml = "<form role=\"form\"><div class=\"form-group leftJustified\"><label for=\"selectEducation\">Education Indicators</label><select id=\"selectEducation\" class=\"form-control mapDropdown\"><option value='ED1'>Childhood Poverty</option><option value='ED2'>High School Dropout Rate</option><option value='ED3'>Persons 16-19 No HS Diploma, Unemployed</option><option value='ED4' selected='selected'>High School Completion</option><option value='ED5'>Reading Proficiency</option><option value='ED6'>Math Proficiency</option><option value='ED7'>Student Poverty</option></select></div><div class=\"form-group leftJustified\"><label for=\"selectEconomy\">Economy & Employment<br />Indicators</label><select id=\"selectEconomy\" class=\"form-control mapDropdown\"><option value='EE1'>Public Assistance Rate</option><option value='EE2' selected='selected'>Median Household Income</option><option value='EE3'>Unemployment Rate</option><option value='EE4'>Percentage Change in Jobs Within 5 Mile Radius</option></select></div><div class=\"form-group leftJustified\"><label for=\"selectNeighborhood\">Neighborhood Indicators</label><select id=\"selectNeighborhood\" class=\"form-control mapDropdown\"><option value='N1' selected='selected'>Vacant Property</option><option value='N2'>Property Values</option><option value='N3'>Homeownership rates</option><option value='N4'>Poverty Rates</option><option value='N5'>Percentage Population Change</option></select></div></form>";
 
 console.log(config);
 a=new crosslet.MapView($("#onedMap"),config);
