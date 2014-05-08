@@ -113,7 +113,7 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
    		.attr("d", d3.svg.arc().innerRadius(innerRadius).outerRadius(innerRadius + (segmentHeight * 5)).startAngle(rsa).endAngle(rea))
    		.attr('fill', 'none')
 		.attr("stroke", "#6D6E70")		   
-		.attr("stroke-width", "3px");
+		.attr("stroke-width", "1.5px");
 			
 	// create segments for region labels   
    	br = svgContainer.select("svg")
@@ -125,10 +125,10 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
    		.data(dataset.regions)
    		.enter()
    		.append("path")
-   		.attr("d", d3.svg.arc().innerRadius(innerRadius + (segmentHeight * 5)).outerRadius(innerRadius + (segmentHeight * 5) + 15).startAngle(rsa).endAngle(rea))
+   		.attr("d", d3.svg.arc().innerRadius(innerRadius + (segmentHeight * 5)).outerRadius(innerRadius + (segmentHeight * 5) + 20).startAngle(rsa).endAngle(rea))
    		.attr('fill', '#BBBDBF')
 		.attr("stroke", "#6D6E70")		   
-		.attr("stroke-width", "3px");
+		.attr("stroke-width", "1.5px");
 
 	// create a transparent overlay for mouseover 	   
 	g = svgContainer.select("svg")
@@ -146,7 +146,7 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 		.attr('pointer-events', 'all')
 		.attr("stroke", function(d) { 
 			if (d.geoid == city) {
-				return "#FF3300";
+				return "#303030";
 			} else {
 				return "none"; 
 			} 
@@ -167,7 +167,7 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 			d3.select(this)
 				.attr("stroke", function(d) { 
 					if (d.geoid == city) {
-						return "#FF3300";
+						return "#303030";
 					} else {
 						return "#6D6E70"; 
 					} 
@@ -231,7 +231,7 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 			d3.select(this)
 				.attr("stroke", function(d) { 
 					if (d.geoid == city) {
-						return "#FF3300";
+						return "#303030";
 					} else {
 						return "none"; 
 					} 
@@ -429,7 +429,7 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 		.data(dataset.meta)
 		.attr("stroke", function(d) { 
 			if (d.geoid == city) {
-				return "#FF3300";
+				return "#303030";
 			} else {
 				return "none"; 
 			} 
@@ -448,7 +448,7 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 			d3.select(this)
 				.attr("stroke", function(d) { 
 					if (d.geoid == city) {
-						return "#FF3300";
+						return "#303030";
 					} else {
 						return "#6D6E70"; 
 					} 
@@ -512,7 +512,7 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 			d3.select(this)
 				.attr("stroke", function(d) { 
 					if (d.geoid == city) {
-						return "#FF3300";
+						return "#303030";
 					} else {
 						return "none"; 
 					} 
