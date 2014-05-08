@@ -130,7 +130,7 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
    		.attr("d", d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius).startAngle(rsa).endAngle(rea))
    		.attr('fill', 'none')
 		.attr("stroke", "#6D6E70")		   
-		.attr("stroke-width", "3px");
+		.attr("stroke-width", "1.5px");
 		
 	// create segments for region labels   
    	br = svgContainer.append('g')
@@ -141,10 +141,10 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
    		.data(dataset.priorityAreas)
    		.enter()
    		.append("path")
-   		.attr("d", d3.svg.arc().innerRadius(outerRadius).outerRadius(outerRadius + 15).startAngle(rsa).endAngle(rea))
+   		.attr("d", d3.svg.arc().innerRadius(outerRadius).outerRadius(outerRadius + 20).startAngle(rsa).endAngle(rea))
    		.attr('fill', function(d) { return d.color; })
 		.attr("stroke", "#6D6E70")		   
-		.attr("stroke-width", "3px");
+		.attr("stroke-width", "1.5px");
 		   	   
    	//set up container for mouseover interaction
    	var div = d3.select(".cityDonutChartSidebar")
@@ -163,7 +163,7 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 		.attr('pointer-events', 'all')
 		.attr("stroke", function(d) { 
 			if (d.id == selectedIndicator) {
-				return "#FF3300";
+				return "#303030";
 			} else {
 				return "none"; 
 			} 
@@ -184,7 +184,7 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 			d3.select(this)
 				.attr("stroke", function(d) { 
 					if (d.id == selectedIndicator) {
-						return "#FF3300";
+						return "#303030";
 					} else {
 						return "#6D6E70"; 
 					} 
@@ -219,7 +219,7 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 			d3.select(this)
 				.attr("stroke", function(d) { 
 					if (d.id == selectedIndicator) {
-						return "#FF3300";
+						return "#303030";
 					} else {
 						return "none"; 
 					} 
@@ -458,7 +458,7 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 		.data(dataset.indicators)
 		.attr("stroke", function(d) { 
 			if (d.id == selectedIndicator) {
-				return "#FF3300";
+				return "#303030";
 			} else {
 				return "none"; 
 			} 
@@ -477,7 +477,7 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 			d3.select(this)
 				.attr("stroke", function(d) { 
 					if (d.id == selectedIndicator) {
-						return "#FF3300";
+						return "#303030";
 					} else {
 						return "#6D6E70"; 
 					} 
@@ -512,7 +512,7 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 			d3.select(this)
 				.attr("stroke", function(d) { 
 					if (d.id == selectedIndicator) {
-						return "#FF3300";
+						return "#303030";
 					} else {
 						return "none"; 
 					} 
