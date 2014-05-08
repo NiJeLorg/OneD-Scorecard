@@ -15,7 +15,7 @@
 /* Declare heights because of positioning of img element */
 .carousel .item {
   height: 635px;
-  background-color: #efefee;
+  background-color: #f3f3f3;
 }
 
 .carousel-inner > .item > img {
@@ -35,7 +35,7 @@
 .carousel-control.left {
   background-image: -webkit-linear-gradient(left, color-stop(rgba(0, 0, 0, .1) 0%), color-stop(rgba(0, 0, 0, .0001) 100%));
   background-image:         linear-gradient(to right, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, .0001) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#30000000', endColorstr='#00000000', GradientType=1);
   background-repeat: repeat-x;
 }
 
@@ -44,7 +44,7 @@
   left: auto;
   background-image: -webkit-linear-gradient(left, color-stop(rgba(0, 0, 0, .0001) 0%), color-stop(rgba(0, 0, 0, .1) 100%));
   background-image:         linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#30000000', GradientType=1);
   background-repeat: repeat-x;
 }
 
