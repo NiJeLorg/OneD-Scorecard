@@ -704,6 +704,12 @@ path {
  * set size of table next to circular heat map
  */
 
+ .labels{
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+ }
+
 .heatmapTableContainer {
 	text-align: left;
 	position: relative;
