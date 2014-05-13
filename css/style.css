@@ -409,10 +409,13 @@ body {
 	text-align: left;
 }
 
-.topPad{
+.topPad {
 	padding-top: 15px;
 }
 
+.floatRight {
+	float: right;
+}
 
 
 /*

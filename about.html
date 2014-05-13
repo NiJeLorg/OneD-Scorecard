@@ -9,6 +9,9 @@
     <!-- Bootstrap CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Bootstrap Docs CSS -->
+    <link href="assets/css/docs.min.css" rel="stylesheet">
+
  	<!-- Carousel CSS -->
     <link href="assets/css/carousel.css" rel="stylesheet">
 
@@ -32,7 +35,7 @@
  
   <!-- Site content
   ================================================== --> 
-  <body>
+  <body data-spy="scroll" data-target="#sidebar">
 
       <div class="site-wrapper">
 
@@ -43,16 +46,15 @@
 		  <!-- Heading for OneD logo and buttons
 		  ================================================== --> 
 
-            <div class="masthead clearfix">
+            <div class="masthead clearfix" id="top" role="banner">
               <div class="inner">
 			    <a href="index.html">
                 	<div class="masthead-brand">One D Scorecard Logo</div>
 				</a>
                 <ul class="nav masthead-nav">
-                  <li class="active">
+                  <li>
 					  <a href="index.html">
-						  <div class="masthead-nav-img1"></div>
-						  <div class="masthead-nav-img1-hover"></div>
+						  <div class="masthead-nav-img1-active"></div>
 					  </a>
 				  </li>
                   <li>
@@ -72,21 +74,73 @@
 		        <div id="myCarousel" class="carousel-text slide">
 		          <div class="carousel-inner-text">
 		            <div class="item active">
-						<div class="container">
-							<h1>About - One D Scorecard</h1>
+						<div class="container bs-docs-container topPad">
 							<div class="row">
-								<p class="leftJustified col-md-10 col-md-offset-1">Welcome to the One D Scorecard!  The Scorecard provides a comprehensive look at the status of our region through key data indicators that align to five priority areas: Economic Prosperity, Educational Preparedness, Quality of Life, Social Equity, and Regional Transit.  The One D Scorecard aims to increase access to data and information for regions across the U.S., foster a more informed civic dialogue, and track progress on shared regional goals for our region - metro Detroit.
-</p>
-								<p class="leftJustified col-md-10 col-md-offset-1">The One D Scorecard interactively illustrates Southeast Michigan’s performance in over 30 outcome-based indicators organized within the five priority areas.  Individual indicators are trended over three years, indexed to provide a comprehensive score for each priority area, and ranked in comparison to over 50 of the most populous metropolitan regions in the United States  to offer meaningful context. 
-</p>
-								<p class="leftJustified col-md-10 col-md-offset-1">The 2014 One D Scorecard is produced and maintained by <a href="http://datadrivendetroit.org/">Data Driven Detroit (D3), a Michigan Nonprofit Association Affiliate</a>.  D3 provides accessible, high-quality information and analysis to drive informed decision-making. Our vision is that essential and unbiased information is used by all.
-</p>
-								<p class="leftJustified col-md-10 col-md-offset-1">
-								For more information about the One D Scorecard data, please see our <a href="methodology.html">Methodology</a>.  
-</p>
-								<p class="leftJustified col-md-10 col-md-offset-1">
-								<b>Questions?  Feedback?</b>  Contact us at <a href="mailto:AskD3@datadrivendetroit.org">AskD3@datadrivendetroit.org</a>.
-</p>							
+								<div class="col-md-9 leftJustified" role="main">
+									<h1 id="about" class="page-header">About</h1>
+									<div class="bs-docs-section">
+										<h2 id="ods">One D Scorecard</h2>							
+										<p>Welcome to the One D Scorecard!  The Scorecard provides a comprehensive look at the status of our region through key data indicators that align to five priority areas: Economic Prosperity, Educational Preparedness, Quality of Life, Social Equity, and Regional Transit.  The One D Scorecard aims to increase access to data and information for regions across the U.S., foster a more informed civic dialogue, and track progress on shared regional goals for our region - metro Detroit.
+		</p>
+										<p>The One D Scorecard interactively illustrates Southeast Michigan's performance in over 30 outcome-based indicators organized within the five priority areas.  Individual indicators are trended over three years, indexed to provide a comprehensive score for each priority area, and ranked in comparison to over 50 of the most populous metropolitan regions in the United States  to offer meaningful context. 
+		</p>
+										<p>The 2014 One D Scorecard is produced and maintained by <a href="http://datadrivendetroit.org/">Data Driven Detroit (D3), a Michigan Nonprofit Association Affiliate</a>.  D3 provides accessible, high-quality information and analysis to drive informed decision-making. Our vision is that essential and unbiased information is used by all.
+		</p>
+										<p>
+										For more information about the One D Scorecard data, please see our <a href="methodology.html">Methodology</a>.  
+		</p>
+										<p>
+										<b>Questions?  Feedback?</b>  Contact us at <a href="mailto:AskD3@datadrivendetroit.org">AskD3@datadrivendetroit.org</a>.
+		</p>
+									</div>
+									<div class="bs-docs-section">
+										<h2 id="odportal">One Detroit Portal</h2>							
+										<p>The 2014 One D Scorecard is now also home to the Kirwan Institute's Southeast Michigan Regional Opportunity Index, in the One Detroit Portal.  The Southeast Michigan Regional Opportunity Index provides a data deep-dive into the metro Detroit region to explore Census Tract level indicators specific to Southeast Michigan which complement the regional indicators available through the One D Scorecard.
+		</p>
+										<p>The One Detroit Portal, together with the One D Scorecard, intends to illustrate the diversity of the cities that make up our metro Detroit region and, we hope, stimulate discussion about what opportunities and challenges alike exist in our region today and what we imagine metro Detroit to be in the future.   
+		</p>
+										<p>The Kirwan Institute for the Study of Race and Ethnicity at Ohio State University provides the original data, index analysis, and methodology for the Southeast Regional Opportunity Index.  The full extent of their research on Southeast Michigan can be accessed through <a href="http://kirwaninstitute.osu.edu/opportunity-communities/mapping/">their site</a>.
+		</p>
+									</div>
+									<div class="bs-docs-section">
+										<h2 id="partners">Partners</h2>							
+										<p>The One D Scorecard is made possible through philanthropic support and partners in research and development.  Funding was generously provided by: <a href="http://neweconomyinitiative.org/">New Economy Initiative</a>; <a href="http://kresge.org/">The Kresge Foundation</a>; and <a href="http://www.bosch.com/en/com/sustainability/society/regional_commitment/bosch_community_fund/bosch_community_fund_2.html">Bosch Community Fund</a>.  Research and data partners for the One D Scorecard and One Detroit Portal are <a href="http://datadrivendetroit.org/">Data Driven Detroit (D3), a Michigan Nonprofit Association Affiliate,</a> and the <a href="http://kirwaninstitute.osu.edu/">Kirwan Institute for the Study of Race and Ethnicity at Ohio State University</a> respectively.  Development of the One D Scorecard comes from <a href="http://nijel.org">NiJeL</a>, with information design provided by <a href="http://kathartman.com/">Kat Hartman</a>.
+
+		</p>
+										<p><b>Questions? Feedback?</b>  Contact us at <a href="mailto:AskD3@datadrivendetroit.org">AskD3@datadrivendetroit.org</a>.
+		</p>
+									</div>
+								
+
+								</div>
+
+
+
+
+
+								<div class="col-md-3 leftJustified">
+									<div id="sidebar" class="bs-docs-sidebar hidden-print" role="complementary" data-spy="affix" data-offset-top="100">
+										<ul class="nav bs-docs-sidenav">
+											<li>
+											<a href="#about">About</a>
+											</li>
+											<li>
+												<a href="#ods">One D Scorecard</a>
+											</li>
+											<li>
+												<a href="#odportal">One Detroit Portal</a>
+											</li>
+											<li>
+												<a href="#partners">Partners</a>
+											</li>
+
+										</ul>
+										<a class="back-to-top" href="#top">Back to top</a>
+									</div>
+								</div>
+								
+								
+							</div>
 						</div>
 		            </div>
 		          </div>
@@ -107,20 +161,20 @@
 	  	                  <ul class="nav navbar-nav">
 	  	                    <li><a href="index.html">Home</a></li>
 	  	                    <li class="dropdown">
-	  	                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Methodology <b class="caret"></b></a>
+	  	                      <a href="methodology.html" class="dropdown-toggle" data-toggle="dropdown">Methodology <b class="caret"></b></a>
 	  	                      <ul class="dropdown-menu dropdown-menu-left">
-	  	                        <li><a href="priority-areas.html">Priority Areas</a></li>
-	  	                        <li><a href="one-d-index.html">One D Index</a></li>
-	  	                        <li><a href="geography.html">Geography</a></li>
-	  	                        <li><a href="data-download.html">Data Download</a></li>
+	  	                        <li><a href="methodology.html#pa">Priority Areas</a></li>
+	  	                        <li><a href="methodology.html#odindex">One D Index</a></li>
+	  	                        <li><a href="methodology.html#geography">Geography</a></li>
+	  	                        <li><a href="methodology.html#download">Data Download</a></li>
 	  	                      </ul>
 	  	                    </li>
-	  	                    <li class="dropdown">
-	  	                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+	  	                    <li class="active dropdown">
+	  	                      <a href="about.html" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
 	  	                      <ul class="dropdown-menu dropdown-menu-left">
-	  	                        <li><a href="about.html">One D Scorecard</a></li>
-	  	                        <li><a href="about-one-detroit-portal.html">One Detroit Portal</a></li>
-	  	                        <li><a href="partners.html">Partners</a></li>
+	  	                        <li><a href="about.html#ods">One D Scorecard</a></li>
+	  	                        <li><a href="about.html#odportal">One Detroit Portal</a></li>
+	  	                        <li><a href="about.html#partners">Partners</a></li>
 	  	                      </ul>
 	  	                    </li>
 	  	                  </ul>
@@ -141,18 +195,11 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<!-- Crosslet requires an older version of jQueryfor browser detection -->
-<script type="text/javascript" src="assets/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="assets/js/d3.v3.js" charset="utf-8"></script>
-<script type="text/javascript" src="assets/js/leaflet.js" charset="utf-8"></script>
-<script type="text/javascript" src="assets/js/underscore-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="assets/js/backbone-min.js" charset="utf-8"></script>
-<script type="text/javascript" src="assets/js/crosslet.js" charset="utf-8"></script>
+<script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
 
-<!-- set up crosslet for kirwan map -->
-<script type="text/javascript" src="js/setupCrosslet.js"></script>
+<!-- Twitter docs.js 
+<script type="text/javascript" src="assets/js/docs.min.js"></script>-->
 
 
 
