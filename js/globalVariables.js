@@ -42,7 +42,7 @@ var svgContainerStates = d3.select(".statesArray")
 var orderPinwheels = 1;
 
 // sets size of pinwheel, and padding for the array and the svg container to send it to
-var topPadding = 60;
+var topPadding = 45;
 var sidePadding = 70;
 var numberOfRows = 6;
 var svgContainer = d3.select(".pinwheelArray")

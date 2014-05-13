@@ -13,7 +13,10 @@ function originalPinwheels() {
 		//functions to parse dates and numbers to ensure these are javascript dates and numbers
 		parseNumbers(dataset);
 		parseDates(dataset);
-	
+		
+		// pad lat/lons once
+		padLatLons(dataset);
+		
 		// function to set up crossfilter dimensions
 		// set a globa variable for crossfilter on the dataset
 		var cf = crossfilter(dataset);	

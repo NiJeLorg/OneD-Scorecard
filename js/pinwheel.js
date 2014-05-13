@@ -88,7 +88,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 						'</td>' +
 					'</tr>' +
 				'</table>' +
-				'<h5>Roll over any pinwheel to begin exploring each region\'s data and the One D Index.</h5>'		
+				'<h5>Using your mouse, roll over any pinwheel to begin exploring each city\'s One D Scorecard.</h5>'		
 			); 			
 	} else {}
 	
@@ -105,7 +105,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 		    .attr("class", "pinwheelTooltip")
 		    .style("opacity", 1)
 	        .style("left", left + "px")     
-	        .style("top", (((($( window ).width()) * 0.58) * 100) / width) + "px")
+	        .style("top", (((($( window ).width()) * 0.54) * 100) / width) + "px")
 			.html(
 				'<h4>' + rowOfData.meta[0].metro + '</h4>' +
 				'<table class="table table-condensed">' +
@@ -117,13 +117,49 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 						'</td>' +
 					'</tr>' +
 				'</table>' +
-				'<h5>Roll over any pinwheel to begin exploring each region\'s data and the One D Index.</h5>'
+				'<h5>Using your mouse, roll over any pinwheel to begin exploring each city\'s One D Scorecard.</h5>'
 			); 			
 	} else {}
+	
+	// no legend for now
+	/*
+	// draw legend once
+	if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'statesArray') {
+		if ($( window ).width() > 992) {
+			var left = (($( window ).width()) * 0.71) - (($( window ).width()) * 0.01);
+		} else if ($( window ).width() > 1200) {
+			var left = (($( window ).width()) * 0.71) - (($( window ).width()) * 0.03);
+		} else {
+			var left = (($( window ).width()) * 0.71);
+		}
+		var legendMap = d3.select("#mapLegend").append("div")
+			.append("img")
+			.attr("class", "legendsVis")
+		    .attr("src", "assets/images/PinwheelLegendSmall.png")
+		    .attr("width", 150)
+		    .attr("height", 137)		    
+	        .style("left", left + "px")     
+	        .style("top", (((($( window ).width()) * 2.15) * 100) / width) + "px");
+ 			
+	} else {}
+	*/
 	
 
 	// Function to draw all of the pinwheel arcs
 	function drawComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
+		// add a circle underneath Detroit and have it follow Detroit around the chart
+		if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'pinwheelArray') {
+			var backgroundCircle = svgContainer.append("svg:g")
+				.append("svg:circle")
+				.attr("id", "backgroundCircle")
+				.attr("cx", centerX)
+				.attr("cy", centerY)
+				.attr("r", size + 5)
+				.attr("fill", "white")
+				.attr("stroke", "#BBBDBF")		   
+				.attr("stroke-width", "1.5px");
+		}
+		
 		// need Ids for pinwheels to update later
 		var gGeoid = 'g' + rowOfData.meta[0].geoid;
 		var rectGeoid = 'rect' + rowOfData.meta[0].geoid;
@@ -313,6 +349,15 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 
 	// Function to draw all of the pinwheel arcs
 	function updateComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
+		// add a circle underneath Detroit and have it follow Detroit around the chart
+		if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'pinwheelArray') {
+			console.log('hello');
+			var backgroundCircle = svgContainer.select("#backgroundCircle")
+				.transition().delay(1000).duration(2000)
+				.attr("cx", centerX)
+				.attr("cy", centerY);
+		}
+		
 		// need Ids for pinwheels to update later
 		var gGeoid = rowOfData.meta[0].geoid;
 		//console.log(rowOfData.indicies);

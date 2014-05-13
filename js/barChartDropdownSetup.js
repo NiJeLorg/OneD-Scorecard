@@ -42,7 +42,7 @@ $(document).ready(function() {
             $("#selectIndicatorDonut").html("<option value='47'>Air Quality Index, Percent of \"Good\" Days</option><option value='48'>Home Owner Occupied Rate</option><option value='49'>Percent Change in Population</option><option value='50'>Percent Population Without Health Insurance</option><option value='51'>Total Violent Crimes per 100,000 Residents</option><option value='52'>Average Volunteer Rate, Hours Per Resident</option><option value='53'>Percent of Population neither Overweight nor Obese</option><option value='54'>Physicians per 100,000 residents</option>");
 			
         } else if (val == "5") {
-            $("#selectIndicatorDonut").html("<option value='55'>Annual Hours of Delay per Auto Commuter</option><option value='57'>Percent of Workers with No Vehicle</option><option value='56'>Percent of Workers 16+ Driving Alone to Work</option><option value='58'>Public Transportation Funding, State Dollars per 1,000 Residents</option><option value='59'>Percent of Transit Ridership Occurring on a Bus</option>");
+            $("#selectIndicatorDonut").html("<option value='55'>Annual Hours of Delay per Auto Commuter</option><option value='56'>Percent of Workers 16+ Driving Alone to Work</option><option value='57'>Percent of Workers with No Vehicle</option><option value='58'>Public Transportation Funding, State Dollars per 1,000 Residents</option><option value='59'>Percent of Transit Ridership Occurring on a Bus</option>");
     	}
 
 		var indicator = $( "#selectIndicatorDonut" ).val();

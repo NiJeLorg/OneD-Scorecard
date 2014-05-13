@@ -74,25 +74,16 @@ body {
 .masthead-nav > li + li {
   margin-left: 20px;
 }
+
 .masthead-nav > li > a {
   padding-right: 0;
   padding-left: 0;
-  font-size: 16px;
-  font-weight: bold;
-  color: #fff; /* IE8 proofing */
-  color: rgba(255,255,255,.75);
-  border-bottom: 2px solid transparent;
 }
+
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
   background-color: transparent;
   /*border-bottom-color: rgba(255,255,255,.25);*/
-}
-.masthead-nav > .active > a,
-.masthead-nav > .active > a:hover,
-.masthead-nav > .active > a:focus {
-  color: #fff;
-  /*border-bottom-color: #fff;*/
 }
 
 @media (min-width: 768px) {
@@ -100,48 +91,36 @@ body {
     float: left;
   }
   .masthead-nav {
-    float: right;
+	float: right;
   }
 }
 
-.masthead-nav-img1 {
-    background-image: url('../assets/images/OneD_ScorecardButton.png');
-	background-repeat: no-repeat;
-	width: 73px;
-	height: 70px; 
-	-webkit-transition: 1s ease-in-out;
-	-moz-transition: 1s ease-in-out;
-	-o-transition: 1s ease-in-out;
-	transition: 1s ease-in-out;
-}
-
-
-.masthead-nav-img1:hover {
+.masthead-nav-img1, .masthead-nav-img1-active {
    background-image: url('../assets/images/OneD_ScorecardButton_hover.png');
    background-repeat: no-repeat;
-   width: 270px;
+   width: 73px;
    height: 70px;
+   background-position:-197px 0px;
 }
 
-
-.masthead-nav-img2 {
-    background-image: url('../assets/images/OneD_OneDetroitPortal.png');
-    background-repeat: no-repeat;
-	width: 73px;
-	height: 70px; 
-	-webkit-transition: 1s ease-in-out;
-	-moz-transition: 1s ease-in-out;
-	-o-transition: 1s ease-in-out;
-	transition: 1s ease-in-out;
+.masthead-nav-img1:hover {
+   width: 270px;
+   background-position:0px 0px;
 }
 
-
-.masthead-nav-img2:hover {
+.masthead-nav-img2, .masthead-nav-img2-active {
    background-image: url('../assets/images/OneD_OneDetroitPortal_hover.png');
    background-repeat: no-repeat;
-   width: 271px;
+   width: 73px;
    height: 70px;
+   background-position:-197px 0px;
 }
+
+.masthead-nav-img2:hover {
+   width: 270px;
+   background-position:0px 0px;
+}
+
 
 
 /*
@@ -205,60 +184,66 @@ body {
 	height: 36px;
 }
 
-.watchData {
-    background-image: url('../assets/images/OneD_WatchData.png');
-	background-repeat: no-repeat;
-	width: 40px;
-	height: 37px; 
-}
 
-.watchData:hover {
-   background-image: url('../assets/images/WatchDataButton_Rollover.png');
-   background-repeat: no-repeat;
-   width: 82px;
-   height: 76px;
+.refreshData, .learnAboutData, .downloadData {
+	background: url(../assets/images/nav-buttons.png) no-repeat;
 }
 
 .learnAboutData {
-    background-image: url('../assets/images/OneD_LearnAboutData.png');
-	background-repeat: no-repeat;
-	width: 40px;
-	height: 37px; 
-}
-
-.learnAboutData:hover {
-   background-image: url('../assets/images/LearnButton_Rollover.png');
-   background-repeat: no-repeat;
-   width: 100px;
-   height: 76px;
+	position: absolute;
+	top: 0px; 
+	left: 0px;
+	background-position: 0 0;
+	width: 39px;
+	height: 37px;
 }
 
 .downloadData {
-    background-image: url('../assets/images/OneD_DownloadData.png');
-	background-repeat: no-repeat;
-	width: 40px;
-	height: 37px; 
-}
-
-.downloadData:hover {
-   background-image: url('../assets/images/DownloadDataButton_Rollover.png');
-   background-repeat: no-repeat;
-   width: 128px;
-   height: 76px;
+	position: absolute;
+	top: 0px; 
+	left: 60px;
+	background-position: -40px 0;
+	width: 38px;
+	height: 37px;
 }
 
 .refreshData {
-    background-image: url('../assets/images/OneD_RefreshData.png');
-	background-repeat: no-repeat;
-	width: 40px;
-	height: 37px; 
+	position: absolute;
+	top: 0px; 
+	left: 120px;
+	background-position: -79px 0;
+	width: 38px;
+	height: 37px;
+}
+
+.learnAboutData:hover {
+	position: absolute;
+	top: 0px; 
+	left: -30px;
+	background-position: 0 -40px ;
+	width: 99px;
+	height: 75px;
+	z-index: 500;
+}
+
+.downloadData:hover {
+	position: absolute;
+	top: 0px; 
+	left: 16px;
+	background-position: 0 -117px ;
+	width: 124px;
+	height: 72px;
+	z-index: 500;
 }
 
 .refreshData:hover {
-   background-image: url('../assets/images/RefreshDataButton_Rollover.png');
-   background-repeat: no-repeat;
-   width: 92px;
-   height: 76px;
+	position: absolute;
+	top: 0px; 
+	left: 96px;
+	background-position: 0 -194px ;
+	width: 89px;
+	height: 72px;
+	z-index: 500;
 }
 
 
@@ -300,13 +285,11 @@ body {
     float: left;
 	margin-left: 14%;
 	padding-left: 0;
-	margin-bottom: 5px;
   }
   .sliderContainerRight {
     float: right;
 	margin-right: 14%;
 	padding-right: 0;
-	margin-bottom: 5px;
   }
 }
 

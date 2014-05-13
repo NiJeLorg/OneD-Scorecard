@@ -337,7 +337,6 @@ function updateMap(education, economy, neighborhood, selected) {
 	} else {}
 	  
 	config.defaults = {
-		colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#1b7837", "#f7f7f7", "#762a83" ]).interpolate(d3.cie.interpolateLab),  
 	    order: ["kirwanIndex", "ED", "EE", "N"],
 	    active: selected
 	};

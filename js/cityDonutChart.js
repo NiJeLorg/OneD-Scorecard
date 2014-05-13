@@ -6,6 +6,27 @@
 */
 
 function createCityDountChart(svgContainer, dataset, selectedIndicator) {
+	
+	// no legend for now
+	/*
+	// draw legend once
+	if ($( window ).width() > 992) {
+		var left = (($( window ).width()) * 0.48) - (($( window ).width()) * 0.01);
+	} else if ($( window ).width() > 1200) {
+		var left = (($( window ).width()) * 0.48) - (($( window ).width()) * 0.03);
+	} else {
+		var left = (($( window ).width()) * 0.48);
+	}
+	var legendHeat = d3.select("#heatLegendDonut").append("div")
+		.append("img")
+		.attr("class", "legendsVis")
+	    .attr("src", "assets/images/IntensityLegend2Small.png")
+	    .attr("width", 150)
+	    .attr("height", 98)		    
+        .style("left", left + "px")     
+        .style("top", (((($( window ).width()) * 2.5) * 100) / width) + "px");
+	*/
+		
     /* Arc functions */
     rsa = function(d, i) {
 		//console.log(d.start);
@@ -41,14 +62,56 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 		if (colorClass == 'economy') {
 			range = ["white", "#a6c0d0"];
 			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 26 && colorClass == 'education') { // Percent Teens Not Enrolled in School, No HS Diploma, Unemployed -- scored inversely
+			range = ["#d94f26", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);			
 		} else if (colorClass == 'education') {
 			range = ["white", "#d94f26"];
 			var color = d3.scale.linear().domain(domain).range(range);			
+		} else if (id == 28 && colorClass == 'equity') { // Gini Index inversely scored
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 32 && colorClass == 'equity') { // Second Highest Quintile of Households Share of Aggregate Income inversely scored
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 33 && colorClass == 'equity') { // Highest Quintile of Households Share of Aggregate Income inversely scored
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 34 && colorClass == 'equity') { // Top 5% of Households Share of Aggregate Income inversely scored
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 39 && colorClass == 'equity') { // Percent of Black Population Under 18 Below 100% of Poverty Level
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 40 && colorClass == 'equity') { // Percent of Hispanic Population Under 18 Below 100% of Poverty Level
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 41 && colorClass == 'equity') { // Percent of Non-Hispanic White Population Under 18 Below 100% of Poverty Level
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 42 && colorClass == 'equity') { // Percent of Population Under 18 Below 100% of Poverty Level
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
 		} else if (colorClass == 'equity') {
 			range = ["white", "#20698a"];
 			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 50 && colorClass == 'quality_of_life') { // Percent Population Without Health Insurance inversely scored
+			range = ["#f5a91d", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 51 && colorClass == 'quality_of_life') { // Total Violent Crimes per 100,000 Residents
+			range = ["#f5a91d", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
 		} else if (colorClass == 'quality_of_life') {
 			range = ["white", "#f5a91d"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 55 && colorClass == 'transit') { // Annual Hours of Delay per Auto Commuter
+			range = ["#87af3f", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 56 && colorClass == 'transit') { // Percent of Workers 16+ Driving Alone to Work
+			range = ["#87af3f", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 57 && colorClass == 'transit') { // Percent of Workers with No Vehicle
+			range = ["#87af3f", "white"];
 			var color = d3.scale.linear().domain(domain).range(range);
 		} else if (colorClass == 'transit') {
 			range = ["white", "#87af3f"];
@@ -302,14 +365,56 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 		if (colorClass == 'economy') {
 			range = ["white", "#a6c0d0"];
 			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 26 && colorClass == 'education') { // Percent Teens Not Enrolled in School, No HS Diploma, Unemployed -- scored inversely
+			range = ["#d94f26", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);			
 		} else if (colorClass == 'education') {
 			range = ["white", "#d94f26"];
 			var color = d3.scale.linear().domain(domain).range(range);			
+		} else if (id == 28 && colorClass == 'equity') { // Gini Index inversely scored
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 32 && colorClass == 'equity') { // Second Highest Quintile of Households Share of Aggregate Income inversely scored
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 33 && colorClass == 'equity') { // Highest Quintile of Households Share of Aggregate Income inversely scored
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 34 && colorClass == 'equity') { // Top 5% of Households Share of Aggregate Income inversely scored
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 39 && colorClass == 'equity') { // Percent of Black Population Under 18 Below 100% of Poverty Level
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 40 && colorClass == 'equity') { // Percent of Hispanic Population Under 18 Below 100% of Poverty Level
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 41 && colorClass == 'equity') { // Percent of Non-Hispanic White Population Under 18 Below 100% of Poverty Level
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 42 && colorClass == 'equity') { // Percent of Population Under 18 Below 100% of Poverty Level
+			range = ["#20698a", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
 		} else if (colorClass == 'equity') {
 			range = ["white", "#20698a"];
 			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 50 && colorClass == 'quality_of_life') { // Percent Population Without Health Insurance inversely scored
+			range = ["#f5a91d", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 51 && colorClass == 'quality_of_life') { // Total Violent Crimes per 100,000 Residents
+			range = ["#f5a91d", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
 		} else if (colorClass == 'quality_of_life') {
 			range = ["white", "#f5a91d"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 55 && colorClass == 'transit') { // Annual Hours of Delay per Auto Commuter
+			range = ["#87af3f", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 56 && colorClass == 'transit') { // Percent of Workers 16+ Driving Alone to Work
+			range = ["#87af3f", "white"];
+			var color = d3.scale.linear().domain(domain).range(range);
+		} else if (id == 57 && colorClass == 'transit') { // Percent of Workers with No Vehicle
+			range = ["#87af3f", "white"];
 			var color = d3.scale.linear().domain(domain).range(range);
 		} else if (colorClass == 'transit') {
 			range = ["white", "#87af3f"];

@@ -7,6 +7,26 @@
 
 function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, city) {
 	
+	// no legend for now
+	/*
+	// draw legend once
+	if ($( window ).width() > 992) {
+		var left = (($( window ).width()) * 0.48) - (($( window ).width()) * 0.01);
+	} else if ($( window ).width() > 1200) {
+		var left = (($( window ).width()) * 0.48) - (($( window ).width()) * 0.03);
+	} else {
+		var left = (($( window ).width()) * 0.48);
+	}
+	var legendHeat = d3.select("#heatLegend").append("div")
+		.append("img")
+		.attr("class", "legendsVis")
+	    .attr("src", "assets/images/IntensityLegend2Small.png")
+	    .attr("width", 150)
+	    .attr("height", 98)		    
+        .style("left", left + "px")     
+        .style("top", (((($( window ).width()) * 2.5) * 100) / width) + "px");
+ 	*/
+	
     /* Arc functions */
     rsa = function(d, i) {
 		//console.log(d.start);

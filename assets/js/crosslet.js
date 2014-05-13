@@ -1120,7 +1120,7 @@ crosslet.PanelView = (function(_super) {
       row = {};
       _ref1 = this.boxes;
       for (bName in _ref1) {
-        box = _ref1[bName];
+        box = _ref1[bName];		
         row[bName] = box.data[key];
       }
       this.rows.push(row);
@@ -1155,6 +1155,7 @@ crosslet.PanelView = (function(_super) {
       dg = d.group(getRounder(box.config.data.interval[0], box.config.data.interval[1], this.width - 20, box.config.data.exponent));
       box.graph.empty();
       yscale = d3.scale.linear().clamp(true).range([20, 0]);
+	  console.log(box.config.data);
       chart = barChart().dimension(d).name_id(bName).group(dg).x(d3.scale.pow().exponent(box.config.data.exponent).domain(box.config.data.interval).rangeRound([0, this.width - 20])).y(yscale.copy()).ticks(box.config.data.ticks).tickFormat(box.config.format.axis(box.config)).fill(box.config.data.colorscale);
       chart.on("brush", brushevent(box, this));
       chart.on("brushend", this.renderCubes);
@@ -1409,7 +1410,7 @@ crosslet.MapView = (function(_super) {
 
     legend.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info legend');  
-        	div.innerHTML += '<img src="assets/images/KirwanLogoTransparent.png"/><br /><img class="topPad" src="assets/images/OneD_D3Logo_Gray_Small.png"/>';
+        	div.innerHTML += '<a href="http://kirwaninstitute.osu.edu/"><img src="assets/images/KirwanLogoTransparent.png"/></a><br /><a href="http://datadrivendetroit.org/"><img class="topPad" src="assets/images/OneD_D3Logo_Gray_Small.png"/></a>';
         return div;
     };
 

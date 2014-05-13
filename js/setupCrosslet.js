@@ -34,7 +34,7 @@ var config = {
           dataSet: "data/kirwanData.csv",
 		  method: d3.csv,		
           field: "COMP",
-  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#1b7837", "#f0f0f0", "#20698a" ]).interpolate(d3.cie.interpolateLab)  
+  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#1b7837", "#f0f0f0", "#20698a" ]).interpolate(d3.cie.interpolateLab),  
   	    },
   		format: {
   			short: function(){return function(d) {return numberFormat(d3.round(d, 2))}}, 
@@ -49,7 +49,7 @@ var config = {
           dataSet: "data/kirwanData.csv",
 		  method: d3.csv,		
           field: "EDU4",
-  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#20698a", "#f0f0f0", "#d94f26"]).interpolate(d3.cie.interpolateLab)   
+  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#20698a", "#f0f0f0", "#d94f26"]).interpolate(d3.cie.interpolateLab),  
   	    },
   		format: {
   			short: function(){return function(d) {return percentFormat(d3.round(d, 1)) + "%"}},
@@ -64,7 +64,7 @@ var config = {
           dataSet: "data/kirwanData.csv",
 		  method: d3.csv,		
           field: "EE2",
-  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#20698a", "#f0f0f0", "#87af3f"]).interpolate(d3.cie.interpolateLab)   
+  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#20698a", "#f0f0f0", "#87af3f"]).interpolate(d3.cie.interpolateLab),   
   	    },
   		format: {
   			short: function(){return function(d) {return dollarFormat(d)}},
@@ -78,7 +78,7 @@ var config = {
           dataSet: "data/kirwanData.csv",
 		  method: d3.csv,		
           field: "N1",
-  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#a6c0d0", "#f0f0f0", "#f5a91d"]).interpolate(d3.cie.interpolateLab)   
+  		  colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#a6c0d0", "#f0f0f0", "#f5a91d"]).interpolate(d3.cie.interpolateLab),   
   	    },
   		format: {
   			short: function(){return function(d) {return percentFormat(d3.round(d, 1)) + "%"}},
@@ -91,7 +91,6 @@ var config = {
   }, // close dimensions
   
   defaults: {
-	colorscale: d3.scale.linear().domain([1, 10, 20]).range([ "#1b7837", "#f7f7f7", "#762a83" ]).interpolate(d3.cie.interpolateLab),  
     order: ["kirwanIndex", "highSchoolCompletion", "medianHHIncome", "vacantProperty"],
     active: "kirwanIndex"
   },

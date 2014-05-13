@@ -693,13 +693,71 @@ function clearFilterByCityOnly(byCityOnly) {
 	byCityOnly.filterAll();
 }
 
+// function to pad lat lons for map
+function padLatLons(dataset) {
+	$.each(dataset, function( i, d ) {
+		if (d.geoid == 45) { // Sacramento
+			d.lon = d.lon + 0.75;
+		} else if (d.geoid == 49) { // San Francisco
+			d.lon = d.lon - 0.5;
+		} else if (d.geoid == 3) { // Austin
+			d.lat = d.lat + 0.6;
+		} else if (d.geoid == 37) { // Orlando
+			d.lon = d.lon + 0.5;
+		} else if (d.geoid == 52) { // Tampa Bay
+			d.lon = d.lon - 0.5;
+		} else if (d.geoid == 19) { // Greenville
+			d.lon = d.lon + 0.5;
+			d.lat = d.lat - 0.9;
+		} else if (d.geoid == 42) { // Raleigh
+			d.lon = d.lon + 0.7;
+		} else if (d.geoid == 18) { // Greensburro
+			d.lat = d.lat + 0.3;
+		} else if (d.geoid == 53) { // Virgina Beach
+			d.lon = d.lon + 0.5;
+		} else if (d.geoid == 1) { // Albany
+			d.lat = d.lat + 0.5;
+		} else if (d.geoid == 5) { // Boston
+			d.lon = d.lon + 0.7;
+		} else if (d.geoid == 20) { // Hartford
+			d.lon = d.lon + 0.2;
+			d.lat = d.lat + 0.2;
+		} else if (d.geoid == 35) { // NYC
+			d.lat = d.lat + 0.2;
+		} else if (d.geoid == 38) { // Philly
+			d.lon = d.lon - 0.5;
+			d.lat = d.lat + 0.2;
+		} else if (d.geoid == 44) { // Rochester
+			d.lon = d.lon + 1.1;
+		} else if (d.geoid == 31) { // Milwaukee
+			d.lon = d.lon - 0.3;
+			d.lat = d.lat + 0.3;
+		} else if (d.geoid == 28) { // Louisville
+			d.lon = d.lon - 0.7;
+			d.lat = d.lat - 0.3;
+		} else if (d.geoid == 9) { // Cincinnati
+			d.lon = d.lon + 0.3;
+			d.lat = d.lat - 0.5;
+		} else if (d.geoid == 11) { // Columbus, OH
+			d.lon = d.lon + 0.8;
+			d.lat = d.lat - 0.5;
+		} else if (d.geoid == 13) { // Dayton, OH
+			d.lon = d.lon + 0.2;
+			d.lat = d.lat + 0.5;
+		} else if (d.geoid == 22) { // Indy
+			d.lon = d.lon - 0.2;
+		}			
+	});
+	
+}
+
 // function to create an object for the pinwheel function to read
 function createObjectForPinwheel(filteredData) {	
 	// create an object with the city names and ids segregated from the indicies for easy ploting
 	var rowOfData = {};	
 	rowOfData.meta = [];
 	rowOfData.indicies = [];	
-	$.each(filteredData, function( i, d ) {
+	$.each(filteredData, function( i, d ) {		
 		rowOfData.meta.push({ id: d.id, geoid: d.geoid, metro: d.metro, year: d.year, lat: d.lat, lon: d.lon, oned_index: d.oned_index });
 		rowOfData.indicies.push({ name: 'Economy Index', index: d.economy_index, angle: 247.5 });
 		rowOfData.indicies.push({ name: 'Education Index', index: d.education_index, angle: 292.5 });
@@ -865,14 +923,13 @@ function createObjectForDountChartCity(filteredData) {
 			{ id: 12, value: d.econ_rdsharegdp, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 1 }
 		);
 		donutChartData.education.push(
-			{ id: 14, value: d.edu_pctbachhigher2534, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 2 },
-			{ id: 15, value: d.edu_pctbachhigher, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 2 },
-			{ id: 18, value: d.edu_enrolled, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 2 },
-			{ id: 19, value: d.edu_hsdiploma, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 2 },
-			{ id: 26, value: d.edu_unemployednohs, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 2 },
-			{ id: 16, value: d.edu_ppstatebudget, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 2 },
-			{ id: 17, value: d.edu_ppspending, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 2 },
-			{ id: 26, value: d.edu_unemployednohs, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 2 }
+			{ id: 14, value: d.edu_pctbachhigher2534, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 2 },
+			{ id: 15, value: d.edu_pctbachhigher, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 2 },
+			{ id: 18, value: d.edu_enrolled, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 2 },
+			{ id: 19, value: d.edu_hsdiploma, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 2 },
+			{ id: 16, value: d.edu_ppstatebudget, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 2 },
+			{ id: 17, value: d.edu_ppspending, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 2 },
+			{ id: 26, value: d.edu_unemployednohs, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 2 }
 		);
 		donutChartData.equity.push(
 			{ id: 27, value: d.equity_fbpop, sliceWidth: 11, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 3 },
@@ -905,12 +962,11 @@ function createObjectForDountChartCity(filteredData) {
 			{ id: 53, value: d.qol_obese, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 4 }
 		);
 		donutChartData.transit.push(
-			{ id: 55, value: d.transit_hoursdelayedpc, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 5 },
-			{ id: 56, value: d.transit_caralone, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 5 },
-			{ id: 57, value: d.transit_novehicle, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 5 },
-			{ id: 58, value: d.transit_statefunding, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 5 },
-			{ id: 59, value: d.transit_bustrips, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 5 },
-			{ id: 60, value: d.transit_bridgecondition, sliceWidth: 6, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 5 }
+			{ id: 55, value: d.transit_hoursdelayedpc, sliceWidth: 5, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 5 },
+			{ id: 56, value: d.transit_caralone, sliceWidth: 5, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 5 },
+			{ id: 57, value: d.transit_novehicle, sliceWidth: 5, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 5 },
+			{ id: 58, value: d.transit_statefunding, sliceWidth: 5, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 5 },
+			{ id: 59, value: d.transit_bustrips, sliceWidth: 5, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 5 }
 		);
 				
 		// set priority area wedge widths 
