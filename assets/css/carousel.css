@@ -10,6 +10,8 @@
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   z-index: 10;
+  color: #6D6E70;
+  text-shadow: none;
 }
 
 /* Declare heights because of positioning of img element */

@@ -7,7 +7,7 @@
 // function to create pinwheels
 function originalPinwheels() {
 	// use d3 to open process and scale csv data
-	d3.csv("data/dummyIndexData.csv", function(data) { 	
+	d3.csv("data/indexData.csv", function(data) { 	
 		dataset = data;
 
 		//functions to parse dates and numbers to ensure these are javascript dates and numbers
@@ -66,8 +66,8 @@ function originalPinwheels() {
 			centerY = 0;
 		
 			// reset size for pinwheel and smallestPie
-			smallestPie = 8;
-			size = 16;	
+			smallestPie = 10;
+			size = 18;	
 		
 			// set centers of pinwheels for map
 			centerX = projection([rowOfData.meta[0].lon, rowOfData.meta[0].lat])[0];

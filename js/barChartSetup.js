@@ -6,7 +6,7 @@
 // function to create origianl bar chart
 function originalBarChart() {
 	// use d3 to open process and scale csv data
-	d3.csv("data/dummyIndicatorData.csv", function(data) { 	
+	d3.csv("data/indicatorData.csv", function(data) { 	
 		datasetIndicators = data;
 
 		//functions to parse dates and numbers to ensure these are javascript dates and numbers

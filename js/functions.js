@@ -30,26 +30,16 @@ function parseNumbersIndicators(dataset) {
 		d.econ_gmp = parseFloat(d.econ_gmp);
 		d.econ_hightech = parseFloat(d.econ_hightech);
 		d.econ_kiemploy = parseFloat(d.econ_kiemploy);
-		d.econ_mhhinc = parseFloat(d.econ_mhhinc);
 		d.econ_pcpi = parseFloat(d.econ_pcpi);
-		d.econ_pop2534 = parseFloat(d.econ_pop2534);
-		d.econ_povrt = parseFloat(d.econ_povrt);
 		d.econ_techpatents = parseFloat(d.econ_techpatents);
 		d.econ_biztaxindex = parseFloat(d.econ_biztaxindex);
 		d.econ_rdsharegdp = parseFloat(d.econ_rdsharegdp);
-		d.econ_vcpc = parseFloat(d.econ_vcpc);
 		d.edu_pctbachhigher2534 = parseFloat(d.edu_pctbachhigher2534);
 		d.edu_pctbachhigher = parseFloat(d.edu_pctbachhigher);
 		d.edu_ppstatebudget = parseFloat(d.edu_ppstatebudget);
 		d.edu_ppspending = parseFloat(d.edu_ppspending);
 		d.edu_enrolled = parseFloat(d.edu_enrolled);
 		d.edu_hsdiploma = parseFloat(d.edu_hsdiploma);
-		d.edu_naep4math = parseFloat(d.edu_naep4math);
-		d.edu_naep4read = parseFloat(d.edu_naep4read);
-		d.edu_naep4sci = parseFloat(d.edu_naep4sci);
-		d.edu_naep8math = parseFloat(d.edu_naep8math);
-		d.edu_naep8read = parseFloat(d.edu_naep8read);
-		d.edu_naep8sci = parseFloat(d.edu_naep8sci);
 		d.edu_unemployednohs = parseFloat(d.edu_unemployednohs);
 		d.equity_fbpop = parseFloat(d.equity_fbpop);
 		d.equity_gini = parseFloat(d.equity_gini);
@@ -72,19 +62,16 @@ function parseNumbersIndicators(dataset) {
 		d.equity_homeownershipwhite = parseFloat(d.equity_homeownershipwhite);
 		d.equity_homeownershiptotal = parseFloat(d.equity_homeownershiptotal);
 		d.qol_aqi = parseFloat(d.qol_aqi);
-		d.qol_homeownershiptotal = parseFloat(d.qol_homeownershiptotal);
 		d.qol_popchange = parseFloat(d.qol_popchange);
 		d.qol_popwohealthins = parseFloat(d.qol_popwohealthins);
 		d.qol_vcrimert = parseFloat(d.qol_vcrimert);
 		d.qol_vthourspc = parseFloat(d.qol_vthourspc);
 		d.qol_obese = parseFloat(d.qol_obese);
-		d.qol_physicians = parseFloat(d.qol_physicians);
 		d.transit_hoursdelayedpc = parseInt(d.transit_hoursdelayedpc);
 		d.transit_caralone = parseFloat(d.transit_caralone);
 		d.transit_novehicle = parseFloat(d.transit_novehicle);
 		d.transit_statefunding = parseFloat(d.transit_statefunding);
 		d.transit_bustrips = parseFloat(d.transit_bustrips);
-		d.transit_bridgecondition = parseFloat(d.transit_bridgecondition);	
 	});
 }
 
@@ -476,7 +463,7 @@ function getTextTick(indicator) {
 	} else if (indicator == 51) {
 		textTick = { text: 'Number', tickFormat: d3.format(",.1f"), tableClass: 'quality_of_life', indicatorName: 'Total Violent Crimes per 100,000 Residents', accessorFunction: function(d) {return d.qol_vcrimert;} };
 	} else if (indicator == 52) {
-		textTick = { text: 'Number', tickFormat: d3.format(",.1f"), tableClass: 'quality_of_life', indicatorName: 'Average Volunteer Rate, Hours Per Resident', accessorFunction: function(d) {return d.qol_vthourspc;} };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Average Volunteer Rate', accessorFunction: function(d) {return d.qol_vthourspc;} };
 	} else if (indicator == 53) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'quality_of_life', indicatorName: 'Percent of Population neither Overweight nor Obese', accessorFunction: function(d) {return d.qol_obese;} };
 	} else if (indicator == 54) {
@@ -490,7 +477,7 @@ function getTextTick(indicator) {
 	} else if (indicator == 58) {
 		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'transit', indicatorName: 'Public Transportation Funding, State Dollars per 1,000 Residents', accessorFunction: function(d) {return d.transit_statefunding;} };
 	} else if (indicator == 59) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Transit Ridership Occurring on a Bus', accessorFunction: function(d) {return d.transit_bustrips;} };
+		textTick = { text: 'Number', tickFormat: d3.format(",.0f"), tableClass: 'transit', indicatorName: 'Annual Nummber of Transit Rides Occurring on a Bus, in Thousands', accessorFunction: function(d) {return d.transit_bustrips;} };
 	} else if (indicator == 60) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Bridges That Are Functionally Obsolete', accessorFunction: function(d) {return d.transit_bridgecondition;} };
 	} else if (indicator == 61) {

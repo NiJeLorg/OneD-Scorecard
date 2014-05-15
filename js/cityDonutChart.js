@@ -140,6 +140,9 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 	var textTick = getTextTick(selectedIndicator);
 	//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
 	var value = textTick.tickFormat(dataset.economy[4].value);
+	if (value == 0) {
+		value = "No Data Available";
+	}
 
    	var div = d3.select(".cityDonutChartSidebarSelected")
    	    .style("opacity", 1)	
@@ -262,7 +265,11 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 			var textTick = getTextTick(d.id);
 			//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
 			
-			var value = textTick.tickFormat(d.value);
+			if (d.value == 0) {
+				var value = "No Data Available";
+			} else {
+				var value = textTick.tickFormat(d.value);				
+			}
 			
             div.html(
 				'<h5>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h5>' +
@@ -453,17 +460,36 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 	// iterate though the indicators dataset to find the value
 	$.each(dataset.indicators, function( i, d ) {	
 		if (dataset.indicators[i].id == selectedIndicator) {
-			value = textTick.tickFormat(dataset.indicators[i].value);			
+			if (d.value == 0) {
+				value = "No Data Available";
+			} else {
+				value = textTick.tickFormat(dataset.indicators[i].value);			
+			}				
 		}
+		
 		// harcoding for the three varibles with multiple components
 		if ((dataset.indicators[i].id == 38 && selectedIndicator == 38) || (dataset.indicators[i].id == 42 && selectedIndicator == 42) || (dataset.indicators[i].id == 46 && selectedIndicator == 46)) {
 			var count1 = i-3;
 			var count2 = i-2;
 			var count3 = i-1;
-			console.log(dataset.indicators[i]);
-			value1 = textTick1.tickFormat(dataset.indicators[count1].value);			
-			value2 = textTick2.tickFormat(dataset.indicators[count2].value);			
-			value3 = textTick3.tickFormat(dataset.indicators[count3].value);				
+			
+			if (dataset.indicators[count1].value == 0) {
+				value1 = "No Data Available";
+			} else {
+				value1 = textTick1.tickFormat(dataset.indicators[count1].value);			
+			}
+			
+			if (dataset.indicators[count2].value == 0) {
+				value2 = "No Data Available";
+			} else {
+				value2 = textTick1.tickFormat(dataset.indicators[count2].value);			
+			}
+			
+			if (dataset.indicators[count3].value == 0) {
+				value3 = "No Data Available";
+			} else {
+				value3 = textTick1.tickFormat(dataset.indicators[count3].value);			
+			}
 		}
 	});
 
@@ -597,8 +623,12 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 			var textTick = getTextTick(d.id);
 			//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
 			
-			var value = textTick.tickFormat(d.value);
-			
+			if (d.value == 0) {
+				var value = "No Data Available";
+			} else {
+				var value = textTick.tickFormat(d.value);			
+			}
+					
             div.html(
 				'<h5>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h5>' +
 				'<table class="table table-condensed heatmapTable">' +
