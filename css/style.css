@@ -398,7 +398,7 @@ body {
 }
 
 .mapDropdown {
-	width: 200px !important;
+	width: 189px !important;
 }
 
 .nationalCircularHeatChartDropdown {
@@ -472,6 +472,7 @@ path {
     border: solid 2px #ccc;
     border-radius: 4px;
     pointer-events: none;
+	z-index: 1031;
 } 
 
 .pinwheelTooltip:after, .pinwheelTooltip:before { 
@@ -543,6 +544,8 @@ path {
 .table > thead > tr.economy-rect > th,
 .table > tbody > tr.economy-rect > th,
 .table > tfoot > tr.economy-rect > th {
+	text-align: center;
+	font-size: 18px;
   width: 30px;
   background-color: #a6c0d0;
 }
@@ -574,6 +577,9 @@ path {
 .table > thead > tr.education-rect > th,
 .table > tbody > tr.education-rect > th,
 .table > tfoot > tr.education-rect > th {
+	text-align: center;
+	font-size: 18px;
+	color: #F3F3F3;
   width: 30px;
   background-color: #d94f26;
 }
@@ -590,6 +596,7 @@ path {
 .table > thead > tr.education > th,
 .table > tbody > tr.education > th,
 .table > tfoot > tr.education > th {
+	color: #F3F3F3;
   background-color: #ED8E7C;
 }
 
@@ -605,6 +612,9 @@ path {
 .table > thead > tr.equity-rect > th,
 .table > tbody > tr.equity-rect > th,
 .table > tfoot > tr.equity-rect > th {
+	text-align: center;
+	font-size: 18px;
+	color: #F3F3F3;
   width: 30px;
   background-color: #20698a;
 }
@@ -621,6 +631,7 @@ path {
 .table > thead > tr.equity > th,
 .table > tbody > tr.equity > th,
 .table > tfoot > tr.equity > th {
+	color: #F3F3F3;
   background-color: #88A8B5;
 }
 
@@ -636,6 +647,8 @@ path {
 .table > thead > tr.quality_of_life-rect > th,
 .table > tbody > tr.quality_of_life-rect > th,
 .table > tfoot > tr.quality_of_life-rect > th {
+	text-align: center;
+	font-size: 18px;
   width: 30px;
   background-color: #f5a91d;
 }
@@ -667,6 +680,8 @@ path {
 .table > thead > tr.transit-rect > th,
 .table > tbody > tr.transit-rect > th,
 .table > tfoot > tr.transit-rect > th {
+	text-align: center;
+	font-size: 18px;
   width: 30px;
   background-color: #87af3f;
 }
@@ -791,6 +806,7 @@ path {
 .bar:hover, .barSelected:hover, .barDetroitEconomy:hover, .barDetroitEducation:hover, .barDetroitEquity:hover, .barDetroitQol:hover, .barDetroitTransit:hover, .barDetroit:hover {
   fill: #BBBDBF;
 }
+
 
 .axis {
   font: 10px sans-serif;

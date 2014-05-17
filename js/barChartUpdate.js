@@ -4,7 +4,6 @@
 
 // function to update the bar chart
 function updateBarChartData(year, indicator, order, city) {
-
 	// function to set up crossfilter dimensions
 	// set a globa variable for crossfilter on the dataset
 	var cf = crossfilter(datasetIndicators);	

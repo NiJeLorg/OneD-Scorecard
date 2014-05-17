@@ -43,7 +43,7 @@ var config = {
   			axis: function(){return function(d) {return numberFormat(d3.round(d, 2))}}, 
   		} 
       }, 
-      highSchoolCompletion: {
+      ED: {
         title: "High School Completion Rate",
         data: {
           dataSet: "data/kirwanData.csv",
@@ -58,7 +58,7 @@ var config = {
   			axis: function(){return function(d) {return percentFormat(d3.round(d, 1)) + "%"}},
   		} 
       }, 
-      medianHHIncome: {
+      EE: {
         title: "Median Household Income",
         data: {
           dataSet: "data/kirwanData.csv",
@@ -72,7 +72,7 @@ var config = {
   			axis: function(){return function(d) {return dollarFormat(d)}},
   		} 
       }, 
-      vacantProperty: {
+      N: {
         title: "Percent Vacant Property",
         data: {
           dataSet: "data/kirwanData.csv",
@@ -91,14 +91,14 @@ var config = {
   }, // close dimensions
   
   defaults: {
-    order: ["kirwanIndex", "highSchoolCompletion", "medianHHIncome", "vacantProperty"],
+    order: ["kirwanIndex", "ED", "EE", "N"],
     active: "kirwanIndex"
   },
 };
 
 var comboBoxInnerHtml = "<form role=\"form\"><div class=\"form-group leftJustified\"><label for=\"selectEducation\">Education Indicators</label><select id=\"selectEducation\" class=\"form-control mapDropdown\"><option value='ED1'>Childhood Poverty</option><option value='ED2'>High School Dropout Rate</option><option value='ED3'>Persons 16-19 No HS Diploma, Unemployed</option><option value='ED4' selected='selected'>High School Completion</option><option value='ED5'>Reading Proficiency</option><option value='ED6'>Math Proficiency</option><option value='ED7'>Student Poverty</option></select></div><div class=\"form-group leftJustified\"><label for=\"selectEconomy\">Economy & Employment<br />Indicators</label><select id=\"selectEconomy\" class=\"form-control mapDropdown\"><option value='EE1'>Public Assistance Rate</option><option value='EE2' selected='selected'>Median Household Income</option><option value='EE3'>Unemployment Rate</option><option value='EE4'>Percentage Change in Jobs Within 5 Mile Radius</option></select></div><div class=\"form-group leftJustified\"><label for=\"selectNeighborhood\">Neighborhood Indicators</label><select id=\"selectNeighborhood\" class=\"form-control mapDropdown\"><option value='N1' selected='selected'>Vacant Property</option><option value='N2'>Property Values</option><option value='N3'>Homeownership rates</option><option value='N4'>Poverty Rates</option><option value='N5'>Percentage Population Change</option></select></div></form>";
 
-console.log(config);
+//console.log(config);
 a=new crosslet.MapView($("#onedMap"),config);
 
 // clear comboBox variable

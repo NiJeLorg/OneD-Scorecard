@@ -8,6 +8,7 @@ var width = 900;
 var widthHeatChart = 550;
 var viewWidthHeatChart = ($( window ).width()) * 0.40;
 var height = 500;
+var mapHeight = 544;
 
 // don't allow view width to be > than width
 if (viewWidth > width) {
@@ -21,8 +22,8 @@ if (viewWidthHeatChart > widthHeatChart) {
 
 // sets map projection needed for the map drawing and the pinwheel drawing
 var projection = d3.geo.albersUsa()
-    .scale(1050)
-    .translate([width / 2, height / 2]);
+    .scale(1150)
+    .translate([width / 2, mapHeight / 2]);
 	
 // set dataset as a global, empty variable
 var dataset = '';
@@ -34,9 +35,9 @@ var datasetIndicators = '';
 var svgContainerStates = d3.select(".statesArray")
 	.append("svg")
     .attr("preserveAspectRatio", "xMidYMid")
-    .attr("viewBox", "0 0 " + width + " " + height)
+    .attr("viewBox", "0 0 " + width + " " + mapHeight)
 	.attr("width", viewWidth)
-	.attr("height", viewWidth * height / width);
+	.attr("height", viewWidth * mapHeight / width);
 
 // set order of pinwheels in array as global
 var orderPinwheels = 1;

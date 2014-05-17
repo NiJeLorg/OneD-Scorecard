@@ -40,8 +40,13 @@ function createBarChart(svgContainer, datasetIndicators, textTick) {
 		var min = d3.min(datasetIndicators, function(d) { return d.value; });
 	}
 	
-    y.domain([min, d3.max(datasetIndicators, function(d) { return d.value; })]);
-
+	// if an index, set the Y domain max to 5
+	if (textTick.index == 'Yes') {
+		y.domain([min, 5]);
+	} else {
+	    y.domain([min, d3.max(datasetIndicators, function(d) { return d.value; })]);		
+	}
+	
 
     svg.append("g")
         .attr("class", "y axis")
@@ -88,21 +93,28 @@ function createBarChart(svgContainer, datasetIndicators, textTick) {
 		        .duration(250)
 		        .style("opacity", 1);
 			
+			if (textTick.scored == "Positive" && textTick.index == "No") {
+				var plusMinus = '<span class="glyphicon glyphicon-plus"></span>';			
+			} else if (textTick.scored == "Negative" && textTick.index == "No") {
+				var plusMinus = '<span class="glyphicon glyphicon-minus"></span>';							
+			} else {
+				var plusMinus = '';
+			}
+			
             div.html(
 				'<h5>' + d.metro + '</h5>' +
 				'<h5>' + d.year + '</h5>' +
 				'<table class="table table-condensed">' +
 					'<tr>' +
-						'<td class="' + textTick.tableClass + '-rect">' +
-						'</td>' +
+						'<td class="' + textTick.tableClass + '-rect">' + plusMinus + '</td>' +
 						'<td class="' + textTick.tableClass + '">' +
 							textTick.indicatorName + ': ' + textTick.tickFormat(d.value) +
 						'</td>' +
 					'</tr>' +
 				'</table>'				
 			)  
-	            .style("left", (d3.event.pageX + 23) + "px")     
-	            .style("top", (d3.event.pageY - 40) + "px");
+            .style("left", (d3.event.pageX + 23) + "px")     
+            .style("top", (d3.event.pageY - 40) + "px");
 			
 	   })
 	   .on("mouseout", function() {
@@ -121,12 +133,29 @@ function createBarChart(svgContainer, datasetIndicators, textTick) {
 		.attr("x1", 0)
 		.attr("x2", width - margin.right);
 		
+	// print "no data" if dataset max and min = 0
+	if ((d3.min(datasetIndicators, function(d) { return d.value; }) == 0 ) && (d3.max(datasetIndicators, function(d) { return d.value; }) == 0 )) {
+		svg.append("g")
+			.attr("class", "noData")
+			.append("text")
+			.attr("x", widthBarChart)
+			.attr("y", heightBarChart)
+			.text("No Data Available");
+	}
+		
 
 } // close createBarChart function
 
 
 // update barchart
 function updateBarChart(svgContainer, datasetIndicators, textTick, city) {
+	
+	var noData = svgContainer.select(".noData");
+	if (!noData) {
+		// do nothing
+	} else {
+		noData.remove();
+	}
 			
 	//set up container for mouseover interaction
 	var div = d3.select("body").append("div")
@@ -157,8 +186,13 @@ function updateBarChart(svgContainer, datasetIndicators, textTick, city) {
 		var min = d3.min(datasetIndicators, function(d) { return d.value; });
 	}
 	
-    y.domain([min, d3.max(datasetIndicators, function(d) { return d.value; })]);
-
+	// if an index, set the Y domain max to 5
+	if (textTick.index == 'Yes') {
+		y.domain([min, 5]);
+	} else {
+	    y.domain([min, d3.max(datasetIndicators, function(d) { return d.value; })]);		
+	}
+	
 	var svg = svgContainer.select(".mainWrapper");
 
     svgContainer.select(".axisText")
@@ -242,21 +276,28 @@ function updateBarChart(svgContainer, datasetIndicators, textTick, city) {
 		        .duration(250)
 		        .style("opacity", 1);
 			
+			if (textTick.scored == "Positive" && textTick.index == "No") {
+				var plusMinus = '<span class="glyphicon glyphicon-plus"></span>';			
+			} else if (textTick.scored == "Negative" && textTick.index == "No") {
+				var plusMinus = '<span class="glyphicon glyphicon-minus"></span>';							
+			} else {
+				var plusMinus = '';
+			}
+		
             div.html(
 				'<h5>' + d.metro + '</h5>' +
 				'<h5>' + d.year + '</h5>' +
 				'<table class="table table-condensed">' +
 					'<tr>' +
-						'<td class="' + textTick.tableClass + '-rect">' +
-						'</td>' +
+						'<td class="' + textTick.tableClass + '-rect">' + plusMinus + '</td>' +
 						'<td class="' + textTick.tableClass + '">' +
 							textTick.indicatorName + ': ' + textTick.tickFormat(d.value) +
 						'</td>' +
 					'</tr>' +
 				'</table>'				
-			)  
-	            .style("left", (d3.event.pageX + 23) + "px")     
-	            .style("top", (d3.event.pageY - 40) + "px");
+			) 
+            .style("left", (d3.event.pageX + 23) + "px")     
+            .style("top", (d3.event.pageY - 40) + "px");
 			
 	   })
 	   .on("mouseout", function() {
@@ -274,6 +315,18 @@ function updateBarChart(svgContainer, datasetIndicators, textTick, city) {
    		.attr("y2", y(0))
    		.attr("x1", 0)
    		.attr("x2", width - margin.right);
+		
+	// print "no data" if dataset max and min = 0
+	if ((d3.min(datasetIndicators, function(d) { return d.value; }) == 0 ) && (d3.max(datasetIndicators, function(d) { return d.value; }) == 0 )) {
+		svgContainer.append("g")
+			.attr("class", "noData")
+			.append("text")
+			.attr("x", widthBarChart/2.3)
+			.attr("y", heightBarChart/2)
+			.attr("font-size", "36px")
+			.attr("fill", "#6D6E70")
+			.text("No Data Available");
+	} 
 	  
 	
 

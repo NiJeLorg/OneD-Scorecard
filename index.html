@@ -78,7 +78,7 @@
 		              <div class="container">
 		   			  	<div class="statesArray"></div>
 						<div id="mapOnLoadTootip"></div>
-		                <ul id="sc1" class="sliderContainer">
+		                <!--<ul id="sc1" class="sliderContainer">
 		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationMap('play')"><span class="glyphicon glyphicon-play"></span></button></li>
 		                  <li><button type="button" class="btn btn-link" onclick="playStopAnimationMap('stop')"><span class="glyphicon glyphicon-stop"></span></button></li>
 		                  <li><div id="mapSlider" style="width:150px"></div></li>
@@ -94,7 +94,7 @@
 							  <option value='6'>Regional Transit Index Score</option>
 							</select>
 						  </label>
-						</form>					
+						</form>-->					
 						<div class="clearfix"></div>
 						<!-- Modal -->
 						<div class="modal fade" id="mapInfoModal" tabindex="-1" role="dialog" aria-labelledby="mapInfoModalLabel" aria-hidden="true">
@@ -405,7 +405,7 @@
 		                <ul class="nav control-nav">
 		                  <li><button type="button" class="btn btn-link learnAboutData" data-toggle="modal" data-target="#mapInfoModal"></button></li>
 		                  <li><button type="button" class="btn btn-link downloadData" data-toggle="modal" data-target="#mapDownloadModal"></button></li>
-		                  <li><button type="button" class="btn btn-link refreshData" onclick="refreshPinwheelsByYearMap()"></button></li>
+		                  <!--<li><button type="button" class="btn btn-link refreshData" onclick="refreshPinwheelsByYearMap()"></button></li>-->
 		                </ul>						
 		                <img src="assets/images/OneD_D3Logo_Gray_Small.png" class="control-logo" />				  				
 		              </div>
@@ -1872,8 +1872,9 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+
 <script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="assets/js/d3.v3.js" charset="utf-8"></script>
+<script type="text/javascript" src="assets/js/d3.v3.js"></script>
 <script type="text/javascript" src="assets/js/crossfilter.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap-slider.js"></script>
@@ -1881,59 +1882,16 @@
 <script type="text/javascript" src="assets/js/circularHeatChart.js"></script>
 <script type="text/javascript" src="assets/js/cityCircularHeatChart.js"></script>
 
-<!-- sets the global variables for all the svg containers -->
-<script type="text/javascript" src="js/globalVariables.js"></script>
+<!--**** yepnope -- check browser first before loading D3 ****-->
+<script type="text/javascript" src="assets/js/modernizr.js"></script>
+<script type="text/javascript">
+	Modernizr.load({
+	  test: Modernizr.svg,
+	  yep : ['js/globalVariables.js', 'js/functions.js', 'js/pinwheel.js', 'js/barChart.js', 'js/slider.js', 'js/pinwheelArraySetup.js', 'js/nationalCircularHeatChart.js', 'js/cityDonutChart.js', 'js/barChartSetup.js', 'js/states.js',  'js/statesPinwheelSetup.js',  'js/pinwheelUpdate.js', 'js/nationalCircularHeatChartUpdate.js', 'js/cityDonutChartUpdate.js', 'js/barChartUpdate.js', 'js/updateFromDropdown.js', 'js/barChartDropdownSetup.js', 'js/resize.js' ],
+	  nope: 'assets/js/nosvg.js' // alerts users to upgrade to a modern browser
+	});
+</script>
 
-<!-- houses the functions that are used across the set up functions -->
-<script type="text/javascript" src="js/functions.js"></script>
-
-<!-- reusable draw states function -->
-<script type="text/javascript" src="js/states.js"></script>
-
-<!-- reusable pinwheel function -->
-<script type="text/javascript" src="js/pinwheel.js"></script>
-
-<!-- reusable barchart function -->
-<script type="text/javascript" src="js/barChart.js"></script>
-
-<!-- setup javascript for drawing the pinwheels on the states map -->
-<script type="text/javascript" src="js/statesPinwheelSetup.js"></script>
-
-<!-- setup javascript drawing the array of pinwheels -->
-<script type="text/javascript" src="js/pinwheelArraySetup.js"></script>
-
-<!-- javascript drawing the national circular heat chart -->
-<script type="text/javascript" src="js/nationalCircularHeatChart.js"></script>
-
-<!-- javascript drawing the city donut chart -->
-<script type="text/javascript" src="js/cityDonutChart.js"></script>
-
-<!-- setup javascript drawing the bar chart -->
-<script type="text/javascript" src="js/barChartSetup.js"></script>
-
-<!-- javascript for updating Pinwheels -->
-<script type="text/javascript" src="js/pinwheelUpdate.js"></script>
-
-<!-- javascript for updating the national circular heat chart -->
-<script type="text/javascript" src="js/nationalCircularHeatChartUpdate.js"></script>
-
-<!-- javascript for updating the city donut chart -->
-<script type="text/javascript" src="js/cityDonutChartUpdate.js"></script>
-
-<!-- javascript for updating the bar chart -->
-<script type="text/javascript" src="js/barChartUpdate.js"></script>
-
-<!-- initiates the slider that plays the change in data by year -->
-<script type="text/javascript" src="js/slider.js"></script>
-
-<!-- javascript for updating Pinwheels when user selects an option from the dropdown -->
-<script type="text/javascript" src="js/updateFromDropdown.js"></script>
-
-<!-- javascript for updating the bar chart dropdown -->
-<script type="text/javascript" src="js/barChartDropdownSetup.js"></script>
-
-<!-- resize all charts based on viewport width -->
-<script type="text/javascript" src="js/resize.js"></script>
 
 
 

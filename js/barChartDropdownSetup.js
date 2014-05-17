@@ -16,7 +16,7 @@ $(document).ready(function() {
 			$("#selectIndicator").html("<option value='64'>Quality of Life Index</option><option value='47'>Air Quality Index, Percent of \"Good\" Days</option><option value='49'>Percent Change in Population</option><option value='50'>Percent Population Without Health Insurance</option><option value='51'>Total Violent Crimes per 100,000 Residents</option><option value='52'>Average Volunteer Rate, Hours Per Resident</option><option value='53'>Percent of Population neither Overweight nor Obese</option>");
         } else if (val == "5") {
             $("#selectIndicator").html("<option value='65'>Regional Transit Index</option><option value='55'>Annual Hours of Delay per Auto Commuter</option><option value='57'>Percent of Workers with No Vehicle</option><option value='56'>Percent of Workers 16+ Driving Alone to Work</option><option value='58'>Public Transportation Funding, State Dollars per 1,000 Residents</option><option value='59'>Percent of Transit Ridership Occurring on a Bus</option>");
-    	} else if (val == "6") {
+    	} else if (val == "0") {
 	        $("#selectIndicator").html("<option value='66'>OneD Index</option>");
 	    }
 

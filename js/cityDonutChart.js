@@ -143,6 +143,14 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 	if (value == 0) {
 		value = "No Data Available";
 	}
+	
+	if (textTick.scored == "Positive" && textTick.index == "No") {
+		var plusMinus = '<span class="glyphicon glyphicon-plus"></span>';			
+	} else if (textTick.scored == "Negative" && textTick.index == "No") {
+		var plusMinus = '<span class="glyphicon glyphicon-minus"></span>';							
+	} else {
+		var plusMinus = '';
+	}
 
    	var div = d3.select(".cityDonutChartSidebarSelected")
    	    .style("opacity", 1)	
@@ -150,8 +158,7 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 			'<h4>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h4>' +
 			'<table class="table table-condensed">' +
 				'<tr>' +
-					'<td class="' + textTick.tableClass + '-rect">' +
-					'</td>' +
+				'<td class="' + textTick.tableClass + '-rect">' + plusMinus + '</td>' +
 					'<td class="' + textTick.tableClass + '">' +
 						dataset.meta[0].metro + ': ' + value +
 					'</td>' +
@@ -271,12 +278,19 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 				var value = textTick.tickFormat(d.value);				
 			}
 			
+			if (textTick.scored == "Positive" && textTick.index == "No") {
+				var plusMinus = '<span class="glyphicon glyphicon-plus"></span>';			
+			} else if (textTick.scored == "Negative" && textTick.index == "No") {
+				var plusMinus = '<span class="glyphicon glyphicon-minus"></span>';							
+			} else {
+				var plusMinus = '';
+			}
+			
             div.html(
 				'<h5>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h5>' +
 				'<table class="table table-condensed heatmapTable">' +
 					'<tr>' +
-						'<td class="' + textTick.tableClass + '-rect">' +
-						'</td>' +
+						'<td class="' + textTick.tableClass + '-rect">' + plusMinus + '</td>' +
 						'<td class="' + textTick.tableClass + '">' +
 							dataset.meta[0].metro + ': ' + value +
 						'</td>' +
@@ -456,7 +470,11 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 	var value1 = 0;
 	var value2 = 0;
 	var value3 = 0;
-	
+	var plusMinus = '';
+	var plusMinus1 = '';
+	var plusMinus2 = '';
+	var plusMinus3 = '';
+		
 	// iterate though the indicators dataset to find the value
 	$.each(dataset.indicators, function( i, d ) {	
 		if (dataset.indicators[i].id == selectedIndicator) {
@@ -464,7 +482,16 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 				value = "No Data Available";
 			} else {
 				value = textTick.tickFormat(dataset.indicators[i].value);			
-			}				
+			}
+			
+			if (textTick.scored == "Positive" && textTick.index == "No") {
+				plusMinus = '<span class="glyphicon glyphicon-plus"></span>';			
+			} else if (textTick.scored == "Negative" && textTick.index == "No") {
+				plusMinus = '<span class="glyphicon glyphicon-minus"></span>';							
+			} else {
+				plusMinus = '';
+			}
+							
 		}
 		
 		// harcoding for the three varibles with multiple components
@@ -479,10 +506,26 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 				value1 = textTick1.tickFormat(dataset.indicators[count1].value);			
 			}
 			
+			if (textTick1.scored == "Positive" && textTick1.index == "No") {
+				plusMinus1 = '<span class="glyphicon glyphicon-plus"></span>';			
+			} else if (textTick1.scored == "Negative" && textTick1.index == "No") {
+				plusMinus1 = '<span class="glyphicon glyphicon-minus"></span>';							
+			} else {
+				plusMinus1 = '';
+			}
+			
 			if (dataset.indicators[count2].value == 0) {
 				value2 = "No Data Available";
 			} else {
 				value2 = textTick1.tickFormat(dataset.indicators[count2].value);			
+			}
+			
+			if (textTick2.scored == "Positive" && textTick2.index == "No") {
+				plusMinus2 = '<span class="glyphicon glyphicon-plus"></span>';			
+			} else if (textTick.scored == "Negative" && textTick2.index == "No") {
+				plusMinus2 = '<span class="glyphicon glyphicon-minus"></span>';							
+			} else {
+				plusMinus2 = '';
 			}
 			
 			if (dataset.indicators[count3].value == 0) {
@@ -490,6 +533,15 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 			} else {
 				value3 = textTick1.tickFormat(dataset.indicators[count3].value);			
 			}
+			
+			if (textTick3.scored == "Positive" && textTick3.index == "No") {
+				plusMinus3 = '<span class="glyphicon glyphicon-plus"></span>';			
+			} else if (textTick.scored == "Negative" && textTick3.index == "No") {
+				plusMinus3 = '<span class="glyphicon glyphicon-minus"></span>';							
+			} else {
+				plusMinus3 = '';
+			}
+			
 		}
 	});
 
@@ -502,29 +554,25 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 				'<h4>' + textTick.indicatorName +  ', ' + dataset.meta[0].metro + ', ' + dataset.meta[0].year +'</h4>' +
 				'<table class="table table-condensed">' +
 					'<tr>' +
-						'<td class="' + textTick.tableClass + '-rect">' +
-						'</td>' +
+						'<td class="' + textTick.tableClass + '-rect">' + plusMinus + '</td>' +
 						'<td class="' + textTick.tableClass + '">' +
 							textTick.indicatorName + ': ' + value +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
-						'<td class="' + textTick1.tableClass + '-rect">' +
-						'</td>' +
+						'<td class="' + textTick1.tableClass + '-rect">' + plusMinus1 + '</td>' +
 						'<td class="' + textTick1.tableClass + '">' +
 							textTick1.indicatorName + ': ' + value1 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
-						'<td class="' + textTick2.tableClass + '-rect">' +
-						'</td>' +
+						'<td class="' + textTick2.tableClass + '-rect">' + plusMinus2 + '</td>' +
 						'<td class="' + textTick2.tableClass + '">' +
 							textTick2.indicatorName + ': ' + value2 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
-						'<td class="' + textTick3.tableClass + '-rect">' +
-						'</td>' +
+						'<td class="' + textTick3.tableClass + '-rect">' + plusMinus3 + '</td>' +
 						'<td class="' + textTick3.tableClass + '">' +
 							textTick3.indicatorName + ': ' + value3 +
 						'</td>' +
@@ -539,8 +587,7 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 				'<h4>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h4>' +
 				'<table class="table table-condensed">' +
 					'<tr>' +
-						'<td class="' + textTick.tableClass + '-rect">' +
-						'</td>' +
+						'<td class="' + textTick.tableClass + '-rect">' + plusMinus + '</td>' +
 						'<td class="' + textTick.tableClass + '">' +
 							dataset.meta[0].metro + ': ' + value +
 						'</td>' +
@@ -628,13 +675,20 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 			} else {
 				var value = textTick.tickFormat(d.value);			
 			}
+			
+			if (textTick.scored == "Positive" && textTick.index == "No") {
+				var plusMinus = '<span class="glyphicon glyphicon-plus"></span>';			
+			} else if (textTick.scored == "Negative" && textTick.index == "No") {
+				var plusMinus = '<span class="glyphicon glyphicon-minus"></span>';							
+			} else {
+				var plusMinus = '';
+			}
 					
             div.html(
 				'<h5>' + textTick.indicatorName + ', ' + dataset.meta[0].year +'</h5>' +
 				'<table class="table table-condensed heatmapTable">' +
 					'<tr>' +
-						'<td class="' + textTick.tableClass + '-rect">' +
-						'</td>' +
+						'<td class="' + textTick.tableClass + '-rect">' + plusMinus + '</td>' +
 						'<td class="' + textTick.tableClass + '">' +
 							dataset.meta[0].metro + ': ' + value +
 						'</td>' +

@@ -94,8 +94,8 @@ function updatePinwheelsByYearMap(year, orderPinwheels) {
 		var rowOfData = createObjectForPinwheel(filteredDataByGeoID);
 
 		// reset size for pinwheel and smallestPie
-		smallestPie = 10;
-		size = 18;	
+		smallestPie = 8;
+		size = 20;	
 		
 		// set centers of pinwheels for map
 		centerX = projection([rowOfData.meta[0].lon, rowOfData.meta[0].lat])[0];
@@ -146,8 +146,8 @@ function refreshPinwheelsByYearMap() {
 		var rowOfData = createObjectForPinwheel(filteredDataByGeoID);
 
 		// reset size for pinwheel and smallestPie
-		smallestPie = 10;
-		size = 18;	
+		smallestPie = 8;
+		size = 20;	
 		
 		// set centers of pinwheels for map
 		centerX = projection([rowOfData.meta[0].lon, rowOfData.meta[0].lat])[0];

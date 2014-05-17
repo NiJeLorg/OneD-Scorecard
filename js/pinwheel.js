@@ -65,18 +65,34 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 
 	// add popup that shows up on page load and dissapears on hover for map
 	if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'statesArray') {
-		if ($( window ).width() > 992) {
-			var left = (($( window ).width()) * 0.63) - (($( window ).width()) * 0.01);
-		} else if ($( window ).width() > 1200) {
-			var left = (($( window ).width()) * 0.63) - (($( window ).width()) * 0.03);
+		if ($( window ).width() < 768) {
+			var left = (($( window ).width()) * 0.64) - (($( window ).width()) * 0.03);
+			var topNum = ((((($( window ).width()) * 0.64) - (($( window ).width()) * 0.07)) * 136) / width);
+		} else if ($( window ).width() < 992) {
+			var left = (($( window ).width()) * 0.64) - (($( window ).width()) * 0.02);
+			var topNum = ((((($( window ).width()) * 0.64) - (($( window ).width()) * 0.07)) * 136) / width);
+		} else if ($( window ).width() < 1050) {
+			var left = (($( window ).width()) * 0.65);
+			var topNum = ((((($( window ).width()) * 0.64) - (($( window ).width()) * 0.03)) * 136) / width);
+		} else if ($( window ).width() < 1200) {
+			var left = (($( window ).width()) * 0.64) - (($( window ).width()) * 0.01);
+			var topNum = ((((($( window ).width()) * 0.64) - (($( window ).width()) * 0.03)) * 136) / width);
+		} else if ($( window ).width() < 1300) {
+			var left = (($( window ).width()) * 0.645);
+			var topNum = (((($( window ).width()) * 0.645) * 136) / width);
+		} else if ($( window ).width() < 1400) {
+			var left = (($( window ).width()) * 0.635);
+			var topNum = (((($( window ).width()) * 0.635) * 136) / width);
 		} else {
-			var left = (($( window ).width()) * 0.63);
+			var left = (($( window ).width()) * 0.625);
+			var topNum = (((($( window ).width()) * 0.625) * 136) / width);
 		}
+		
 		var divDetroit = d3.select("#mapOnLoadTootip").append("div")
 		    .attr("class", "pinwheelTooltip")
 		    .style("opacity", 1)
 	        .style("left", left + "px")     
-	        .style("top", (((($( window ).width()) * 0.63) * 122) / width) + "px")
+	        .style("top", topNum + "px")
 			.html(
 				'<h4>' + rowOfData.meta[0].metro + '</h4>' +
 				'<table class="table table-condensed">' +
@@ -94,18 +110,44 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	
 	// add popup that shows up on page load and dissapears on hover for map
 	if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'pinwheelArray') {
-		if ($( window ).width() > 992) {
-			var left = (($( window ).width()) * 0.58) - (($( window ).width()) * 0.01);
-		} else if ($( window ).width() > 1200) {
-			var left = (($( window ).width()) * 0.58) - (($( window ).width()) * 0.03);
+		if ($( window ).width() < 992) {
+			var left = (($( window ).width()) * 0.57);
+		} else if ($( window ).width() < 1050) {
+			var left = (($( window ).width()) * 0.61);
+		} else if ($( window ).width() < 1200) {
+			var left = (($( window ).width()) * 0.59);
 		} else {
 			var left = (($( window ).width()) * 0.58);
+		}
+		 (((($( window ).width()) * 0.55) * 100) / width)
+		
+		if ($( window ).width() < 768) {
+			var left = (($( window ).width()) * 0.56);
+			var topNum = (((($( window ).width()) * 0.56) * 65) / width);
+		} else if ($( window ).width() < 992) {
+			var left = (($( window ).width()) * 0.575);
+			var topNum = (((($( window ).width()) * 0.56) * 70) / width);
+		} else if ($( window ).width() < 1050) {
+			var left = (($( window ).width()) * 0.59);
+			var topNum = (((($( window ).width()) * 0.56) * 80) / width);
+		} else if ($( window ).width() < 1200) {
+			var left = (($( window ).width()) * 0.575);
+			var topNum = (((($( window ).width()) * 0.56) * 90) / width);
+		} else if ($( window ).width() < 1300) {
+			var left = (($( window ).width()) * 0.585);
+			var topNum = (((($( window ).width()) * 0.56) * 95) / width);
+		} else if ($( window ).width() < 1400) {
+			var left = (($( window ).width()) * 0.585);
+			var topNum = (((($( window ).width()) * 0.56) * 100) / width);
+		} else {
+			var left = (($( window ).width()) * 0.57);
+			var topNum = (((($( window ).width()) * 0.56) * 95) / width);
 		}
 		var divDetroit = d3.select("#arrayOnLoadTootip").append("div")
 		    .attr("class", "pinwheelTooltip")
 		    .style("opacity", 1)
 	        .style("left", left + "px")     
-	        .style("top", (((($( window ).width()) * 0.54) * 100) / width) + "px")
+	        .style("top", topNum + "px")
 			.html(
 				'<h4>' + rowOfData.meta[0].metro + '</h4>' +
 				'<table class="table table-condensed">' +
@@ -256,7 +298,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 					'</table>'				
 				)  
 	                .style("left", (d3.event.pageX + 25) + "px")     
-	                .style("top", (d3.event.pageY - 80) + "px");
+	                .style("top", (d3.event.pageY - 70) + "px");
 				
 		   })
 		   .on("mouseout", function() {
@@ -351,7 +393,6 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	function updateComplexArcs(svgContainer, rowOfData, colorFunc, pinwheelArcOptions) {
 		// add a circle underneath Detroit and have it follow Detroit around the chart
 		if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'pinwheelArray') {
-			console.log('hello');
 			var backgroundCircle = svgContainer.select("#backgroundCircle")
 				.transition().delay(1000).duration(2000)
 				.attr("cx", centerX)
@@ -436,7 +477,7 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 					'</table>'				
 				)  
 	                .style("left", (d3.event.pageX + 25) + "px")     
-	                .style("top", (d3.event.pageY - 80) + "px");
+	                .style("top", (d3.event.pageY - 70) + "px");
 				
 		   })
 		   .on("mouseout", function() {

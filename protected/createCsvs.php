@@ -1941,17 +1941,17 @@ foreach($equity_years as $year) {
 	$metro_IncomeShare_min_top = min($metro_IncomeShare_values_top[$year]);
 	// calculate index scores and store
 	foreach($metro_IncomeShare_filtered[$year] as $data) {
-		$calc_index_1 = (((5*$metro_IncomeShare_max_1) + ($data['Lowestquintile'] * -5)) / ($metro_IncomeShare_max_1 - $metro_IncomeShare_min_1));
+		$calc_index_1 = (((-5*$metro_IncomeShare_min_1) + ($data['Lowestquintile'] * 5)) / ($metro_IncomeShare_max_1 - $metro_IncomeShare_min_1));
 		$metro_IncomeShare_indexed_1[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_1);
-		$calc_index_2 = (((5*$metro_IncomeShare_max_2) + ($data['Secondlowestquintile'] * -5)) / ($metro_IncomeShare_max_2 - $metro_IncomeShare_min_2));
+		$calc_index_2 = (((-5*$metro_IncomeShare_min_2) + ($data['Secondlowestquintile'] * 5)) / ($metro_IncomeShare_max_2 - $metro_IncomeShare_min_2));
 		$metro_IncomeShare_indexed_2[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_2);
-		$calc_index_3 = (((5*$metro_IncomeShare_max_3) + ($data['Middlequintile'] * -5)) / ($metro_IncomeShare_max_3 - $metro_IncomeShare_min_3));
+		$calc_index_3 = (((-5*$metro_IncomeShare_min_3) + ($data['Middlequintile'] * 5)) / ($metro_IncomeShare_max_3 - $metro_IncomeShare_min_3));
 		$metro_IncomeShare_indexed_3[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_3);
-		$calc_index_4 = (((-5*$metro_IncomeShare_min_4) + ($data['Secondhighestquintile'] * 5)) / ($metro_IncomeShare_max_4 - $metro_IncomeShare_min_4));
+		$calc_index_4 = (((5*$metro_IncomeShare_max_4) + ($data['Secondhighestquintile'] * -5)) / ($metro_IncomeShare_max_4 - $metro_IncomeShare_min_4));
 		$metro_IncomeShare_indexed_4[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_4);
-		$calc_index_5 = (((-5*$metro_IncomeShare_min_5) + ($data['Highestquintile'] * 5)) / ($metro_IncomeShare_max_5 - $metro_IncomeShare_min_5));
+		$calc_index_5 = (((5*$metro_IncomeShare_max_5) + ($data['Highestquintile'] * -5)) / ($metro_IncomeShare_max_5 - $metro_IncomeShare_min_5));
 		$metro_IncomeShare_indexed_5[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_5);
-		$calc_index_top = (((-5*$metro_IncomeShare_min_top) + ($data['top_5_percent'] * 5)) / ($metro_IncomeShare_max_top - $metro_IncomeShare_min_top));
+		$calc_index_top = (((5*$metro_IncomeShare_max_top) + ($data['top_5_percent'] * -5)) / ($metro_IncomeShare_max_top - $metro_IncomeShare_min_top));
 		$metro_IncomeShare_indexed_top[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_top);
 	}
 }
