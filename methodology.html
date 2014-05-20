@@ -358,12 +358,26 @@
 									</div>
 									<div class="bs-docs-section">
 										<h2 id="odindex">One D Index</h2>							
-										<p>The One D Scorecard displays data indicators in a way that offers multiple angles of analysis by ranking metro regions, trending annual change, and indexing indicators within their priority areas across geographies.  Data Driven Detroit (D3) developed the One D Index to summarize a single, comprehensive score that comprises the individual indicators that drive the priority areas.  
+										<p>The One D Index, developed by Data Driven Detroit (D3) and NiJeL, offers a comprehensive and easily comparable score for each metro region.  Using a single score, the One D Index captures a summary overview of each data indicator, and its respective priority area, included in the 2014 One D Scorecard.  
 		</p>
-										<p>The One D Index value is calculated by transforming the original values of individual indicators over a 0-5 range, with 0 as the lowest score and 5 as the highest.  The comprehensive index value by priority area is then calculated by averaging the scores for the individual indicators within that priority area.  Each indicator is equally weighted to comprise the priority area index, with the exception of three indicators broken out by race in Social Equity, where each of the three race categories comprise one third the weight of the total indicator.  Similarly, the One D Index is calculated for each metro region by averaging the score for each priority area.  Each priority area is equally weighted to comprise the One D Index score, independent of the number of indicators within that priority area.
+										<p>We calculate the One D Index score by transforming the original values of individual indicators over a 0-5 range, with 0 as the lowest score and 5 as the highest.  We then calculate the priority area indices by averaging the scores for the respective indicators.  Similarly, we calculate the One D Index by averaging the priority area index scores for a given region and year.  We equally weight each priority area in the One D Index score, independent of the number of indicators within that priority area. 
 		</p>
 										<p>The data available for download are the original values for each indicator as well as the One D Index and index score by priority area for each region.
 		</p>
+										<h3 id="paindex">Priority Area Indices</h3>
+										<h4 id="norm">Normalized Indicators</h4>
+										<p>We normalize each indicator by first selecting the minimum and maximum value of that indicator from across all regions for each year.  We then assign a score of 0 to the region with the minimum value, 5 to the region with the maximum value, and calculate the scores of all other regions in-between on a linear scale between 0 and 5.  Last, we sum the normalized indicator values and divide by the total number of indicators in the priority area to calculate each priority area index for each year.
+		</p>									
+										<h4 id="neg">Negatively-scored Indicators</h4>
+										<p>In calculating each priority area index, some individual indicators were negatively scored where higher values indicate a more distressing situation, such as childhood poverty rates.  We assigned these indicators a score of 5 to the region with the minimum score, 0 to the region with the maximum score, and the scores of all other regions are assigned on a linear scale between 5 and 0.  You can see whether an indicator is positively or negatively scored in the Priority Areas data table.
+		</p>									
+										<h4 id="wght">Weighted Indicators</h4>
+										<p>When comprising any priority area index, we equally weight each indicator in most cases.  Two exceptions occur in the Social Equity priority area when an indicator is broken out into three categories of race and ethnicity: African American; White, non-Hispanic; and Hispanic/Latino.   In these cases, we set each of the three race categories to be one third of the weight of the overall indicator. 
+		</p>								
+										<h4 id="incl">Included Indicators in Index</h4>
+										<p>We calculate a priority area index for a given year when 50 percent or more of the indicators that comprise the overall index are available, in the given year, across all regions. For example, the Economic Prosperity index is comprised of eight economic indicators; we will calculate an Economic Prosperity index for the year 2010 if four or more of the economic indicators are available in 2010 across all regions.  
+		</p>								
+
 									</div>
 									<div class="bs-docs-section">
 										<h2 id="geography">Geography</h2>							
