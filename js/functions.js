@@ -417,17 +417,17 @@ function getTextTick(indicator) {
 	} else if (indicator == 28) {
 		textTick = { text: 'Index', tickFormat: d3.format(",.2"), tableClass: 'equity', indicatorName: 'Gini Index', accessorFunction: function(d) {return d.equity_gini;}, index: 'No', scored: 'Negative'  };
 	} else if (indicator == 29) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Lowest Quintile of Households Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incshareq1;}, index: 'No', scored: 'Positive'  };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Lowest Quintile of Households\' Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incshareq1;}, index: 'No', scored: 'Positive'  };
 	} else if (indicator == 30) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Second Lowest Quintile of Households Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incshareq2;}, index: 'No', scored: 'Positive'  };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Second Lowest Quintile of Households\' Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incshareq2;}, index: 'No', scored: 'Positive'  };
 	} else if (indicator == 31) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Middle Quintile of Households Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incshareq3;}, index: 'No', scored: 'Positive' };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Middle Quintile of Households\' Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incshareq3;}, index: 'No', scored: 'Positive' };
 	} else if (indicator == 32) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Second Highest Quintile of Households Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incshareq4;}, index: 'No', scored: 'Negative' };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Second Highest Quintile of Households\' Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incshareq4;}, index: 'No', scored: 'Negative' };
 	} else if (indicator == 33) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Highest Quintile of Households Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incshareq5;}, index: 'No', scored: 'Negative' };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Highest Quintile of Households\' Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incshareq5;}, index: 'No', scored: 'Negative' };
 	} else if (indicator == 34) {
-		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Top 5% of Households Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incsharetop5;}, index: 'No', scored: 'Negative' };
+		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'equity', indicatorName: 'Top 5% of Households\' Share of Aggregate Income', accessorFunction: function(d) {return d.equity_incsharetop5;}, index: 'No', scored: 'Negative' };
 	} else if (indicator == 35) {
 		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'equity', indicatorName: 'Median Household Income for Black Households', accessorFunction: function(d) {return d.equity_medhhincblack;}, index: 'No', scored: 'Positive' };
 	} else if (indicator == 36) {
@@ -477,7 +477,7 @@ function getTextTick(indicator) {
 	} else if (indicator == 58) {
 		textTick = { text: 'Dollars', tickFormat: d3.format("$,.2f"), tableClass: 'transit', indicatorName: 'Public Transportation Funding, State Dollars per 1,000 Residents', accessorFunction: function(d) {return d.transit_statefunding;}, index: 'No', scored: 'Positive' };
 	} else if (indicator == 59) {
-		textTick = { text: 'Number', tickFormat: d3.format(",.0f"), tableClass: 'transit', indicatorName: 'Annual Nummber of Transit Rides Occurring on a Bus, in Thousands', accessorFunction: function(d) {return d.transit_bustrips;}, index: 'No', scored: 'Positive' };
+		textTick = { text: 'Number', tickFormat: d3.format(",.0f"), tableClass: 'transit', indicatorName: 'Annual Number of Transit Rides Occurring on a Bus, in Thousands', accessorFunction: function(d) {return d.transit_bustrips;}, index: 'No', scored: 'Positive' };
 	} else if (indicator == 60) {
 		textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Bridges That Are Functionally Obsolete', accessorFunction: function(d) {return d.transit_bridgecondition;}, index: 'No', scored: 'Negative' };
 	} else if (indicator == 61) {
@@ -900,14 +900,13 @@ function createObjectForDountChartCity(filteredData) {
 	$.each(filteredData, function( i, d ) {		
 		donutChartData.meta.push({ id: d.id, geoid: d.geoid, metro: d.metro, region: d.region, year: d.year, lat: d.lat, lon: d.lon });
 		donutChartData.economy.push(
-			{ id: 1, value: d.econ_exports, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 1 },
-			{ id: 2, value: d.econ_gmp, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 1 },
-			{ id: 4, value: d.econ_hightech, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 1 },
-			{ id: 5, value: d.econ_kiemploy, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 1 },
-			{ id: 7, value: d.econ_pcpi, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 1 },
-			{ id: 10, value: d.econ_techpatents, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 1 },
-			{ id: 11, value: d.econ_biztaxindex, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 1 },
-			{ id: 12, value: d.econ_rdsharegdp, sliceWidth: 8, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 8, catetoryCount: 1 }
+			{ id: 1, value: d.econ_exports, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 1 },
+			{ id: 2, value: d.econ_gmp, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 2, catetoryCount: 1 },
+			{ id: 4, value: d.econ_hightech, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 3, catetoryCount: 1 },
+			{ id: 5, value: d.econ_kiemploy, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 4, catetoryCount: 1 },
+			{ id: 7, value: d.econ_pcpi, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 5, catetoryCount: 1 },
+			{ id: 10, value: d.econ_techpatents, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 6, catetoryCount: 1 },
+			{ id: 11, value: d.econ_biztaxindex, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 7, catetoryCount: 1 }
 		);
 		donutChartData.education.push(
 			{ id: 14, value: d.edu_pctbachhigher2534, sliceWidth: 7, innerRadius: innerRadius, outerRadius: outerRadius, sliceNumber: 1, catetoryCount: 2 },

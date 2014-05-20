@@ -45,6 +45,8 @@ body {
   vertical-align: top;
 }
 .cover-container {
+  max-width: 1600px;
+  min-width: 800px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -415,6 +417,10 @@ body {
 
 .floatRight {
 	float: right;
+}
+
+.plusMinusIcon {
+	font-size: 18px;
 }
 
 
@@ -823,18 +829,6 @@ path {
   display: none;
 }
 
-/*
- * One Detroit Portal Landing Page
- */
-
-.michiganMap {
-    background-image: url('../assets/images/Michigan.png');
-	background-repeat: no-repeat;
-	margin-top: 60px;
-	margin-bottom: 89px;
-	width: 493px;
-	height: 400px; 
-}
 
 /*
  * One Detroit map css

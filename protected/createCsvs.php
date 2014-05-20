@@ -14,8 +14,13 @@ require('connect.php');
 // open csv files for writing
 $filecsv = "../data/indexData.csv";
 $file2csv = "../data/indicatorData.csv";
+$file3csv = "../data/OneDIndexData.csv";
+$file4csv = "../data/OneDIndicatorData.csv";
+
 $handlecsv = fopen($filecsv, "w");
 $handle2csv = fopen($file2csv, "w");
+$handle3csv = fopen($file3csv, "w");
+$handle4csv = fopen($file4csv, "w");
 
 // create csv headers
 $csv_header = array('id', 'geoid', 'metro', 'region', 'lat', 'lon', 'year', 'oned_index', 'economy_index', 'education_index', 'equity_index', 'quality_of_life_index', 'transit_index');
@@ -40,7 +45,6 @@ $csv_header2 = array('id',
 					'econ_pcpi', 
 					'econ_techpatents', 
 					'econ_biztaxindex', 
-					'econ_rdsharegdp', 
 					'edu_pctbachhigher2534', 
 					'edu_pctbachhigher', 
 					'edu_enrolled', 
@@ -80,11 +84,71 @@ $csv_header2 = array('id',
 					'transit_bustrips', 
 					'transit_statefunding'
 				);
+				
+$csv_header3 = array('Metro Area', 'Year', 'OneD Index', 'Economic Prosperity Index', 'Educational Preparedness Index', 'Social Equity Index', 'Quality of Life Index', 'Regional Transit Index');
+
+$csv_header4 = array('Metro Area', 
+					'Year', 
+					'OneD Index',
+					'Economic Prosperity Index',
+					'Educational Preparedness Index', 
+					'Social Equity Index', 
+					'Quality of Life Index', 
+					'Regional Transit Index',
+					'Total Value of Exports', 
+					'Per Capita GDP for Metropolitan Area (GMP)', 
+					'Percent Change in High Tech Jobs', 
+					'Percent Change in Knowledge Industry Employment', 
+					'Per Capita Personal Income', 
+					'Number of Technology Patents per 10K People', 
+					'Business Tax Climate Index', 
+					'Young & Talented Population, Education Attainment Bachelors+, 25-34', 
+					'Education Attainment Bachelors+, 25+', 
+					'Percent Population Enrolled in School, 3+', 
+					'Education Attainment High School+, 18+', 
+					'Percent Teens Not Enrolled in School, No HS Diploma, Unemployed', 
+					'State Appropriations Per Pupil', 
+					'State Expenditures Per Pupil', 
+					'Air Quality Index, Percent of "Good" Days', 
+					'Percent Change in Population', 
+					'Percent Population Without Health Insurance', 
+					'Total Violent Crimes per 100,000 Residents', 
+					'Average Volunteer Rate', 
+					'Percent of Population neither Overweight nor Obese', 
+					'Percent Population Foreign Born', 
+					'Gini Index', 
+					'Income Level by Quintile (Lowest Quintile)', 
+					'Income Level by Quintile (Second Lowest Quintile)', 
+					'Income Level by Quintile (Middle Quintile)', 
+					'Income Level by Quintile (Second Highest Quintile)', 
+					'Income Level by Quintile (Highest Quintile)', 
+					'Top 5% of Households Share of Aggregate Income', 
+					'Median Household Income for Black Households', 
+					'Median Household Income for Hispanic Households', 
+					'Median Household Income for Non-Hispanic White Households', 
+					'Median Household Income for All Households', 
+					'Percent of Black Population Under 18 Below 100% of Poverty Level', 
+					'Percent of Hispanic Population Under 18 Below 100% of Poverty Level', 
+					'Percent of Non-Hispanic White Population Under 18 Below 100% of Poverty Level', 
+					'Percent of Population Under 18 Below 100% of Poverty Level', 
+					'Percent Housing Owner Occupied for Black Households', 
+					'Percent Housing Owner Occupied for Hispanic Households', 
+					'Percent Housing Owner Occupied for Non-Hispanic White Households', 
+					'Percent Housing Owner Occupied', 
+					'Annual Hours of Delay per Auto Commuter', 
+					'Percent of Workers 16+ Driving Alone to Work', 
+					'Percent of Workers with No Vehicle', 
+					'Annual Number of Transit Rides Occurring on a Bus, in Thousands', 
+					'Public Transportation Funding, State Dollars per 1,000 Residents'
+				);
+
 
 
 // write header to csv files
 fputcsv($handlecsv, $csv_header);
 fputcsv($handle2csv, $csv_header2);
+fputcsv($handle3csv, $csv_header3);
+fputcsv($handle4csv, $csv_header4);
 
 // pull the geography metadata for the csv
 $geographies = array();
@@ -191,6 +255,7 @@ $result->free();
 
 
 // Research & Development, Share of State GDP
+/*
 $state_RandD_share_GDP= array();
 $query = "SELECT state, year, RD_GDP_share FROM state_RandD_share_GDP WHERE state IN ($statesString)";
 $result = $mysqli->query($query);
@@ -199,8 +264,9 @@ while($row = $result->fetch_assoc()){
 }
 
 /* free result set */
+/*
 $result->free();
-
+*/
 
 // if half of the variables have data for any given year, then we calculate a priority area index for that year
 
@@ -255,17 +321,19 @@ foreach ($state_BizTaxIndex as $year) {
 $state_BizTaxIndex_years = array_unique($state_BizTaxIndex_years); // remove duplicate years
 
 // Research & Development, Share of State GDP
+/*
 $state_RandD_share_GDP_years= array();
 foreach ($state_RandD_share_GDP as $year) {
     $state_RandD_share_GDP_years[] = $year['year'];
 }
 $state_RandD_share_GDP_years = array_unique($state_RandD_share_GDP_years); // remove duplicate years
+*/
 
 // concatonate all years arrays together and count values. If year has more than 50% of variables covered, then include year in analysis
 $economy_years_all = array();
 $economy_years_count = array();
 $economy_years = array();
-$economy_years_all = array_merge($metro_exports_years, $metro_GMPpercap_years, $metro_HighTech_years, $metro_KNemp_years, $metro_pcpi_years, $metro_TechPatentsRt_years, $state_BizTaxIndex_years, $state_RandD_share_GDP_years);
+$economy_years_all = array_merge($metro_exports_years, $metro_GMPpercap_years, $metro_HighTech_years, $metro_KNemp_years, $metro_pcpi_years, $metro_TechPatentsRt_years, $state_BizTaxIndex_years);
 $economy_years_count = array_count_values($economy_years_all);
 foreach ($economy_years_count as $year => $count) {
 	if ($count >= 4) { // at least 4 economy variables with data present for this year
@@ -487,6 +555,7 @@ foreach ($state_BizTaxIndex_filtered as $year => $pass) {
 
 
 // filter and group data by year
+/*
 $state_RandD_share_GDP_filtered = array();
 foreach ($state_RandD_share_GDP as $data) {
 	foreach($economy_years as $year) {
@@ -535,6 +604,7 @@ foreach ($state_RandD_share_GDP_filtered as $year => $pass) {
 		}
 	}
 }
+*/
 
 
 
@@ -695,7 +765,8 @@ foreach($economy_years as $year) {
 		}
 	}
 	
-	//add in metro_RandD_share_GDP score	
+	//add in metro_RandD_share_GDP score
+	/*	
 	if (isset($metro_RandD_share_GDP_indexed[$year])) {
 		if (isset($economy_index[$year])) {
 			foreach($metro_RandD_share_GDP_indexed[$year] as $data) {
@@ -716,6 +787,7 @@ foreach($economy_years as $year) {
 			}
 		}
 	}
+	*/
 	
 	// normalize index by the number of variables availible in the year
 	foreach($economy_index[$year] as $key => $data) {
@@ -2767,7 +2839,7 @@ foreach ($yearsIntersect as $year) {
 		$metro_pcpi_value = 0;
 		$metro_TechPatentsRt_value = 0;
 		$metro_BizTaxIndex_value = 0;
-		$metro_RandD_share_GDP_value = 0;
+		//$metro_RandD_share_GDP_value = 0;
 		$metro_attain25to34bachplus_value = 0;
 		$metro_bachplus_value = 0;
 		$metro_edu_enrollment_value = 0;
@@ -2806,6 +2878,54 @@ foreach ($yearsIntersect as $year) {
 		$metro_NoVehRt_value = 0;
 		$metro_TransitRidership_value = 0;
 		$metro_pubtransit_funding_value = 0;
+		
+		// for pretty printing to csv
+		$metro_exports_value_pretty = '';
+		$metro_GMPpercap_value_pretty = '';
+		$metro_HighTech_value_pretty = '';
+		$metro_KNemp_value_pretty = '';
+		$metro_pcpi_value_pretty = '';
+		$metro_TechPatentsRt_value_pretty = '';
+		$metro_BizTaxIndex_value_pretty = '';
+		//$metro_RandD_share_GDP_value_pretty = '';
+		$metro_attain25to34bachplus_value_pretty = '';
+		$metro_bachplus_value_pretty = '';
+		$metro_edu_enrollment_value_pretty = '';
+		$metro_highschool_and_higher_adults_value_pretty = '';
+		$metro_teens_unemployed_noHS_value_pretty = '';
+		$metro_edu_appropriations_value_pretty = '';
+		$metro_edu_expendperpupil_value_pretty = '';
+		$metro_AQI_value_pretty = '';
+		$metro_PopChgRt_value_pretty = '';
+		$metro_UninsRt_value_pretty = '';
+		$metro_VCrimeRt_value_pretty = '';
+		$metro_VolunteerRt_value_pretty = '';
+		$metro_WellnessIndicators_Obesity_value_pretty = '';
+		$metro_ForBornRt_value_pretty = '';
+		$metro_giniindex_value_pretty = '';
+		$metro_IncomeShare1_value_pretty = '';
+		$metro_IncomeShare2_value_pretty = '';
+		$metro_IncomeShare3_value_pretty = '';
+		$metro_IncomeShare4_value_pretty = '';
+		$metro_IncomeShare5_value_pretty = '';
+		$metro_IncomeSharetop_value_pretty = '';
+		$metro_MedHHInc1_value_pretty = '';
+		$metro_MedHHInc2_value_pretty = '';
+		$metro_MedHHInc3_value_pretty = '';
+		$metro_MedHHInc4_value_pretty = '';
+		$metro_ownocc1_value_pretty = '';
+		$metro_ownocc2_value_pretty = '';
+		$metro_ownocc3_value_pretty = '';
+		$metro_ownocc4_value_pretty = '';
+		$metro_PovRtChild1_value_pretty = '';
+		$metro_PovRtChild2_value_pretty = '';
+		$metro_PovRtChild3_value_pretty = '';
+		$metro_PovRtChild4_value_pretty = '';
+		$metro_commute_hours_delayed_value_pretty = '';
+		$metro_MeansCarAloneRt_value_pretty = '';
+		$metro_NoVehRt_value_pretty = '';
+		$metro_TransitRidership_value_pretty = '';
+		$metro_pubtransit_funding_value_pretty = '';
 		
 
 		// find OneD index and pull value variable
@@ -2854,6 +2974,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_exports_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_exports_value = $metro_exports_filtered[$year][$key]['export_value'];
+				$metro_exports_value_pretty = '$' . number_format($metro_exports_filtered[$year][$key]['export_value'], 0);
 			}
 		}
 
@@ -2861,6 +2982,8 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_GMPpercap_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_GMPpercap_value = $metro_GMPpercap_filtered[$year][$key]['per_capita_real_gdp'];
+				$metro_GMPpercap_value_pretty = '$' . number_format($metro_GMPpercap_filtered[$year][$key]['per_capita_real_gdp'], 2);
+
 			}
 		}
 
@@ -2868,6 +2991,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_HighTech_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_HighTech_value = ($metro_HighTech_filtered[$year][$key]['percentchange_hightech_jobs'] / 100);
+				$metro_HighTech_value_pretty = number_format($metro_HighTech_filtered[$year][$key]['percentchange_hightech_jobs'], 2) . '%';
 			}
 		}
 
@@ -2875,6 +2999,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_KNemp_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_KNemp_value = ($metro_KNemp_filtered[$year][$key]['percentchange_knowledgeind'] / 100);
+				$metro_KNemp_value_pretty = number_format($metro_KNemp_filtered[$year][$key]['percentchange_knowledgeind'], 2) . '%';
 			}
 		}
 	
@@ -2882,6 +3007,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_pcpi_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_pcpi_value = $metro_pcpi_filtered[$year][$key]['percapita_income'];
+				$metro_pcpi_value_pretty = '$' . number_format($metro_pcpi_filtered[$year][$key]['percapita_income'], 2);
 			}
 		}
 
@@ -2889,6 +3015,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_TechPatentsRt_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_TechPatentsRt_value = $metro_TechPatentsRt_filtered[$year][$key]['Tech_Patents_per_10k'];
+				$metro_TechPatentsRt_value_pretty = number_format($metro_TechPatentsRt_filtered[$year][$key]['Tech_Patents_per_10k'], 2);
 			}
 		}
 
@@ -2896,20 +3023,24 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_BizTaxIndex_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_BizTaxIndex_value = $metro_BizTaxIndex_filtered[$year][$key]['score'];
+				$metro_BizTaxIndex_value_pretty = number_format($metro_BizTaxIndex_filtered[$year][$key]['score'], 2);
 			}
 		}
 		
 		// find and pull value variable
+		/*
 		foreach($metro_RandD_share_GDP_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_RandD_share_GDP_value = ($metro_RandD_share_GDP_filtered[$year][$key]['RD_GDP_share'] / 100);
 			}
 		}
+		*/
 		
 		// find and pull value variable
 		foreach($metro_attain25to34bachplus_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_attain25to34bachplus_value = ($metro_attain25to34bachplus_filtered[$year][$key]['percent_bachelors_and_higher'] / 100);
+				$metro_attain25to34bachplus_value_pretty = number_format($metro_attain25to34bachplus_filtered[$year][$key]['percent_bachelors_and_higher'], 2) . '%';
 			}
 		}
 		
@@ -2917,6 +3048,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_bachplus_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_bachplus_value = ($metro_bachplus_filtered[$year][$key]['percent_bachelors_and_higher'] / 100);
+				$metro_bachplus_value_pretty = number_format($metro_bachplus_filtered[$year][$key]['percent_bachelors_and_higher'], 2) . '%';
 			}
 		}
 		
@@ -2924,6 +3056,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_edu_enrollment_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_edu_enrollment_value = ($metro_edu_enrollment_filtered[$year][$key]['percent_enrolled_prek_high'] / 100);
+				$metro_edu_enrollment_value_pretty = number_format($metro_edu_enrollment_filtered[$year][$key]['percent_enrolled_prek_high'], 2) . '%';
 			}
 		}
 	
@@ -2931,6 +3064,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_highschool_and_higher_adults_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_highschool_and_higher_adults_value = ($metro_highschool_and_higher_adults_filtered[$year][$key]['percent_hs_and_higher'] / 100);
+				$metro_highschool_and_higher_adults_value_pretty = number_format($metro_highschool_and_higher_adults_filtered[$year][$key]['percent_hs_and_higher'], 2) . '%';
 			}
 		}
 
@@ -2938,6 +3072,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_teens_unemployed_noHS_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_teens_unemployed_noHS_value = ($metro_teens_unemployed_noHS_filtered[$year][$key]['percent_unemployed_no_hs_degree'] / 100);
+				$metro_teens_unemployed_noHS_value_pretty = number_format($metro_teens_unemployed_noHS_filtered[$year][$key]['percent_unemployed_no_hs_degree'], 2) . '%';
 			}
 		}
 		
@@ -2945,6 +3080,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_edu_appropriations_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_edu_appropriations_value = $metro_edu_appropriations_filtered[$year][$key]['edu_appro_per_fte_student'];
+				$metro_edu_appropriations_value_pretty = '$' . number_format($metro_edu_appropriations_filtered[$year][$key]['edu_appro_per_fte_student'], 2);
 			}
 		}
 		
@@ -2952,6 +3088,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_edu_expendperpupil_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_edu_expendperpupil_value = $metro_edu_expendperpupil_filtered[$year][$key]['edu_expend_per_pupil'];
+				$metro_edu_expendperpupil_value_pretty = '$' . number_format($metro_edu_expendperpupil_filtered[$year][$key]['edu_expend_per_pupil'], 2);
 			}
 		}
 		
@@ -2959,6 +3096,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_AQI_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_AQI_value = ($metro_AQI_filtered[$year][$key]['percent_good_AQI'] / 100);
+				$metro_AQI_value_pretty = number_format($metro_AQI_filtered[$year][$key]['percent_good_AQI'], 2) . '%';
 			}
 		}
 		
@@ -2966,6 +3104,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_PopChgRt_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_PopChgRt_value = ($metro_PopChgRt_filtered[$year][$key]['percent_change_pop'] / 100);
+				$metro_PopChgRt_value_pretty = number_format($metro_PopChgRt_filtered[$year][$key]['percent_change_pop'], 2) . '%';
 			}
 		}		
 
@@ -2973,6 +3112,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_UninsRt_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_UninsRt_value = ($metro_UninsRt_filtered[$year][$key]['percent_wo_healthinsu'] / 100);
+				$metro_UninsRt_value_pretty = number_format($metro_UninsRt_filtered[$year][$key]['percent_wo_healthinsu'], 2) . '%';
 			}
 		}
 		
@@ -2980,6 +3120,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_VCrimeRt_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_VCrimeRt_value = $metro_VCrimeRt_filtered[$year][$key]['violent_crime_rate'];
+				$metro_VCrimeRt_value_pretty = number_format($metro_VCrimeRt_filtered[$year][$key]['violent_crime_rate'], 2);
 			}
 		}		
 		
@@ -2987,6 +3128,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_VolunteerRt_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_VolunteerRt_value = ($metro_VolunteerRt_filtered[$year][$key]['volunteer_rate'] / 100);
+				$metro_VolunteerRt_value_pretty = number_format($metro_VolunteerRt_filtered[$year][$key]['volunteer_rate'], 2) . '%';
 			}
 		}
 		
@@ -2994,6 +3136,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_WellnessIndicators_Obesity_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_WellnessIndicators_Obesity_value = ($metro_WellnessIndicators_Obesity_filtered[$year][$key]['percent_not_overweigh_obese'] / 100);
+				$metro_WellnessIndicators_Obesity_value_pretty = number_format($metro_WellnessIndicators_Obesity_filtered[$year][$key]['percent_not_overweigh_obese'], 2) . '%';
 			}
 		}
 		
@@ -3001,6 +3144,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_ForBornRt_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_ForBornRt_value = ($metro_ForBornRt_filtered[$year][$key]['percent_of_pop_foreignborn'] / 100);
+				$metro_ForBornRt_value_pretty = number_format($metro_ForBornRt_filtered[$year][$key]['percent_of_pop_foreignborn'], 2) . '%';
 			}
 		}
 		
@@ -3008,6 +3152,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_giniindex_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_giniindex_value = $metro_giniindex_filtered[$year][$key]['gini'];
+				$metro_giniindex_value_pretty = number_format($metro_giniindex_filtered[$year][$key]['gini'], 2);
 			}
 		}	
 		
@@ -3015,11 +3160,17 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_IncomeShare_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_IncomeShare1_value = ($metro_IncomeShare_filtered[$year][$key]['Lowestquintile'] / 100);
+				$metro_IncomeShare1_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Lowestquintile'], 2) . '%';
 				$metro_IncomeShare2_value = ($metro_IncomeShare_filtered[$year][$key]['Secondlowestquintile'] / 100);
+				$metro_IncomeShare2_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Secondlowestquintile'], 2) . '%';
 				$metro_IncomeShare3_value = ($metro_IncomeShare_filtered[$year][$key]['Middlequintile'] / 100);
+				$metro_IncomeShare3_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Middlequintile'], 2) . '%';
 				$metro_IncomeShare4_value = ($metro_IncomeShare_filtered[$year][$key]['Secondhighestquintile'] / 100);
+				$metro_IncomeShare4_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Secondhighestquintile'], 2). '%';
 				$metro_IncomeShare5_value = ($metro_IncomeShare_filtered[$year][$key]['Highestquintile'] / 100);
+				$metro_IncomeShare5_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Highestquintile'], 2) . '%';
 				$metro_IncomeSharetop_value = ($metro_IncomeShare_filtered[$year][$key]['top_5_percent'] / 100);
+				$metro_IncomeSharetop_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['top_5_percent'], 2) . '%';
 			}
 		}
 		
@@ -3027,9 +3178,13 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_MedHHInc_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_MedHHInc1_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_black'];
+				$metro_MedHHInc1_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_black'], 2);
 				$metro_MedHHInc2_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_hisp'];
+				$metro_MedHHInc2_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_hisp'], 2);
 				$metro_MedHHInc3_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_nonhispwhite'];
+				$metro_MedHHInc3_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_nonhispwhite'], 2);
 				$metro_MedHHInc4_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_all'];
+				$metro_MedHHInc4_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_all'], 2);
 			}
 		}
 		
@@ -3037,9 +3192,13 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_ownocc_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_ownocc1_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_black'] / 100);
+				$metro_ownocc1_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_black'], 2) . '%';
 				$metro_ownocc2_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_hisp'] / 100);
+				$metro_ownocc2_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_hisp'], 2) . '%';
 				$metro_ownocc3_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_nonhispwhite'] / 100);
+				$metro_ownocc3_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_nonhispwhite'], 2) . '%';
 				$metro_ownocc4_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_all'] / 100);
+				$metro_ownocc4_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_all'], 2) . '%';
 			}
 		}
 		
@@ -3047,9 +3206,13 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_PovRtChild_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_PovRtChild1_value = ($metro_PovRtChild_filtered[$year][$key]['percent_black_under18_below100poverty'] / 100);
+				$metro_PovRtChild1_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_black_under18_below100poverty'], 2) . '%';
 				$metro_PovRtChild2_value = ($metro_PovRtChild_filtered[$year][$key]['percent_hisp_under18_below100poverty'] / 100);
+				$metro_PovRtChild2_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_hisp_under18_below100poverty'], 2) . '%';
 				$metro_PovRtChild3_value = ($metro_PovRtChild_filtered[$year][$key]['percent_nonhispwhite_under18_below100poverty'] / 100);
+				$metro_PovRtChild3_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_nonhispwhite_under18_below100poverty'], 2) . '%';
 				$metro_PovRtChild4_value = ($metro_PovRtChild_filtered[$year][$key]['percent_all_under18_below100poverty'] / 100);
+				$metro_PovRtChild4_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_all_under18_below100poverty'], 2) . '%';
 			}
 		}
 		
@@ -3057,6 +3220,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_commute_hours_delayed_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_commute_hours_delayed_value = $metro_commute_hours_delayed_filtered[$year][$key]['hours_delay_per_communter'];
+				$metro_commute_hours_delayed_value_pretty = number_format($metro_commute_hours_delayed_filtered[$year][$key]['hours_delay_per_communter'], 2);
 			}
 		}
 		
@@ -3064,6 +3228,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_MeansCarAloneRt_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_MeansCarAloneRt_value = ($metro_MeansCarAloneRt_filtered[$year][$key]['percent_workers_drive_alone'] / 100);
+				$metro_MeansCarAloneRt_value_pretty = number_format($metro_MeansCarAloneRt_filtered[$year][$key]['percent_workers_drive_alone'], 2) . '%';
 			}
 		}
 		
@@ -3071,6 +3236,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_NoVehRt_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_NoVehRt_value = ($metro_NoVehRt_filtered[$year][$key]['percent_workers_no_vehicle'] / 100);
+				$metro_NoVehRt_value_pretty = number_format($metro_NoVehRt_filtered[$year][$key]['percent_workers_no_vehicle'], 2) . '%';
 			}
 		}
 		
@@ -3078,6 +3244,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_TransitRidership_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_TransitRidership_value = $metro_TransitRidership_filtered[$year][$key]['bus_trips_thousands'];
+				$metro_TransitRidership_value_pretty = number_format($metro_TransitRidership_filtered[$year][$key]['bus_trips_thousands'], 2);
 			}
 		}	
 		
@@ -3085,6 +3252,7 @@ foreach ($yearsIntersect as $year) {
 		foreach($metro_pubtransit_funding_filtered[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
 				$metro_pubtransit_funding_value = $metro_pubtransit_funding_filtered[$year][$key]['transit_funding_per_1k'];
+				$metro_pubtransit_funding_value_pretty = '$' . number_format($metro_pubtransit_funding_filtered[$year][$key]['transit_funding_per_1k'], 2);
 			}
 		}
 		
@@ -3114,7 +3282,6 @@ foreach ($yearsIntersect as $year) {
 			$metro_pcpi_value, 
 			$metro_TechPatentsRt_value, 
 			$metro_BizTaxIndex_value, 
-			$metro_RandD_share_GDP_value, 
 			$metro_attain25to34bachplus_value, 
 			$metro_bachplus_value, 
 			$metro_edu_enrollment_value, 
@@ -3157,10 +3324,79 @@ foreach ($yearsIntersect as $year) {
 				
 		// write header to csv file
 		fputcsv($handle2csv, $csv_row2);
+		
+		$csv_row3 = array($geoid['metroarea'], $year, $oned_index_value, $economy_index_value, $education_index_value, $equity_index_value, $quality_of_life_index_value, $transit_index_value);
+		
+		// write header to csv file
+		fputcsv($handle3csv, $csv_row3);
+
+
+		$csv_row4 = array(
+			$geoid['metroarea'], 
+			$year, 
+			$oned_index_value, 
+			$economy_index_value, 
+			$education_index_value, 
+			$equity_index_value, 
+			$quality_of_life_index_value, 
+			$transit_index_value, 
+			$metro_exports_value_pretty, 
+			$metro_GMPpercap_value_pretty, 
+			$metro_HighTech_value_pretty, 
+			$metro_KNemp_value_pretty, 
+			$metro_pcpi_value_pretty, 
+			$metro_TechPatentsRt_value_pretty, 
+			$metro_BizTaxIndex_value_pretty, 
+			$metro_attain25to34bachplus_value_pretty, 
+			$metro_bachplus_value_pretty, 
+			$metro_edu_enrollment_value_pretty, 
+			$metro_highschool_and_higher_adults_value_pretty, 
+			$metro_teens_unemployed_noHS_value_pretty, 
+			$metro_edu_appropriations_value_pretty, 
+			$metro_edu_expendperpupil_value_pretty, 
+			$metro_AQI_value_pretty, 
+			$metro_PopChgRt_value_pretty, 
+			$metro_UninsRt_value_pretty, 
+			$metro_VCrimeRt_value_pretty, 
+			$metro_VolunteerRt_value_pretty, 
+			$metro_WellnessIndicators_Obesity_value_pretty, 
+			$metro_ForBornRt_value_pretty, 
+			$metro_giniindex_value_pretty, 
+			$metro_IncomeShare1_value_pretty, 
+			$metro_IncomeShare2_value_pretty, 
+			$metro_IncomeShare3_value_pretty, 
+			$metro_IncomeShare4_value_pretty, 
+			$metro_IncomeShare5_value_pretty, 
+			$metro_IncomeSharetop_value_pretty, 
+			$metro_MedHHInc1_value_pretty, 
+			$metro_MedHHInc2_value_pretty, 
+			$metro_MedHHInc3_value_pretty, 
+			$metro_MedHHInc4_value_pretty, 
+			$metro_PovRtChild1_value_pretty, 
+			$metro_PovRtChild2_value_pretty, 
+			$metro_PovRtChild3_value_pretty, 
+			$metro_PovRtChild4_value_pretty, 
+			$metro_ownocc1_value_pretty, 
+			$metro_ownocc2_value_pretty, 
+			$metro_ownocc3_value_pretty, 
+			$metro_ownocc4_value_pretty, 
+			$metro_commute_hours_delayed_value_pretty, 
+			$metro_MeansCarAloneRt_value_pretty, 
+			$metro_NoVehRt_value_pretty, 
+			$metro_TransitRidership_value_pretty, 
+			$metro_pubtransit_funding_value_pretty
+		);
+				
+		// write header to csv file
+		fputcsv($handle4csv, $csv_row4);
+
+
 
 		// clear csv row
 		$csv_row = array();
 		$csv_row2 = array();
+		$csv_row3 = array();
+		$csv_row4 = array();
 		
 		// increment ID
 		$id++;
@@ -3170,6 +3406,8 @@ foreach ($yearsIntersect as $year) {
 // close csv files
 fclose($handlecsv);
 fclose($handle2csv);
+fclose($handle3csv);
+fclose($handle4csv);
 
 /* close connection */
 $mysqli->close();

@@ -3,10 +3,10 @@
 */
 
 // width and height of all svg containers
-var viewWidth = ($( window ).width()) * 0.68;
+var viewWidth = ($( '.cover-container' ).width()) * 0.68;
 var width = 900;
 var widthHeatChart = 550;
-var viewWidthHeatChart = ($( window ).width()) * 0.40;
+var viewWidthHeatChart = ($( '.cover-container' ).width()) * 0.40;
 var height = 500;
 var mapHeight = 544;
 
@@ -76,8 +76,8 @@ var svgContainerBarChart = d3.select(".barChart")
 // container for the city donut chart	
 var svgContainerCityDonutChart = d3.select(".cityDonutChart")
 	.append('svg')
-    .attr("preserveAspectRatio", "xMidYMid")
-    .attr("viewBox", "0 0 " + widthHeatChart + " " + height)
+	.attr("preserveAspectRatio", "xMidYMid")
+	.attr("viewBox", "0 0 " + widthHeatChart + " " + height)
 	.attr("width", viewWidthHeatChart)
 	.attr("height", viewWidthHeatChart * height / widthHeatChart);
 

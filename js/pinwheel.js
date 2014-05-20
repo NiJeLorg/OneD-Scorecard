@@ -65,27 +65,27 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 
 	// add popup that shows up on page load and dissapears on hover for map
 	if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'statesArray') {
-		if ($( window ).width() < 768) {
-			var left = (($( window ).width()) * 0.64) - (($( window ).width()) * 0.03);
-			var topNum = ((((($( window ).width()) * 0.64) - (($( window ).width()) * 0.07)) * 136) / width);
-		} else if ($( window ).width() < 992) {
-			var left = (($( window ).width()) * 0.64) - (($( window ).width()) * 0.02);
-			var topNum = ((((($( window ).width()) * 0.64) - (($( window ).width()) * 0.07)) * 136) / width);
-		} else if ($( window ).width() < 1050) {
-			var left = (($( window ).width()) * 0.65);
-			var topNum = ((((($( window ).width()) * 0.64) - (($( window ).width()) * 0.03)) * 136) / width);
-		} else if ($( window ).width() < 1200) {
-			var left = (($( window ).width()) * 0.64) - (($( window ).width()) * 0.01);
-			var topNum = ((((($( window ).width()) * 0.64) - (($( window ).width()) * 0.03)) * 136) / width);
-		} else if ($( window ).width() < 1300) {
-			var left = (($( window ).width()) * 0.645);
-			var topNum = (((($( window ).width()) * 0.645) * 136) / width);
-		} else if ($( window ).width() < 1400) {
-			var left = (($( window ).width()) * 0.635);
-			var topNum = (((($( window ).width()) * 0.635) * 136) / width);
+		if ($( '.cover-container' ).width() < 768) {
+			var left = (($( '.cover-container' ).width()) * 0.64) - (($( '.cover-container' ).width()) * 0.03);
+			var topNum = ((((($( '.cover-container' ).width()) * 0.64) - (($( '.cover-container' ).width()) * 0.07)) * 136) / width);
+		} else if ($( '.cover-container' ).width() < 992) {
+			var left = (($( '.cover-container' ).width()) * 0.64) - (($( '.cover-container' ).width()) * 0.02);
+			var topNum = ((((($( '.cover-container' ).width()) * 0.64) - (($( '.cover-container' ).width()) * 0.07)) * 136) / width);
+		} else if ($( '.cover-container' ).width() < 1050) {
+			var left = (($( '.cover-container' ).width()) * 0.65);
+			var topNum = ((((($( '.cover-container' ).width()) * 0.64) - (($( '.cover-container' ).width()) * 0.03)) * 136) / width);
+		} else if ($( '.cover-container' ).width() < 1200) {
+			var left = (($( '.cover-container' ).width()) * 0.64) - (($( '.cover-container' ).width()) * 0.01);
+			var topNum = ((((($( '.cover-container' ).width()) * 0.64) - (($( '.cover-container' ).width()) * 0.03)) * 136) / width);
+		} else if ($( '.cover-container' ).width() < 1300) {
+			var left = (($( '.cover-container' ).width()) * 0.645);
+			var topNum = (((($( '.cover-container' ).width()) * 0.645) * 136) / width);
+		} else if ($( '.cover-container' ).width() < 1400) {
+			var left = (($( '.cover-container' ).width()) * 0.635);
+			var topNum = (((($( '.cover-container' ).width()) * 0.635) * 136) / width);
 		} else {
-			var left = (($( window ).width()) * 0.625);
-			var topNum = (((($( window ).width()) * 0.625) * 136) / width);
+			var left = (($( '.cover-container' ).width()) * 0.625);
+			var topNum = (((($( '.cover-container' ).width()) * 0.625) * 136) / width);
 		}
 		
 		var divDetroit = d3.select("#mapOnLoadTootip").append("div")
@@ -110,38 +110,38 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	
 	// add popup that shows up on page load and dissapears on hover for map
 	if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'pinwheelArray') {
-		if ($( window ).width() < 992) {
-			var left = (($( window ).width()) * 0.57);
-		} else if ($( window ).width() < 1050) {
-			var left = (($( window ).width()) * 0.61);
-		} else if ($( window ).width() < 1200) {
-			var left = (($( window ).width()) * 0.59);
+		if ($( '.cover-container' ).width() < 992) {
+			var left = (($( '.cover-container' ).width()) * 0.57);
+		} else if ($( '.cover-container' ).width() < 1050) {
+			var left = (($( '.cover-container' ).width()) * 0.61);
+		} else if ($( '.cover-container' ).width() < 1200) {
+			var left = (($( '.cover-container' ).width()) * 0.59);
 		} else {
-			var left = (($( window ).width()) * 0.58);
+			var left = (($( '.cover-container' ).width()) * 0.58);
 		}
-		 (((($( window ).width()) * 0.55) * 100) / width)
+		 (((($( '.cover-container' ).width()) * 0.55) * 100) / width)
 		
-		if ($( window ).width() < 768) {
-			var left = (($( window ).width()) * 0.56);
-			var topNum = (((($( window ).width()) * 0.56) * 65) / width);
-		} else if ($( window ).width() < 992) {
-			var left = (($( window ).width()) * 0.575);
-			var topNum = (((($( window ).width()) * 0.56) * 70) / width);
-		} else if ($( window ).width() < 1050) {
-			var left = (($( window ).width()) * 0.59);
-			var topNum = (((($( window ).width()) * 0.56) * 80) / width);
-		} else if ($( window ).width() < 1200) {
-			var left = (($( window ).width()) * 0.575);
-			var topNum = (((($( window ).width()) * 0.56) * 90) / width);
-		} else if ($( window ).width() < 1300) {
-			var left = (($( window ).width()) * 0.585);
-			var topNum = (((($( window ).width()) * 0.56) * 95) / width);
-		} else if ($( window ).width() < 1400) {
-			var left = (($( window ).width()) * 0.585);
-			var topNum = (((($( window ).width()) * 0.56) * 100) / width);
+		if ($( '.cover-container' ).width() < 768) {
+			var left = (($( '.cover-container' ).width()) * 0.56);
+			var topNum = (((($( '.cover-container' ).width()) * 0.56) * 65) / width);
+		} else if ($( '.cover-container' ).width() < 992) {
+			var left = (($( '.cover-container' ).width()) * 0.575);
+			var topNum = (((($( '.cover-container' ).width()) * 0.56) * 70) / width);
+		} else if ($( '.cover-container' ).width() < 1050) {
+			var left = (($( '.cover-container' ).width()) * 0.59);
+			var topNum = (((($( '.cover-container' ).width()) * 0.56) * 80) / width);
+		} else if ($( '.cover-container' ).width() < 1200) {
+			var left = (($( '.cover-container' ).width()) * 0.575);
+			var topNum = (((($( '.cover-container' ).width()) * 0.56) * 90) / width);
+		} else if ($( '.cover-container' ).width() < 1300) {
+			var left = (($( '.cover-container' ).width()) * 0.585);
+			var topNum = (((($( '.cover-container' ).width()) * 0.56) * 95) / width);
+		} else if ($( '.cover-container' ).width() < 1400) {
+			var left = (($( '.cover-container' ).width()) * 0.585);
+			var topNum = (((($( '.cover-container' ).width()) * 0.56) * 100) / width);
 		} else {
-			var left = (($( window ).width()) * 0.57);
-			var topNum = (((($( window ).width()) * 0.56) * 95) / width);
+			var left = (($( '.cover-container' ).width()) * 0.57);
+			var topNum = (((($( '.cover-container' ).width()) * 0.56) * 95) / width);
 		}
 		var divDetroit = d3.select("#arrayOnLoadTootip").append("div")
 		    .attr("class", "pinwheelTooltip")
@@ -167,12 +167,12 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	/*
 	// draw legend once
 	if (rowOfData.meta[0].geoid == 15 && svgContainer[0][0].parentElement.className == 'statesArray') {
-		if ($( window ).width() > 992) {
-			var left = (($( window ).width()) * 0.71) - (($( window ).width()) * 0.01);
-		} else if ($( window ).width() > 1200) {
-			var left = (($( window ).width()) * 0.71) - (($( window ).width()) * 0.03);
+		if ($( '.cover-container' ).width() > 992) {
+			var left = (($( '.cover-container' ).width()) * 0.71) - (($( '.cover-container' ).width()) * 0.01);
+		} else if ($( '.cover-container' ).width() > 1200) {
+			var left = (($( '.cover-container' ).width()) * 0.71) - (($( '.cover-container' ).width()) * 0.03);
 		} else {
-			var left = (($( window ).width()) * 0.71);
+			var left = (($( '.cover-container' ).width()) * 0.71);
 		}
 		var legendMap = d3.select("#mapLegend").append("div")
 			.append("img")
@@ -181,7 +181,7 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 		    .attr("width", 150)
 		    .attr("height", 137)		    
 	        .style("left", left + "px")     
-	        .style("top", (((($( window ).width()) * 2.15) * 100) / width) + "px");
+	        .style("top", (((($( '.cover-container' ).width()) * 2.15) * 100) / width) + "px");
  			
 	} else {}
 	*/

@@ -47,10 +47,6 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 	       .data([dataset.indicies])
 	       .enter()
 	       .append('svg')
-	       .attr("preserveAspectRatio", "xMidYMid")
-	       .attr("viewBox", "0 0 " + widthHeatChart + " " + height)
-		   .attr("width", viewWidthHeatChart)
-	   	   .attr("height", viewWidthHeatChart * height / widthHeatChart)
 	       .call(chart);
 		   	   
    	//set up container for mouseover interaction
@@ -351,6 +347,18 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 			var color = d3.scale.linear().domain(domain).range(range);		
 		}		
 		return color;
+    }
+	
+    /* domain function */
+	// set domain based on the ring
+    function domainFunction(i, data) {
+        var domainNumber = Math.floor(i/numSegments);
+		var domainBottom = domainNumber * numSegments;
+		var domainTop = (domainNumber + 1) * numSegments;
+		// slice array to bottom and top values
+		var dataSlice = data.slice(domainBottom, domainTop);		
+		domain = d3.extent(dataSlice, accessor);				
+		return domain;
     }	
 	
 		   
@@ -422,13 +430,7 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
     domain = null,
     accessor = function(d) {return d;},
 	offset = height/2;
-	
-    var autoDomain = false;
-    if (domain === null) {
-        domain = d3.extent(dataset.indicies, accessor);
-        autoDomain = true;
-    }
-	
+		
 	chart = svgContainer.select(".circular-heat");
 	
 	chart.selectAll("path")
@@ -436,12 +438,12 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 		.transition().duration(1000)
         .attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
         .attr("fill", function(d, i) {
+			domain = domainFunction(i, dataset.indicies);
 			var color = colorFunction(i);
 			return color(accessor(d));
 		});
 
-    if(autoDomain)
-        domain = null;
+    domain = null;
 			   	   
 	g = svgContainer.select(".circular-heat-overlay");
 	
