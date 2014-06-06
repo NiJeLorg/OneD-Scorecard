@@ -31,9 +31,10 @@ function updateMap(education, economy, neighborhood, selected) {
   	      zoom: 9
   	    },
   	    geo: {
-  	      url: "assets/topojson/detroit_region_fips_4326.geojson",
-  	      name_field: "FIPS",
-  	      id_field: "FIPS"
+	        url: "assets/topojson/detroit_region_fips_name_4326.geojson",
+	        name_field: "MI_NAMELSA",
+	        id_field: "FIPS",
+			topo_object: "detriot4topojson"
   	    } 
 	};
 	config.data = {

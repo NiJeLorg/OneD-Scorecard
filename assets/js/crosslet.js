@@ -1057,7 +1057,7 @@ crosslet.PanelView = (function(_super) {
       //return abox.config.title + ":  " + f(value) + "; Census FIPS Code: " + data.properties[_this.config.map.geo.name_field];
 	  var textline = [];
 	  textline[0] = abox.config.title + ":  " + f(value);
-	  textline[1] = "Census FIPS Code: " + data.properties[_this.config.map.geo.name_field];
+	  textline[1] = data.properties[_this.config.map.geo.name_field];
 	  return textline;
     });
     return this;
@@ -1410,7 +1410,7 @@ crosslet.MapView = (function(_super) {
     //L.tileLayer(this.config.map.leaflet.url, this.config.map.leaflet).addTo(this.map);
 	this.map.addLayer(stamenlayer);
 	
-    //area for D3 logo
+    //area for logos
     var legend = L.control({position: 'bottomleft'});
 
     legend.onAdd = function (map) {
@@ -1418,9 +1418,22 @@ crosslet.MapView = (function(_super) {
         	div.innerHTML += '<a href="http://kirwaninstitute.osu.edu/"><img src="assets/images/KirwanLogoTransparent.png"/></a><br /><a href="http://datadrivendetroit.org/"><img class="topPad" src="assets/images/OneD_D3Logo_Gray_Small.png"/></a>';
         return div;
     };
-
+	
     legend.addTo(this.map); 
-	console.log(this.map);
+	//console.log(this.map);
+
+	
+    //area for download
+    var downloadBox = L.control({position: 'bottomleft'});
+
+    downloadBox.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legend');  
+        	div.innerHTML += '<a href="data/kirwanDataDownload.csv"><button type="button" class="btn btn-link downloadDataKirwan"></button></a>';
+        return div;
+    };
+
+    downloadBox.addTo(this.map); 
+	//console.log(this.map);
 	
 	var dropdowns = L.control({position: 'topright'});
 	dropdowns.onAdd = function (map) {
@@ -1547,7 +1560,7 @@ crosslet.MapView = (function(_super) {
     //return abox.config.title + ":  " + f(value) + "; Census FIPS Code: " + data.properties[_this.config.map.geo.name_field];
 	  var textline = [];
 	  textline[0] = abox.config.title + ":  " + f(value);
-	  textline[1] = "Census FIPS Code: " + data.properties[_this.config.map.geo.name_field];
+	  textline[1] = data.properties[_this.config.map.geo.name_field];
 	  return textline;
   };
 
@@ -1556,7 +1569,7 @@ crosslet.MapView = (function(_super) {
     if (hoverFunc) {
       this.hoverFunc = hoverFunc;
     }
-	console.log(this.panel.active);
+	//console.log(this.panel.active);
 	renderLegend(this.panel.active, this.map);
     this.feature.attr("style", function(d) {
       var id;
