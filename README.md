@@ -1,4 +1,4 @@
-OneD-Scorecard-Sandbox
+OneD-Scorecard
 ======================
 
-This repository houses the OneD Scorecard website sandbox.
+This repository houses the OneD Scorecard website: http://onedscorecard.datadrivendetroit.org/
