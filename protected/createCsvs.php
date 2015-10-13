@@ -2628,8 +2628,6 @@ foreach($transit_years as $year) {
 	// calculate index scores and store
 	foreach($state_pubtransit_funding_filtered[$year] as $data) {
 		$calc_index = (((-5*$state_pubtransit_funding_min) + ($data['transit_funding_per_1k'] * 5)) / ($state_pubtransit_funding_max - $state_pubtransit_funding_min));
-		print_r($data);
-		echo($calc_index);
 		$state_pubtransit_funding_indexed[$year][] = array('state' => $data['state'], 'value' => $calc_index);
 	}
 }
