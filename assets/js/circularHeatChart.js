@@ -22,9 +22,13 @@ function nationalCircularHeatChart() {
                 .enter().append("path")
                 .attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
                 .attr("fill", function(d, i) {
-					domain = domainFunction(i, data);
-					var color = colorFunction(i);
-					return color(accessor(d));
+                    if (d != -99) {
+                        domain = domainFunction(i, data);
+                        var color = colorFunction(i);
+                        return color(accessor(d));
+                    } else {
+                        return "#fff";
+                    }
 				});
 				
 			domain = null;
@@ -130,7 +134,11 @@ function nationalCircularHeatChart() {
 		var domainBottom = domainNumber * numSegments;
 		var domainTop = (domainNumber + 1) * numSegments;
 		// slice array to bottom and top values
-		var dataSlice = data.slice(domainBottom, domainTop);		
+		var dataSlice = data.slice(domainBottom, domainTop);
+        // remove -99s from data slice
+        dataSlice = jQuery.grep(dataSlice, function(value) {
+          return value != -99;
+        });
 		domain = d3.extent(dataSlice, accessor);				
 		return domain;
     }	

@@ -130,7 +130,8 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 			domain = [0,0];
 		} else {
 			var accessorFunction = textTick.accessorFunction;
-			domain = d3.extent(datasetIndicators, accessorFunction);			
+			domain = d3.extent(datasetIndicators, accessorFunction);
+			console.log(domain[0]);			
 		}
 		return domain;
 	}
@@ -140,7 +141,7 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 	var textTick = getTextTick(selectedIndicator);
 	//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
 	var value = textTick.tickFormat(dataset.economy[4].value);
-	if (value == 0) {
+	if (value == -99 || isNaN(value)) {
 		value = "No Data Available";
 	}
 	
@@ -185,9 +186,13 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
         .attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
 		.style("fill-opacity", 1)
         .attr("fill", function(d, i) {
-			var domain = setDomain(d.id);
-			var color = colorFunction(d.id);
-			return color(accessor(d.value));
+        	if (!isNaN(d.value)) {
+				var domain = setDomain(d.id);
+				var color = colorFunction(d.id);
+				return color(accessor(d.value));				        		
+        	} else {
+        		return "#fff";
+        	}
 		});
 
 	
@@ -272,7 +277,7 @@ function createCityDountChart(svgContainer, dataset, selectedIndicator) {
 			var textTick = getTextTick(d.id);
 			//textTick = { text: 'Percent', tickFormat: d3.format(",.1%"), tableClass: 'transit', indicatorName: 'Percent of Workers With No Vehicle', accessorFunction: function(d) {return d.transit_novehicle;} };
 			
-			if (d.value == 0) {
+			if (d.value == 0 || isNaN(d.value)) {
 				var value = "No Data Available";
 			} else {
 				var value = textTick.tickFormat(d.value);				
@@ -454,7 +459,7 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 			domain = [0,0];
 		} else {
 			var accessorFunction = textTick.accessorFunction;
-			domain = d3.extent(datasetIndicators, accessorFunction);			
+			domain = d3.extent(datasetIndicators, accessorFunction);
 		}
 		return domain;
 	}
@@ -614,9 +619,13 @@ function updateCityDonutChart(svgContainer, dataset, selectedIndicator) {
 		.transition().duration(1000)
         .attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
         .attr("fill", function(d, i) {
-			var domain = setDomain(d.id);
-			var color = colorFunction(d.id);
-			return color(accessor(d.value));				
+        	if (!isNaN(d.value)) {
+				var domain = setDomain(d.id);
+				var color = colorFunction(d.id);
+				return color(accessor(d.value));				        		
+        	} else {
+        		return "#fff";
+        	}
 		})
 		.style("fill-opacity", function(d, i) {
 			if (((selectedIndicator == 38 || selectedIndicator == 37 || selectedIndicator == 36 || selectedIndicator == 35 ) && d.id == 38) || ((selectedIndicator == 42 || selectedIndicator == 41 || selectedIndicator == 40 || selectedIndicator == 39 ) && d.id == 42) || ((selectedIndicator == 46 || selectedIndicator == 45 || selectedIndicator == 44 || selectedIndicator == 43 ) && d.id == 46)) {

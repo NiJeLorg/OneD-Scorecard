@@ -56,6 +56,43 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
    	//set up container for dropdown interaction
 	$.each(dataset.meta, function( i, d ) {
 		if (dataset.meta[i].geoid == city) {
+		    // set -99s to No Data
+		    if (dataset.meta[i].oned_index == -99) {
+		    	var index0 = 'N/A';
+		    } else {
+		    	var index0 = dataset.meta[i].oned_index;
+		    }
+
+		    if (dataset.meta[i].economy_index == -99) {
+		    	var index1 = 'N/A';
+		    } else {
+		    	var index1 = dataset.meta[i].economy_index;
+		    }
+
+		    if (dataset.meta[i].education_index == -99) {
+		    	var index2 = 'N/A';
+		    } else {
+		    	var index2 = dataset.meta[i].education_index;
+		    }
+
+		    if (dataset.meta[i].equity_index == -99) {
+		    	var index3 = 'N/A';
+		    } else {
+		    	var index3 = dataset.meta[i].equity_index;
+		    }
+
+		    if (dataset.meta[i].quality_of_life_index == -99) {
+		    	var index4 = 'N/A';
+		    } else {
+		    	var index4 = dataset.meta[i].quality_of_life_index;
+		    }
+
+		    if (dataset.meta[i].transit_index == -99) {
+		    	var index5 = 'N/A';
+		    } else {
+		    	var index5 = dataset.meta[i].transit_index;
+		    }
+
 		   	var div = d3.select(".nationalCircularHeatChartSidebarSelected")
 		   	    .style("opacity", 1)
 				.html(
@@ -65,42 +102,42 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 							'<td class="oned-rect">' +
 							'</td>' +
 							'<td class="oned">' +
-								'OneD Index: ' + dataset.meta[i].oned_index +
+								'OneD Index: ' + index0 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="economy-rect">' +
 							'</td>' +
 							'<td class="economy">' +
-								'Economy Index: ' + dataset.meta[i].economy_index +
+								'Economy Index: ' + index1 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="education-rect">' +
 							'</td>' +
 							'<td class="education">' +
-								'Education Index: ' + dataset.meta[i].education_index +
+								'Education Index: ' + index2 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="equity-rect">' +
 							'</td>' +
 							'<td class="equity">' +
-								'Equity Index: ' + dataset.meta[i].equity_index +
+								'Equity Index: ' + index3 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="quality_of_life-rect">' +
 							'</td>' +
 							'<td class="quality_of_life">' +
-								'Quality of Life Index: ' + dataset.meta[i].quality_of_life_index +
+								'Quality of Life Index: ' + index4 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="transit-rect">' +
 							'</td>' +
 							'<td class="transit">' +
-								'Transit Index: ' + dataset.meta[i].transit_index +
+								'Transit Index: ' + index5 +
 							'</td>' +
 						'</tr>' +
 					'</table>'		
@@ -194,6 +231,43 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 		        .duration(250)
 		        .style("opacity", 1);
 			
+		    // set -99s to No Data
+		    if (d.oned_index == -99) {
+		    	var index0 = 'N/A';
+		    } else {
+		    	var index0 = d.economy_index;
+		    }
+
+		    if (d.economy_index == -99) {
+		    	var index1 = 'N/A';
+		    } else {
+		    	var index1 = d.economy_index;
+		    }
+
+		    if (d.education_index == -99) {
+		    	var index2 = 'N/A';
+		    } else {
+		    	var index2 = d.education_index;
+		    }
+
+		    if (d.equity_index == -99) {
+		    	var index3 = 'N/A';
+		    } else {
+		    	var index3 = d.equity_index;
+		    }
+
+		    if (d.quality_of_life_index == -99) {
+		    	var index4 = 'N/A';
+		    } else {
+		    	var index4 = d.quality_of_life_index;
+		    }
+
+		    if (d.transit_index == -99) {
+		    	var index5 = 'N/A';
+		    } else {
+		    	var index5 = d.transit_index;
+		    }
+
             div.html(
 				'<h5>' + d.metro + ', ' + d.year +'</h5>' +
 				'<table class="table table-condensed heatmapTable">' +
@@ -201,42 +275,42 @@ function createNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 						'<td class="oned-rect">' +
 						'</td>' +
 						'<td class="oned">' +
-							'OneD Index: ' + d.oned_index +
+							'OneD Index: ' + index0 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td class="economy-rect">' +
 						'</td>' +
 						'<td class="economy">' +
-							'Economy Index: ' + d.economy_index +
+							'Economy Index: ' + index1 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td class="education-rect">' +
 						'</td>' +
 						'<td class="education">' +
-							'Education Index: ' + d.education_index +
+							'Education Index: ' + index2 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td class="equity-rect">' +
 						'</td>' +
 						'<td class="equity">' +
-							'Equity Index: ' + d.equity_index +
+							'Equity Index: ' + index3 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td class="quality_of_life-rect">' +
 						'</td>' +
 						'<td class="quality_of_life">' +
-							'Quality of Life Index: ' + d.quality_of_life_index +
+							'Quality of Life Index: ' + index4 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td class="transit-rect">' +
 						'</td>' +
 						'<td class="transit">' +
-							'Transit Index: ' + d.transit_index +
+							'Transit Index: ' + index5 +
 						'</td>' +
 					'</tr>' +
 				'</table>'				
@@ -326,6 +400,7 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
     /* color functions */
 	// set color based on the ring
     function colorFunction(i) {
+    	console.log(i);
         var colorNumber = Math.floor(i/numSegments);
 		if (colorNumber == 0) {
 			range = ["white", "#a6c0d0"];
@@ -357,6 +432,10 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 		var domainTop = (domainNumber + 1) * numSegments;
 		// slice array to bottom and top values
 		var dataSlice = data.slice(domainBottom, domainTop);		
+        // remove -99s from data slice
+        dataSlice = jQuery.grep(dataSlice, function(value) {
+          return value != -99;
+        });
 		domain = d3.extent(dataSlice, accessor);				
 		return domain;
     }	
@@ -370,6 +449,43 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
    	//set up container for dropdown interaction
 	$.each(dataset.meta, function( i, d ) {
 		if (dataset.meta[i].geoid == city) {
+		    // set -99s to No Data
+		    if (dataset.meta[i].oned_index == -99) {
+		    	var index0 = 'N/A';
+		    } else {
+		    	var index0 = dataset.meta[i].oned_index;
+		    }
+
+		    if (dataset.meta[i].economy_index == -99) {
+		    	var index1 = 'N/A';
+		    } else {
+		    	var index1 = dataset.meta[i].economy_index;
+		    }
+
+		    if (dataset.meta[i].education_index == -99) {
+		    	var index2 = 'N/A';
+		    } else {
+		    	var index2 = dataset.meta[i].education_index;
+		    }
+
+		    if (dataset.meta[i].equity_index == -99) {
+		    	var index3 = 'N/A';
+		    } else {
+		    	var index3 = dataset.meta[i].equity_index;
+		    }
+
+		    if (dataset.meta[i].quality_of_life_index == -99) {
+		    	var index4 = 'N/A';
+		    } else {
+		    	var index4 = dataset.meta[i].quality_of_life_index;
+		    }
+
+		    if (dataset.meta[i].transit_index == -99) {
+		    	var index5 = 'N/A';
+		    } else {
+		    	var index5 = dataset.meta[i].transit_index;
+		    }
+
 		   	var div = d3.select(".nationalCircularHeatChartSidebarSelected")
 		   	    .style("opacity", 1)
 				.html(
@@ -379,42 +495,42 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 							'<td class="oned-rect">' +
 							'</td>' +
 							'<td class="oned">' +
-								'OneD Index: ' + dataset.meta[i].oned_index +
+								'OneD Index: ' + index0 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="economy-rect">' +
 							'</td>' +
 							'<td class="economy">' +
-								'Economy Index: ' + dataset.meta[i].economy_index +
+								'Economy Index: ' + index1 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="education-rect">' +
 							'</td>' +
 							'<td class="education">' +
-								'Education Index: ' + dataset.meta[i].education_index +
+								'Education Index: ' + index2 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="equity-rect">' +
 							'</td>' +
 							'<td class="equity">' +
-								'Equity Index: ' + dataset.meta[i].equity_index +
+								'Equity Index: ' + index3 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="quality_of_life-rect">' +
 							'</td>' +
 							'<td class="quality_of_life">' +
-								'Quality of Life Index: ' + dataset.meta[i].quality_of_life_index +
+								'Quality of Life Index: ' + index4 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="transit-rect">' +
 							'</td>' +
 							'<td class="transit">' +
-								'Transit Index: ' + dataset.meta[i].transit_index +
+								'Transit Index: ' + index5 +
 							'</td>' +
 						'</tr>' +
 					'</table>'		
@@ -438,9 +554,13 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 		.transition().duration(1000)
         .attr("d", d3.svg.arc().innerRadius(ir).outerRadius(or).startAngle(sa).endAngle(ea))
         .attr("fill", function(d, i) {
-			domain = domainFunction(i, dataset.indicies);
-			var color = colorFunction(i);
-			return color(accessor(d));
+        	if (d != -99) {
+				domain = domainFunction(i, dataset.indicies);
+				var color = colorFunction(i);
+				return color(accessor(d));        		
+        	} else {
+        		return "#fff";
+        	}
 		});
 
     domain = null;
@@ -480,7 +600,44 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 		    div.transition()
 		        .duration(250)
 		        .style("opacity", 1);
-			
+
+		    // set -99s to No Data
+		    if (d.oned_index == -99) {
+		    	var index0 = 'N/A';
+		    } else {
+		    	var index0 = d.economy_index;
+		    }
+
+		    if (d.economy_index == -99) {
+		    	var index1 = 'N/A';
+		    } else {
+		    	var index1 = d.economy_index;
+		    }
+
+		    if (d.education_index == -99) {
+		    	var index2 = 'N/A';
+		    } else {
+		    	var index2 = d.education_index;
+		    }
+
+		    if (d.equity_index == -99) {
+		    	var index3 = 'N/A';
+		    } else {
+		    	var index3 = d.equity_index;
+		    }
+
+		    if (d.quality_of_life_index == -99) {
+		    	var index4 = 'N/A';
+		    } else {
+		    	var index4 = d.quality_of_life_index;
+		    }
+
+		    if (d.transit_index == -99) {
+		    	var index5 = 'N/A';
+		    } else {
+		    	var index5 = d.transit_index;
+		    }
+
             div.html(
 				'<h5>' + d.metro + ', ' + d.year +'</h5>' +
 				'<table class="table table-condensed heatmapTable">' +
@@ -488,42 +645,42 @@ function updateNationalCircularHeatChart(svgContainer, dataset, numberOfCities, 
 						'<td class="oned-rect">' +
 						'</td>' +
 						'<td class="oned">' +
-							'OneD Index: ' + d.oned_index +
+							'OneD Index: ' + index0 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td class="economy-rect">' +
 						'</td>' +
 						'<td class="economy">' +
-							'Economy Index: ' + d.economy_index +
+							'Economy Index: ' + index1 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td class="education-rect">' +
 						'</td>' +
 						'<td class="education">' +
-							'Education Index: ' + d.education_index +
+							'Education Index: ' + index2 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td class="equity-rect">' +
 						'</td>' +
 						'<td class="equity">' +
-							'Equity Index: ' + d.equity_index +
+							'Equity Index: ' + index3 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td class="quality_of_life-rect">' +
 						'</td>' +
 						'<td class="quality_of_life">' +
-							'Quality of Life Index: ' + d.quality_of_life_index +
+							'Quality of Life Index: ' + index4 +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td class="transit-rect">' +
 						'</td>' +
 						'<td class="transit">' +
-							'Transit Index: ' + d.transit_index +
+							'Transit Index: ' + index5 +
 						'</td>' +
 					'</tr>' +
 				'</table>'				

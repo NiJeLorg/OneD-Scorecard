@@ -721,6 +721,7 @@ path {
   text-align: center;
   font-size: 15px;
   font-weight: bold;
+  pointer-events: none;
  }
 
 .heatmapTableContainer {

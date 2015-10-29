@@ -34,7 +34,8 @@ function createBarChart(svgContainer, datasetIndicators, textTick) {
     x.domain(datasetIndicators.map(function(d) { return d.metro; }));
 	
 	//set y domain from zero to d.max only if d.min is above zero
-	if ( d3.min(datasetIndicators, function(d) { return d.value; }) > 0 ) {
+	var dataMin = d3.min(datasetIndicators, function(d) { return d.value; });
+	if ( dataMin > 0 || dataMin == -99 ) {
 		var min = 0;
 	} else {
 		var min = d3.min(datasetIndicators, function(d) { return d.value; });
@@ -83,7 +84,14 @@ function createBarChart(svgContainer, datasetIndicators, textTick) {
         .attr("x", function(d, i) { return x(d.metro); })
         .attr("width", x.rangeBand())
         .attr("y", function(d, i) { return y(Math.max(0, d.value)); })
-        .attr("height", function(d) { return Math.abs(y(d.value) - y(0)); })
+        .attr("height", function(d) { 
+        	if (d.value != -99) {
+        		return Math.abs(y(d.value) - y(0)); 
+        	} else {
+        		return 0; 
+        	}
+        	
+        })
 		
 		// set up on mouseover events
 		.on("mouseover", function(d) {
@@ -117,6 +125,14 @@ function createBarChart(svgContainer, datasetIndicators, textTick) {
             .style("top", (d3.event.pageY - 40) + "px");
 			
 	   })
+
+		.on("mousemove", function(d) {
+
+			div.style("left", (d3.event.pageX + 23) + "px")     
+               .style("top", (d3.event.pageY - 40) + "px");
+			  
+		})
+
 	   .on("mouseout", function() {
 	   
 		   div.transition()
@@ -180,7 +196,8 @@ function updateBarChart(svgContainer, datasetIndicators, textTick, city) {
     x.domain(datasetIndicators.map(function(d) { return d.metro; }));
 
 	//set y domain from zero to d.max only if d.min is above zero
-	if ( d3.min(datasetIndicators, function(d) { return d.value; }) > 0 ) {
+	var dataMin = d3.min(datasetIndicators, function(d) { return d.value; });
+	if ( dataMin > 0 || dataMin == -99 ) {
 		var min = 0;
 	} else {
 		var min = d3.min(datasetIndicators, function(d) { return d.value; });
@@ -259,7 +276,14 @@ function updateBarChart(svgContainer, datasetIndicators, textTick, city) {
         .attr("x", function(d) { return x(d.metro); })
         .attr("width", x.rangeBand())
         .attr("y", function(d, i) { return y(Math.max(0, d.value)); })
-        .attr("height", function(d) { return Math.abs(y(d.value) - y(0)); })
+        .attr("height", function(d) { 
+        	if (d.value != -99) {
+        		return Math.abs(y(d.value) - y(0)); 
+        	} else {
+        		return 0; 
+        	}
+        	
+        })
 		
 	rect.exit()
 		.transition()
@@ -300,6 +324,14 @@ function updateBarChart(svgContainer, datasetIndicators, textTick, city) {
             .style("top", (d3.event.pageY - 40) + "px");
 			
 	   })
+
+		.on("mousemove", function(d) {
+
+			div.style("left", (d3.event.pageX + 23) + "px")     
+               .style("top", (d3.event.pageY - 40) + "px");
+			  
+		})
+
 	   .on("mouseout", function() {
 	   
 		   div.transition()

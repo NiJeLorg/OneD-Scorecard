@@ -248,6 +248,37 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			    div.transition()
 			        .duration(250)
 			        .style("opacity", 1);
+
+			    // set -99s to No Data
+			    if (d.indicies[0].index == -99) {
+			    	var index1 = 'N/A';
+			    } else {
+			    	var index1 = d.indicies[0].index;
+			    }
+
+			    if (d.indicies[1].index == -99) {
+			    	var index2 = 'N/A';
+			    } else {
+			    	var index2 = d.indicies[1].index;
+			    }
+
+			    if (d.indicies[2].index == -99) {
+			    	var index3 = 'N/A';
+			    } else {
+			    	var index3 = d.indicies[2].index;
+			    }
+
+			    if (d.indicies[3].index == -99) {
+			    	var index4 = 'N/A';
+			    } else {
+			    	var index4 = d.indicies[3].index;
+			    }
+
+			    if (d.indicies[4].index == -99) {
+			    	var index5 = 'N/A';
+			    } else {
+			    	var index5 = d.indicies[4].index;
+			    }
 				
 	            div.html(
 					'<h4>' + d.meta[0].metro + '</h4>' +
@@ -264,35 +295,35 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 							'<td class="economy-rect">' +
 							'</td>' +
 							'<td class="economy">' +
-								d.indicies[0].name + ': ' + d.indicies[0].index +
+								d.indicies[0].name + ': ' + index1 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="education-rect">' +
 							'</td>' +
 							'<td class="education">' +
-								d.indicies[1].name + ': ' + d.indicies[1].index +
+								d.indicies[1].name + ': ' + index2 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="equity-rect">' +
 							'</td>' +
 							'<td class="equity">' +
-								d.indicies[2].name + ': ' + d.indicies[2].index +
+								d.indicies[2].name + ': ' + index3 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="quality_of_life-rect">' +
 							'</td>' +
 							'<td class="quality_of_life">' +
-								d.indicies[3].name + ': ' + d.indicies[3].index +
+								d.indicies[3].name + ': ' + index4 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="transit-rect">' +
 							'</td>' +
 							'<td class="transit">' +
-								d.indicies[4].name + ': ' + d.indicies[4].index +
+								d.indicies[4].name + ': ' + index5 +
 							'</td>' +
 						'</tr>' +
 					'</table>'				
@@ -301,6 +332,14 @@ function createPinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	                .style("top", (d3.event.pageY - 70) + "px");
 				
 		   })
+
+			.on("mousemove", function(d) {
+
+				div.style("left", (d3.event.pageX + 25) + "px")     
+	               .style("top", (d3.event.pageY - 70) + "px");
+				  
+			})
+
 		   .on("mouseout", function() {
 		   
 			   div.transition()
@@ -428,6 +467,37 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 			        .duration(250)
 			        .style("opacity", 1);
 				
+			    // set -99s to No Data
+			    if (d.indicies[0].index == -99) {
+			    	var index1 = 'N/A';
+			    } else {
+			    	var index1 = d.indicies[0].index;
+			    }
+
+			    if (d.indicies[1].index == -99) {
+			    	var index2 = 'N/A';
+			    } else {
+			    	var index2 = d.indicies[1].index;
+			    }
+
+			    if (d.indicies[2].index == -99) {
+			    	var index3 = 'N/A';
+			    } else {
+			    	var index3 = d.indicies[2].index;
+			    }
+
+			    if (d.indicies[3].index == -99) {
+			    	var index4 = 'N/A';
+			    } else {
+			    	var index4 = d.indicies[3].index;
+			    }
+
+			    if (d.indicies[4].index == -99) {
+			    	var index5 = 'N/A';
+			    } else {
+			    	var index5 = d.indicies[4].index;
+			    }
+				
 	            div.html(
 					'<h4>' + d.meta[0].metro + '</h4>' +
 					'<h5>' + d.meta[0].year + '</h5>' +
@@ -443,35 +513,35 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 							'<td class="economy-rect">' +
 							'</td>' +
 							'<td class="economy">' +
-								d.indicies[0].name + ': ' + d.indicies[0].index +
+								d.indicies[0].name + ': ' + index1 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="education-rect">' +
 							'</td>' +
 							'<td class="education">' +
-								d.indicies[1].name + ': ' + d.indicies[1].index +
+								d.indicies[1].name + ': ' + index2 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="equity-rect">' +
 							'</td>' +
 							'<td class="equity">' +
-								d.indicies[2].name + ': ' + d.indicies[2].index +
+								d.indicies[2].name + ': ' + index3 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="quality_of_life-rect">' +
 							'</td>' +
 							'<td class="quality_of_life">' +
-								d.indicies[3].name + ': ' + d.indicies[3].index +
+								d.indicies[3].name + ': ' + index4 +
 							'</td>' +
 						'</tr>' +
 						'<tr>' +
 							'<td class="transit-rect">' +
 							'</td>' +
 							'<td class="transit">' +
-								d.indicies[4].name + ': ' + d.indicies[4].index +
+								d.indicies[4].name + ': ' + index5 +
 							'</td>' +
 						'</tr>' +
 					'</table>'				
@@ -480,6 +550,12 @@ function updatePinwheel(size, smallestPie, rowOfData, svgContainer, centerX, cen
 	                .style("top", (d3.event.pageY - 70) + "px");
 				
 		   })
+			.on("mousemove", function(d) {
+
+				div.style("left", (d3.event.pageX + 25) + "px")     
+	               .style("top", (d3.event.pageY - 70) + "px");
+				  
+			})
 		   .on("mouseout", function() {
 		   
 			   div.transition()

@@ -270,7 +270,7 @@ $result->free();
 
 // if half of the variables have data for any given year, then we calculate a priority area index for that year
 
-// create arrays of years avialable for year variable
+// create arrays of years Available for year variable
 // Total Value of Exports
 $metro_exports_years = array();
 foreach ($metro_exports as $year) {
@@ -409,15 +409,17 @@ foreach ($metro_HighTech as $data) {
 $metro_HighTech_indexed = array();
 $metro_HighTech_values = array();
 foreach($economy_years as $year) {
-	foreach($metro_HighTech_filtered[$year] as $data) {
-		$metro_HighTech_values[$year][] = $data['percentchange_hightech_jobs'];
-	}
-	$metro_HighTech_max = max($metro_HighTech_values[$year]);
-	$metro_HighTech_min = min($metro_HighTech_values[$year]);
-	// calculate index scores and store
-	foreach($metro_HighTech_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_HighTech_min) + ($data['percentchange_hightech_jobs'] * 5)) / ($metro_HighTech_max - $metro_HighTech_min));
-		$metro_HighTech_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_HighTech_filtered[$year])) {
+		foreach($metro_HighTech_filtered[$year] as $data) {
+			$metro_HighTech_values[$year][] = $data['percentchange_hightech_jobs'];
+		}
+		$metro_HighTech_max = max($metro_HighTech_values[$year]);
+		$metro_HighTech_min = min($metro_HighTech_values[$year]);
+		// calculate index scores and store
+		foreach($metro_HighTech_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_HighTech_min) + ($data['percentchange_hightech_jobs'] * 5)) / ($metro_HighTech_max - $metro_HighTech_min));
+			$metro_HighTech_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}	
 	}
 }
 
@@ -436,15 +438,17 @@ foreach ($metro_KNemp as $data) {
 $metro_KNemp_indexed = array();
 $metro_KNemp_values = array();
 foreach($economy_years as $year) {
-	foreach($metro_KNemp_filtered[$year] as $data) {
-		$metro_KNemp_values[$year][] = $data['percentchange_knowledgeind'];
-	}
-	$metro_KNemp_max = max($metro_KNemp_values[$year]);
-	$metro_KNemp_min = min($metro_KNemp_values[$year]);
-	// calculate index scores and store
-	foreach($metro_KNemp_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_KNemp_min) + ($data['percentchange_knowledgeind'] * 5)) / ($metro_KNemp_max - $metro_KNemp_min));
-		$metro_KNemp_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_KNemp_filtered[$year])) {
+		foreach($metro_KNemp_filtered[$year] as $data) {
+			$metro_KNemp_values[$year][] = $data['percentchange_knowledgeind'];
+		}
+		$metro_KNemp_max = max($metro_KNemp_values[$year]);
+		$metro_KNemp_min = min($metro_KNemp_values[$year]);
+		// calculate index scores and store
+		foreach($metro_KNemp_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_KNemp_min) + ($data['percentchange_knowledgeind'] * 5)) / ($metro_KNemp_max - $metro_KNemp_min));
+			$metro_KNemp_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -463,15 +467,17 @@ foreach ($metro_pcpi as $data) {
 $metro_pcpi_indexed = array();
 $metro_pcpi_values = array();
 foreach($economy_years as $year) {
-	foreach($metro_pcpi_filtered[$year] as $data) {
-		$metro_pcpi_values[$year][] = $data['percapita_income'];
-	}
-	$metro_pcpi_max = max($metro_pcpi_values[$year]);
-	$metro_pcpi_min = min($metro_pcpi_values[$year]);
-	// calculate index scores and store
-	foreach($metro_pcpi_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_pcpi_min) + ($data['percapita_income'] * 5)) / ($metro_pcpi_max - $metro_pcpi_min));
-		$metro_pcpi_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_pcpi_filtered[$year])) {
+		foreach($metro_pcpi_filtered[$year] as $data) {
+			$metro_pcpi_values[$year][] = $data['percapita_income'];
+		}
+		$metro_pcpi_max = max($metro_pcpi_values[$year]);
+		$metro_pcpi_min = min($metro_pcpi_values[$year]);
+		// calculate index scores and store
+		foreach($metro_pcpi_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_pcpi_min) + ($data['percapita_income'] * 5)) / ($metro_pcpi_max - $metro_pcpi_min));
+			$metro_pcpi_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -486,19 +492,22 @@ foreach ($metro_TechPatentsRt as $data) {
 	}
 }
 
+
 // map values to 0-5 range for each year
 $metro_TechPatentsRt_indexed = array();
 $metro_TechPatentsRt_values = array();
 foreach($economy_years as $year) {
-	foreach($metro_TechPatentsRt_filtered[$year] as $data) {
-		$metro_TechPatentsRt_values[$year][] = $data['Tech_Patents_per_10k'];
-	}
-	$metro_TechPatentsRt_max = max($metro_TechPatentsRt_values[$year]);
-	$metro_TechPatentsRt_min = min($metro_TechPatentsRt_values[$year]);
-	// calculate index scores and store
-	foreach($metro_TechPatentsRt_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_TechPatentsRt_min) + ($data['Tech_Patents_per_10k'] * 5)) / ($metro_TechPatentsRt_max - $metro_TechPatentsRt_min));
-		$metro_TechPatentsRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_TechPatentsRt_filtered[$year])) {
+		foreach($metro_TechPatentsRt_filtered[$year] as $data) {
+			$metro_TechPatentsRt_values[$year][] = $data['Tech_Patents_per_10k'];
+		}
+		$metro_TechPatentsRt_max = max($metro_TechPatentsRt_values[$year]);
+		$metro_TechPatentsRt_min = min($metro_TechPatentsRt_values[$year]);
+		// calculate index scores and store
+		foreach($metro_TechPatentsRt_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_TechPatentsRt_min) + ($data['Tech_Patents_per_10k'] * 5)) / ($metro_TechPatentsRt_max - $metro_TechPatentsRt_min));
+			$metro_TechPatentsRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -517,15 +526,17 @@ foreach ($state_BizTaxIndex as $data) {
 $state_BizTaxIndex_indexed = array();
 $state_BizTaxIndex_values = array();
 foreach($economy_years as $year) {
-	foreach($state_BizTaxIndex_filtered[$year] as $data) {
-		$state_BizTaxIndex_values[$year][] = $data['score'];
-	}
-	$state_BizTaxIndex_max = max($state_BizTaxIndex_values[$year]);
-	$state_BizTaxIndex_min = min($state_BizTaxIndex_values[$year]);
-	// calculate index scores and store
-	foreach($state_BizTaxIndex_filtered[$year] as $data) {
-		$calc_index = (((-5*$state_BizTaxIndex_min) + ($data['score'] * 5)) / ($state_BizTaxIndex_max - $state_BizTaxIndex_min));
-		$state_BizTaxIndex_indexed[$year][] = array('state' => $data['state'], 'value' => $calc_index);
+	if (isset($state_BizTaxIndex_filtered[$year])) {
+		foreach($state_BizTaxIndex_filtered[$year] as $data) {
+			$state_BizTaxIndex_values[$year][] = $data['score'];
+		}
+		$state_BizTaxIndex_max = max($state_BizTaxIndex_values[$year]);
+		$state_BizTaxIndex_min = min($state_BizTaxIndex_values[$year]);
+		// calculate index scores and store
+		foreach($state_BizTaxIndex_filtered[$year] as $data) {
+			$calc_index = (((-5*$state_BizTaxIndex_min) + ($data['score'] * 5)) / ($state_BizTaxIndex_max - $state_BizTaxIndex_min));
+			$state_BizTaxIndex_indexed[$year][] = array('state' => $data['state'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -611,183 +622,147 @@ foreach ($state_RandD_share_GDP_filtered as $year => $pass) {
 // create economy index from indexed variables
 $economy_index = array();
 foreach($economy_years as $year) {
+	//set index year
+	$economy_index[$year] = array();
 	//add in metro_exports score
 	if (isset($metro_exports_indexed[$year])) {
-		if (isset($economy_index[$year])) {
-			foreach($metro_exports_indexed[$year] as $data) {
-				$key = lookupGeoId($economy_index[$year], $data['geoid']);
+		foreach($metro_exports_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($economy_index[$year][$key])) {
 				$economy_index[$year][$key]['value'] = $economy_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$economy_index[$year][$key]['count'] = $economy_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_exports_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$economy_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$economy_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_GMPpercap score	
 	if (isset($metro_GMPpercap_indexed[$year])) {
-		if (isset($economy_index[$year])) {
-			foreach($metro_GMPpercap_indexed[$year] as $data) {
-				$key = lookupGeoId($economy_index[$year], $data['geoid']);
+		foreach($metro_GMPpercap_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($economy_index[$year][$key])) {
 				$economy_index[$year][$key]['value'] = $economy_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$economy_index[$year][$key]['count'] = $economy_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_GMPpercap_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$economy_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$economy_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_HighTech score	
 	if (isset($metro_HighTech_indexed[$year])) {
-		if (isset($economy_index[$year])) {
-			foreach($metro_HighTech_indexed[$year] as $data) {
-				$key = lookupGeoId($economy_index[$year], $data['geoid']);
+		foreach($metro_HighTech_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($economy_index[$year][$key])) {
 				$economy_index[$year][$key]['value'] = $economy_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$economy_index[$year][$key]['count'] = $economy_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_HighTech_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$economy_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$economy_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_KNemp score	
 	if (isset($metro_KNemp_indexed[$year])) {
-		if (isset($economy_index[$year])) {
-			foreach($metro_KNemp_indexed[$year] as $data) {
-				$key = lookupGeoId($economy_index[$year], $data['geoid']);
+		foreach($metro_KNemp_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($economy_index[$year][$key])) {
 				$economy_index[$year][$key]['value'] = $economy_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$economy_index[$year][$key]['count'] = $economy_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_KNemp_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$economy_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$economy_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
-	
 	//add in metro_pcpi score	
 	if (isset($metro_pcpi_indexed[$year])) {
-		if (isset($economy_index[$year])) {
-			foreach($metro_pcpi_indexed[$year] as $data) {
-				$key = lookupGeoId($economy_index[$year], $data['geoid']);
+		foreach($metro_pcpi_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($economy_index[$year][$key])) {
 				$economy_index[$year][$key]['value'] = $economy_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$economy_index[$year][$key]['count'] = $economy_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_pcpi_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$economy_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$economy_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_TechPatentsRt score	
 	if (isset($metro_TechPatentsRt_indexed[$year])) {
-		if (isset($economy_index[$year])) {
-			foreach($metro_TechPatentsRt_indexed[$year] as $data) {
-				$key = lookupGeoId($economy_index[$year], $data['geoid']);
+		foreach($metro_TechPatentsRt_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($economy_index[$year][$key])) {
 				$economy_index[$year][$key]['value'] = $economy_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$economy_index[$year][$key]['count'] = $economy_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_TechPatentsRt_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$economy_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$economy_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_BizTaxIndex score	
 	if (isset($metro_BizTaxIndex_indexed[$year])) {
-		if (isset($economy_index[$year])) {
-			foreach($metro_BizTaxIndex_indexed[$year] as $data) {
-				$key = lookupGeoId($economy_index[$year], $data['geoid']);
+		foreach($metro_BizTaxIndex_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($economy_index[$year][$key])) {
 				$economy_index[$year][$key]['value'] = $economy_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$economy_index[$year][$key]['count'] = $economy_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_BizTaxIndex_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$economy_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$economy_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
-	//add in metro_RandD_share_GDP score
-	/*	
-	if (isset($metro_RandD_share_GDP_indexed[$year])) {
-		if (isset($economy_index[$year])) {
-			foreach($metro_RandD_share_GDP_indexed[$year] as $data) {
-				$key = lookupGeoId($economy_index[$year], $data['geoid']);
-				$economy_index[$year][$key]['value'] = $economy_index[$year][$key]['value'] + $data['value'];
-				if (isset($data['value'])) {
-					$economy_index[$year][$key]['count'] = $economy_index[$year][$key]['count'] + 1;
-				}
-			}
-		} else {
-			foreach($metro_RandD_share_GDP_indexed[$year] as $data) {
-				if (isset($data['value'])) {
-					$count = 1;
-				} else {
-					$count = 0;
-				}
-				$economy_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
-			}
-		}
-	}
-	*/
 	
 	// normalize index by the number of variables availible in the year
 	foreach($economy_index[$year] as $key => $data) {
@@ -881,7 +856,7 @@ $result->free();
 
 // if half of the variables have data for any given year, then we calculate a priority area index for that year
 
-// create arrays of years avialable for year variable
+// create arrays of years Available for year variable
 $metro_attain25to34bachplus_years = array();
 foreach ($metro_attain25to34bachplus as $year) {
     $metro_attain25to34bachplus_years[] = $year['year'];
@@ -950,16 +925,18 @@ foreach ($metro_attain25to34bachplus as $data) {
 $metro_attain25to34bachplus_indexed = array();
 $metro_attain25to34bachplus_values = array();
 foreach($education_years as $year) {
-	foreach($metro_attain25to34bachplus_filtered[$year] as $data) {
-		$metro_attain25to34bachplus_values[$year][] = $data['percent_bachelors_and_higher'];
-	}
-	$metro_attain25to34bachplus_max = max($metro_attain25to34bachplus_values[$year]);
-	$metro_attain25to34bachplus_min = min($metro_attain25to34bachplus_values[$year]);
-	// calculate index scores and store
-	foreach($metro_attain25to34bachplus_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_attain25to34bachplus_min) + ($data['percent_bachelors_and_higher'] * 5)) / ($metro_attain25to34bachplus_max - $metro_attain25to34bachplus_min));
-		$metro_attain25to34bachplus_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
-	}
+	if (isset($metro_attain25to34bachplus_filtered[$year])) {
+		foreach($metro_attain25to34bachplus_filtered[$year] as $data) {
+			$metro_attain25to34bachplus_values[$year][] = $data['percent_bachelors_and_higher'];
+		}
+		$metro_attain25to34bachplus_max = max($metro_attain25to34bachplus_values[$year]);
+		$metro_attain25to34bachplus_min = min($metro_attain25to34bachplus_values[$year]);
+		// calculate index scores and store
+		foreach($metro_attain25to34bachplus_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_attain25to34bachplus_min) + ($data['percent_bachelors_and_higher'] * 5)) / ($metro_attain25to34bachplus_max - $metro_attain25to34bachplus_min));
+			$metro_attain25to34bachplus_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
+	}	
 }
 
 
@@ -1004,16 +981,19 @@ foreach ($metro_edu_enrollment as $data) {
 $metro_edu_enrollment_indexed = array();
 $metro_edu_enrollment_values = array();
 foreach($education_years as $year) {
-	foreach($metro_edu_enrollment_filtered[$year] as $data) {
-		$metro_edu_enrollment_values[$year][] = $data['percent_enrolled_prek_high'];
+	if (isset($metro_edu_enrollment_filtered[$year])) {
+		foreach($metro_edu_enrollment_filtered[$year] as $data) {
+			$metro_edu_enrollment_values[$year][] = $data['percent_enrolled_prek_high'];
+		}
+		$metro_edu_enrollment_max = max($metro_edu_enrollment_values[$year]);
+		$metro_edu_enrollment_min = min($metro_edu_enrollment_values[$year]);
+		// calculate index scores and store
+		foreach($metro_edu_enrollment_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_edu_enrollment_min) + ($data['percent_enrolled_prek_high'] * 5)) / ($metro_edu_enrollment_max - $metro_edu_enrollment_min));
+			$metro_edu_enrollment_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
-	$metro_edu_enrollment_max = max($metro_edu_enrollment_values[$year]);
-	$metro_edu_enrollment_min = min($metro_edu_enrollment_values[$year]);
-	// calculate index scores and store
-	foreach($metro_edu_enrollment_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_edu_enrollment_min) + ($data['percent_enrolled_prek_high'] * 5)) / ($metro_edu_enrollment_max - $metro_edu_enrollment_min));
-		$metro_edu_enrollment_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
-	}
+
 }
 
 
@@ -1031,15 +1011,17 @@ foreach ($metro_highschool_and_higher_adults as $data) {
 $metro_highschool_and_higher_adults_indexed = array();
 $metro_highschool_and_higher_adults_values = array();
 foreach($education_years as $year) {
-	foreach($metro_highschool_and_higher_adults_filtered[$year] as $data) {
-		$metro_highschool_and_higher_adults_values[$year][] = $data['percent_hs_and_higher'];
-	}
-	$metro_highschool_and_higher_adults_max = max($metro_highschool_and_higher_adults_values[$year]);
-	$metro_highschool_and_higher_adults_min = min($metro_highschool_and_higher_adults_values[$year]);
-	// calculate index scores and store
-	foreach($metro_highschool_and_higher_adults_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_highschool_and_higher_adults_min) + ($data['percent_hs_and_higher'] * 5)) / ($metro_highschool_and_higher_adults_max - $metro_highschool_and_higher_adults_min));
-		$metro_highschool_and_higher_adults_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_highschool_and_higher_adults_filtered[$year])) {
+		foreach($metro_highschool_and_higher_adults_filtered[$year] as $data) {
+			$metro_highschool_and_higher_adults_values[$year][] = $data['percent_hs_and_higher'];
+		}
+		$metro_highschool_and_higher_adults_max = max($metro_highschool_and_higher_adults_values[$year]);
+		$metro_highschool_and_higher_adults_min = min($metro_highschool_and_higher_adults_values[$year]);
+		// calculate index scores and store
+		foreach($metro_highschool_and_higher_adults_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_highschool_and_higher_adults_min) + ($data['percent_hs_and_higher'] * 5)) / ($metro_highschool_and_higher_adults_max - $metro_highschool_and_higher_adults_min));
+			$metro_highschool_and_higher_adults_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1058,15 +1040,17 @@ foreach ($metro_teens_unemployed_noHS as $data) {
 $metro_teens_unemployed_noHS_indexed = array();
 $metro_teens_unemployed_noHS_values = array();
 foreach($education_years as $year) {
-	foreach($metro_teens_unemployed_noHS_filtered[$year] as $data) {
-		$metro_teens_unemployed_noHS_values[$year][] = $data['percent_unemployed_no_hs_degree'];
-	}
-	$metro_teens_unemployed_noHS_max = max($metro_teens_unemployed_noHS_values[$year]);
-	$metro_teens_unemployed_noHS_min = min($metro_teens_unemployed_noHS_values[$year]);
-	// calculate index scores and store -- negatively scored
-	foreach($metro_teens_unemployed_noHS_filtered[$year] as $data) {
-		$calc_index = (((5*$metro_teens_unemployed_noHS_max) + ($data['percent_unemployed_no_hs_degree'] * -5)) / ($metro_teens_unemployed_noHS_max - $metro_teens_unemployed_noHS_min));		
-		$metro_teens_unemployed_noHS_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_teens_unemployed_noHS_filtered[$year])) {
+		foreach($metro_teens_unemployed_noHS_filtered[$year] as $data) {
+			$metro_teens_unemployed_noHS_values[$year][] = $data['percent_unemployed_no_hs_degree'];
+		}
+		$metro_teens_unemployed_noHS_max = max($metro_teens_unemployed_noHS_values[$year]);
+		$metro_teens_unemployed_noHS_min = min($metro_teens_unemployed_noHS_values[$year]);
+		// calculate index scores and store -- negatively scored
+		foreach($metro_teens_unemployed_noHS_filtered[$year] as $data) {
+			$calc_index = (((5*$metro_teens_unemployed_noHS_max) + ($data['percent_unemployed_no_hs_degree'] * -5)) / ($metro_teens_unemployed_noHS_max - $metro_teens_unemployed_noHS_min));		
+			$metro_teens_unemployed_noHS_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1085,15 +1069,17 @@ foreach ($state_edu_appropriations as $data) {
 $state_edu_appropriations_indexed = array();
 $state_edu_appropriations_values = array();
 foreach($education_years as $year) {
-	foreach($state_edu_appropriations_filtered[$year] as $data) {
-		$state_edu_appropriations_values[$year][] = $data['edu_appro_per_fte_student'];
-	}
-	$state_edu_appropriations_max = max($state_edu_appropriations_values[$year]);
-	$state_edu_appropriations_min = min($state_edu_appropriations_values[$year]);
-	// calculate index scores and store
-	foreach($state_edu_appropriations_filtered[$year] as $data) {
-		$calc_index = (((-5*$state_edu_appropriations_min) + ($data['edu_appro_per_fte_student'] * 5)) / ($state_edu_appropriations_max - $state_edu_appropriations_min));
-		$state_edu_appropriations_indexed[$year][] = array('state' => $data['state'], 'value' => $calc_index);
+	if (isset($state_edu_appropriations_filtered[$year])) {
+		foreach($state_edu_appropriations_filtered[$year] as $data) {
+			$state_edu_appropriations_values[$year][] = $data['edu_appro_per_fte_student'];
+		}
+		$state_edu_appropriations_max = max($state_edu_appropriations_values[$year]);
+		$state_edu_appropriations_min = min($state_edu_appropriations_values[$year]);
+		// calculate index scores and store
+		foreach($state_edu_appropriations_filtered[$year] as $data) {
+			$calc_index = (((-5*$state_edu_appropriations_min) + ($data['edu_appro_per_fte_student'] * 5)) / ($state_edu_appropriations_max - $state_edu_appropriations_min));
+			$state_edu_appropriations_indexed[$year][] = array('state' => $data['state'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1136,15 +1122,17 @@ foreach ($state_edu_expendperpupil as $data) {
 $state_edu_expendperpupil_indexed = array();
 $state_edu_expendperpupil_values = array();
 foreach($education_years as $year) {
-	foreach($state_edu_expendperpupil_filtered[$year] as $data) {
-		$state_edu_expendperpupil_values[$year][] = $data['edu_expend_per_pupil'];
-	}
-	$state_edu_expendperpupil_max = max($state_edu_expendperpupil_values[$year]);
-	$state_edu_expendperpupil_min = min($state_edu_expendperpupil_values[$year]);
-	// calculate index scores and store
-	foreach($state_edu_expendperpupil_filtered[$year] as $data) {
-		$calc_index = (((-5*$state_edu_expendperpupil_min) + ($data['edu_expend_per_pupil'] * 5)) / ($state_edu_expendperpupil_max - $state_edu_expendperpupil_min));
-		$state_edu_expendperpupil_indexed[$year][] = array('state' => $data['state'], 'value' => $calc_index);
+	if (isset($state_edu_expendperpupil_filtered[$year])) {
+		foreach($state_edu_expendperpupil_filtered[$year] as $data) {
+			$state_edu_expendperpupil_values[$year][] = $data['edu_expend_per_pupil'];
+		}
+		$state_edu_expendperpupil_max = max($state_edu_expendperpupil_values[$year]);
+		$state_edu_expendperpupil_min = min($state_edu_expendperpupil_values[$year]);
+		// calculate index scores and store
+		foreach($state_edu_expendperpupil_filtered[$year] as $data) {
+			$calc_index = (((-5*$state_edu_expendperpupil_min) + ($data['edu_expend_per_pupil'] * 5)) / ($state_edu_expendperpupil_max - $state_edu_expendperpupil_min));
+			$state_edu_expendperpupil_indexed[$year][] = array('state' => $data['state'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1176,156 +1164,145 @@ foreach ($state_edu_expendperpupil_filtered as $year => $pass) {
 // create education index from indexed variables
 $education_index = array();
 foreach($education_years as $year) {
+	// set year array
+	$education_index[$year] = array();
+
 	//add in metro_exports score
 	if (isset($metro_attain25to34bachplus_indexed[$year])) {
-		if (isset($education_index[$year])) {
-			foreach($metro_attain25to34bachplus_indexed[$year] as $data) {
-				$key = lookupGeoId($education_index[$year], $data['geoid']);
+		foreach($metro_attain25to34bachplus_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($education_index[$year][$key])) {
 				$education_index[$year][$key]['value'] = $education_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$education_index[$year][$key]['count'] = $education_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_attain25to34bachplus_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$education_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$education_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_bachplusscore	
 	if (isset($metro_bachplus_indexed[$year])) {
-		if (isset($education_index[$year])) {
-			foreach($metro_bachplus_indexed[$year] as $data) {
-				$key = lookupGeoId($education_index[$year], $data['geoid']);
+		foreach($metro_bachplus_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($education_index[$year][$key])) {
 				$education_index[$year][$key]['value'] = $education_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$education_index[$year][$key]['count'] = $education_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_bachplus_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$education_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$education_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_edu_enrollment score	
 	if (isset($metro_edu_enrollment_indexed[$year])) {
-		if (isset($education_index[$year])) {
-			foreach($metro_edu_enrollment_indexed[$year] as $data) {
-				$key = lookupGeoId($education_index[$year], $data['geoid']);
+		foreach($metro_edu_enrollment_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($education_index[$year][$key])) {
 				$education_index[$year][$key]['value'] = $education_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$education_index[$year][$key]['count'] = $education_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_edu_enrollment_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$education_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$education_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_highschool_and_higher_adults score	
 	if (isset($metro_highschool_and_higher_adults_indexed[$year])) {
-		if (isset($education_index[$year])) {
-			foreach($metro_highschool_and_higher_adults_indexed[$year] as $data) {
-				$key = lookupGeoId($education_index[$year], $data['geoid']);
+		foreach($metro_highschool_and_higher_adults_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($education_index[$year][$key])) {
 				$education_index[$year][$key]['value'] = $education_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$education_index[$year][$key]['count'] = $education_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_highschool_and_higher_adults_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$education_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$education_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_teens_unemployed_noHS score	
 	if (isset($metro_teens_unemployed_noHS_indexed[$year])) {
-		if (isset($education_index[$year])) {
-			foreach($metro_teens_unemployed_noHS_indexed[$year] as $data) {
-				$key = lookupGeoId($education_index[$year], $data['geoid']);
+		foreach($metro_teens_unemployed_noHS_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($education_index[$year][$key])) {
 				$education_index[$year][$key]['value'] = $education_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$education_index[$year][$key]['count'] = $education_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_teens_unemployed_noHS_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$education_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$education_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_edu_appropriations score	
 	if (isset($metro_edu_appropriations_indexed[$year])) {
-		if (isset($education_index[$year])) {
-			foreach($metro_edu_appropriations_indexed[$year] as $data) {
-				$key = lookupGeoId($education_index[$year], $data['geoid']);
+		foreach($metro_edu_appropriations_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($education_index[$year][$key])) {
 				$education_index[$year][$key]['value'] = $education_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$education_index[$year][$key]['count'] = $education_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_edu_appropriations_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$education_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$education_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_edu_expendperpupil score	
 	if (isset($metro_edu_expendperpupil_indexed[$year])) {
-		if (isset($education_index[$year])) {
-			foreach($metro_edu_expendperpupil_indexed[$year] as $data) {
-				$key = lookupGeoId($education_index[$year], $data['geoid']);
+		foreach($metro_edu_expendperpupil_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($education_index[$year][$key])) {
 				$education_index[$year][$key]['value'] = $education_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$education_index[$year][$key]['count'] = $education_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_edu_expendperpupil_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$education_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$education_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
@@ -1409,7 +1386,7 @@ $result->free();
 
 // if half of the variables have data for any given year, then we calculate a priority area index for that year
 
-// create arrays of years avialable for year variable
+// create arrays of years Available for year variable
 // Total Value of Exports
 $metro_AQI_years = array();
 foreach ($metro_AQI as $year) {
@@ -1478,15 +1455,17 @@ foreach ($metro_AQI as $data) {
 $metro_AQI_indexed = array();
 $metro_AQI_values = array();
 foreach($quality_of_life_years as $year) {
-	foreach($metro_AQI_filtered[$year] as $data) {
-		$metro_AQI_values[$year][] = $data['percent_good_AQI'];
-	}
-	$metro_AQI_max = max($metro_AQI_values[$year]);
-	$metro_AQI_min = min($metro_AQI_values[$year]);
-	// calculate index scores and store
-	foreach($metro_AQI_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_AQI_min) + ($data['percent_good_AQI'] * 5)) / ($metro_AQI_max - $metro_AQI_min));
-		$metro_AQI_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_AQI_filtered[$year])) {
+		foreach($metro_AQI_filtered[$year] as $data) {
+			$metro_AQI_values[$year][] = $data['percent_good_AQI'];
+		}
+		$metro_AQI_max = max($metro_AQI_values[$year]);
+		$metro_AQI_min = min($metro_AQI_values[$year]);
+		// calculate index scores and store
+		foreach($metro_AQI_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_AQI_min) + ($data['percent_good_AQI'] * 5)) / ($metro_AQI_max - $metro_AQI_min));
+			$metro_AQI_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1505,15 +1484,17 @@ foreach ($metro_PopChgRt as $data) {
 $metro_PopChgRt_indexed = array();
 $metro_PopChgRt_values = array();
 foreach($quality_of_life_years as $year) {
-	foreach($metro_PopChgRt_filtered[$year] as $data) {
-		$metro_PopChgRt_values[$year][] = $data['percent_change_pop'];
-	}
-	$metro_PopChgRt_max = max($metro_PopChgRt_values[$year]);
-	$metro_PopChgRt_min = min($metro_PopChgRt_values[$year]);
-	// calculate index scores and store
-	foreach($metro_PopChgRt_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_PopChgRt_min) + ($data['percent_change_pop'] * 5)) / ($metro_PopChgRt_max - $metro_PopChgRt_min));
-		$metro_PopChgRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_PopChgRt_filtered[$year])) {
+		foreach($metro_PopChgRt_filtered[$year] as $data) {
+			$metro_PopChgRt_values[$year][] = $data['percent_change_pop'];
+		}
+		$metro_PopChgRt_max = max($metro_PopChgRt_values[$year]);
+		$metro_PopChgRt_min = min($metro_PopChgRt_values[$year]);
+		// calculate index scores and store
+		foreach($metro_PopChgRt_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_PopChgRt_min) + ($data['percent_change_pop'] * 5)) / ($metro_PopChgRt_max - $metro_PopChgRt_min));
+			$metro_PopChgRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1532,15 +1513,17 @@ foreach ($metro_UninsRt as $data) {
 $metro_UninsRt_indexed = array();
 $metro_UninsRt_values = array();
 foreach($quality_of_life_years as $year) {
-	foreach($metro_UninsRt_filtered[$year] as $data) {
-		$metro_UninsRt_values[$year][] = $data['percent_wo_healthinsu'];
-	}
-	$metro_UninsRt_max = max($metro_UninsRt_values[$year]);
-	$metro_UninsRt_min = min($metro_UninsRt_values[$year]);
-	// calculate index scores and store
-	foreach($metro_UninsRt_filtered[$year] as $data) {		
-		$calc_index = (((5*$metro_UninsRt_max) + ($data['percent_wo_healthinsu'] * -5)) / ($metro_UninsRt_max - $metro_UninsRt_min));
-		$metro_UninsRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_UninsRt_filtered[$year])) {
+		foreach($metro_UninsRt_filtered[$year] as $data) {
+			$metro_UninsRt_values[$year][] = $data['percent_wo_healthinsu'];
+		}
+		$metro_UninsRt_max = max($metro_UninsRt_values[$year]);
+		$metro_UninsRt_min = min($metro_UninsRt_values[$year]);
+		// calculate index scores and store
+		foreach($metro_UninsRt_filtered[$year] as $data) {		
+			$calc_index = (((5*$metro_UninsRt_max) + ($data['percent_wo_healthinsu'] * -5)) / ($metro_UninsRt_max - $metro_UninsRt_min));
+			$metro_UninsRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1559,15 +1542,17 @@ foreach ($metro_VCrimeRt as $data) {
 $metro_VCrimeRt_indexed = array();
 $metro_VCrimeRt_values = array();
 foreach($quality_of_life_years as $year) {
-	foreach($metro_VCrimeRt_filtered[$year] as $data) {
-		$metro_VCrimeRt_values[$year][] = $data['violent_crime_rate'];
-	}
-	$metro_VCrimeRt_max = max($metro_VCrimeRt_values[$year]);
-	$metro_VCrimeRt_min = min($metro_VCrimeRt_values[$year]);
-	// calculate index scores and store
-	foreach($metro_VCrimeRt_filtered[$year] as $data) {
-		$calc_index = (((5*$metro_VCrimeRt_max) + ($data['violent_crime_rate'] * -5)) / ($metro_VCrimeRt_max - $metro_VCrimeRt_min));
-		$metro_VCrimeRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_VCrimeRt_filtered[$year])) {
+		foreach($metro_VCrimeRt_filtered[$year] as $data) {
+			$metro_VCrimeRt_values[$year][] = $data['violent_crime_rate'];
+		}
+		$metro_VCrimeRt_max = max($metro_VCrimeRt_values[$year]);
+		$metro_VCrimeRt_min = min($metro_VCrimeRt_values[$year]);
+		// calculate index scores and store
+		foreach($metro_VCrimeRt_filtered[$year] as $data) {
+			$calc_index = (((5*$metro_VCrimeRt_max) + ($data['violent_crime_rate'] * -5)) / ($metro_VCrimeRt_max - $metro_VCrimeRt_min));
+			$metro_VCrimeRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1586,15 +1571,17 @@ foreach ($metro_VolunteerRt as $data) {
 $metro_VolunteerRt_indexed = array();
 $metro_VolunteerRt_values = array();
 foreach($quality_of_life_years as $year) {
-	foreach($metro_VolunteerRt_filtered[$year] as $data) {
-		$metro_VolunteerRt_values[$year][] = $data['volunteer_rate'];
-	}
-	$metro_VolunteerRt_max = max($metro_VolunteerRt_values[$year]);
-	$metro_VolunteerRt_min = min($metro_VolunteerRt_values[$year]);
-	// calculate index scores and store
-	foreach($metro_VolunteerRt_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_VolunteerRt_min) + ($data['volunteer_rate'] * 5)) / ($metro_VolunteerRt_max - $metro_VolunteerRt_min));
-		$metro_VolunteerRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_VolunteerRt_filtered[$year])) {
+		foreach($metro_VolunteerRt_filtered[$year] as $data) {
+			$metro_VolunteerRt_values[$year][] = $data['volunteer_rate'];
+		}
+		$metro_VolunteerRt_max = max($metro_VolunteerRt_values[$year]);
+		$metro_VolunteerRt_min = min($metro_VolunteerRt_values[$year]);
+		// calculate index scores and store
+		foreach($metro_VolunteerRt_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_VolunteerRt_min) + ($data['volunteer_rate'] * 5)) / ($metro_VolunteerRt_max - $metro_VolunteerRt_min));
+			$metro_VolunteerRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1613,15 +1600,17 @@ foreach ($metro_WellnessIndicators_Obesity as $data) {
 $metro_WellnessIndicators_Obesity_indexed = array();
 $metro_WellnessIndicators_Obesity_values = array();
 foreach($quality_of_life_years as $year) {
-	foreach($metro_WellnessIndicators_Obesity_filtered[$year] as $data) {
-		$metro_WellnessIndicators_Obesity_values[$year][] = $data['percent_not_overweigh_obese'];
-	}
-	$metro_WellnessIndicators_Obesity_max = max($metro_WellnessIndicators_Obesity_values[$year]);
-	$metro_WellnessIndicators_Obesity_min = min($metro_WellnessIndicators_Obesity_values[$year]);
-	// calculate index scores and store
-	foreach($metro_WellnessIndicators_Obesity_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_WellnessIndicators_Obesity_min) + ($data['percent_not_overweigh_obese'] * 5)) / ($metro_WellnessIndicators_Obesity_max - $metro_WellnessIndicators_Obesity_min));
-		$metro_WellnessIndicators_Obesity_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_WellnessIndicators_Obesity_filtered[$year])) {
+		foreach($metro_WellnessIndicators_Obesity_filtered[$year] as $data) {
+			$metro_WellnessIndicators_Obesity_values[$year][] = $data['percent_not_overweigh_obese'];
+		}
+		$metro_WellnessIndicators_Obesity_max = max($metro_WellnessIndicators_Obesity_values[$year]);
+		$metro_WellnessIndicators_Obesity_min = min($metro_WellnessIndicators_Obesity_values[$year]);
+		// calculate index scores and store
+		foreach($metro_WellnessIndicators_Obesity_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_WellnessIndicators_Obesity_min) + ($data['percent_not_overweigh_obese'] * 5)) / ($metro_WellnessIndicators_Obesity_max - $metro_WellnessIndicators_Obesity_min));
+			$metro_WellnessIndicators_Obesity_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1629,134 +1618,125 @@ foreach($quality_of_life_years as $year) {
 // create quality_of_life index from indexed variables
 $quality_of_life_index = array();
 foreach($quality_of_life_years as $year) {
+	// year array
+	$quality_of_life_index[$year] = array();
+
 	//add in metro_AQI score
 	if (isset($metro_AQI_indexed[$year])) {
-		if (isset($quality_of_life_index[$year])) {
-			foreach($metro_AQI_indexed[$year] as $data) {
-				$key = lookupGeoId($quality_of_life_index[$year], $data['geoid']);
+		foreach($metro_AQI_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($quality_of_life_index[$year][$key])) {
 				$quality_of_life_index[$year][$key]['value'] = $quality_of_life_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$quality_of_life_index[$year][$key]['count'] = $quality_of_life_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_AQI_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$quality_of_life_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$quality_of_life_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_PopChgRt score	
 	if (isset($metro_PopChgRt_indexed[$year])) {
-		if (isset($quality_of_life_index[$year])) {
-			foreach($metro_PopChgRt_indexed[$year] as $data) {
-				$key = lookupGeoId($quality_of_life_index[$year], $data['geoid']);
+		foreach($metro_PopChgRt_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($quality_of_life_index[$year][$key])) {
 				$quality_of_life_index[$year][$key]['value'] = $quality_of_life_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$quality_of_life_index[$year][$key]['count'] = $quality_of_life_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_PopChgRt_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$quality_of_life_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$quality_of_life_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_UninsRt score	
 	if (isset($metro_UninsRt_indexed[$year])) {
-		if (isset($quality_of_life_index[$year])) {
-			foreach($metro_UninsRt_indexed[$year] as $data) {
-				$key = lookupGeoId($quality_of_life_index[$year], $data['geoid']);
+		foreach($metro_UninsRt_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($quality_of_life_index[$year][$key])) {
 				$quality_of_life_index[$year][$key]['value'] = $quality_of_life_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$quality_of_life_index[$year][$key]['count'] = $quality_of_life_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_UninsRt_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$quality_of_life_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$quality_of_life_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_VCrimeRt score	
 	if (isset($metro_VCrimeRt_indexed[$year])) {
-		if (isset($quality_of_life_index[$year])) {
-			foreach($metro_VCrimeRt_indexed[$year] as $data) {
-				$key = lookupGeoId($quality_of_life_index[$year], $data['geoid']);
+		foreach($metro_VCrimeRt_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($quality_of_life_index[$year][$key])) {
 				$quality_of_life_index[$year][$key]['value'] = $quality_of_life_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$quality_of_life_index[$year][$key]['count'] = $quality_of_life_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_VCrimeRt_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$quality_of_life_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$quality_of_life_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_VolunteerRt score	
 	if (isset($metro_VolunteerRt_indexed[$year])) {
-		if (isset($quality_of_life_index[$year])) {
-			foreach($metro_VolunteerRt_indexed[$year] as $data) {
-				$key = lookupGeoId($quality_of_life_index[$year], $data['geoid']);
+		foreach($metro_VolunteerRt_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($quality_of_life_index[$year][$key])) {
 				$quality_of_life_index[$year][$key]['value'] = $quality_of_life_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$quality_of_life_index[$year][$key]['count'] = $quality_of_life_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_VolunteerRt_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$quality_of_life_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$quality_of_life_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_WellnessIndicators_Obesity score	
 	if (isset($metro_WellnessIndicators_Obesity_indexed[$year])) {
-		if (isset($quality_of_life_index[$year])) {
-			foreach($metro_WellnessIndicators_Obesity_indexed[$year] as $data) {
-				$key = lookupGeoId($quality_of_life_index[$year], $data['geoid']);
+		foreach($metro_WellnessIndicators_Obesity_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($quality_of_life_index[$year][$key])) {
 				$quality_of_life_index[$year][$key]['value'] = $quality_of_life_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$quality_of_life_index[$year][$key]['count'] = $quality_of_life_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_WellnessIndicators_Obesity_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$quality_of_life_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
+				$quality_of_life_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
@@ -1841,7 +1821,7 @@ $result->free();
 
 // if half of the variables have data for any given year, then we calculate a priority area index for that year
 
-// create arrays of years avialable for year variable
+// create arrays of years Available for year variable
 // Total Value of Exports
 $metro_ForBornRt_years = array();
 foreach ($metro_ForBornRt as $year) {
@@ -1926,15 +1906,17 @@ foreach ($metro_ForBornRt as $data) {
 $metro_ForBornRt_indexed = array();
 $metro_ForBornRt_values = array();
 foreach($equity_years as $year) {
-	foreach($metro_ForBornRt_filtered[$year] as $data) {
-		$metro_ForBornRt_values[$year][] = $data['percent_of_pop_foreignborn'];
-	}
-	$metro_ForBornRt_max = max($metro_ForBornRt_values[$year]);
-	$metro_ForBornRt_min = min($metro_ForBornRt_values[$year]);
-	// calculate index scores and store
-	foreach($metro_ForBornRt_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_ForBornRt_min) + ($data['percent_of_pop_foreignborn'] * 5)) / ($metro_ForBornRt_max - $metro_ForBornRt_min));
-		$metro_ForBornRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_ForBornRt_filtered[$year])) {
+		foreach($metro_ForBornRt_filtered[$year] as $data) {
+			$metro_ForBornRt_values[$year][] = $data['percent_of_pop_foreignborn'];
+		}
+		$metro_ForBornRt_max = max($metro_ForBornRt_values[$year]);
+		$metro_ForBornRt_min = min($metro_ForBornRt_values[$year]);
+		// calculate index scores and store
+		foreach($metro_ForBornRt_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_ForBornRt_min) + ($data['percent_of_pop_foreignborn'] * 5)) / ($metro_ForBornRt_max - $metro_ForBornRt_min));
+			$metro_ForBornRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1953,15 +1935,17 @@ foreach ($metro_giniindex as $data) {
 $metro_giniindex_indexed = array();
 $metro_giniindex_values = array();
 foreach($equity_years as $year) {
-	foreach($metro_giniindex_filtered[$year] as $data) {
-		$metro_giniindex_values[$year][] = $data['gini'];
-	}
-	$metro_giniindex_max = max($metro_giniindex_values[$year]);
-	$metro_giniindex_min = min($metro_giniindex_values[$year]);
-	// calculate index scores and store
-	foreach($metro_giniindex_filtered[$year] as $data) {
-		$calc_index = (((5*$metro_giniindex_max) + ($data['gini'] * -5)) / ($metro_giniindex_max - $metro_giniindex_min));
-		$metro_giniindex_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_giniindex_filtered[$year])) {
+		foreach($metro_giniindex_filtered[$year] as $data) {
+			$metro_giniindex_values[$year][] = $data['gini'];
+		}
+		$metro_giniindex_max = max($metro_giniindex_values[$year]);
+		$metro_giniindex_min = min($metro_giniindex_values[$year]);
+		// calculate index scores and store
+		foreach($metro_giniindex_filtered[$year] as $data) {
+			$calc_index = (((5*$metro_giniindex_max) + ($data['gini'] * -5)) / ($metro_giniindex_max - $metro_giniindex_min));
+			$metro_giniindex_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -1991,40 +1975,42 @@ $metro_IncomeShare_values_4 = array();
 $metro_IncomeShare_values_5 = array();
 $metro_IncomeShare_values_top = array();
 foreach($equity_years as $year) {
-	foreach($metro_IncomeShare_filtered[$year] as $data) {
-		$metro_IncomeShare_values_1[$year][] = $data['Lowestquintile'];
-		$metro_IncomeShare_values_2[$year][] = $data['Secondlowestquintile'];
-		$metro_IncomeShare_values_3[$year][] = $data['Middlequintile'];
-		$metro_IncomeShare_values_4[$year][] = $data['Secondhighestquintile'];
-		$metro_IncomeShare_values_5[$year][] = $data['Highestquintile'];
-		$metro_IncomeShare_values_top[$year][] = $data['top_5_percent'];
-	}
-	$metro_IncomeShare_max_1 = max($metro_IncomeShare_values_1[$year]);
-	$metro_IncomeShare_min_1 = min($metro_IncomeShare_values_1[$year]);
-	$metro_IncomeShare_max_2 = max($metro_IncomeShare_values_2[$year]);
-	$metro_IncomeShare_min_2 = min($metro_IncomeShare_values_2[$year]);
-	$metro_IncomeShare_max_3 = max($metro_IncomeShare_values_3[$year]);
-	$metro_IncomeShare_min_3 = min($metro_IncomeShare_values_3[$year]);
-	$metro_IncomeShare_max_4 = max($metro_IncomeShare_values_4[$year]);
-	$metro_IncomeShare_min_4 = min($metro_IncomeShare_values_4[$year]);
-	$metro_IncomeShare_max_5 = max($metro_IncomeShare_values_5[$year]);
-	$metro_IncomeShare_min_5 = min($metro_IncomeShare_values_5[$year]);
-	$metro_IncomeShare_max_top = max($metro_IncomeShare_values_top[$year]);
-	$metro_IncomeShare_min_top = min($metro_IncomeShare_values_top[$year]);
-	// calculate index scores and store
-	foreach($metro_IncomeShare_filtered[$year] as $data) {
-		$calc_index_1 = (((-5*$metro_IncomeShare_min_1) + ($data['Lowestquintile'] * 5)) / ($metro_IncomeShare_max_1 - $metro_IncomeShare_min_1));
-		$metro_IncomeShare_indexed_1[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_1);
-		$calc_index_2 = (((-5*$metro_IncomeShare_min_2) + ($data['Secondlowestquintile'] * 5)) / ($metro_IncomeShare_max_2 - $metro_IncomeShare_min_2));
-		$metro_IncomeShare_indexed_2[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_2);
-		$calc_index_3 = (((-5*$metro_IncomeShare_min_3) + ($data['Middlequintile'] * 5)) / ($metro_IncomeShare_max_3 - $metro_IncomeShare_min_3));
-		$metro_IncomeShare_indexed_3[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_3);
-		$calc_index_4 = (((5*$metro_IncomeShare_max_4) + ($data['Secondhighestquintile'] * -5)) / ($metro_IncomeShare_max_4 - $metro_IncomeShare_min_4));
-		$metro_IncomeShare_indexed_4[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_4);
-		$calc_index_5 = (((5*$metro_IncomeShare_max_5) + ($data['Highestquintile'] * -5)) / ($metro_IncomeShare_max_5 - $metro_IncomeShare_min_5));
-		$metro_IncomeShare_indexed_5[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_5);
-		$calc_index_top = (((5*$metro_IncomeShare_max_top) + ($data['top_5_percent'] * -5)) / ($metro_IncomeShare_max_top - $metro_IncomeShare_min_top));
-		$metro_IncomeShare_indexed_top[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_top);
+	if (isset($metro_IncomeShare_filtered[$year])) {
+		foreach($metro_IncomeShare_filtered[$year] as $data) {
+			$metro_IncomeShare_values_1[$year][] = $data['Lowestquintile'];
+			$metro_IncomeShare_values_2[$year][] = $data['Secondlowestquintile'];
+			$metro_IncomeShare_values_3[$year][] = $data['Middlequintile'];
+			$metro_IncomeShare_values_4[$year][] = $data['Secondhighestquintile'];
+			$metro_IncomeShare_values_5[$year][] = $data['Highestquintile'];
+			$metro_IncomeShare_values_top[$year][] = $data['top_5_percent'];
+		}
+		$metro_IncomeShare_max_1 = max($metro_IncomeShare_values_1[$year]);
+		$metro_IncomeShare_min_1 = min($metro_IncomeShare_values_1[$year]);
+		$metro_IncomeShare_max_2 = max($metro_IncomeShare_values_2[$year]);
+		$metro_IncomeShare_min_2 = min($metro_IncomeShare_values_2[$year]);
+		$metro_IncomeShare_max_3 = max($metro_IncomeShare_values_3[$year]);
+		$metro_IncomeShare_min_3 = min($metro_IncomeShare_values_3[$year]);
+		$metro_IncomeShare_max_4 = max($metro_IncomeShare_values_4[$year]);
+		$metro_IncomeShare_min_4 = min($metro_IncomeShare_values_4[$year]);
+		$metro_IncomeShare_max_5 = max($metro_IncomeShare_values_5[$year]);
+		$metro_IncomeShare_min_5 = min($metro_IncomeShare_values_5[$year]);
+		$metro_IncomeShare_max_top = max($metro_IncomeShare_values_top[$year]);
+		$metro_IncomeShare_min_top = min($metro_IncomeShare_values_top[$year]);
+		// calculate index scores and store
+		foreach($metro_IncomeShare_filtered[$year] as $data) {
+			$calc_index_1 = (((-5*$metro_IncomeShare_min_1) + ($data['Lowestquintile'] * 5)) / ($metro_IncomeShare_max_1 - $metro_IncomeShare_min_1));
+			$metro_IncomeShare_indexed_1[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_1);
+			$calc_index_2 = (((-5*$metro_IncomeShare_min_2) + ($data['Secondlowestquintile'] * 5)) / ($metro_IncomeShare_max_2 - $metro_IncomeShare_min_2));
+			$metro_IncomeShare_indexed_2[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_2);
+			$calc_index_3 = (((-5*$metro_IncomeShare_min_3) + ($data['Middlequintile'] * 5)) / ($metro_IncomeShare_max_3 - $metro_IncomeShare_min_3));
+			$metro_IncomeShare_indexed_3[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_3);
+			$calc_index_4 = (((5*$metro_IncomeShare_max_4) + ($data['Secondhighestquintile'] * -5)) / ($metro_IncomeShare_max_4 - $metro_IncomeShare_min_4));
+			$metro_IncomeShare_indexed_4[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_4);
+			$calc_index_5 = (((5*$metro_IncomeShare_max_5) + ($data['Highestquintile'] * -5)) / ($metro_IncomeShare_max_5 - $metro_IncomeShare_min_5));
+			$metro_IncomeShare_indexed_5[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_5);
+			$calc_index_top = (((5*$metro_IncomeShare_max_top) + ($data['top_5_percent'] * -5)) / ($metro_IncomeShare_max_top - $metro_IncomeShare_min_top));
+			$metro_IncomeShare_indexed_top[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index_top);
+		}
 	}
 }
 
@@ -2046,21 +2032,23 @@ $metro_MedHHInc_values_1 = array();
 $metro_MedHHInc_values_2 = array();
 $metro_MedHHInc_values_3 = array();
 foreach($equity_years as $year) {
-	foreach($metro_MedHHInc_filtered[$year] as $data) {
-		$metro_MedHHInc_values_1[$year][] = $data['medhhinc_black'];
-		$metro_MedHHInc_values_2[$year][] = $data['medhhinc_hisp'];
-		$metro_MedHHInc_values_3[$year][] = $data['medhhinc_nonhispwhite'];
-	}
-	$metro_MedHHInc_max_1 = max($metro_MedHHInc_values_1[$year]);
-	$metro_MedHHInc_min_1 = min($metro_MedHHInc_values_1[$year]);
-	$metro_MedHHInc_max_2 = max($metro_MedHHInc_values_2[$year]);
-	$metro_MedHHInc_min_2 = min($metro_MedHHInc_values_2[$year]);
-	$metro_MedHHInc_max_3 = max($metro_MedHHInc_values_3[$year]);
-	$metro_MedHHInc_min_3 = min($metro_MedHHInc_values_3[$year]);
-	// calculate index scores and store
-	foreach($metro_MedHHInc_filtered[$year] as $data) {
-		$calc_index = (1/3*(((-5*$metro_MedHHInc_min_1) + ($data['medhhinc_black'] * 5)) / ($metro_MedHHInc_max_1 - $metro_MedHHInc_min_1))) + (1/3*(((-5*$metro_MedHHInc_min_2) + ($data['medhhinc_hisp'] * 5)) / ($metro_MedHHInc_max_2 - $metro_MedHHInc_min_2))) + (1/3*(((-5*$metro_MedHHInc_min_3) + ($data['medhhinc_nonhispwhite'] * 5)) / ($metro_MedHHInc_max_3 - $metro_MedHHInc_min_3)));
-		$metro_MedHHInc_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_MedHHInc_filtered[$year])) {
+		foreach($metro_MedHHInc_filtered[$year] as $data) {
+			$metro_MedHHInc_values_1[$year][] = $data['medhhinc_black'];
+			$metro_MedHHInc_values_2[$year][] = $data['medhhinc_hisp'];
+			$metro_MedHHInc_values_3[$year][] = $data['medhhinc_nonhispwhite'];
+		}
+		$metro_MedHHInc_max_1 = max($metro_MedHHInc_values_1[$year]);
+		$metro_MedHHInc_min_1 = min($metro_MedHHInc_values_1[$year]);
+		$metro_MedHHInc_max_2 = max($metro_MedHHInc_values_2[$year]);
+		$metro_MedHHInc_min_2 = min($metro_MedHHInc_values_2[$year]);
+		$metro_MedHHInc_max_3 = max($metro_MedHHInc_values_3[$year]);
+		$metro_MedHHInc_min_3 = min($metro_MedHHInc_values_3[$year]);
+		// calculate index scores and store
+		foreach($metro_MedHHInc_filtered[$year] as $data) {
+			$calc_index = (1/3*(((-5*$metro_MedHHInc_min_1) + ($data['medhhinc_black'] * 5)) / ($metro_MedHHInc_max_1 - $metro_MedHHInc_min_1))) + (1/3*(((-5*$metro_MedHHInc_min_2) + ($data['medhhinc_hisp'] * 5)) / ($metro_MedHHInc_max_2 - $metro_MedHHInc_min_2))) + (1/3*(((-5*$metro_MedHHInc_min_3) + ($data['medhhinc_nonhispwhite'] * 5)) / ($metro_MedHHInc_max_3 - $metro_MedHHInc_min_3)));
+			$metro_MedHHInc_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -2081,22 +2069,25 @@ $metro_ownocc_values_1 = array();
 $metro_ownocc_values_2 = array();
 $metro_ownocc_values_3 = array();
 foreach($equity_years as $year) {
-	foreach($metro_ownocc_filtered[$year] as $data) {
-		$metro_ownocc_values_1[$year][] = $data['ownocc_rate_black'];
-		$metro_ownocc_values_2[$year][] = $data['ownocc_rate_hisp'];
-		$metro_ownocc_values_3[$year][] = $data['ownocc_rate_nonhispwhite'];
+	if (isset($metro_ownocc_filtered[$year])) {
+		foreach($metro_ownocc_filtered[$year] as $data) {
+			$metro_ownocc_values_1[$year][] = $data['ownocc_rate_black'];
+			$metro_ownocc_values_2[$year][] = $data['ownocc_rate_hisp'];
+			$metro_ownocc_values_3[$year][] = $data['ownocc_rate_nonhispwhite'];
+		}
+		$metro_ownocc_max_1 = max($metro_ownocc_values_1[$year]);
+		$metro_ownocc_min_1 = min($metro_ownocc_values_1[$year]);
+		$metro_ownocc_max_2 = max($metro_ownocc_values_2[$year]);
+		$metro_ownocc_min_2 = min($metro_ownocc_values_2[$year]);
+		$metro_ownocc_max_3 = max($metro_ownocc_values_3[$year]);
+		$metro_ownocc_min_3 = min($metro_ownocc_values_3[$year]);
+		// calculate index scores and store
+		foreach($metro_ownocc_filtered[$year] as $data) {
+			$calc_index = (1/3*(((-5*$metro_ownocc_min_1) + ($data['ownocc_rate_black'] * 5)) / ($metro_ownocc_max_1 - $metro_ownocc_min_1))) + (1/3*(((-5*$metro_ownocc_min_2) + ($data['ownocc_rate_hisp'] * 5)) / ($metro_ownocc_max_2 - $metro_ownocc_min_2))) + (1/3*(((-5*$metro_ownocc_min_3) + ($data['ownocc_rate_nonhispwhite'] * 5)) / ($metro_ownocc_max_3 - $metro_ownocc_min_3)));
+			$metro_ownocc_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
-	$metro_ownocc_max_1 = max($metro_ownocc_values_1[$year]);
-	$metro_ownocc_min_1 = min($metro_ownocc_values_1[$year]);
-	$metro_ownocc_max_2 = max($metro_ownocc_values_2[$year]);
-	$metro_ownocc_min_2 = min($metro_ownocc_values_2[$year]);
-	$metro_ownocc_max_3 = max($metro_ownocc_values_3[$year]);
-	$metro_ownocc_min_3 = min($metro_ownocc_values_3[$year]);
-	// calculate index scores and store
-	foreach($metro_ownocc_filtered[$year] as $data) {
-		$calc_index = (1/3*(((-5*$metro_ownocc_min_1) + ($data['ownocc_rate_black'] * 5)) / ($metro_ownocc_max_1 - $metro_ownocc_min_1))) + (1/3*(((-5*$metro_ownocc_min_2) + ($data['ownocc_rate_hisp'] * 5)) / ($metro_ownocc_max_2 - $metro_ownocc_min_2))) + (1/3*(((-5*$metro_ownocc_min_3) + ($data['ownocc_rate_nonhispwhite'] * 5)) / ($metro_ownocc_max_3 - $metro_ownocc_min_3)));
-		$metro_ownocc_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
-	}
+
 }
 
 
@@ -2116,21 +2107,23 @@ $metro_PovRtChild_values_1 = array();
 $metro_PovRtChild_values_2 = array();
 $metro_PovRtChild_values_3 = array();
 foreach($equity_years as $year) {
-	foreach($metro_PovRtChild_filtered[$year] as $data) {
-		$metro_PovRtChild_values_1[$year][] = $data['percent_black_under18_below100poverty'];
-		$metro_PovRtChild_values_2[$year][] = $data['percent_hisp_under18_below100poverty'];
-		$metro_PovRtChild_values_3[$year][] = $data['percent_nonhispwhite_under18_below100poverty'];
-	}
-	$metro_PovRtChild_max_1 = max($metro_PovRtChild_values_1[$year]);
-	$metro_PovRtChild_min_1 = min($metro_PovRtChild_values_1[$year]);
-	$metro_PovRtChild_max_2 = max($metro_PovRtChild_values_2[$year]);
-	$metro_PovRtChild_min_2 = min($metro_PovRtChild_values_2[$year]);
-	$metro_PovRtChild_max_3 = max($metro_PovRtChild_values_3[$year]);
-	$metro_PovRtChild_min_3 = min($metro_PovRtChild_values_3[$year]);
-	// calculate index scores and store
-	foreach($metro_PovRtChild_filtered[$year] as $data) {
-		$calc_index = (1/3*(((5*$metro_PovRtChild_max_1) + ($data['percent_black_under18_below100poverty'] * -5)) / ($metro_PovRtChild_max_1 - $metro_PovRtChild_min_1))) + (1/3*(((5*$metro_PovRtChild_max_2) + ($data['percent_hisp_under18_below100poverty'] * -5)) / ($metro_PovRtChild_max_2 - $metro_PovRtChild_min_2))) + (1/3*(((5*$metro_PovRtChild_max_3) + ($data['percent_nonhispwhite_under18_below100poverty'] * -5)) / ($metro_PovRtChild_max_3 - $metro_PovRtChild_min_3)));
-		$metro_PovRtChild_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_PovRtChild_filtered[$year])) {
+		foreach($metro_PovRtChild_filtered[$year] as $data) {
+			$metro_PovRtChild_values_1[$year][] = $data['percent_black_under18_below100poverty'];
+			$metro_PovRtChild_values_2[$year][] = $data['percent_hisp_under18_below100poverty'];
+			$metro_PovRtChild_values_3[$year][] = $data['percent_nonhispwhite_under18_below100poverty'];
+		}
+		$metro_PovRtChild_max_1 = max($metro_PovRtChild_values_1[$year]);
+		$metro_PovRtChild_min_1 = min($metro_PovRtChild_values_1[$year]);
+		$metro_PovRtChild_max_2 = max($metro_PovRtChild_values_2[$year]);
+		$metro_PovRtChild_min_2 = min($metro_PovRtChild_values_2[$year]);
+		$metro_PovRtChild_max_3 = max($metro_PovRtChild_values_3[$year]);
+		$metro_PovRtChild_min_3 = min($metro_PovRtChild_values_3[$year]);
+		// calculate index scores and store
+		foreach($metro_PovRtChild_filtered[$year] as $data) {
+			$calc_index = (1/3*(((5*$metro_PovRtChild_max_1) + ($data['percent_black_under18_below100poverty'] * -5)) / ($metro_PovRtChild_max_1 - $metro_PovRtChild_min_1))) + (1/3*(((5*$metro_PovRtChild_max_2) + ($data['percent_hisp_under18_below100poverty'] * -5)) / ($metro_PovRtChild_max_2 - $metro_PovRtChild_min_2))) + (1/3*(((5*$metro_PovRtChild_max_3) + ($data['percent_nonhispwhite_under18_below100poverty'] * -5)) / ($metro_PovRtChild_max_3 - $metro_PovRtChild_min_3)));
+			$metro_PovRtChild_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -2138,244 +2131,225 @@ foreach($equity_years as $year) {
 // create equity index from indexed variables
 $equity_index = array();
 foreach($equity_years as $year) {
+	// year array
+	$equity_index[$year] = array();
+
 	//add in metro_ForBornRt score
 	if (isset($metro_ForBornRt_indexed[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_ForBornRt_indexed[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_ForBornRt_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_ForBornRt_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 		
 	//add in metro_giniindex score	
 	if (isset($metro_giniindex_indexed[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_giniindex_indexed[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_giniindex_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_giniindex_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_IncomeShare score #1 -- Lowest quintile	
 	if (isset($metro_IncomeShare_indexed_1[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_IncomeShare_indexed_1[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_IncomeShare_indexed_1[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_IncomeShare_indexed_1[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_IncomeShare score #2 -- Second Lowest quintile	
 	if (isset($metro_IncomeShare_indexed_2[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_IncomeShare_indexed_2[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_IncomeShare_indexed_2[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
-			}
-			if (isset($data['value'])) {
-				$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
-			}
-		} else {
-			foreach($metro_IncomeShare_indexed_2[$year] as $data) {
+				if (isset($data['value'])) {
+					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
+				}
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_IncomeShare score #3 -- Middle quintile	
 	if (isset($metro_IncomeShare_indexed_3[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_IncomeShare_indexed_3[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_IncomeShare_indexed_3[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
-			}
-			if (isset($data['value'])) {
-				$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
-			}
-		} else {
-			foreach($metro_IncomeShare_indexed_3[$year] as $data) {
+				if (isset($data['value'])) {
+					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
+				}
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_IncomeShare score #4 -- Second Highest quintile	
 	if (isset($metro_IncomeShare_indexed_4[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_IncomeShare_indexed_4[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_IncomeShare_indexed_4[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_IncomeShare_indexed_4[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_IncomeShare score #5 -- Highest quintile	
 	if (isset($metro_IncomeShare_indexed_5[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_IncomeShare_indexed_5[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_IncomeShare_indexed_5[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_IncomeShare_indexed_5[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_IncomeShare score top -- top 5% of income earners
 	if (isset($metro_IncomeShare_indexed_top[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_IncomeShare_indexed_top[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_IncomeShare_indexed_top[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_IncomeShare_indexed_top[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_MedHHInc score	
 	if (isset($metro_MedHHInc_indexed[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_MedHHInc_indexed[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_MedHHInc_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_MedHHInc_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_ownocc score	
 	if (isset($metro_ownocc_indexed[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_ownocc_indexed[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_ownocc_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_ownocc_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_PovRtChild score	
 	if (isset($metro_PovRtChild_indexed[$year])) {
-		if (isset($equity_index[$year])) {
-			foreach($metro_PovRtChild_indexed[$year] as $data) {
-				$key = lookupGeoId($equity_index[$year], $data['geoid']);
+		foreach($metro_PovRtChild_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($equity_index[$year][$key])) {
 				$equity_index[$year][$key]['value'] = $equity_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$equity_index[$year][$key]['count'] = $equity_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_PovRtChild_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$equity_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$equity_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
@@ -2395,7 +2369,6 @@ foreach($equity_years as $year) {
 // Annual Hours of Delay per Auto Commuter
 $metro_commute_hours_delayed = array();
 $query = "SELECT geoid, year, hours_delay_per_communter FROM metro_commute_hours_delayed WHERE geoid IN ($geoidsString)";
-echo $query;
 $result = $mysqli->query($query);
 while($row = $result->fetch_assoc()){
     $metro_commute_hours_delayed[] = $row;
@@ -2450,7 +2423,7 @@ $result->free();
 
 // if half of the variables have data for any given year, then we calculate a priority area index for that year
 
-// create arrays of years avialable for year variable
+// create arrays of years Available for year variable
 // Total Value of Exports
 $metro_commute_hours_delayed_years = array();
 foreach ($metro_commute_hours_delayed as $year) {
@@ -2512,15 +2485,17 @@ foreach ($metro_commute_hours_delayed as $data) {
 $metro_commute_hours_delayed_indexed = array();
 $metro_commute_hours_delayed_values = array();
 foreach($transit_years as $year) {
-	foreach($metro_commute_hours_delayed_filtered[$year] as $data) {
-		$metro_commute_hours_delayed_values[$year][] = $data['hours_delay_per_communter'];
-	}
-	$metro_commute_hours_delayed_max = max($metro_commute_hours_delayed_values[$year]);
-	$metro_commute_hours_delayed_min = min($metro_commute_hours_delayed_values[$year]);
-	// calculate index scores and store
-	foreach($metro_commute_hours_delayed_filtered[$year] as $data) {
-		$calc_index = (((5*$metro_commute_hours_delayed_max) + ($data['hours_delay_per_communter'] * -5)) / ($metro_commute_hours_delayed_max - $metro_commute_hours_delayed_min));
-		$metro_commute_hours_delayed_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_commute_hours_delayed_filtered[$year])) {
+		foreach($metro_commute_hours_delayed_filtered[$year] as $data) {
+			$metro_commute_hours_delayed_values[$year][] = $data['hours_delay_per_communter'];
+		}
+		$metro_commute_hours_delayed_max = max($metro_commute_hours_delayed_values[$year]);
+		$metro_commute_hours_delayed_min = min($metro_commute_hours_delayed_values[$year]);
+		// calculate index scores and store
+		foreach($metro_commute_hours_delayed_filtered[$year] as $data) {
+			$calc_index = (((5*$metro_commute_hours_delayed_max) + ($data['hours_delay_per_communter'] * -5)) / ($metro_commute_hours_delayed_max - $metro_commute_hours_delayed_min));
+			$metro_commute_hours_delayed_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -2539,15 +2514,17 @@ foreach ($metro_MeansCarAloneRt as $data) {
 $metro_MeansCarAloneRt_indexed = array();
 $metro_MeansCarAloneRt_values = array();
 foreach($transit_years as $year) {
-	foreach($metro_MeansCarAloneRt_filtered[$year] as $data) {
-		$metro_MeansCarAloneRt_values[$year][] = $data['percent_workers_drive_alone'];
-	}
-	$metro_MeansCarAloneRt_max = max($metro_MeansCarAloneRt_values[$year]);
-	$metro_MeansCarAloneRt_min = min($metro_MeansCarAloneRt_values[$year]);
-	// calculate index scores and store
-	foreach($metro_MeansCarAloneRt_filtered[$year] as $data) {
-		$calc_index = (((5*$metro_MeansCarAloneRt_max) + ($data['percent_workers_drive_alone'] * -5)) / ($metro_MeansCarAloneRt_max - $metro_MeansCarAloneRt_min));
-		$metro_MeansCarAloneRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_MeansCarAloneRt_filtered[$year])) {
+		foreach($metro_MeansCarAloneRt_filtered[$year] as $data) {
+			$metro_MeansCarAloneRt_values[$year][] = $data['percent_workers_drive_alone'];
+		}
+		$metro_MeansCarAloneRt_max = max($metro_MeansCarAloneRt_values[$year]);
+		$metro_MeansCarAloneRt_min = min($metro_MeansCarAloneRt_values[$year]);
+		// calculate index scores and store
+		foreach($metro_MeansCarAloneRt_filtered[$year] as $data) {
+			$calc_index = (((5*$metro_MeansCarAloneRt_max) + ($data['percent_workers_drive_alone'] * -5)) / ($metro_MeansCarAloneRt_max - $metro_MeansCarAloneRt_min));
+			$metro_MeansCarAloneRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -2566,15 +2543,17 @@ foreach ($metro_NoVehRt as $data) {
 $metro_NoVehRt_indexed = array();
 $metro_NoVehRt_values = array();
 foreach($transit_years as $year) {
-	foreach($metro_NoVehRt_filtered[$year] as $data) {
-		$metro_NoVehRt_values[$year][] = $data['percent_workers_no_vehicle'];
-	}
-	$metro_NoVehRt_max = max($metro_NoVehRt_values[$year]);
-	$metro_NoVehRt_min = min($metro_NoVehRt_values[$year]);
-	// calculate index scores and store
-	foreach($metro_NoVehRt_filtered[$year] as $data) {
-		$calc_index = (((5*$metro_NoVehRt_max) + ($data['percent_workers_no_vehicle'] * -5)) / ($metro_NoVehRt_max - $metro_NoVehRt_min));
-		$metro_NoVehRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_NoVehRt_filtered[$year])) {
+		foreach($metro_NoVehRt_filtered[$year] as $data) {
+			$metro_NoVehRt_values[$year][] = $data['percent_workers_no_vehicle'];
+		}
+		$metro_NoVehRt_max = max($metro_NoVehRt_values[$year]);
+		$metro_NoVehRt_min = min($metro_NoVehRt_values[$year]);
+		// calculate index scores and store
+		foreach($metro_NoVehRt_filtered[$year] as $data) {
+			$calc_index = (((5*$metro_NoVehRt_max) + ($data['percent_workers_no_vehicle'] * -5)) / ($metro_NoVehRt_max - $metro_NoVehRt_min));
+			$metro_NoVehRt_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -2593,15 +2572,17 @@ foreach ($metro_TransitRidership as $data) {
 $metro_TransitRidership_indexed = array();
 $metro_TransitRidership_values = array();
 foreach($transit_years as $year) {
-	foreach($metro_TransitRidership_filtered[$year] as $data) {
-		$metro_TransitRidership_values[$year][] = $data['bus_trips_thousands'];
-	}
-	$metro_TransitRidership_max = max($metro_TransitRidership_values[$year]);
-	$metro_TransitRidership_min = min($metro_TransitRidership_values[$year]);
-	// calculate index scores and store
-	foreach($metro_TransitRidership_filtered[$year] as $data) {
-		$calc_index = (((-5*$metro_TransitRidership_min) + ($data['bus_trips_thousands'] * 5)) / ($metro_TransitRidership_max - $metro_TransitRidership_min));
-		$metro_TransitRidership_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+	if (isset($metro_TransitRidership_filtered[$year])) {
+		foreach($metro_TransitRidership_filtered[$year] as $data) {
+			$metro_TransitRidership_values[$year][] = $data['bus_trips_thousands'];
+		}
+		$metro_TransitRidership_max = max($metro_TransitRidership_values[$year]);
+		$metro_TransitRidership_min = min($metro_TransitRidership_values[$year]);
+		// calculate index scores and store
+		foreach($metro_TransitRidership_filtered[$year] as $data) {
+			$calc_index = (((-5*$metro_TransitRidership_min) + ($data['bus_trips_thousands'] * 5)) / ($metro_TransitRidership_max - $metro_TransitRidership_min));
+			$metro_TransitRidership_indexed[$year][] = array('geoid' => $data['geoid'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -2620,15 +2601,17 @@ foreach ($state_pubtransit_funding as $data) {
 $state_pubtransit_funding_indexed = array();
 $state_pubtransit_funding_values = array();
 foreach($transit_years as $year) {
-	foreach($state_pubtransit_funding_filtered[$year] as $data) {
-		$state_pubtransit_funding_values[$year][] = $data['transit_funding_per_1k'];
-	}
-	$state_pubtransit_funding_max = max($state_pubtransit_funding_values[$year]);
-	$state_pubtransit_funding_min = min($state_pubtransit_funding_values[$year]);
-	// calculate index scores and store
-	foreach($state_pubtransit_funding_filtered[$year] as $data) {
-		$calc_index = (((-5*$state_pubtransit_funding_min) + ($data['transit_funding_per_1k'] * 5)) / ($state_pubtransit_funding_max - $state_pubtransit_funding_min));
-		$state_pubtransit_funding_indexed[$year][] = array('state' => $data['state'], 'value' => $calc_index);
+	if (isset($state_pubtransit_funding_filtered[$year])) {
+		foreach($state_pubtransit_funding_filtered[$year] as $data) {
+			$state_pubtransit_funding_values[$year][] = $data['transit_funding_per_1k'];
+		}
+		$state_pubtransit_funding_max = max($state_pubtransit_funding_values[$year]);
+		$state_pubtransit_funding_min = min($state_pubtransit_funding_values[$year]);
+		// calculate index scores and store
+		foreach($state_pubtransit_funding_filtered[$year] as $data) {
+			$calc_index = (((-5*$state_pubtransit_funding_min) + ($data['transit_funding_per_1k'] * 5)) / ($state_pubtransit_funding_max - $state_pubtransit_funding_min));
+			$state_pubtransit_funding_indexed[$year][] = array('state' => $data['state'], 'value' => $calc_index);
+		}		
 	}
 }
 
@@ -2660,113 +2643,105 @@ foreach ($state_pubtransit_funding_filtered as $year => $pass) {
 // create transit index from indexed variables
 $transit_index = array();
 foreach($transit_years as $year) {
+	// year array
+	$transit_index[$year] = array();
 	
 	//add in metro_MeansCarAloneRt score	
 	if (isset($metro_MeansCarAloneRt_indexed[$year])) {
-		if (isset($transit_index[$year])) {
-			foreach($metro_MeansCarAloneRt_indexed[$year] as $data) {
-				$key = lookupGeoId($transit_index[$year], $data['geoid']);
+		foreach($metro_MeansCarAloneRt_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($transit_index[$year][$key])) {
 				$transit_index[$year][$key]['value'] = $transit_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$transit_index[$year][$key]['count'] = $transit_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_MeansCarAloneRt_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$transit_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$transit_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_commute_hours_delayed score
 	if (isset($metro_commute_hours_delayed_indexed[$year])) {
-		if (isset($transit_index[$year])) {
-			foreach($metro_commute_hours_delayed_indexed[$year] as $data) {
-				$key = lookupGeoId($transit_index[$year], $data['geoid']);
+		foreach($metro_commute_hours_delayed_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($transit_index[$year][$key])) {
 				$transit_index[$year][$key]['value'] = $transit_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$transit_index[$year][$key]['count'] = $transit_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_commute_hours_delayed_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$transit_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$transit_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 		
 	//add in metro_NoVehRt score	
 	if (isset($metro_NoVehRt_indexed[$year])) {
-		if (isset($transit_index[$year])) {
-			foreach($metro_NoVehRt_indexed[$year] as $data) {
-				$key = lookupGeoId($transit_index[$year], $data['geoid']);
+		foreach($metro_NoVehRt_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($transit_index[$year][$key])) {
 				$transit_index[$year][$key]['value'] = $transit_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$transit_index[$year][$key]['count'] = $transit_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_NoVehRt_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$transit_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$transit_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_TransitRidership score	
 	if (isset($metro_TransitRidership_indexed[$year])) {
-		if (isset($transit_index[$year])) {
-			foreach($metro_TransitRidership_indexed[$year] as $data) {
-				$key = lookupGeoId($transit_index[$year], $data['geoid']);
+		foreach($metro_TransitRidership_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($transit_index[$year][$key])) {
 				$transit_index[$year][$key]['value'] = $transit_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$transit_index[$year][$key]['count'] = $transit_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_TransitRidership_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$transit_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$transit_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
 	
 	//add in metro_BizTaxIndex score	
 	if (isset($metro_pubtransit_funding_indexed[$year])) {
-		if (isset($transit_index[$year])) {
-			foreach($metro_pubtransit_funding_indexed[$year] as $data) {
-				$key = lookupGeoId($transit_index[$year], $data['geoid']);
+		foreach($metro_pubtransit_funding_indexed[$year] as $data) {
+			$key = $data['geoid'];
+			if (isset($transit_index[$year][$key])) {
 				$transit_index[$year][$key]['value'] = $transit_index[$year][$key]['value'] + $data['value'];
 				if (isset($data['value'])) {
 					$transit_index[$year][$key]['count'] = $transit_index[$year][$key]['count'] + 1;
 				}
-			}
-		} else {
-			foreach($metro_pubtransit_funding_indexed[$year] as $data) {
+			} else {
 				if (isset($data['value'])) {
 					$count = 1;
 				} else {
 					$count = 0;
 				}
-				$transit_index[$year][] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count); 
+				$transit_index[$year][$key] = array('geoid' => $data['geoid'], 'value' => $data['value'], 'count' => $count);
 			}
 		}
 	}
@@ -2786,7 +2761,8 @@ $yearsIntersect = array_intersect($economy_years,$education_years,$quality_of_li
 // create OneD index for each relevant year
 $oned_index = array();
 foreach ($yearsIntersect as $year) {
-	foreach ($geographies as $geoidKey => $geoid) {
+	foreach ($geographies as $k => $geoid) {
+		$geoidKey = $geoid['geoid'];
 		$oned_index[$year][$geoidKey] = array('geoid' => $geoid['geoid'], 'value' => 0);
 		foreach ($economy_index[$year] as $key => $data) {
 			if ($geoid['geoid'] == $data['geoid']) {
@@ -2814,9 +2790,28 @@ foreach ($yearsIntersect as $year) {
 			}
 		}
 		// normalize
-		foreach($oned_index[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$oned_index[$year][$key]['value'] = ($data['value'] / 5);
+		foreach($oned_index[$year] as $k => $data) {
+			// count indicies that exist for oned demominator
+			$index_count = 0;
+
+			if (isset($economy_index[$year][$geoidKey]['value'])) {
+				$index_count++;
+			}
+			if (isset($education_index[$year][$geoidKey]['value'])) {
+				$index_count++;
+			}
+			if (isset($equity_index[$year][$geoidKey]['value'])) {
+				$index_count++;
+			}
+			if (isset($quality_of_life_index[$year][$geoidKey]['value'])) {
+				$index_count++;
+			}
+			if (isset($transit_index[$year][$geoidKey]['value'])) {
+				$index_count++;
+			}
+
+			if (($geoid['geoid'] == $data['geoid']) && $index_count != 0) {
+				$oned_index[$year][$geoidKey]['value'] = ($data['value'] / $index_count);
 			}
 		}
 	}
@@ -2826,12 +2821,12 @@ foreach ($yearsIntersect as $year) {
 $id = 1;
 foreach ($yearsIntersect as $year) {
 	foreach ($geographies as $geoidKey => $geoid) {
-		$oned_index_value = 0;
-		$economy_index_value = 0;
-		$education_index_value = 0;
-		$equity_index_value = 0;
-		$quality_of_life_index_value = 0;
-		$transit_index_value = 0;
+		$oned_index_value = -99;
+		$economy_index_value = -99;
+		$education_index_value = -99;
+		$equity_index_value = -99;
+		$quality_of_life_index_value = -99;
+		$transit_index_value = -99;
 		$metro_exports_value = 0;
 		$metro_GMPpercap_value = 0;
 		$metro_HighTech_value = 0;
@@ -2880,152 +2875,187 @@ foreach ($yearsIntersect as $year) {
 		$metro_pubtransit_funding_value = 0;
 		
 		// for pretty printing to csv
-		$metro_exports_value_pretty = '';
-		$metro_GMPpercap_value_pretty = '';
-		$metro_HighTech_value_pretty = '';
-		$metro_KNemp_value_pretty = '';
-		$metro_pcpi_value_pretty = '';
-		$metro_TechPatentsRt_value_pretty = '';
-		$metro_BizTaxIndex_value_pretty = '';
-		//$metro_RandD_share_GDP_value_pretty = '';
-		$metro_attain25to34bachplus_value_pretty = '';
-		$metro_bachplus_value_pretty = '';
-		$metro_edu_enrollment_value_pretty = '';
-		$metro_highschool_and_higher_adults_value_pretty = '';
-		$metro_teens_unemployed_noHS_value_pretty = '';
-		$metro_edu_appropriations_value_pretty = '';
-		$metro_edu_expendperpupil_value_pretty = '';
-		$metro_AQI_value_pretty = '';
-		$metro_PopChgRt_value_pretty = '';
-		$metro_UninsRt_value_pretty = '';
-		$metro_VCrimeRt_value_pretty = '';
-		$metro_VolunteerRt_value_pretty = '';
-		$metro_WellnessIndicators_Obesity_value_pretty = '';
-		$metro_ForBornRt_value_pretty = '';
-		$metro_giniindex_value_pretty = '';
-		$metro_IncomeShare1_value_pretty = '';
-		$metro_IncomeShare2_value_pretty = '';
-		$metro_IncomeShare3_value_pretty = '';
-		$metro_IncomeShare4_value_pretty = '';
-		$metro_IncomeShare5_value_pretty = '';
-		$metro_IncomeSharetop_value_pretty = '';
-		$metro_MedHHInc1_value_pretty = '';
-		$metro_MedHHInc2_value_pretty = '';
-		$metro_MedHHInc3_value_pretty = '';
-		$metro_MedHHInc4_value_pretty = '';
-		$metro_ownocc1_value_pretty = '';
-		$metro_ownocc2_value_pretty = '';
-		$metro_ownocc3_value_pretty = '';
-		$metro_ownocc4_value_pretty = '';
-		$metro_PovRtChild1_value_pretty = '';
-		$metro_PovRtChild2_value_pretty = '';
-		$metro_PovRtChild3_value_pretty = '';
-		$metro_PovRtChild4_value_pretty = '';
-		$metro_commute_hours_delayed_value_pretty = '';
-		$metro_MeansCarAloneRt_value_pretty = '';
-		$metro_NoVehRt_value_pretty = '';
-		$metro_TransitRidership_value_pretty = '';
-		$metro_pubtransit_funding_value_pretty = '';
+		$metro_exports_value_pretty = 'No Data Available';
+		$metro_GMPpercap_value_pretty = 'No Data Available';
+		$metro_HighTech_value_pretty = 'No Data Available';
+		$metro_KNemp_value_pretty = 'No Data Available';
+		$metro_pcpi_value_pretty = 'No Data Available';
+		$metro_TechPatentsRt_value_pretty = 'No Data Available';
+		$metro_BizTaxIndex_value_pretty = 'No Data Available';
+		//$metro_RandD_share_GDP_value_pretty = 'No Data Available';
+		$metro_attain25to34bachplus_value_pretty = 'No Data Available';
+		$metro_bachplus_value_pretty = 'No Data Available';
+		$metro_edu_enrollment_value_pretty = 'No Data Available';
+		$metro_highschool_and_higher_adults_value_pretty = 'No Data Available';
+		$metro_teens_unemployed_noHS_value_pretty = 'No Data Available';
+		$metro_edu_appropriations_value_pretty = 'No Data Available';
+		$metro_edu_expendperpupil_value_pretty = 'No Data Available';
+		$metro_AQI_value_pretty = 'No Data Available';
+		$metro_PopChgRt_value_pretty = 'No Data Available';
+		$metro_UninsRt_value_pretty = 'No Data Available';
+		$metro_VCrimeRt_value_pretty = 'No Data Available';
+		$metro_VolunteerRt_value_pretty = 'No Data Available';
+		$metro_WellnessIndicators_Obesity_value_pretty = 'No Data Available';
+		$metro_ForBornRt_value_pretty = 'No Data Available';
+		$metro_giniindex_value_pretty = 'No Data Available';
+		$metro_IncomeShare1_value_pretty = 'No Data Available';
+		$metro_IncomeShare2_value_pretty = 'No Data Available';
+		$metro_IncomeShare3_value_pretty = 'No Data Available';
+		$metro_IncomeShare4_value_pretty = 'No Data Available';
+		$metro_IncomeShare5_value_pretty = 'No Data Available';
+		$metro_IncomeSharetop_value_pretty = 'No Data Available';
+		$metro_MedHHInc1_value_pretty = 'No Data Available';
+		$metro_MedHHInc2_value_pretty = 'No Data Available';
+		$metro_MedHHInc3_value_pretty = 'No Data Available';
+		$metro_MedHHInc4_value_pretty = 'No Data Available';
+		$metro_ownocc1_value_pretty = 'No Data Available';
+		$metro_ownocc2_value_pretty = 'No Data Available';
+		$metro_ownocc3_value_pretty = 'No Data Available';
+		$metro_ownocc4_value_pretty = 'No Data Available';
+		$metro_PovRtChild1_value_pretty = 'No Data Available';
+		$metro_PovRtChild2_value_pretty = 'No Data Available';
+		$metro_PovRtChild3_value_pretty = 'No Data Available';
+		$metro_PovRtChild4_value_pretty = 'No Data Available';
+		$metro_commute_hours_delayed_value_pretty = 'No Data Available';
+		$metro_MeansCarAloneRt_value_pretty = 'No Data Available';
+		$metro_NoVehRt_value_pretty = 'No Data Available';
+		$metro_TransitRidership_value_pretty = 'No Data Available';
+		$metro_pubtransit_funding_value_pretty = 'No Data Available';
 		
 
 		// find OneD index and pull value variable
-		foreach($oned_index[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$oned_index_value = round($oned_index[$year][$key]['value'], 2);
-			}
+		if (isset($oned_index[$year])) {
+			foreach($oned_index[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$oned_index_value = round($oned_index[$year][$key]['value'], 2);
+				}
+			}			
 		}
 
+
 		// find economy index and pull value variable
-		foreach($economy_index[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$economy_index_value = round($economy_index[$year][$key]['value'], 2);
+		if (isset($economy_index[$year])) {
+			foreach($economy_index[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$economy_index_value = round($economy_index[$year][$key]['value'], 2);
+				}
 			}
 		}
 		
 		// find education index and pull value variable
-		foreach($education_index[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$education_index_value = round($education_index[$year][$key]['value'], 2);
-			}
+		if (isset($education_index[$year])) {
+			foreach($education_index[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$education_index_value = round($education_index[$year][$key]['value'], 2);
+				}
+			}		
 		}
 		
 		// find equity index and pull value variable
-		foreach($equity_index[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$equity_index_value = round($equity_index[$year][$key]['value'], 2);
-			}
+		if (isset($equity_index[$year])) {
+			foreach($equity_index[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$equity_index_value = round($equity_index[$year][$key]['value'], 2);
+				}
+			}	
 		}
 		
 		// find quality of life index and pull value variable
-		foreach($quality_of_life_index[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$quality_of_life_index_value = round($quality_of_life_index[$year][$key]['value'], 2);
-			}
+		if (isset($quality_of_life_index[$year])) {
+			foreach($quality_of_life_index[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$quality_of_life_index_value = round($quality_of_life_index[$year][$key]['value'], 2);
+				}
+			}			
 		}
 
 		// find quality of life index and pull value variable
-		foreach($transit_index[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$transit_index_value = round($transit_index[$year][$key]['value'], 2);
-			}
+		if (isset($transit_index[$year])) {
+			foreach($transit_index[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$transit_index_value = round($transit_index[$year][$key]['value'], 2);
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_exports_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_exports_value = $metro_exports_filtered[$year][$key]['export_value'];
-				$metro_exports_value_pretty = '$' . number_format($metro_exports_filtered[$year][$key]['export_value'], 0);
-			}
+		if (isset($metro_exports_filtered[$year])) {
+			foreach($metro_exports_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_exports_value = $metro_exports_filtered[$year][$key]['export_value'];
+					$metro_exports_value_pretty = '$' . number_format($metro_exports_filtered[$year][$key]['export_value'], 0);
+				}
+			}			
 		}
+
 
 		// find and pull value variable
-		foreach($metro_GMPpercap_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_GMPpercap_value = $metro_GMPpercap_filtered[$year][$key]['per_capita_real_gdp'];
-				$metro_GMPpercap_value_pretty = '$' . number_format($metro_GMPpercap_filtered[$year][$key]['per_capita_real_gdp'], 2);
+		if (isset($metro_GMPpercap_filtered[$year])) {
+			foreach($metro_GMPpercap_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_GMPpercap_value = $metro_GMPpercap_filtered[$year][$key]['per_capita_real_gdp'];
+					$metro_GMPpercap_value_pretty = '$' . number_format($metro_GMPpercap_filtered[$year][$key]['per_capita_real_gdp'], 2);
 
-			}
+				}
+			}			
 		}
 
-		// find and pull value variable
-		foreach($metro_HighTech_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_HighTech_value = ($metro_HighTech_filtered[$year][$key]['percentchange_hightech_jobs'] / 100);
-				$metro_HighTech_value_pretty = number_format($metro_HighTech_filtered[$year][$key]['percentchange_hightech_jobs'], 2) . '%';
-			}
-		}
 
 		// find and pull value variable
-		foreach($metro_KNemp_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_KNemp_value = ($metro_KNemp_filtered[$year][$key]['percentchange_knowledgeind'] / 100);
-				$metro_KNemp_value_pretty = number_format($metro_KNemp_filtered[$year][$key]['percentchange_knowledgeind'], 2) . '%';
-			}
+		if (isset($metro_HighTech_filtered[$year])) {
+			foreach($metro_HighTech_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_HighTech_value = ($metro_HighTech_filtered[$year][$key]['percentchange_hightech_jobs'] / 100);
+					$metro_HighTech_value_pretty = number_format($metro_HighTech_filtered[$year][$key]['percentchange_hightech_jobs'], 2) . '%';
+				}
+			}			
 		}
+
+
+		// find and pull value variable
+		if (isset($metro_KNemp_filtered[$year])) {
+			foreach($metro_KNemp_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_KNemp_value = ($metro_KNemp_filtered[$year][$key]['percentchange_knowledgeind'] / 100);
+					$metro_KNemp_value_pretty = number_format($metro_KNemp_filtered[$year][$key]['percentchange_knowledgeind'], 2) . '%';
+				}
+			}			
+		}
+
 	
 		// find and pull value variable
-		foreach($metro_pcpi_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_pcpi_value = $metro_pcpi_filtered[$year][$key]['percapita_income'];
-				$metro_pcpi_value_pretty = '$' . number_format($metro_pcpi_filtered[$year][$key]['percapita_income'], 2);
-			}
+		if (isset($metro_pcpi_filtered[$year])) {
+			foreach($metro_pcpi_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_pcpi_value = $metro_pcpi_filtered[$year][$key]['percapita_income'];
+					$metro_pcpi_value_pretty = '$' . number_format($metro_pcpi_filtered[$year][$key]['percapita_income'], 2);
+				}
+			}			
 		}
 
-		// find and pull value variable
-		foreach($metro_TechPatentsRt_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_TechPatentsRt_value = $metro_TechPatentsRt_filtered[$year][$key]['Tech_Patents_per_10k'];
-				$metro_TechPatentsRt_value_pretty = number_format($metro_TechPatentsRt_filtered[$year][$key]['Tech_Patents_per_10k'], 2);
-			}
-		}
 
 		// find and pull value variable
-		foreach($metro_BizTaxIndex_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_BizTaxIndex_value = $metro_BizTaxIndex_filtered[$year][$key]['score'];
-				$metro_BizTaxIndex_value_pretty = number_format($metro_BizTaxIndex_filtered[$year][$key]['score'], 2);
-			}
+		if (isset($metro_TechPatentsRt_filtered[$year])) {
+			foreach($metro_TechPatentsRt_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_TechPatentsRt_value = $metro_TechPatentsRt_filtered[$year][$key]['Tech_Patents_per_10k'];
+					$metro_TechPatentsRt_value_pretty = number_format($metro_TechPatentsRt_filtered[$year][$key]['Tech_Patents_per_10k'], 2);
+				}
+			}			
 		}
+
+
+		// find and pull value variable
+		if (isset($metro_BizTaxIndex_filtered[$year])) {
+			foreach($metro_BizTaxIndex_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_BizTaxIndex_value = $metro_BizTaxIndex_filtered[$year][$key]['score'];
+					$metro_BizTaxIndex_value_pretty = number_format($metro_BizTaxIndex_filtered[$year][$key]['score'], 2);
+				}
+			}			
+		}
+
 		
 		// find and pull value variable
 		/*
@@ -3037,224 +3067,296 @@ foreach ($yearsIntersect as $year) {
 		*/
 		
 		// find and pull value variable
-		foreach($metro_attain25to34bachplus_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_attain25to34bachplus_value = ($metro_attain25to34bachplus_filtered[$year][$key]['percent_bachelors_and_higher'] / 100);
-				$metro_attain25to34bachplus_value_pretty = number_format($metro_attain25to34bachplus_filtered[$year][$key]['percent_bachelors_and_higher'], 2) . '%';
-			}
+		if (isset($metro_attain25to34bachplus_filtered[$year])) {
+			foreach($metro_attain25to34bachplus_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_attain25to34bachplus_value = ($metro_attain25to34bachplus_filtered[$year][$key]['percent_bachelors_and_higher'] / 100);
+					$metro_attain25to34bachplus_value_pretty = number_format($metro_attain25to34bachplus_filtered[$year][$key]['percent_bachelors_and_higher'], 2) . '%';
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_bachplus_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_bachplus_value = ($metro_bachplus_filtered[$year][$key]['percent_bachelors_and_higher'] / 100);
-				$metro_bachplus_value_pretty = number_format($metro_bachplus_filtered[$year][$key]['percent_bachelors_and_higher'], 2) . '%';
-			}
+		if (isset($metro_bachplus_filtered[$year])) {
+			foreach($metro_bachplus_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_bachplus_value = ($metro_bachplus_filtered[$year][$key]['percent_bachelors_and_higher'] / 100);
+					$metro_bachplus_value_pretty = number_format($metro_bachplus_filtered[$year][$key]['percent_bachelors_and_higher'], 2) . '%';
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_edu_enrollment_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_edu_enrollment_value = ($metro_edu_enrollment_filtered[$year][$key]['percent_enrolled_prek_high'] / 100);
-				$metro_edu_enrollment_value_pretty = number_format($metro_edu_enrollment_filtered[$year][$key]['percent_enrolled_prek_high'], 2) . '%';
-			}
+		if (isset($metro_edu_enrollment_filtered[$year])) {
+			foreach($metro_edu_enrollment_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_edu_enrollment_value = ($metro_edu_enrollment_filtered[$year][$key]['percent_enrolled_prek_high'] / 100);
+					$metro_edu_enrollment_value_pretty = number_format($metro_edu_enrollment_filtered[$year][$key]['percent_enrolled_prek_high'], 2) . '%';
+				}
+			}			
 		}
+
 	
 		// find and pull value variable
-		foreach($metro_highschool_and_higher_adults_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_highschool_and_higher_adults_value = ($metro_highschool_and_higher_adults_filtered[$year][$key]['percent_hs_and_higher'] / 100);
-				$metro_highschool_and_higher_adults_value_pretty = number_format($metro_highschool_and_higher_adults_filtered[$year][$key]['percent_hs_and_higher'], 2) . '%';
-			}
+		if (isset($metro_highschool_and_higher_adults_filtered[$year])) {
+			foreach($metro_highschool_and_higher_adults_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_highschool_and_higher_adults_value = ($metro_highschool_and_higher_adults_filtered[$year][$key]['percent_hs_and_higher'] / 100);
+					$metro_highschool_and_higher_adults_value_pretty = number_format($metro_highschool_and_higher_adults_filtered[$year][$key]['percent_hs_and_higher'], 2) . '%';
+				}
+			}			
 		}
 
-		// find and pull value variable
-		foreach($metro_teens_unemployed_noHS_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_teens_unemployed_noHS_value = ($metro_teens_unemployed_noHS_filtered[$year][$key]['percent_unemployed_no_hs_degree'] / 100);
-				$metro_teens_unemployed_noHS_value_pretty = number_format($metro_teens_unemployed_noHS_filtered[$year][$key]['percent_unemployed_no_hs_degree'], 2) . '%';
-			}
-		}
-		
-		// find and pull value variable
-		foreach($metro_edu_appropriations_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_edu_appropriations_value = $metro_edu_appropriations_filtered[$year][$key]['edu_appro_per_fte_student'];
-				$metro_edu_appropriations_value_pretty = '$' . number_format($metro_edu_appropriations_filtered[$year][$key]['edu_appro_per_fte_student'], 2);
-			}
-		}
-		
-		// find and pull value variable
-		foreach($metro_edu_expendperpupil_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_edu_expendperpupil_value = $metro_edu_expendperpupil_filtered[$year][$key]['edu_expend_per_pupil'];
-				$metro_edu_expendperpupil_value_pretty = '$' . number_format($metro_edu_expendperpupil_filtered[$year][$key]['edu_expend_per_pupil'], 2);
-			}
-		}
-		
-		// find and pull value variable
-		foreach($metro_AQI_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_AQI_value = ($metro_AQI_filtered[$year][$key]['percent_good_AQI'] / 100);
-				$metro_AQI_value_pretty = number_format($metro_AQI_filtered[$year][$key]['percent_good_AQI'], 2) . '%';
-			}
-		}
-		
-		// find and pull value variable
-		foreach($metro_PopChgRt_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_PopChgRt_value = ($metro_PopChgRt_filtered[$year][$key]['percent_change_pop'] / 100);
-				$metro_PopChgRt_value_pretty = number_format($metro_PopChgRt_filtered[$year][$key]['percent_change_pop'], 2) . '%';
-			}
-		}		
 
 		// find and pull value variable
-		foreach($metro_UninsRt_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_UninsRt_value = ($metro_UninsRt_filtered[$year][$key]['percent_wo_healthinsu'] / 100);
-				$metro_UninsRt_value_pretty = number_format($metro_UninsRt_filtered[$year][$key]['percent_wo_healthinsu'], 2) . '%';
-			}
+		if (isset($metro_teens_unemployed_noHS_filtered[$year])) {
+			foreach($metro_teens_unemployed_noHS_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_teens_unemployed_noHS_value = ($metro_teens_unemployed_noHS_filtered[$year][$key]['percent_unemployed_no_hs_degree'] / 100);
+					$metro_teens_unemployed_noHS_value_pretty = number_format($metro_teens_unemployed_noHS_filtered[$year][$key]['percent_unemployed_no_hs_degree'], 2) . '%';
+				}
+			}			
+		}
+
+		
+		// find and pull value variable
+		if (isset($metro_edu_appropriations_filtered[$year])) {
+			foreach($metro_edu_appropriations_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_edu_appropriations_value = $metro_edu_appropriations_filtered[$year][$key]['edu_appro_per_fte_student'];
+					$metro_edu_appropriations_value_pretty = '$' . number_format($metro_edu_appropriations_filtered[$year][$key]['edu_appro_per_fte_student'], 2);
+				}
+			}			
+		}
+
+		
+		// find and pull value variable
+		if (isset($metro_edu_expendperpupil_filtered[$year])) {
+			foreach($metro_edu_expendperpupil_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_edu_expendperpupil_value = $metro_edu_expendperpupil_filtered[$year][$key]['edu_expend_per_pupil'];
+					$metro_edu_expendperpupil_value_pretty = '$' . number_format($metro_edu_expendperpupil_filtered[$year][$key]['edu_expend_per_pupil'], 2);
+				}
+			}			
+		}
+
+		
+		// find and pull value variable
+		if (isset($metro_AQI_filtered[$year])) {
+			foreach($metro_AQI_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_AQI_value = ($metro_AQI_filtered[$year][$key]['percent_good_AQI'] / 100);
+					$metro_AQI_value_pretty = number_format($metro_AQI_filtered[$year][$key]['percent_good_AQI'], 2) . '%';
+				}
+			}			
+		}
+
+		
+		// find and pull value variable
+		if (isset($metro_PopChgRt_filtered[$year])) {
+			foreach($metro_PopChgRt_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_PopChgRt_value = ($metro_PopChgRt_filtered[$year][$key]['percent_change_pop'] / 100);
+					$metro_PopChgRt_value_pretty = number_format($metro_PopChgRt_filtered[$year][$key]['percent_change_pop'], 2) . '%';
+				}
+			}			
 		}
 		
+
 		// find and pull value variable
-		foreach($metro_VCrimeRt_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_VCrimeRt_value = $metro_VCrimeRt_filtered[$year][$key]['violent_crime_rate'];
-				$metro_VCrimeRt_value_pretty = number_format($metro_VCrimeRt_filtered[$year][$key]['violent_crime_rate'], 2);
-			}
-		}		
+		if (isset($metro_UninsRt_filtered[$year])) {
+			foreach($metro_UninsRt_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_UninsRt_value = ($metro_UninsRt_filtered[$year][$key]['percent_wo_healthinsu'] / 100);
+					$metro_UninsRt_value_pretty = number_format($metro_UninsRt_filtered[$year][$key]['percent_wo_healthinsu'], 2) . '%';
+				}
+			}			
+		}
+
 		
 		// find and pull value variable
-		foreach($metro_VolunteerRt_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_VolunteerRt_value = ($metro_VolunteerRt_filtered[$year][$key]['volunteer_rate'] / 100);
-				$metro_VolunteerRt_value_pretty = number_format($metro_VolunteerRt_filtered[$year][$key]['volunteer_rate'], 2) . '%';
-			}
+		if (isset($metro_VCrimeRt_filtered[$year])) {
+			foreach($metro_VCrimeRt_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_VCrimeRt_value = $metro_VCrimeRt_filtered[$year][$key]['violent_crime_rate'];
+					$metro_VCrimeRt_value_pretty = number_format($metro_VCrimeRt_filtered[$year][$key]['violent_crime_rate'], 2);
+				}
+			}			
 		}
 		
+		
 		// find and pull value variable
-		foreach($metro_WellnessIndicators_Obesity_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_WellnessIndicators_Obesity_value = ($metro_WellnessIndicators_Obesity_filtered[$year][$key]['percent_not_overweigh_obese'] / 100);
-				$metro_WellnessIndicators_Obesity_value_pretty = number_format($metro_WellnessIndicators_Obesity_filtered[$year][$key]['percent_not_overweigh_obese'], 2) . '%';
-			}
+		if (isset($metro_VolunteerRt_filtered[$year])) {
+			foreach($metro_VolunteerRt_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_VolunteerRt_value = ($metro_VolunteerRt_filtered[$year][$key]['volunteer_rate'] / 100);
+					$metro_VolunteerRt_value_pretty = number_format($metro_VolunteerRt_filtered[$year][$key]['volunteer_rate'], 2) . '%';
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_ForBornRt_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_ForBornRt_value = ($metro_ForBornRt_filtered[$year][$key]['percent_of_pop_foreignborn'] / 100);
-				$metro_ForBornRt_value_pretty = number_format($metro_ForBornRt_filtered[$year][$key]['percent_of_pop_foreignborn'], 2) . '%';
-			}
+		if (isset($metro_WellnessIndicators_Obesity_filtered[$year])) {
+			foreach($metro_WellnessIndicators_Obesity_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_WellnessIndicators_Obesity_value = ($metro_WellnessIndicators_Obesity_filtered[$year][$key]['percent_not_overweigh_obese'] / 100);
+					$metro_WellnessIndicators_Obesity_value_pretty = number_format($metro_WellnessIndicators_Obesity_filtered[$year][$key]['percent_not_overweigh_obese'], 2) . '%';
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_giniindex_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_giniindex_value = $metro_giniindex_filtered[$year][$key]['gini'];
-				$metro_giniindex_value_pretty = number_format($metro_giniindex_filtered[$year][$key]['gini'], 2);
-			}
-		}	
-		
-		// find and pull value variable
-		foreach($metro_IncomeShare_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_IncomeShare1_value = ($metro_IncomeShare_filtered[$year][$key]['Lowestquintile'] / 100);
-				$metro_IncomeShare1_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Lowestquintile'], 2) . '%';
-				$metro_IncomeShare2_value = ($metro_IncomeShare_filtered[$year][$key]['Secondlowestquintile'] / 100);
-				$metro_IncomeShare2_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Secondlowestquintile'], 2) . '%';
-				$metro_IncomeShare3_value = ($metro_IncomeShare_filtered[$year][$key]['Middlequintile'] / 100);
-				$metro_IncomeShare3_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Middlequintile'], 2) . '%';
-				$metro_IncomeShare4_value = ($metro_IncomeShare_filtered[$year][$key]['Secondhighestquintile'] / 100);
-				$metro_IncomeShare4_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Secondhighestquintile'], 2). '%';
-				$metro_IncomeShare5_value = ($metro_IncomeShare_filtered[$year][$key]['Highestquintile'] / 100);
-				$metro_IncomeShare5_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Highestquintile'], 2) . '%';
-				$metro_IncomeSharetop_value = ($metro_IncomeShare_filtered[$year][$key]['top_5_percent'] / 100);
-				$metro_IncomeSharetop_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['top_5_percent'], 2) . '%';
-			}
+		if (isset($metro_ForBornRt_filtered[$year])) {
+			foreach($metro_ForBornRt_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_ForBornRt_value = ($metro_ForBornRt_filtered[$year][$key]['percent_of_pop_foreignborn'] / 100);
+					$metro_ForBornRt_value_pretty = number_format($metro_ForBornRt_filtered[$year][$key]['percent_of_pop_foreignborn'], 2) . '%';
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_MedHHInc_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_MedHHInc1_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_black'];
-				$metro_MedHHInc1_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_black'], 2);
-				$metro_MedHHInc2_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_hisp'];
-				$metro_MedHHInc2_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_hisp'], 2);
-				$metro_MedHHInc3_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_nonhispwhite'];
-				$metro_MedHHInc3_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_nonhispwhite'], 2);
-				$metro_MedHHInc4_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_all'];
-				$metro_MedHHInc4_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_all'], 2);
-			}
+		if (isset($metro_giniindex_filtered[$year])) {
+			foreach($metro_giniindex_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_giniindex_value = $metro_giniindex_filtered[$year][$key]['gini'];
+					$metro_giniindex_value_pretty = number_format($metro_giniindex_filtered[$year][$key]['gini'], 2);
+				}
+			}			
 		}
+	
 		
 		// find and pull value variable
-		foreach($metro_ownocc_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_ownocc1_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_black'] / 100);
-				$metro_ownocc1_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_black'], 2) . '%';
-				$metro_ownocc2_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_hisp'] / 100);
-				$metro_ownocc2_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_hisp'], 2) . '%';
-				$metro_ownocc3_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_nonhispwhite'] / 100);
-				$metro_ownocc3_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_nonhispwhite'], 2) . '%';
-				$metro_ownocc4_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_all'] / 100);
-				$metro_ownocc4_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_all'], 2) . '%';
-			}
+		if (isset($metro_IncomeShare_filtered[$year])) {
+			foreach($metro_IncomeShare_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_IncomeShare1_value = ($metro_IncomeShare_filtered[$year][$key]['Lowestquintile'] / 100);
+					$metro_IncomeShare1_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Lowestquintile'], 2) . '%';
+					$metro_IncomeShare2_value = ($metro_IncomeShare_filtered[$year][$key]['Secondlowestquintile'] / 100);
+					$metro_IncomeShare2_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Secondlowestquintile'], 2) . '%';
+					$metro_IncomeShare3_value = ($metro_IncomeShare_filtered[$year][$key]['Middlequintile'] / 100);
+					$metro_IncomeShare3_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Middlequintile'], 2) . '%';
+					$metro_IncomeShare4_value = ($metro_IncomeShare_filtered[$year][$key]['Secondhighestquintile'] / 100);
+					$metro_IncomeShare4_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Secondhighestquintile'], 2). '%';
+					$metro_IncomeShare5_value = ($metro_IncomeShare_filtered[$year][$key]['Highestquintile'] / 100);
+					$metro_IncomeShare5_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['Highestquintile'], 2) . '%';
+					$metro_IncomeSharetop_value = ($metro_IncomeShare_filtered[$year][$key]['top_5_percent'] / 100);
+					$metro_IncomeSharetop_value_pretty = number_format($metro_IncomeShare_filtered[$year][$key]['top_5_percent'], 2) . '%';
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_PovRtChild_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_PovRtChild1_value = ($metro_PovRtChild_filtered[$year][$key]['percent_black_under18_below100poverty'] / 100);
-				$metro_PovRtChild1_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_black_under18_below100poverty'], 2) . '%';
-				$metro_PovRtChild2_value = ($metro_PovRtChild_filtered[$year][$key]['percent_hisp_under18_below100poverty'] / 100);
-				$metro_PovRtChild2_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_hisp_under18_below100poverty'], 2) . '%';
-				$metro_PovRtChild3_value = ($metro_PovRtChild_filtered[$year][$key]['percent_nonhispwhite_under18_below100poverty'] / 100);
-				$metro_PovRtChild3_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_nonhispwhite_under18_below100poverty'], 2) . '%';
-				$metro_PovRtChild4_value = ($metro_PovRtChild_filtered[$year][$key]['percent_all_under18_below100poverty'] / 100);
-				$metro_PovRtChild4_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_all_under18_below100poverty'], 2) . '%';
-			}
+		if (isset($metro_MedHHInc_filtered[$year])) {
+			foreach($metro_MedHHInc_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_MedHHInc1_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_black'];
+					$metro_MedHHInc1_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_black'], 2);
+					$metro_MedHHInc2_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_hisp'];
+					$metro_MedHHInc2_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_hisp'], 2);
+					$metro_MedHHInc3_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_nonhispwhite'];
+					$metro_MedHHInc3_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_nonhispwhite'], 2);
+					$metro_MedHHInc4_value = $metro_MedHHInc_filtered[$year][$key]['medhhinc_all'];
+					$metro_MedHHInc4_value_pretty = '$' . number_format($metro_MedHHInc_filtered[$year][$key]['medhhinc_all'], 2);
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_commute_hours_delayed_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_commute_hours_delayed_value = $metro_commute_hours_delayed_filtered[$year][$key]['hours_delay_per_communter'];
-				$metro_commute_hours_delayed_value_pretty = number_format($metro_commute_hours_delayed_filtered[$year][$key]['hours_delay_per_communter'], 2);
-			}
+		if (isset($metro_ownocc_filtered[$year])) {
+			foreach($metro_ownocc_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_ownocc1_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_black'] / 100);
+					$metro_ownocc1_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_black'], 2) . '%';
+					$metro_ownocc2_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_hisp'] / 100);
+					$metro_ownocc2_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_hisp'], 2) . '%';
+					$metro_ownocc3_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_nonhispwhite'] / 100);
+					$metro_ownocc3_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_nonhispwhite'], 2) . '%';
+					$metro_ownocc4_value = ($metro_ownocc_filtered[$year][$key]['ownocc_rate_all'] / 100);
+					$metro_ownocc4_value_pretty = number_format($metro_ownocc_filtered[$year][$key]['ownocc_rate_all'], 2) . '%';
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_MeansCarAloneRt_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_MeansCarAloneRt_value = ($metro_MeansCarAloneRt_filtered[$year][$key]['percent_workers_drive_alone'] / 100);
-				$metro_MeansCarAloneRt_value_pretty = number_format($metro_MeansCarAloneRt_filtered[$year][$key]['percent_workers_drive_alone'], 2) . '%';
-			}
+		if (isset($metro_PovRtChild_filtered[$year])) {
+			foreach($metro_PovRtChild_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_PovRtChild1_value = ($metro_PovRtChild_filtered[$year][$key]['percent_black_under18_below100poverty'] / 100);
+					$metro_PovRtChild1_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_black_under18_below100poverty'], 2) . '%';
+					$metro_PovRtChild2_value = ($metro_PovRtChild_filtered[$year][$key]['percent_hisp_under18_below100poverty'] / 100);
+					$metro_PovRtChild2_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_hisp_under18_below100poverty'], 2) . '%';
+					$metro_PovRtChild3_value = ($metro_PovRtChild_filtered[$year][$key]['percent_nonhispwhite_under18_below100poverty'] / 100);
+					$metro_PovRtChild3_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_nonhispwhite_under18_below100poverty'], 2) . '%';
+					$metro_PovRtChild4_value = ($metro_PovRtChild_filtered[$year][$key]['percent_all_under18_below100poverty'] / 100);
+					$metro_PovRtChild4_value_pretty = number_format($metro_PovRtChild_filtered[$year][$key]['percent_all_under18_below100poverty'], 2) . '%';
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_NoVehRt_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_NoVehRt_value = ($metro_NoVehRt_filtered[$year][$key]['percent_workers_no_vehicle'] / 100);
-				$metro_NoVehRt_value_pretty = number_format($metro_NoVehRt_filtered[$year][$key]['percent_workers_no_vehicle'], 2) . '%';
-			}
+		if (isset($metro_commute_hours_delayed_filtered[$year])) {
+			foreach($metro_commute_hours_delayed_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_commute_hours_delayed_value = $metro_commute_hours_delayed_filtered[$year][$key]['hours_delay_per_communter'];
+					$metro_commute_hours_delayed_value_pretty = number_format($metro_commute_hours_delayed_filtered[$year][$key]['hours_delay_per_communter'], 2);
+				}
+			}			
 		}
+
 		
 		// find and pull value variable
-		foreach($metro_TransitRidership_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_TransitRidership_value = $metro_TransitRidership_filtered[$year][$key]['bus_trips_thousands'];
-				$metro_TransitRidership_value_pretty = number_format($metro_TransitRidership_filtered[$year][$key]['bus_trips_thousands'], 2);
-			}
-		}	
-		
-		// find and pull value variable
-		foreach($metro_pubtransit_funding_filtered[$year] as $key => $data) {
-			if ($geoid['geoid'] == $data['geoid']) {
-				$metro_pubtransit_funding_value = $metro_pubtransit_funding_filtered[$year][$key]['transit_funding_per_1k'];
-				$metro_pubtransit_funding_value_pretty = '$' . number_format($metro_pubtransit_funding_filtered[$year][$key]['transit_funding_per_1k'], 2);
-			}
+		if (isset($metro_MeansCarAloneRt_filtered[$year])) {
+			foreach($metro_MeansCarAloneRt_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_MeansCarAloneRt_value = ($metro_MeansCarAloneRt_filtered[$year][$key]['percent_workers_drive_alone'] / 100);
+					$metro_MeansCarAloneRt_value_pretty = number_format($metro_MeansCarAloneRt_filtered[$year][$key]['percent_workers_drive_alone'], 2) . '%';
+				}
+			}			
 		}
+
+		
+		// find and pull value variable
+		if (isset($metro_NoVehRt_filtered[$year])) {
+			foreach($metro_NoVehRt_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_NoVehRt_value = ($metro_NoVehRt_filtered[$year][$key]['percent_workers_no_vehicle'] / 100);
+					$metro_NoVehRt_value_pretty = number_format($metro_NoVehRt_filtered[$year][$key]['percent_workers_no_vehicle'], 2) . '%';
+				}
+			}			
+		}
+
+		
+		// find and pull value variable
+		if (isset($metro_TransitRidership_filtered[$year])) {
+			foreach($metro_TransitRidership_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_TransitRidership_value = $metro_TransitRidership_filtered[$year][$key]['bus_trips_thousands'];
+					$metro_TransitRidership_value_pretty = number_format($metro_TransitRidership_filtered[$year][$key]['bus_trips_thousands'], 2);
+				}
+			}			
+		}
+	
+		
+		// find and pull value variable
+		if (isset($metro_pubtransit_funding_filtered[$year])) {
+			foreach($metro_pubtransit_funding_filtered[$year] as $key => $data) {
+				if ($geoid['geoid'] == $data['geoid']) {
+					$metro_pubtransit_funding_value = $metro_pubtransit_funding_filtered[$year][$key]['transit_funding_per_1k'];
+					$metro_pubtransit_funding_value_pretty = '$' . number_format($metro_pubtransit_funding_filtered[$year][$key]['transit_funding_per_1k'], 2);
+				}
+			}			
+		}
+
 		
 		$csv_row = array($id, $geoid['geoid'], $geoid['metroarea'], $geoid['region'], $geoid['lat'], $geoid['lon'], $year, $oned_index_value, $economy_index_value, $education_index_value, $equity_index_value, $quality_of_life_index_value, $transit_index_value);
 		
@@ -3412,14 +3514,5 @@ fclose($handle4csv);
 /* close connection */
 $mysqli->close();
 
-
-// geoid lookup function
-function lookupGeoId($array, $geoid) {
-    foreach($array as $index => $data) {
-        if($data['geoid'] == $geoid) 
-		return $index;
-    }
-    return FALSE;
-}
 
 ?>
